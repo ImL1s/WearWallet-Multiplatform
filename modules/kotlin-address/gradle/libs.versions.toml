@@ -1,0 +1,12 @@
+[versions]
+kotlin = "2.1.0"
+androidGradlePlugin = "8.5.2"
+coroutines = "1.7.3"
+
+[libraries]
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlin-crypto-pure = { module = "io.github.iml1s:kotlin-crypto-pure" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }

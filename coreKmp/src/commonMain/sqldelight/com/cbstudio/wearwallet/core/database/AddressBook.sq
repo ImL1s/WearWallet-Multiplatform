@@ -1,0 +1,191 @@
+-- 地址簿表 - Core KMP 版本
+CREATE TABLE IF NOT EXISTS address_book (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    -- 分類和標籤
+    category TEXT DEFAULT 'OTHER', -- EXCHANGE, FRIEND, FAMILY, DEFI, DAO, OTHER
+    tags TEXT DEFAULT '', -- 以逗號分隔的標籤字符串
+    notes TEXT DEFAULT '',
+    -- 狀態管理
+    is_favorite INTEGER NOT NULL DEFAULT 0,
+    is_verified INTEGER NOT NULL DEFAULT 0, -- 地址是否已驗證
+    usage_count INTEGER NOT NULL DEFAULT 0, -- 使用次數
+    -- 時間戳
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    last_used_at INTEGER, -- 最後使用時間
+    -- 唯一約束：同一條鏈上同一地址只能有一個聯絡人
+    UNIQUE(address, chain_type)
+);
+
+-- 創建索引以提升查詢效能
+CREATE INDEX IF NOT EXISTS idx_address_book_address ON address_book(address);
+CREATE INDEX IF NOT EXISTS idx_address_book_chain_type ON address_book(chain_type);
+CREATE INDEX IF NOT EXISTS idx_address_book_category ON address_book(category);
+CREATE INDEX IF NOT EXISTS idx_address_book_favorite ON address_book(is_favorite);
+CREATE INDEX IF NOT EXISTS idx_address_book_usage_count ON address_book(usage_count);
+CREATE INDEX IF NOT EXISTS idx_address_book_last_used ON address_book(last_used_at);
+CREATE INDEX IF NOT EXISTS idx_address_book_name ON address_book(name);
+
+-- 基本 CRUD 操作
+
+-- 插入聯絡人
+insert:
+INSERT INTO address_book (
+    name, address, chain_type, chain_id, category, tags, notes,
+    is_favorite, is_verified
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 查詢所有聯絡人
+selectAll:
+SELECT * FROM address_book
+ORDER BY is_favorite DESC, usage_count DESC, name ASC;
+
+-- 根據 ID 查詢聯絡人
+selectById:
+SELECT * FROM address_book
+WHERE id = ?;
+
+-- 根據地址和鏈類型查詢聯絡人
+selectByAddressAndChain:
+SELECT * FROM address_book
+WHERE address = ? AND chain_type = ?;
+
+-- 檢查地址是否存在
+existsByAddressAndChain:
+SELECT EXISTS(SELECT 1 FROM address_book WHERE address = ? AND chain_type = ?);
+
+-- 更新聯絡人
+update:
+UPDATE address_book
+SET name = ?,
+    category = ?,
+    tags = ?,
+    notes = ?,
+    is_favorite = ?,
+    is_verified = ?,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 刪除聯絡人
+deleteById:
+DELETE FROM address_book
+WHERE id = ?;
+
+-- 批量刪除聯絡人
+deleteByIds:
+DELETE FROM address_book
+WHERE id IN ?;
+
+-- 清除所有聯絡人
+deleteAll:
+DELETE FROM address_book;
+
+-- 搜索和篩選操作
+
+-- 搜索聯絡人（按名稱、地址、備註）
+searchContacts:
+SELECT * FROM address_book
+WHERE name LIKE '%' || ? || '%'
+   OR address LIKE '%' || ? || '%'
+   OR notes LIKE '%' || ? || '%'
+ORDER BY is_favorite DESC, usage_count DESC, name ASC;
+
+-- 根據鏈類型獲取聯絡人
+selectByChainType:
+SELECT * FROM address_book
+WHERE chain_type = ?
+ORDER BY is_favorite DESC, usage_count DESC, name ASC;
+
+-- 根據分類獲取聯絡人
+selectByCategory:
+SELECT * FROM address_book
+WHERE category = ?
+ORDER BY is_favorite DESC, usage_count DESC, name ASC;
+
+-- 根據標籤獲取聯絡人（包含指定標籤）
+selectByTag:
+SELECT * FROM address_book
+WHERE tags LIKE '%' || ? || '%'
+ORDER BY is_favorite DESC, usage_count DESC, name ASC;
+
+-- 獲取收藏聯絡人
+selectFavorites:
+SELECT * FROM address_book
+WHERE is_favorite = 1
+ORDER BY usage_count DESC, name ASC;
+
+-- 獲取最近使用的聯絡人
+selectRecent:
+SELECT * FROM address_book
+WHERE last_used_at IS NOT NULL
+ORDER BY last_used_at DESC
+LIMIT ?;
+
+-- 獲取常用聯絡人（按使用頻率）
+selectFrequent:
+SELECT * FROM address_book
+WHERE usage_count > 0
+ORDER BY usage_count DESC, last_used_at DESC
+LIMIT ?;
+
+-- 使用統計更新
+
+-- 更新使用統計
+updateUsageStats:
+UPDATE address_book
+SET usage_count = usage_count + 1,
+    last_used_at = strftime('%s', 'now'),
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 重置使用統計
+resetUsageStats:
+UPDATE address_book
+SET usage_count = 0,
+    last_used_at = NULL,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 統計查詢
+
+-- 獲取總聯絡人數
+countAll:
+SELECT COUNT(*) FROM address_book;
+
+-- 獲取收藏聯絡人數
+countFavorites:
+SELECT COUNT(*) FROM address_book WHERE is_favorite = 1;
+
+-- 按鏈類型統計聯絡人數
+countByChainType:
+SELECT chain_type, COUNT(*)
+FROM address_book
+GROUP BY chain_type
+ORDER BY COUNT(*) DESC;
+
+-- 按分類統計聯絡人數
+countByCategory:
+SELECT category, COUNT(*)
+FROM address_book
+GROUP BY category
+ORDER BY COUNT(*) DESC;
+
+-- 獲取所有使用的標籤
+selectAllTags:
+SELECT DISTINCT tags FROM address_book
+WHERE tags != ''
+ORDER BY tags;
+
+-- 最後插入 ID
+lastInsertRowId:
+SELECT last_insert_rowid();
+
+-- 獲取最後插入的聯絡人
+selectLastInserted:
+SELECT * FROM address_book
+WHERE id = last_insert_rowid();

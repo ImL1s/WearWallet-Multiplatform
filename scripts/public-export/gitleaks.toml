@@ -1,0 +1,21 @@
+# Gitleaks config for sanitized public export trees.
+# Keep high-signal default rules; silence generic-api-key on this crypto-heavy tree.
+# Complementary guards live in scripts/export-public.sh.
+
+title = "WearWallet public export"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+description = "Silenced for public export (crypto test vectors / hex constants)"
+regex = '''wearwallet-public-export-generic-api-key-disabled'''
+[rules.allowlist]
+paths = ['''.*''']
+
+[allowlist]
+description = "Example Firebase stubs"
+paths = [
+  '''.*/google-services\.json\.example''',
+]

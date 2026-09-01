@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-android:
+    name: Android Unit Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Run Android Unit Tests
+        run: ./gradlew testDebugUnitTest --continue
+      
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: android-test-results
+          path: build/reports/tests/
+
+  build-ios:
+    name: iOS Build Check
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Build iOS Framework
+        run: ./gradlew compileKotlinIosArm64
+
+  build-watchos:
+    name: watchOS Build Check
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      
+      - name: Build watchOS Framework
+        run: ./gradlew compileKotlinWatchosArm64

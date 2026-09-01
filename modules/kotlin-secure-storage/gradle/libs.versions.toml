@@ -1,0 +1,14 @@
+[versions]
+kotlin = "2.1.0"
+androidGradlePlugin = "8.5.2"
+coroutines = "1.7.3"
+compileSdk = "35"
+minSdk = "26"
+targetSdk = "35"
+
+[libraries]
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }

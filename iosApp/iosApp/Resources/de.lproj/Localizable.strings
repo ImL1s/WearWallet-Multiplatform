@@ -1,0 +1,63 @@
+/* Common */
+"error" = "Fehler";
+"ok" = "OK";
+"unknown_error" = "Unbekannter Fehler";
+
+/* StoreKit Service */
+"storekit_failed_load" = "Produkte konnten nicht geladen werden: %@";
+"storekit_unknown_result" = "Unbekanntes Kaufergebnis";
+"storekit_restore_failed" = "Käufe konnten nicht wiederhergestellt werden: %@";
+"storekit_transaction_failed" = "Transaktionsfehler: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "watchOS-Anfrage simulieren";
+"keystone_clear_requests" = "Alle Anfragen löschen";
+"keystone_pending_requests" = "Ausstehende Anfragen";
+"keystone_from_watch" = "Von: Apple Watch";
+"keystone_waiting_title" = "Warten auf Apple Watch Anfrage";
+"keystone_waiting_desc" = "Wenn Sie eine Transaktion auf der Apple Watch starten,\nerscheint die Signaturanfrage hier";
+
+/* Status Titles */
+"keystone_status_idle" = "Bereit";
+"keystone_status_waiting" = "Warten...";
+"keystone_status_processing" = "Verarbeitung...";
+"keystone_status_displaying_qr" = "QR-Code anzeigen";
+"keystone_status_scanning" = "Scannen";
+"keystone_status_completed" = "Abgeschlossen";
+"keystone_status_error" = "Fehler";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "Warten auf neue Anfragen";
+"keystone_status_waiting_desc" = "Ausstehende Signaturanfragen";
+"keystone_status_processing_desc" = "QR-Code wird vorbereitet...";
+"keystone_status_displaying_qr_desc" = "Mit Keystone scannen";
+"keystone_status_scanning_desc" = "Signatur wird gescannt";
+"keystone_status_completed_desc" = "Signatur abgeschlossen";
+"keystone_status_error_desc" = "Fehler während der Verarbeitung";
+
+/* Request Types */
+"request_type_sign_tx" = "Transaktion signieren";
+"request_type_get_accounts" = "Konten abrufen";
+"request_type_verify_addr" = "Adresse verifizieren";
+
+/* Home Screen */
+"watch_connected" = "Watch verbunden";
+"watch_waiting" = "Warten auf Watch-Verbindung...";
+"latest_message" = "Letzte Nachricht: %@";
+"scan_keystone_qr" = "Keystone QR scannen";
+"address_book_management" = "Adressbuchverwaltung";
+
+/* Address Book */
+"address_book" = "Adressbuch";
+"contact_info" = "Kontaktinfo";
+"contact_name" = "Name";
+"contact_address" = "Adresse";
+"add_contact" = "Kontakt hinzufügen";
+"save" = "Speichern";
+"cancel" = "Abbrechen";
+
+/* Scanner */
+"qr_scan_guide" = "QR-Code im Rahmen ausrichten";
+"camera_not_available" = "Kamera nicht verfügbar";
+"scanning_multipart" = "Mehrteiliger QR-Scan: %d%%";
+"scanning_progress" = "Scannen... %d%%";

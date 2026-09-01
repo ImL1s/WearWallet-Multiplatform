@@ -1,0 +1,192 @@
+-- 錢包表 - Core KMP 版本
+CREATE TABLE IF NOT EXISTS wallet (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL UNIQUE,
+    public_key TEXT NOT NULL,
+    encrypted_private_key TEXT NOT NULL,
+    encrypted_mnemonic TEXT,
+    derivation_path TEXT NOT NULL DEFAULT "m/44'/60'/0'/0/0",
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    wallet_type TEXT NOT NULL DEFAULT 'HOT_WALLET',
+    is_active INTEGER NOT NULL DEFAULT 0,
+    is_watch_only INTEGER NOT NULL DEFAULT 0,
+    -- Keystone 硬體錢包相關欄位
+    master_fingerprint TEXT,
+    keystone_sign_request TEXT,
+    keystone_sync_data TEXT,
+    -- 其他 metadata
+    metadata TEXT DEFAULT '{}',
+    avatar_id INTEGER,
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    key_alias TEXT,
+    key_backend TEXT,
+    key_format_version INTEGER NOT NULL DEFAULT 1,
+    requires_auth INTEGER NOT NULL DEFAULT 1,
+    is_deletion_pending INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now'))
+);
+
+-- 創建索引以提升查詢效能
+CREATE INDEX IF NOT EXISTS idx_wallet_address ON wallet(address);
+CREATE INDEX IF NOT EXISTS idx_wallet_chain_id ON wallet(chain_id);
+CREATE INDEX IF NOT EXISTS idx_wallet_type ON wallet(wallet_type);
+CREATE INDEX IF NOT EXISTS idx_wallet_active ON wallet(is_active);
+CREATE INDEX IF NOT EXISTS idx_wallet_key_alias ON wallet(key_alias);
+CREATE INDEX IF NOT EXISTS idx_wallet_deletion_pending ON wallet(is_deletion_pending);
+
+-- 查詢所有錢包
+selectAll:
+SELECT * FROM wallet
+ORDER BY created_at DESC;
+
+-- 根據 ID 查詢錢包
+selectById:
+SELECT * FROM wallet
+WHERE id = ?;
+
+-- 根據地址查詢錢包
+selectByAddress:
+SELECT * FROM wallet
+WHERE address = ?;
+
+-- 根據 Key Alias 查詢錢包
+selectByKeyAlias:
+SELECT * FROM wallet
+WHERE key_alias = ?;
+
+-- 根據鏈 ID 查詢錢包
+selectByChainId:
+SELECT * FROM wallet
+WHERE chain_id = ?
+ORDER BY created_at DESC;
+
+-- 插入錢包
+insert:
+INSERT INTO wallet (
+    name, address, public_key, encrypted_private_key, encrypted_mnemonic,
+    derivation_path, chain_type, wallet_type, is_watch_only, master_fingerprint,
+    keystone_sign_request, keystone_sync_data, metadata, avatar_id, chain_id,
+    key_alias, key_backend, key_format_version, requires_auth, is_deletion_pending
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 更新錢包基本資訊
+update:
+UPDATE wallet
+SET name = ?, 
+    avatar_id = ?, 
+    metadata = ?,
+    chain_type = ?,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 更新 Keystone 相關資料
+updateKeystoneData:
+UPDATE wallet
+SET keystone_sign_request = ?,
+    keystone_sync_data = ?,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 刪除錢包
+delete:
+DELETE FROM wallet
+WHERE id = ?;
+
+-- 檢查地址是否存在
+existsByAddress:
+SELECT EXISTS(SELECT 1 FROM wallet WHERE address = ?);
+
+-- 獲取最後插入的 ID
+lastInsertRowId:
+SELECT last_insert_rowid();
+
+-- 獲取最後插入的錢包
+selectLastInserted:
+SELECT * FROM wallet
+WHERE id = last_insert_rowid();
+
+-- 查詢活躍錢包
+selectActiveWallet:
+SELECT * FROM wallet
+WHERE is_active = 1 AND is_deletion_pending = 0
+LIMIT 1;
+
+-- 設置活躍錢包
+setActiveWallet:
+UPDATE wallet
+SET is_active = CASE
+    WHEN id = ? THEN 1
+    ELSE 0
+END,
+updated_at = strftime('%s', 'now');
+
+-- 清除所有活躍狀態
+clearAllActiveStatus:
+UPDATE wallet
+SET is_active = 0,
+updated_at = strftime('%s', 'now');
+
+-- 根據錢包類型查詢錢包
+selectByWalletType:
+SELECT * FROM wallet
+WHERE wallet_type = ?
+ORDER BY created_at DESC;
+
+-- 查詢觀察錢包
+selectWatchOnlyWallets:
+SELECT * FROM wallet
+WHERE is_watch_only = 1
+ORDER BY created_at DESC;
+
+-- 查詢硬體錢包 (包含 Keystone)
+selectHardwareWallets:
+SELECT * FROM wallet
+WHERE wallet_type IN ('KEYSTONE', 'KEYSTONE_COLD', 'LEDGER', 'TREZOR')
+ORDER BY created_at DESC;
+
+-- 查詢 Keystone 錢包
+selectKeystoneWallets:
+SELECT * FROM wallet
+WHERE wallet_type IN ('KEYSTONE', 'KEYSTONE_COLD')
+ORDER BY created_at DESC;
+
+-- 統計錢包數量
+countWallets:
+SELECT COUNT(*) FROM wallet;
+
+-- 統計活躍錢包數量
+countActiveWallets:
+SELECT COUNT(*) FROM wallet WHERE is_active = 1;
+
+-- 更新錢包加密金鑰 (用於安全遷移與 Envelope 更新)
+updateEncryptedSecrets:
+UPDATE wallet
+SET encrypted_private_key = ?,
+    encrypted_mnemonic = ?,
+    key_alias = ?,
+    key_backend = ?,
+    key_format_version = ?,
+    requires_auth = ?,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 標記為待刪除墓碑
+markDeletionPending:
+UPDATE wallet
+SET is_deletion_pending = 1,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 查詢所有處於待刪除墓碑狀態的錢包
+selectDeletionPending:
+SELECT * FROM wallet
+WHERE is_deletion_pending = 1;
+
+-- 查詢未處於刪除狀態的所有錢包
+selectAllActiveWallets:
+SELECT * FROM wallet
+WHERE is_deletion_pending = 0
+ORDER BY created_at DESC;

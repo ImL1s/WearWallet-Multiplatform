@@ -1,0 +1,128 @@
+-- NotificationPreferences.sq
+-- 通知偏好設定表
+
+CREATE TABLE IF NOT EXISTS notification_preferences (
+    wallet_id TEXT PRIMARY KEY NOT NULL,
+    push_enabled INTEGER NOT NULL DEFAULT 0,
+    price_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+    transaction_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+    security_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+    defi_alerts_enabled INTEGER NOT NULL DEFAULT 0,
+    minimum_transaction_amount TEXT,
+    quiet_hours_start INTEGER,
+    quiet_hours_end INTEGER,
+    vibration_enabled INTEGER NOT NULL DEFAULT 1,
+    sound_enabled INTEGER NOT NULL DEFAULT 1,
+    last_updated_at INTEGER NOT NULL
+);
+
+-- 查詢錢包的偏好設定
+selectByWalletId:
+SELECT * FROM notification_preferences 
+WHERE wallet_id = ?;
+
+-- 檢查是否存在偏好設定
+hasPreferences:
+SELECT COUNT(*) > 0 FROM notification_preferences 
+WHERE wallet_id = ?;
+
+-- 查詢啟用推送的錢包列表
+selectWalletsWithPushEnabled:
+SELECT wallet_id FROM notification_preferences 
+WHERE push_enabled = 1;
+
+-- 查詢啟用特定警告類型的錢包列表
+selectWalletsWithAlertType:
+SELECT wallet_id FROM notification_preferences 
+WHERE (
+    (? = 'PRICE_ALERT' AND price_alerts_enabled = 1) OR
+    (? = 'TRANSACTION' AND transaction_alerts_enabled = 1) OR
+    (? = 'SECURITY' AND security_alerts_enabled = 1) OR
+    (? = 'DEFI' AND defi_alerts_enabled = 1)
+);
+
+-- 檢查是否在靜音時段
+checkQuietHours:
+SELECT quiet_hours_start, quiet_hours_end FROM notification_preferences 
+WHERE wallet_id = ?;
+
+-- 插入或更新偏好設定
+insertOrUpdate:
+INSERT OR REPLACE INTO notification_preferences (
+    wallet_id, push_enabled, price_alerts_enabled, transaction_alerts_enabled,
+    security_alerts_enabled, defi_alerts_enabled, minimum_transaction_amount,
+    quiet_hours_start, quiet_hours_end, vibration_enabled, sound_enabled, last_updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 更新推送啟用狀態
+updatePushEnabled:
+UPDATE notification_preferences 
+SET push_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+-- 更新特定警告類型啟用狀態
+updatePriceAlertsEnabled:
+UPDATE notification_preferences 
+SET price_alerts_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+updateTransactionAlertsEnabled:
+UPDATE notification_preferences 
+SET transaction_alerts_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+updateSecurityAlertsEnabled:
+UPDATE notification_preferences 
+SET security_alerts_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+updateDefiAlertsEnabled:
+UPDATE notification_preferences 
+SET defi_alerts_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+-- 更新最小交易金額
+updateMinimumTransactionAmount:
+UPDATE notification_preferences 
+SET minimum_transaction_amount = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+-- 更新靜音時段
+updateQuietHours:
+UPDATE notification_preferences 
+SET quiet_hours_start = ?, quiet_hours_end = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+-- 更新震動啟用狀態
+updateVibrationEnabled:
+UPDATE notification_preferences 
+SET vibration_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+-- 更新聲音啟用狀態
+updateSoundEnabled:
+UPDATE notification_preferences 
+SET sound_enabled = ?, last_updated_at = ? 
+WHERE wallet_id = ?;
+
+-- 重置為預設值
+resetToDefaults:
+UPDATE notification_preferences 
+SET 
+    push_enabled = 0,
+    price_alerts_enabled = 1,
+    transaction_alerts_enabled = 1,
+    security_alerts_enabled = 1,
+    defi_alerts_enabled = 0,
+    minimum_transaction_amount = NULL,
+    quiet_hours_start = NULL,
+    quiet_hours_end = NULL,
+    vibration_enabled = 1,
+    sound_enabled = 1,
+    last_updated_at = ?
+WHERE wallet_id = ?;
+
+-- 刪除偏好設定
+deleteByWalletId:
+DELETE FROM notification_preferences 
+WHERE wallet_id = ?;

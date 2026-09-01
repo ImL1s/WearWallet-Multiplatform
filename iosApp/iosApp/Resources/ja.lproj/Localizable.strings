@@ -1,0 +1,63 @@
+/* Common */
+"error" = "エラー";
+"ok" = "OK";
+"unknown_error" = "不明なエラー";
+
+/* StoreKit Service */
+"storekit_failed_load" = "製品の読み込みに失敗しました: %@";
+"storekit_unknown_result" = "不明な購入結果です";
+"storekit_restore_failed" = "購入の復元に失敗しました: %@";
+"storekit_transaction_failed" = "トランザクションエラー: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "watchOS リクエストをシミュレート";
+"keystone_clear_requests" = "すべてのリクエストをクリア";
+"keystone_pending_requests" = "保留中のリクエスト";
+"keystone_from_watch" = "元: Apple Watch";
+"keystone_waiting_title" = "Apple Watch のリクエストを待機中";
+"keystone_waiting_desc" = "Apple Watch でトランザクションを開始すると、\n署名リクエストがここに表示されます";
+
+/* Status Titles */
+"keystone_status_idle" = "待機中";
+"keystone_status_waiting" = "待機中...";
+"keystone_status_processing" = "処理中...";
+"keystone_status_displaying_qr" = "QR コードを表示中";
+"keystone_status_scanning" = "スキャン中";
+"keystone_status_completed" = "完了";
+"keystone_status_error" = "エラー";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "新しいリクエストを待っています";
+"keystone_status_waiting_desc" = "保留中の署名リクエスト";
+"keystone_status_processing_desc" = "QR コードを準備中...";
+"keystone_status_displaying_qr_desc" = "Keystone でスキャンしてください";
+"keystone_status_scanning_desc" = "署名をスキャン中";
+"keystone_status_completed_desc" = "署名が完了しました";
+"keystone_status_error_desc" = "処理中にエラーが発生しました";
+
+/* Request Types */
+"request_type_sign_tx" = "送金に署名";
+"request_type_get_accounts" = "アカウントを取得";
+"request_type_verify_addr" = "アドレスを検証";
+
+/* Home Screen */
+"watch_connected" = "ウォッチが接続されました";
+"watch_waiting" = "ウォッチの接続を待機中...";
+"latest_message" = "最新のメッセージ: %@";
+"scan_keystone_qr" = "Keystone QR をスキャン";
+"address_book_management" = "アドレス帳管理";
+
+/* Address Book */
+"address_book" = "アドレス帳";
+"contact_info" = "連絡先情報";
+"contact_name" = "名前";
+"contact_address" = "アドレス";
+"add_contact" = "連絡先を追加";
+"save" = "保存";
+"cancel" = "キャンセル";
+
+/* Scanner */
+"qr_scan_guide" = "QR コードを枠に合わせてください";
+"camera_not_available" = "カメラを利用できません";
+"scanning_multipart" = "分割 QR をスキャン中: %d%%";
+"scanning_progress" = "スキャン中... %d%%";

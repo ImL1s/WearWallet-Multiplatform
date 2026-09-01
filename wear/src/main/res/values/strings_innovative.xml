@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Interactive Crypto Tile -->
+    <string name="crypto_tile_label">加密貨幣即時資訊</string>
+    <string name="crypto_tile_description">顯示即時價格、餘額和 AI 市場洞察，支援快速交易操作</string>
+    
+    <!-- NFC Tap-to-Sign -->
+    <string name="nfc_tap_to_sign_title">NFC 簽署交易</string>
+    <string name="nfc_tap_instruction">請將 Keystone 硬體錢包靠近手錶</string>
+    <string name="nfc_signing_progress">正在簽署交易…</string>
+    <string name="nfc_sign_success">交易簽署成功</string>
+    <string name="nfc_sign_failed">簽署失敗，請重試</string>
+    <string name="nfc_not_supported">此設備不支援 NFC</string>
+    <string name="nfc_disabled">請開啟 NFC 功能</string>
+    
+    <!-- Double Pinch Gesture -->
+    <string name="gesture_detected">檢測到雙重捏合手勢</string>
+    <string name="gesture_confirm_transaction">確認交易？</string>
+    <string name="gesture_quick_receive">顯示收款碼</string>
+    <string name="gesture_emergency_cancel">緊急取消所有交易</string>
+    <string name="gesture_portfolio_view">查看投資組合</string>
+    
+    <!-- Continuous Biometric Auth -->
+    <string name="biometric_monitoring_active">生物識別監控中</string>
+    <string name="biometric_auth_lost">認證失效，請重新驗證</string>
+    <string name="biometric_stress_detected">檢測到壓力狀態</string>
+    <string name="biometric_duress_mode">緊急模式已啟動</string>
+    <string name="biometric_confidence_low">安全信心度低</string>
+    <string name="biometric_additional_auth_required">需要額外驗證</string>
+    
+    <!-- Wrist-to-Wrist Transfer -->
+    <string name="wrist_transfer_title">手腕轉帳</string>
+    <string name="wrist_transfer_instruction">將兩隻手錶靠近進行轉帳</string>
+    <string name="wrist_transfer_waiting">等待接收方…</string>
+    <string name="wrist_transfer_success">轉帳成功</string>
+    <string name="wrist_transfer_offline_notice">離線交易將在連網後同步</string>
+    
+    <!-- AI Market Insights -->
+    <string name="ai_insight_bullish">看漲趨勢，建議持有</string>
+    <string name="ai_insight_bearish">看跌趨勢，謹慎操作</string>
+    <string name="ai_insight_volatile">市場波動大，控制風險</string>
+    <string name="ai_insight_opportunity">發現投資機會</string>
+    
+    <!-- Security Levels -->
+    <string name="security_level_high">高度安全</string>
+    <string name="security_level_medium">中度安全</string>
+    <string name="security_level_low">低度安全</string>
+    <string name="security_level_lockdown">鎖定模式</string>
+    
+    <!-- Health Mining -->
+    <string name="health_mining_active">健康挖礦進行中</string>
+    <string name="health_mining_rewards">今日獲得 %1$s 獎勵</string>
+    <string name="health_mining_steps">步數: %1$d</string>
+    <string name="health_mining_heart_rate">心率區間: %1$d 分鐘</string>
+</resources>

@@ -1,0 +1,165 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">WearWallet</string>
+    <string name="tile_label">WearWallet</string>
+    <string name="hello_world">你好, %1$s!</string>
+    <string name="complication_label">WearWallet 錶盤元件</string>
+
+    <!-- Common Actions -->
+    <string name="confirm">确认</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="add">添加</string>
+    <string name="refresh">刷新</string>
+    <string name="retry">重试</string>
+    <string name="copy">复制</string>
+    <string name="paste">粘贴</string>
+    <string name="back">返回</string>
+    <string name="next">下一步</string>
+    <string name="done">完成</string>
+    <string name="close">关闭</string>
+    <string name="ok">确定</string>
+    <string name="selected">已选择</string>
+
+    <!-- Common Status -->
+    <string name="loading">加载中...</string>
+    <string name="error">错误</string>
+    <string name="success">成功</string>
+    <string name="failed">失败</string>
+    <string name="pending">等待中</string>
+    <string name="completed">已完成</string>
+    <string name="syncing">同步中...</string>
+
+    <!-- Wallet Management -->
+    <string name="wallet">钱包</string>
+    <string name="wallets">钱包</string>
+    <string name="wallet_management">钱包管理</string>
+    <string name="manage_wallets">管理钱包</string>
+    <string name="add_wallet">添加钱包</string>
+    <string name="create_wallet">创建钱包</string>
+    <string name="import_wallet">导入钱包</string>
+    <string name="confirm_import">确认导入</string>
+    <string name="delete_wallet">删除钱包</string>
+    <string name="wallet_settings">钱包设置</string>
+    <string name="wallet_name">钱包名称</string>
+    <string name="wallet_address">钱包地址</string>
+    <string name="current_balance">当前余额</string>
+    <string name="wallet_type_hot">热钱包</string>
+    <string name="wallet_type_cold">冷钱包</string>
+    <string name="no_wallets">无钱包</string>
+    <string name="no_wallets_yet">暂无钱包</string>
+
+    <!-- Wallet Creation -->
+    <string name="create_hot_wallet">创建热钱包</string>
+    <string name="connect_keystone_wallet">连接 Keystone 钱包</string>
+    <string name="hot_wallet_desc">热钱包私钥存储在设备上</string>
+    <string name="keystone_wallet_desc">使用 Keystone 硬件钱包以获得最高级别的安全性</string>
+    <string name="select_wallet_type">选择钱包类型</string>
+    <string name="security_tip">安全提示</string>
+    <string name="wallet_security_tips">• 私钥将被加密存储\n• 妥善保管助记词\n• 切勿与他人分享</string>
+
+    <!-- Mnemonic -->
+    <string name="mnemonic">助记词</string>
+    <string name="generate_mnemonic">生成助记词</string>
+    <string name="backup_mnemonic">备份助记词</string>
+    <string name="confirm_mnemonic">确认助记词</string>
+    <string name="write_down_mnemonic">请将以下助记词写在纸上并妥善保管</string>
+    <string name="i_have_backed_up">我已备份</string>
+    <string name="paste_mnemonic">粘贴助记词</string>
+    <string name="invalid_mnemonic">无效助记词</string>
+    <string name="invalid_mnemonic_format">无效助记词格式</string>
+    <string name="tap_to_input_mnemonic">点击输入助记词</string>
+    <string name="tap_word_to_remove">点击单词以移除</string>
+
+    <!-- Transaction -->
+    <string name="send">发送</string>
+    <string name="receive">接收</string>
+    <string name="transaction">交易</string>
+    <string name="transactions">交易</string>
+    <string name="transaction_history">交易历史</string>
+    <string name="transaction_details">交易详情</string>
+    <string name="from_address">发送地址</string>
+    <string name="to_address">接收地址</string>
+    <string name="amount">金额</string>
+    <string name="fee">费用</string>
+    <string name="total">总计</string>
+    <string name="transaction_hash">交易哈希</string>
+    <string name="transaction_status">交易状态</string>
+    <string name="transaction_time">交易时间</string>
+    <string name="no_transactions">暂无交易</string>
+    <string name="transaction_limit_notice">仅显示最近 100 笔交易</string>
+    <string name="view_in_explorer">在浏览器中查看</string>
+    <string name="view_all_transactions">查看所有交易</string>
+
+    <!-- Transaction Status -->
+    <string name="status_pending">等待中</string>
+    <string name="status_completed">已完成</string>
+    <string name="status_failed">失败</string>
+    <string name="status_received">已接收</string>
+    <string name="status_sent">已发送</string>
+
+    <!-- Address Book -->
+    <string name="address_book">地址簿</string>
+    <string name="add_contact">添加联系人</string>
+    <string name="edit_contact">编辑联系人</string>
+    <string name="contact_name">联系人名称</string>
+    <string name="contact_detail">联系人详情</string>
+    <string name="no_contacts">无联系人</string>
+    <string name="no_contacts_message">点击下方按钮添加联系人</string>
+    <string name="search_contacts">搜索联系人</string>
+    <string name="send_to_contact">发送给联系人</string>
+    <string name="delete_contact">删除联系人</string>
+    <string name="delete_contact_confirm">删除联系人？</string>
+    <string name="delete_contact_message">此操作无法撤销。</string>
+    <string name="contact_added">联系人已添加</string>
+    <string name="contact_updated">联系人已更新</string>
+    <string name="contact_deleted">联系人已删除</string>
+    <string name="note">笔记</string>
+    <string name="note_optional">笔记 (可选)</string>
+    <string name="blockchain">区块链</string>
+    <string name="save_changes">保存更改</string>
+    <string name="go_back">返回</string>
+    <string name="save_contact">保存联系人</string>
+    <string name="tap_to_copy">点击复制</string>
+    <string name="enter_name">输入名称</string>
+    <string name="select_chain">选择链</string>
+    <string name="add_note">添加笔记</string>
+
+    <!-- AI Assistant -->
+    <string name="ai_assistant">AI 助手</string>
+    <string name="ai_voice_assistant">AI 语音助手</string>
+    <string name="ai_thinking">AI 正在思考...</string>
+    <string name="ai_suggestion_check_balance">检查余额</string>
+    <string name="ai_suggestion_send_eth">发送 0.001 ETH</string>
+    <string name="ai_suggestion_show_history">显示交易历史</string>
+    <string name="ai_response_balance">您的 ETH 余额为 %1$s ETH (≈ $%2$s USD)</string>
+    <string name="ai_response_prepare_send">准备发送交易，请确认详情</string>
+    <string name="ai_response_no_history">无近期交易记录</string>
+    <string name="ai_response_unknown_command">抱歉，我不明白这个命令。请尝试：检查余额、发送 ETH、显示历史记录</string>
+    <string name="ai_error_voice_input">无法处理语音输入: %1$s</string>
+    <string name="ai_transaction_sent">交易发送成功</string>
+    <string name="ai_transaction_cancelled">交易已取消</string>
+    <string name="ai_error_send_failed">交易发送失败: %1$s</string>
+
+    <!-- Security & Biometrics -->
+    <string name="biometric_unavailable">生物识别不可用</string>
+    <string name="biometric_factor_static">生物识别</string>
+    <string name="biometric_factor_behavior">行为模式</string>
+    <string name="biometric_factor_environment">环境因素</string>
+    <string name="biometric_factor_device_pairing">设备配对</string>
+    <string name="biometric_factor_security_question">安全问题</string>
+    <string name="biometric_factor_pin">PIN 码</string>
+    <string name="error_unknown">未知错误</string>
+    <string name="error_transaction_verification_failed">交易验证失败</string>
+    <string name="anomaly_unusual_transaction">检测到异常交易模式</string>
+    <string name="anomaly_unusual_behavior">检测到异常行为模式</string>
+    
+    <!-- Config & System -->
+    <string name="error_missing_api_key">缺少 %1$s API 密钥！</string>
+    <string name="error_api_key_instructions">请通过以下方法之一设置：\n1. local.properties: %1$s=your_key\n2. Firebase Remote Config\n3. 环境变量: %2$s</string>
+    <string name="push_status_disabled">Push Protocol 功能已禁用</string>
+    <string name="push_status_not_configured">频道未创建，需要 50 PUSH 代币</string>
+    <string name="push_status_invalid_address">无效频道地址</string>
+    <string name="push_status_missing_key">缺少频道密钥</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- WearWallet logo - stylized "W" with crypto elements -->
+    <group>
+        <!-- Background circle -->
+        <path
+            android:fillColor="#1E88E5"
+            android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2z"/>
+        
+        <!-- Stylized "W" -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M6,8L7.5,8L9,14L10.5,10L12,14L13.5,10L15,14L16.5,8L18,8L16,16L14,16L12,12L10,16L8,16L6,8z"/>
+        
+        <!-- Small trend arrow -->
+        <path
+            android:fillColor="#4CAF50"
+            android:pathData="M17,7L19,7L19,9L17,9L17,7z"/>
+        <path
+            android:fillColor="#4CAF50"
+            android:pathData="M18,6L20,8L18,8L18,6z"/>
+    </group>
+</vector>

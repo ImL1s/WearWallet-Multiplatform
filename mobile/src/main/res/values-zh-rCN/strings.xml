@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Mobile</string>
+    <string name="intro_title">WearWallet 移动版</string>
+    <string name="intro_description">此移动应用协助 Wear OS 应用进行二维码扫描和数据同步。当您的手表需要扫描二维码时，手机摄像头将自动激活。</string>
+    <string name="usage_instruction">请在手表上操作发送功能；手机将自动响应扫描请求。</string>
+    <string name="connection_status">连接状态</string>
+    <string name="checking_connection">正在检查连接...</string>
+    <string name="connected_devices">%d 个设备已连接</string>
+    <string name="no_connected_devices">未连接 Wear OS 设备</string>
+    
+    <!-- Home Screen -->
+    <string name="quick_actions">快速操作</string>
+    <string name="notification_settings">通知设置</string>
+    <string name="general_settings">常规设置</string>
+    
+    <!-- Notification Settings -->
+    <string name="dismiss">忽略</string>
+    <string name="back">返回</string>
+    <string name="push_protocol_status">Push Protocol 状态</string>
+    <string name="subscribed_to_notifications">已订阅通知</string>
+    <string name="not_subscribed_to_notifications">未订阅通知</string>
+    <string name="subscribe_to_push_protocol">订阅 Push Protocol</string>
+    <string name="unsubscribe">取消订阅</string>
+    <string name="notification_types">通知类型</string>
+    <string name="price_alerts">价格提醒</string>
+    <string name="price_alerts_description">当代币达到设定价格时提醒</string>
+    <string name="transaction_alerts">交易提醒</string>
+    <string name="transaction_alerts_description">发送或接收代币时提醒</string>
+    <string name="security_alerts">安全提醒</string>
+    <string name="security_alerts_description">提醒异常活动或安全威胁</string>
+    <string name="defi_alerts">DeFi 提醒</string>
+    <string name="defi_alerts_description">流动性、收益和清算提醒</string>
+    <string name="advanced_settings">高级设置</string>
+    <string name="minimum_transaction_amount">最小交易金额</string>
+    <string name="current_amount">当前: $%s</string>
+    <string name="no_minimum_set">未设置最小金额</string>
+    <string name="set_minimum_amount">设置最小金额</string>
+    <string name="amount_usd">金额 (USD)</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="quiet_hours">免打扰时间</string>
+    <string name="quiet_hours_disabled">已禁用</string>
+    <string name="set_quiet_hours">设置免打扰时间</string>
+    <string name="enable_quiet_hours">启用免打扰时间</string>
+    <string name="quiet_hours_explanation">此期间将不会收到通知</string>
+    <string name="vibration">振动</string>
+    <string name="sound">声音</string>
+    
+    <!-- Camera & QR Scanning -->
+    <string name="camera_launch_failed">摄像头启动失败</string>
+    <string name="camera_permission_needed">需要摄像头权限以扫描二维码</string>
+    <string name="keystone_decode_failed">Keystone 二维码解码失败</string>
+    <string name="keystone_qr_scan_success">Keystone 二维码扫描成功</string>
+    <string name="keystone_scan_mode_starting">正在启动 Keystone 扫描模式...</string>
+    <string name="qr_scan_instruction">请将二维码置于框内</string>
+    <string name="scan_progress">扫描进度: %d%%</string>
+    <string name="scan_success">扫描成功</string>
+    <string name="ur_fragment_incomplete">UR 片段不完整</string>
+    <string name="ur_scan_complete">UR 扫描完成</string>
+    
+    <!-- Address Book -->
+    <string name="address_book">地址簿</string>
+    <string name="add_contact">添加联系人</string>
+    <string name="edit_contact">编辑联系人</string>
+    <string name="contact_name">联系人名称</string>
+    <string name="contact_detail">联系人详情</string>
+    <string name="no_contacts">无联系人</string>
+    <string name="no_contacts_message">点击下方按钮添加联系人</string>
+    <string name="search_contacts">搜索联系人</string>
+    <string name="send_to_contact">发送给联系人</string>
+    <string name="delete_contact">删除联系人</string>
+    <string name="delete_contact_confirm">确认删除联系人？</string>
+    <string name="delete_contact_message">此操作无法撤销。</string>
+    <string name="contact_added">联系人已添加</string>
+    <string name="contact_updated">联系人已更新</string>
+    <string name="contact_deleted">联系人已删除</string>
+    <string name="note">笔记</string>
+    <string name="note_optional">笔记 (可选)</string>
+    <string name="blockchain">区块链</string>
+    <string name="save_changes">保存更改</string>
+    <string name="go_back">返回</string>
+    <string name="save_contact">保存联系人</string>
+    <string name="wallet_address">钱包地址</string>
+    <string name="address_copied">地址已复制</string>
+    <string name="copy_address">复制地址</string>
+    
+    <!-- Common UI Components -->
+    <string name="loading">加载中...</string>
+    <string name="error_occurred">发生错误</string>
+    <string name="retry">重试</string>
+    <string name="error_save_contact">保存联系人失败: %1$s</string>
+    <string name="error_load_contact">加载联系人失败</string>
+    <string name="error_load_contact_failed">加载联系人失败: %1$s</string>
+    <string name="error_update_contact_failed">更新联系人失败: %1$s</string>
+    <string name="contact_not_found">未找到联系人</string>
+    <string name="hint">提示</string>
+</resources>

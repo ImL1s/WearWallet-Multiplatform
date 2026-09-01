@@ -1,0 +1,62 @@
+name: WearWalletCompanion
+options:
+  bundleIdPrefix: com.cbstudio
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  WearWalletCompanion:
+    type: application
+    platform: iOS
+    sources: 
+      - path: iosApp
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.cbstudio.wearwallet.ios
+      INFOPLIST_FILE: iosApp/Info.plist
+      CURRENT_PROJECT_VERSION: 1
+      MARKETING_VERSION: 1.0.0
+      DEVELOPMENT_TEAM: "" # Leave empty, user can select
+      CODE_SIGN_STYLE: Automatic
+      IPHONEOS_DEPLOYMENT_TARGET: 16.0
+      TARGETED_DEVICE_FAMILY: 1 # iPhone only
+    dependencies:
+      - sdk: AVFoundation.framework
+      - sdk: WatchConnectivity.framework
+      - sdk: SwiftUI.framework
+      - framework: ../coreKmp/build/cocoapods/publish/debug/coreKmp.xcframework
+  WearWalletCompanionUITests:
+    type: bundle
+    platform: iOS
+    productType: com.apple.product-type.bundle.ui-testing
+    sources:
+      - path: iosAppUITests
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.cbstudio.wearwallet.ios.uitests
+      INFOPLIST_FILE: iosAppUITests/Info.plist
+      TEST_TARGET_NAME: WearWalletCompanion
+    dependencies:
+      - target: WearWalletCompanion
+
+  WearWalletCompanionTests:
+    type: bundle
+    platform: iOS
+    productType: com.apple.product-type.bundle.unit-test
+    sources:
+      - path: iosAppTests
+    dependencies:
+      - target: WearWalletCompanion
+
+schemes:
+  WearWalletCompanion:
+    build:
+      targets:
+        WearWalletCompanion: all
+        WearWalletCompanionUITests: all
+        WearWalletCompanionTests: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - name: WearWalletCompanionUITests
+        - name: WearWalletCompanionTests

@@ -1,0 +1,87 @@
+/* Common */
+"error" = "錯誤";
+"ok" = "確定";
+"pause" = "暫停";
+"resume" = "繼續";
+"cancel" = "取消";
+"timeout" = "超時";
+"retry" = "重試";
+"unknown_error" = "發生未知錯誤";
+
+/* StoreKit Service */
+"storekit_failed_load" = "載入產品失敗: %@";
+"storekit_unknown_result" = "未知的購買結果";
+"storekit_restore_failed" = "恢復購買失敗: %@";
+"storekit_transaction_failed" = "交易處理失敗: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "模擬 watchOS 請求";
+"keystone_clear_requests" = "清除所有請求";
+"keystone_pending_requests" = "待處理請求";
+"keystone_from_watch" = "來自: Apple Watch";
+"keystone_waiting_title" = "等待 Apple Watch 請求";
+"keystone_waiting_desc" = "當您在 Apple Watch 上發起交易時，\n將在此處顯示簽名請求";
+
+/* Status Titles */
+"keystone_status_idle" = "閒置";
+"keystone_status_waiting" = "等待處理";
+"keystone_status_processing" = "處理中";
+"keystone_status_displaying_qr" = "顯示 QR Code";
+"keystone_status_scanning" = "掃描中";
+"keystone_status_completed" = "完成";
+"keystone_status_error" = "錯誤";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "等待新的請求";
+"keystone_status_waiting_desc" = "有待處理的簽名請求";
+"keystone_status_processing_desc" = "正在準備 QR Code";
+"keystone_status_displaying_qr_desc" = "請使用 Keystone 掃描";
+"keystone_status_scanning_desc" = "正在掃描 Keystone 簽名";
+"keystone_status_completed_desc" = "簽名已完成";
+"keystone_status_error_desc" = "處理過程中發生錯誤";
+
+/* Request Types */
+"request_type_sign_tx" = "簽名交易";
+"request_type_get_accounts" = "獲取賬戶";
+"request_type_verify_addr" = "驗證地址";
+
+/* Home Screen */
+"watch_connected" = "Watch 已連接";
+"watch_waiting" = "等待 Watch 連接...";
+"latest_message" = "最新消息: %@";
+"scan_keystone_qr" = "掃描 Keystone QR";
+"address_book_management" = "通訊錄管理";
+
+/* Address Book */
+"address_book" = "通訊錄";
+"contact_info" = "聯絡人資訊";
+"contact_name" = "名稱";
+"contact_address" = "地址";
+"add_contact" = "新增聯絡人";
+"save" = "儲存";
+"cancel" = "取消";
+
+/* Scanner */
+"qr_scan_guide" = "將 QR 碼對準框內";
+"camera_not_available" = "相機不可用";
+"scanning_multipart" = "正在掃描分段 QR 碼：%d%%";
+"scanning_progress" = "掃描中... %d%%";
+
+/* Keystone Scan/Display */
+"keystone_scan_to_sign" = "掃描以簽名交易";
+"keystone_part_format" = "第 %d 份，共 %d 份";
+"keystone_animation_playing" = "動畫播放中...";
+"keystone_qr_timeout" = "QR Code 顯示已超時，請重試";
+"keystone_qr_automatic_switch" = "QR Code 會自動切換，請持續掃描";
+"keystone_scan_signature" = "掃描 Keystone 簽名";
+"keystone_scanned_parts_format" = "已掃描 %d / %d 片段";
+"keystone_received_signature" = "已成功接收 Keystone 簽名";
+"keystone_continue_scan_all" = "請持續掃描所有 QR Code 片段";
+"keystone_continue_scan_format" = "繼續掃描下一個片段... (%d/%d)";
+"preparing_scanner" = "準備掃描...";
+"not_keystone_qr" = "非 Keystone QR Code";
+"decoding" = "正在解碼...";
+"error_parse_hdkey" = "無法解析 HD Key 數據";
+"error_parse_signature" = "無法解析簽名數據";
+"turn_on_torch" = "開啟手電筒";
+"turn_off_torch" = "關閉手電筒";
