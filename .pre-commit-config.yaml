@@ -1,0 +1,162 @@
+# Pre-commit hooks configuration for WearWallet
+# 安裝: pip install pre-commit && pre-commit install
+
+repos:
+  # 基本檔案檢查
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: 移除行尾空白
+      - id: end-of-file-fixer
+        name: 確保檔案結尾有換行
+      - id: check-yaml
+        name: 檢查 YAML 語法
+      - id: check-json
+        name: 檢查 JSON 語法
+      - id: check-xml
+        name: 檢查 XML 語法
+      - id: check-added-large-files
+        name: 防止提交大檔案
+        args: ['--maxkb=1000']
+      - id: check-case-conflict
+        name: 檢查檔名大小寫衝突
+      - id: check-merge-conflict
+        name: 檢查合併衝突標記
+      - id: detect-private-key
+        name: 偵測私鑰
+      - id: check-symlinks
+        name: 檢查符號連結
+      - id: check-toml
+        name: 檢查 TOML 語法
+
+  # 安全檢查
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        name: 偵測敏感資訊
+        # The env syntax hook allows comments, so the root template must still be secret-scanned.
+        exclude: |
+          (?x)^(
+            .*\.enc$|
+            (?!\.env\.example$).*\.example$|
+            .*\.md$|
+            docs/.*
+          )$
+
+  # Kotlin 程式碼檢查
+  - repo: local
+    hooks:
+      - id: ktlint
+        name: Kotlin Linter (ktlint)
+        entry: ./gradlew ktlintCheck
+        language: system
+        files: \.kt$
+        pass_filenames: false
+
+      - id: detekt
+        name: Kotlin Static Analysis (detekt)
+        entry: ./gradlew detekt
+        language: system
+        files: \.kt$
+        pass_filenames: false
+
+  # 專案特定檢查
+  - repo: local
+    hooks:
+      - id: security-check
+        name: WearWallet Security Check
+        entry: scripts/security-check.sh
+        language: script
+        pass_filenames: false
+        always_run: true
+
+      - id: validate-build-env
+        name: Validate Build Environment
+        entry: scripts/validate-build.sh
+        language: script
+        pass_filenames: false
+        always_run: true
+
+      - id: check-gradle-properties
+        name: Check Gradle Properties
+        entry: >-
+          bash -c 'if [ -f "gradle.properties" ] && grep -E "INFURA_TOKEN|MORALIS_API_KEY|password|secret" gradle.properties | grep -v "^#"; then echo "Error: Found sensitive data in gradle.properties"; exit 1; fi'
+        language: system
+        files: gradle\.properties$
+
+      - id: check-env-files
+        name: Check .env files not committed
+        entry: |
+          bash -c '
+            tracked_env_files=$(git ls-files | grep -E "(^|/)\.env($|\.)" || true)
+            prohibited_env_files=$(printf "%s\n" "$tracked_env_files" | grep -v -E "^$|^\.env\.example$" || true)
+            if [ -n "$prohibited_env_files" ]; then
+              echo "Error: tracked .env files are prohibited except the blank root .env.example template"
+              printf "%s\n" "$prohibited_env_files"
+              exit 1
+            fi
+            if [ "$(git ls-files -- .env.example)" = ".env.example" ] &&
+               grep -E -v "^[[:space:]]*(#.*)?$|^[A-Za-z_][A-Za-z0-9_]*=[[:space:]]*$" .env.example | grep -q .; then
+              echo "Error: .env.example must contain only comments, blank lines, and empty assignments"
+              exit 1
+            fi
+          '
+        language: system
+        pass_filenames: false
+
+  # Swift/iOS 檢查 (僅在 macOS 上執行)
+  - repo: local
+    hooks:
+      - id: swiftlint
+        name: SwiftLint
+        entry: swiftlint
+        language: system
+        files: \.swift$
+        require_serial: true
+        # 僅在 macOS 上執行
+        stages: [commit]
+        # 如果 swiftlint 不存在則跳過
+        pass_filenames: false
+
+  # 文檔檢查
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.39.0
+    hooks:
+      - id: markdownlint
+        name: Markdown Linter
+        args: ['--fix']
+        exclude: |
+          (?x)^(
+            docs/archive/.*|
+            CHANGELOG\.md
+          )$
+
+  # Git 相關檢查
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+      - id: gitlint
+        name: Git Commit Message Linter
+        stages: [commit-msg]
+
+# 全域設定
+default_language_version:
+  python: python3
+
+# 排除的檔案和目錄
+exclude: |
+  (?x)^(
+    \.git/|
+    \.gradle/|
+    build/|
+    \.idea/|
+    .*\.iml$|
+    gradlew\.bat$|
+    node_modules/|
+    \.DS_Store$|
+    Pods/|
+    DerivedData/|
+    \.secrets\.baseline$
+  )$

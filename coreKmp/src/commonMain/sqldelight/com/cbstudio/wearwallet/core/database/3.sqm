@@ -1,0 +1,13 @@
+-- Migration from Schema v3 to Schema v4
+-- PR #32 Round 7: Persistent Staging Journal for Crash-Safe Provisioning & Reconciliation
+
+CREATE TABLE IF NOT EXISTS staging_journal (
+    session_id TEXT PRIMARY KEY NOT NULL,
+    staged_alias TEXT NOT NULL UNIQUE,
+    backup_id TEXT NOT NULL,
+    state TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL
+);
+
+CREATE INDEX idx_staging_journal_state ON staging_journal(state);

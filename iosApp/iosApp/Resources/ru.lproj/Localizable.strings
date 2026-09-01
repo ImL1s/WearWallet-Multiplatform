@@ -1,0 +1,63 @@
+/* Common */
+"error" = "Ошибка";
+"ok" = "ОК";
+"unknown_error" = "Неизвестная ошибка";
+
+/* StoreKit Service */
+"storekit_failed_load" = "Ошибка загрузки продуктов: %@";
+"storekit_unknown_result" = "Неизвестный результат покупки";
+"storekit_restore_failed" = "Ошибка восстановления покупок: %@";
+"storekit_transaction_failed" = "Ошибка транзакции: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "Симуляция запроса watchOS";
+"keystone_clear_requests" = "Очистить все запросы";
+"keystone_pending_requests" = "Ожидающие запросы";
+"keystone_from_watch" = "От: Apple Watch";
+"keystone_waiting_title" = "Ожидание запроса от Apple Watch";
+"keystone_waiting_desc" = "Когда вы начнете транзакцию на Apple Watch,\nзапрос на подпись появится здесь";
+
+/* Status Titles */
+"keystone_status_idle" = "Ожидание";
+"keystone_status_waiting" = "Ожидание...";
+"keystone_status_processing" = "Обработка...";
+"keystone_status_displaying_qr" = "Отображение QR-кода";
+"keystone_status_scanning" = "Сканирование";
+"keystone_status_completed" = "Завершено";
+"keystone_status_error" = "Ошибка";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "Ожидание новых запросов";
+"keystone_status_waiting_desc" = "Ожидающие запросы на подпись";
+"keystone_status_processing_desc" = "Подготовка QR-кода...";
+"keystone_status_displaying_qr_desc" = "Отсканируйте с помощью Keystone";
+"keystone_status_scanning_desc" = "Сканирование подписи";
+"keystone_status_completed_desc" = "Подпись получена";
+"keystone_status_error_desc" = "Произошла ошибка при обработке";
+
+/* Request Types */
+"request_type_sign_tx" = "Подписать транзакцию";
+"request_type_get_accounts" = "Получить аккаунты";
+"request_type_verify_addr" = "Проверить адрес";
+
+/* Home Screen */
+"watch_connected" = "Часы подключены";
+"watch_waiting" = "Ожидание подключения часов...";
+"latest_message" = "Последнее сообщение: %@";
+"scan_keystone_qr" = "Сканировать QR Keystone";
+"address_book_management" = "Управление адресной книгой";
+
+/* Address Book */
+"address_book" = "Адресная книга";
+"contact_info" = "Информация о контакте";
+"contact_name" = "Имя";
+"contact_address" = "Адрес";
+"add_contact" = "Добавить контакт";
+"save" = "Сохранить";
+"cancel" = "Отмена";
+
+/* Scanner */
+"qr_scan_guide" = "Поместите QR-код в рамку";
+"camera_not_available" = "Камера недоступна";
+"scanning_multipart" = "Сканирование многострочного QR: %d%%";
+"scanning_progress" = "Сканирование... %d%%";

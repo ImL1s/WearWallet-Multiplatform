@@ -1,0 +1,40 @@
+
+> Configure project :kotlin-crypto-pure
+w: The following Kotlin/Native targets cannot be built on this machine and are disabled:
+iosArm64, iosSimulatorArm64, iosX64, watchosArm64, watchosSimulatorArm64, watchosX64
+To hide this message, add 'kotlin.native.ignoreDisabledTargets=true' to the Gradle properties.
+
+w: The Default Kotlin Hierarchy Template was not applied to 'project ':kotlin-crypto-pure'':
+Explicit .dependsOn() edges were configured for the following source sets:
+[iosArm64Main, iosMain, iosSimulatorArm64Main, iosX64Main, watchosArm64Main, watchosMain, watchosSimulatorArm64Main, watchosX64Main]
+
+Consider removing dependsOn-calls or disabling the default template by adding
+    'kotlin.mpp.applyDefaultHierarchyTemplate=false'
+to your gradle.properties
+
+Learn more about hierarchy templates: https://kotl.in/hierarchy-template
+
+
+> Configure project :
+w: The following Kotlin/Native targets cannot be built on this machine and are disabled:
+iosArm64, iosSimulatorArm64, iosX64, watchosArm64, watchosSimulatorArm64, watchosX64
+To hide this message, add 'kotlin.native.ignoreDisabledTargets=true' to the Gradle properties.
+
+
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :kotlin-crypto-pure:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :jvmProcessResources NO-SOURCE
+> Task :jvmTestProcessResources NO-SOURCE
+> Task :kotlin-crypto-pure:compileKotlinJvm UP-TO-DATE
+> Task :kotlin-crypto-pure:jvmProcessResources NO-SOURCE
+> Task :kotlin-crypto-pure:jvmMainClasses UP-TO-DATE
+> Task :kotlin-crypto-pure:jvmJar UP-TO-DATE
+> Task :compileKotlinJvm UP-TO-DATE
+> Task :jvmMainClasses UP-TO-DATE
+> Task :jvmJar UP-TO-DATE
+> Task :compileTestKotlinJvm
+> Task :jvmTestClasses
+> Task :jvmTest
+
+BUILD SUCCESSFUL in 14s
+6 actionable tasks: 2 executed, 4 up-to-date

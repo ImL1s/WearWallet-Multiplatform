@@ -1,0 +1,25 @@
+/* Main Tab */
+"loading" = "読み込み中...";
+
+/* AI Assistant */
+"ai_assistant_title" = "AI 音声アシスタント";
+"tap_to_listen" = "タップして開始";
+"voice_input" = "音声入力";
+"ai_response" = "AI の応答";
+"check_balance" = "残高確認";
+"send_tx" = "送金";
+"verify_tx" = "検証";
+"auth" = "認証";
+"audit" = "監査";
+"analyze_nft" = "NFT 分析";
+"verification_result" = "検証結果";
+"status" = "ステータス:";
+"risk_score" = "リスクスコア:";
+"warning" = "警告:";
+"voice_biometric_auth" = "音声生体認証";
+"speak_phrase_instruction" = "認証フレーズを話してください";
+"start_auth" = "認証開始";
+"authenticating" = "認証中...";
+"auth_success" = "認証成功";
+"auth_failed" = "認証失敗";
+"close" = "閉じる";

@@ -1,0 +1,10 @@
+jdk:
+  - openjdk17
+
+before_install:
+  - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+  - export ANDROID_HOME=/opt/android/sdk
+  - chmod +x gradlew
+
+install:
+  - ./gradlew :core-crypto:publishToMavenLocal :kotlin-caip-standards:publishToMavenLocal -x test --no-daemon --stacktrace

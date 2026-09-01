@@ -1,0 +1,112 @@
+-- 代幣表
+CREATE TABLE IF NOT EXISTS token (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id INTEGER NOT NULL,
+    address TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    name TEXT NOT NULL,
+    decimals INTEGER NOT NULL DEFAULT 18,
+    chain_type TEXT NOT NULL,
+    chain_id INTEGER NOT NULL,
+    balance TEXT NOT NULL DEFAULT '0',
+    usd_price REAL,
+    price_change_24h REAL,
+    logo_url TEXT,
+    is_native INTEGER NOT NULL DEFAULT 0,
+    is_hidden INTEGER NOT NULL DEFAULT 0,
+    contract_type TEXT DEFAULT 'ERC20', -- ERC20, ERC721, ERC1155, BEP20, etc.
+    metadata TEXT DEFAULT '{}',
+    last_updated INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    FOREIGN KEY (wallet_id) REFERENCES wallet(id) ON DELETE CASCADE,
+    UNIQUE(wallet_id, address, chain_id)
+);
+
+-- 創建索引
+CREATE INDEX IF NOT EXISTS idx_token_wallet_id ON token(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_token_chain_id ON token(chain_id);
+CREATE INDEX IF NOT EXISTS idx_token_symbol ON token(symbol);
+
+-- 查詢錢包的所有代幣
+selectByWalletId:
+SELECT * FROM token
+WHERE wallet_id = ?
+ORDER BY is_native DESC, usd_price DESC;
+
+-- 查詢特定代幣
+selectById:
+SELECT * FROM token
+WHERE id = ?;
+
+-- 根據地址和鏈查詢代幣
+selectByAddressAndChain:
+SELECT * FROM token
+WHERE address = ? AND chain_id = ?;
+
+-- 插入代幣
+insert:
+INSERT OR REPLACE INTO token (
+    wallet_id, address, symbol, name, decimals, chain_type, chain_id,
+    balance, usd_price, price_change_24h, logo_url, is_native, is_hidden,
+    contract_type, metadata
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 更新代幣餘額
+updateBalance:
+UPDATE token
+SET balance = ?,
+    last_updated = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 更新代幣價格
+updatePrice:
+UPDATE token
+SET usd_price = ?,
+    price_change_24h = ?,
+    last_updated = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 更新代幣餘額和價格
+updateBalanceAndPrice:
+UPDATE token
+SET balance = ?,
+    usd_price = ?,
+    price_change_24h = ?,
+    last_updated = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 切換代幣可見性
+toggleVisibility:
+UPDATE token
+SET is_hidden = CASE WHEN is_hidden = 1 THEN 0 ELSE 1 END,
+    last_updated = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 刪除代幣
+delete:
+DELETE FROM token
+WHERE id = ?;
+
+-- 刪除錢包的所有代幣
+deleteByWalletId:
+DELETE FROM token
+WHERE wallet_id = ?;
+
+-- 查詢可見代幣
+selectVisibleTokens:
+SELECT * FROM token
+WHERE wallet_id = ? AND is_hidden = 0
+ORDER BY is_native DESC, usd_price DESC;
+
+-- 計算錢包總價值
+calculateWalletValue:
+SELECT SUM(CAST(balance AS REAL) * usd_price / POWER(10, decimals)) AS total_value
+FROM token
+WHERE wallet_id = ? AND is_hidden = 0;
+
+-- 查詢需要更新價格的代幣 (超過5分鐘未更新)
+selectTokensNeedingPriceUpdate:
+SELECT DISTINCT symbol, chain_id FROM token
+WHERE last_updated < strftime('%s', 'now') - 300
+ORDER BY symbol;

@@ -1,0 +1,106 @@
+-- NotificationHistory.sq
+-- 通知歷史記錄表
+
+CREATE TABLE IF NOT EXISTS notification_history (
+    id TEXT PRIMARY KEY NOT NULL,
+    wallet_id TEXT NOT NULL,
+    notification_type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    data TEXT NOT NULL DEFAULT '{}',
+    timestamp INTEGER NOT NULL,
+    read INTEGER NOT NULL DEFAULT 0,
+    push_notification_id TEXT
+);
+
+-- 索引提升查詢效能
+CREATE INDEX IF NOT EXISTS idx_notification_history_wallet_id ON notification_history(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_notification_history_type ON notification_history(notification_type);
+CREATE INDEX IF NOT EXISTS idx_notification_history_timestamp ON notification_history(timestamp);
+CREATE INDEX IF NOT EXISTS idx_notification_history_read ON notification_history(read);
+
+-- 查詢所有通知
+selectAllByWallet:
+SELECT * FROM notification_history 
+WHERE wallet_id = ? 
+ORDER BY timestamp DESC;
+
+-- 查詢未讀通知
+selectUnreadByWallet:
+SELECT * FROM notification_history 
+WHERE wallet_id = ? AND read = 0 
+ORDER BY timestamp DESC;
+
+-- 查詢特定類型通知
+selectByType:
+SELECT * FROM notification_history 
+WHERE wallet_id = ? AND notification_type = ? 
+ORDER BY timestamp DESC;
+
+-- 根據ID查詢單一通知
+selectById:
+SELECT * FROM notification_history 
+WHERE id = ?;
+
+-- 查詢最近通知（分頁）
+selectRecent:
+SELECT * FROM notification_history 
+WHERE wallet_id = ? 
+ORDER BY timestamp DESC 
+LIMIT ? OFFSET ?;
+
+-- 查詢時間範圍內的通知
+selectByTimeRange:
+SELECT * FROM notification_history 
+WHERE wallet_id = ? AND timestamp BETWEEN ? AND ? 
+ORDER BY timestamp DESC;
+
+-- 計算未讀通知數量
+countUnread:
+SELECT COUNT(*) FROM notification_history 
+WHERE wallet_id = ? AND read = 0;
+
+-- 搜尋通知（標題或內容）
+searchNotifications:
+SELECT * FROM notification_history 
+WHERE wallet_id = ? AND (title LIKE '%' || ? || '%' OR body LIKE '%' || ? || '%')
+ORDER BY timestamp DESC;
+
+-- 插入新通知
+insertNotification:
+INSERT INTO notification_history (
+    id, wallet_id, notification_type, title, body, data, timestamp, read, push_notification_id
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 標記為已讀
+markAsRead:
+UPDATE notification_history 
+SET read = 1 
+WHERE id = ?;
+
+-- 標記錢包的所有通知為已讀
+markAllAsReadForWallet:
+UPDATE notification_history 
+SET read = 1 
+WHERE wallet_id = ?;
+
+-- 標記錢包的特定類型通知為已讀
+markTypeAsReadForWallet:
+UPDATE notification_history 
+SET read = 1 
+WHERE wallet_id = ? AND notification_type = ?;
+
+-- 刪除單一通知
+deleteById:
+DELETE FROM notification_history 
+WHERE id = ?;
+
+-- 刪除錢包的所有通知
+deleteAllByWallet:
+DELETE FROM notification_history 
+WHERE wallet_id = ?;
+
+-- 清理舊通知（超過指定時間戳）
+cleanupOldNotifications:
+DELETE FROM notification_history 
+WHERE timestamp < ?;

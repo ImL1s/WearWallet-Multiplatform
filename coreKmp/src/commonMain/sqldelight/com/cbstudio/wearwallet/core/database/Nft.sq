@@ -1,0 +1,196 @@
+CREATE TABLE IF NOT EXISTS nft (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    token_id TEXT NOT NULL,
+    contract_address TEXT NOT NULL,
+    wallet_address TEXT NOT NULL,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    name TEXT,
+    description TEXT,
+    image_url TEXT,
+    metadata_url TEXT,
+    attributes TEXT, -- JSON string
+    collection_name TEXT,
+    creator_address TEXT,
+    owner_address TEXT,
+    is_favorite INTEGER NOT NULL DEFAULT 0,
+    is_hidden INTEGER NOT NULL DEFAULT 0,
+    rarity_rank INTEGER,
+    rarity_score REAL,
+    price_eth REAL,
+    price_usd REAL,
+    last_sale_price REAL,
+    last_sale_date INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    synced_at INTEGER,
+    UNIQUE(token_id, contract_address, chain_type)
+);
+
+-- 插入 NFT 記錄
+insert:
+INSERT INTO nft (
+    token_id, contract_address, wallet_address, chain_type, chain_id,
+    name, description, image_url, metadata_url, attributes,
+    collection_name, creator_address, owner_address,
+    is_favorite, is_hidden, rarity_rank, rarity_score,
+    price_eth, price_usd, last_sale_price, last_sale_date,
+    synced_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 根據 ID 查詢 NFT
+selectById:
+SELECT * FROM nft WHERE id = ?;
+
+-- 查詢所有 NFT
+selectAll:
+SELECT * FROM nft ORDER BY created_at DESC;
+
+-- 根據錢包地址查詢 NFT
+selectByWalletAddress:
+SELECT * FROM nft WHERE wallet_address = ? ORDER BY created_at DESC;
+
+-- 根據合約地址查詢 NFT
+selectByContractAddress:
+SELECT * FROM nft WHERE contract_address = ? ORDER BY created_at DESC;
+
+-- 根據鏈類型查詢 NFT
+selectByChainType:
+SELECT * FROM nft WHERE chain_type = ? ORDER BY created_at DESC;
+
+-- 根據收藏集名稱查詢 NFT
+selectByCollection:
+SELECT * FROM nft WHERE collection_name = ? ORDER BY created_at DESC;
+
+-- 查詢收藏的 NFT
+selectFavorites:
+SELECT * FROM nft WHERE is_favorite = 1 ORDER BY created_at DESC;
+
+-- 查詢未隱藏的 NFT
+selectVisible:
+SELECT * FROM nft WHERE is_hidden = 0 ORDER BY created_at DESC;
+
+-- 搜尋 NFT（根據名稱、描述、收藏集）
+searchNfts:
+SELECT * FROM nft 
+WHERE (name LIKE '%' || ? || '%' 
+   OR description LIKE '%' || ? || '%' 
+   OR collection_name LIKE '%' || ? || '%')
+   AND is_hidden = 0
+ORDER BY created_at DESC;
+
+-- 根據稀有度排序查詢
+selectByRarity:
+SELECT * FROM nft 
+WHERE rarity_rank IS NOT NULL 
+ORDER BY rarity_rank ASC 
+LIMIT ?;
+
+-- 根據價值排序查詢
+selectByValue:
+SELECT * FROM nft 
+WHERE price_usd IS NOT NULL 
+ORDER BY price_usd DESC 
+LIMIT ?;
+
+-- 檢查 NFT 是否存在
+existsByTokenAndContract:
+SELECT COUNT(*) > 0 FROM nft 
+WHERE token_id = ? AND contract_address = ? AND chain_type = ?;
+
+-- 更新 NFT 資料
+update:
+UPDATE nft SET
+    name = ?, description = ?, image_url = ?, metadata_url = ?, attributes = ?,
+    collection_name = ?, creator_address = ?, owner_address = ?,
+    rarity_rank = ?, rarity_score = ?, price_eth = ?, price_usd = ?,
+    last_sale_price = ?, last_sale_date = ?, synced_at = ?,
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 更新收藏狀態
+updateFavoriteStatus:
+UPDATE nft SET 
+    is_favorite = ?,
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 更新隱藏狀態
+updateHiddenStatus:
+UPDATE nft SET 
+    is_hidden = ?,
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 更新價格資訊
+updatePricing:
+UPDATE nft SET
+    price_eth = ?, price_usd = ?, last_sale_price = ?, last_sale_date = ?,
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 批量更新同步時間
+updateSyncTime:
+UPDATE nft SET
+    synced_at = ?,
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE wallet_address = ? AND chain_type = ?;
+
+-- 根據 ID 刪除 NFT
+deleteById:
+DELETE FROM nft WHERE id = ?;
+
+-- 根據錢包地址刪除 NFT
+deleteByWalletAddress:
+DELETE FROM nft WHERE wallet_address = ?;
+
+-- 根據合約地址刪除 NFT
+deleteByContractAddress:
+DELETE FROM nft WHERE contract_address = ?;
+
+-- 刪除所有 NFT
+deleteAll:
+DELETE FROM nft;
+
+-- 統計查詢
+countAll:
+SELECT COUNT(*) FROM nft;
+
+countByWalletAddress:
+SELECT COUNT(*) FROM nft WHERE wallet_address = ?;
+
+countByChainType:
+SELECT COUNT(*) FROM nft WHERE chain_type = ?;
+
+countFavorites:
+SELECT COUNT(*) FROM nft WHERE is_favorite = 1;
+
+countByCollection:
+SELECT COUNT(*) FROM nft WHERE collection_name = ?;
+
+-- 取得最後插入的行 ID
+lastInsertRowId:
+SELECT last_insert_rowid();
+
+-- 獲取收藏集統計
+getCollectionStats:
+SELECT 
+    collection_name,
+    COUNT(*) AS COUNT_,
+    AVG(price_usd) AS AVG_,
+    MAX(price_usd) AS MAX_,
+    MIN(price_usd) AS MIN_
+FROM nft 
+WHERE collection_name IS NOT NULL 
+GROUP BY collection_name 
+ORDER BY COUNT(*) DESC;
+
+-- 獲取鏈統計
+getChainStats:
+SELECT 
+    chain_type,
+    COUNT(*) AS COUNT_,
+    SUM(price_usd) AS SUM_
+FROM nft 
+GROUP BY chain_type 
+ORDER BY COUNT(*) DESC;

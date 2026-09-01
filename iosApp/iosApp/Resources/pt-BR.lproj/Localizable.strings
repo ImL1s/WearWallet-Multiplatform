@@ -1,0 +1,63 @@
+/* Common */
+"error" = "Erro";
+"ok" = "OK";
+"unknown_error" = "Erro desconhecido";
+
+/* StoreKit Service */
+"storekit_failed_load" = "Falha ao carregar produtos: %@";
+"storekit_unknown_result" = "Resultado de compra desconhecido";
+"storekit_restore_failed" = "Falha ao restaurar compras: %@";
+"storekit_transaction_failed" = "Erro na transação: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "Simular pedido watchOS";
+"keystone_clear_requests" = "Limpar todos os pedidos";
+"keystone_pending_requests" = "Pedidos pendentes";
+"keystone_from_watch" = "De: Apple Watch";
+"keystone_waiting_title" = "Aguardando pedido Apple Watch";
+"keystone_waiting_desc" = "Quando você iniciar uma transação no Apple Watch,\no pedido de assinatura aparecerá aqui";
+
+/* Status Titles */
+"keystone_status_idle" = "Inativo";
+"keystone_status_waiting" = "Aguardando...";
+"keystone_status_processing" = "Processando...";
+"keystone_status_displaying_qr" = "Exibindo código QR";
+"keystone_status_scanning" = "Escaneando";
+"keystone_status_completed" = "Concluído";
+"keystone_status_error" = "Erro";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "Aguardando novos pedidos";
+"keystone_status_waiting_desc" = "Pedidos de assinatura pendentes";
+"keystone_status_processing_desc" = "Preparando código QR...";
+"keystone_status_displaying_qr_desc" = "Escaneie com Keystone";
+"keystone_status_scanning_desc" = "Escaneando assinatura";
+"keystone_status_completed_desc" = "Assinatura concluída";
+"keystone_status_error_desc" = "Erro durante o processamento";
+
+/* Request Types */
+"request_type_sign_tx" = "Assinar transação";
+"request_type_get_accounts" = "Obter contas";
+"request_type_verify_addr" = "Verificar endereço";
+
+/* Home Screen */
+"watch_connected" = "Watch conectado";
+"watch_waiting" = "Aguardando conexão do Watch...";
+"latest_message" = "Mensagem mais recente: %@";
+"scan_keystone_qr" = "Escanear QR Keystone";
+"address_book_management" = "Gerenciar agenda";
+
+/* Address Book */
+"address_book" = "Agenda";
+"contact_info" = "Info do contato";
+"contact_name" = "Nome";
+"contact_address" = "Endereço";
+"add_contact" = "Adicionar contato";
+"save" = "Salvar";
+"cancel" = "Cancelar";
+
+/* Scanner */
+"qr_scan_guide" = "Alinhe o QR code dentro do quadro";
+"camera_not_available" = "Câmera indisponível";
+"scanning_multipart" = "Escaneando QR multipart: %d%%";
+"scanning_progress" = "Escaneando... %d%%";

@@ -1,0 +1,167 @@
+<resources>
+    <string name="app_name">Mobile</string>
+    <string name="intro_title">WearWallet Mobile</string>
+    <string name="intro_description">This mobile application assists the Wear OS app with QR code scanning and data synchronization. When your watch needs to scan a QR code, the phone\'s camera will automatically activate.</string>
+    <string name="usage_instruction">Please operate the send function on your watch; the phone will automatically respond to scan requests.</string>
+    <string name="connection_status">Connection Status</string>
+    <string name="checking_connection">Checking connection...</string>
+    <string name="connected_devices">%d devices connected</string>
+    <string name="no_connected_devices">No Wear OS devices connected</string>
+    
+    <!-- Home Screen -->
+    <string name="quick_actions">Quick Actions</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="general_settings">General Settings</string>
+    
+    <!-- Notification Settings -->
+    <string name="dismiss">Dismiss</string>
+    <string name="back">Back</string>
+    <string name="push_protocol_status">Push Protocol Status</string>
+    <string name="subscribed_to_notifications">Subscribed to notifications</string>
+    <string name="not_subscribed_to_notifications">Not subscribed to notifications</string>
+    <string name="subscribe_to_push_protocol">Subscribe to Push Protocol</string>
+    <string name="unsubscribe">Unsubscribe</string>
+    <string name="notification_types">Notification Types</string>
+    <string name="price_alerts">Price Alerts</string>
+    <string name="price_alerts_description">Notify when token reaches set price</string>
+    <string name="transaction_alerts">Transaction Alerts</string>
+    <string name="transaction_alerts_description">Notify when sending or receiving tokens</string>
+    <string name="security_alerts">Security Alerts</string>
+    <string name="security_alerts_description">Notify of unusual activity or security threats</string>
+    <string name="defi_alerts">DeFi Alerts</string>
+    <string name="defi_alerts_description">Liquidity, yield, and liquidation alerts</string>
+    <string name="advanced_settings">Advanced Settings</string>
+    <string name="minimum_transaction_amount">Minimum Transaction Amount</string>
+    <string name="current_amount">Current: $%s</string>
+    <string name="no_minimum_set">No minimum set</string>
+    <string name="set_minimum_amount">Set Minimum Amount</string>
+    <string name="amount_usd">Amount (USD)</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="quiet_hours">Quiet Hours</string>
+    <string name="quiet_hours_set" formatted="false">%s - %s</string>
+    <string name="quiet_hours_disabled">Disabled</string>
+    <string name="set_quiet_hours">Set Quiet Hours</string>
+    <string name="enable_quiet_hours">Enable Quiet Hours</string>
+    <string name="quiet_hours_explanation">No notifications will be received during this period</string>
+    <string name="vibration">Vibration</string>
+    <string name="sound">Sound</string>
+    
+    <!-- Price Alerts -->
+    <string name="add_price_alert">Add Price Alert</string>
+    <string name="created_at">Created at %s</string>
+    <string name="delete">Delete</string>
+    <string name="no_price_alerts">No price alerts yet</string>
+    <string name="no_price_alerts_description">Tap the button above to add your first price alert</string>
+    <string name="create_price_alert">Create Price Alert</string>
+    <string name="select_token">Select Token</string>
+    <string name="condition_type">Condition Type</string>
+    <string name="above">Above</string>
+    <string name="below">Below</string>
+    <string name="percentage">Percentage</string>
+    <string name="price_usd">Price (USD)</string>
+    <string name="percentage_change">Percentage Change</string>
+    <string name="time_frame">Time Frame</string>
+    <string name="create">Create</string>
+    <string name="price_above">Price above $%s</string>
+    <string name="price_below">Price below $%s</string>
+    <string name="increase">Increase</string>
+    <string name="decrease">Decrease</string>
+    <string name="hour">Hour</string>
+    <string name="hours">Hours</string>
+    <string name="days">Days</string>
+    <string name="percentage_change_description" formatted="false">%s %.0f%% within %s</string>
+    <string name="just_now">Just now</string>
+    <string name="minutes_ago">%d minutes ago</string>
+    <string name="hours_ago">%d hours ago</string>
+    <string name="days_ago">%d days ago</string>
+    
+    <!-- Camera & QR Scanning -->
+    <string name="camera_launch_failed">Camera launch failed</string>
+    <string name="camera_permission_needed">Camera permission needed to scan QR codes</string>
+    <string name="keystone_decode_failed">Keystone QR code decode failed</string>
+    <string name="keystone_qr_scan_success">Keystone QR code scan successful</string>
+    <string name="keystone_scan_mode_starting">Starting Keystone scan mode...</string>
+    <string name="qr_scan_instruction">Place QR code within the frame</string>
+    <string name="scan_progress">Scan progress: %d%%</string>
+    <string name="scan_success">Scan successful</string>
+    <string name="ur_fragment_incomplete">UR fragment incomplete</string>
+    <string name="ur_scan_complete">UR scan complete</string>
+    
+    <!-- Address Book -->
+    <string name="address_book">Address Book</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="edit_contact">Edit Contact</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="contact_detail">Contact Details</string>
+    <string name="no_contacts">No contacts</string>
+    <string name="no_contacts_message">Tap the button below to add a contact</string>
+    <string name="search_contacts">Search Contacts</string>
+    <string name="send_to_contact">Send to Contact</string>
+    <string name="delete_contact">Delete Contact</string>
+    <string name="delete_contact_confirm">Confirm delete contact?</string>
+    <string name="delete_contact_message">This action cannot be undone.</string>
+    <string name="contact_added">Contact added</string>
+    <string name="contact_updated">Contact updated</string>
+    <string name="contact_deleted">Contact deleted</string>
+    <string name="note">Note</string>
+    <string name="note_optional">Note (optional)</string>
+    <string name="blockchain">Blockchain</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="go_back">Go Back</string>
+    <string name="save_contact">Save Contact</string>
+    <string name="wallet_address">Wallet Address</string>
+    <string name="address_copied">Address copied</string>
+    <string name="copy_address">Copy Address</string>
+    
+    <!-- NFT Watch Face Configuration -->
+    <string name="nft_watchface_config">NFT Watch Face</string>
+    <string name="nft_watchface_config_description">Configure NFT display on your watch face</string>
+    <string name="nft_collection">NFT Collection</string>
+    <string name="select_nft">Select NFT</string>
+    <string name="display_settings">Display Settings</string>
+    <string name="preview">Preview</string>
+    <string name="enable_nft_complication">Enable NFT Complication</string>
+    <string name="display_mode">Display Mode</string>
+    <string name="image_only">Image Only</string>
+    <string name="image_with_name">Image + Name</string>
+    <string name="image_with_token_id">Image + Token ID</string>
+    <string name="image_with_value">Image + Value</string>
+    <string name="update_interval">Update Interval</string>
+    <string name="auto_rotate">Auto Rotate</string>
+    <string name="rotate_interval">Rotate Interval</string>
+    <string name="favorite_nfts">Favorite NFTs</string>
+    <string name="no_nfts_found">No NFTs found</string>
+    <string name="loading_nfts">Loading NFTs...</string>
+    <string name="refresh_collection">Refresh Collection</string>
+    <string name="save_configuration">Save Configuration</string>
+    <string name="configuration_saved">Configuration saved</string>
+    <string name="hour_format">%d hour</string>
+    <string name="hours_format">%d hours</string>
+    <string name="day_format">1 day</string>
+    <string name="days_format">%d days</string>
+    <string name="show_qr_receive">Show Receive QR Code</string>
+    <string name="qr_receive_title">Receive QR Code</string>
+    <string name="share_qr_address_instruction">Share this QR code or address with others to receive crypto</string>
+
+    <!-- Common UI Components -->
+    <string name="loading">Loading...</string>
+    <string name="error_occurred">An error occurred</string>
+    <string name="retry">Retry</string>
+    <string name="error_save_contact">Failed to save contact: %1$s</string>
+    <string name="error_load_contact">Failed to load contact</string>
+    <string name="error_load_contact_failed">Failed to load contact: %1$s</string>
+    <string name="error_update_contact_failed">Failed to update contact: %1$s</string>
+    <string name="contact_not_found">Contact not found</string>
+    <string name="error_load_nfts">Failed to load NFTs: %1$s</string>
+    <string name="error_refresh_nfts">Failed to refresh NFTs: %1$s</string>
+    <string name="error_save_config">Failed to save configuration: %1$s</string>
+    <string name="hint">Hint</string>
+
+    <!-- Config Validation Strings -->
+    <string name="config_issue_nft_api_key">NFT API Key not set</string>
+    <string name="config_issue_nft_cache_size">Invalid NFT cache size</string>
+    <string name="config_issue_cache_memory">Invalid memory cache size</string>
+    <string name="config_issue_network_timeout">Invalid network timeout configuration</string>
+    <string name="config_validation_error">Error occurred during config validation: %s</string>
+</resources>

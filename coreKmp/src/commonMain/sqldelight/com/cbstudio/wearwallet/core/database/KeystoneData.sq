@@ -1,0 +1,109 @@
+-- Keystone 硬體錢包資料表
+CREATE TABLE IF NOT EXISTS keystone_data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id INTEGER NOT NULL UNIQUE,
+    device_id TEXT NOT NULL,
+    device_name TEXT,
+    firmware_version TEXT,
+    -- QR Code 通訊相關
+    last_sync_ur TEXT,  -- 最後同步的 UR (Uniform Resource) 資料
+    last_sign_request_ur TEXT,  -- 最後的簽名請求 UR
+    last_signed_result_ur TEXT,  -- 最後的簽名結果 UR
+    -- 多重簽名相關
+    multisig_config TEXT,  -- JSON 格式的多簽配置
+    cosigner_index INTEGER,
+    required_signatures INTEGER,
+    total_cosigners INTEGER,
+    -- PSBT (部分簽名比特幣交易) 支援
+    psbt_support INTEGER DEFAULT 1,
+    -- 支援的功能
+    supported_chains TEXT DEFAULT '["ETHEREUM","BSC","POLYGON","ARBITRUM","OPTIMISM","AVALANCHE","BITCOIN"]',
+    supported_standards TEXT DEFAULT '["EIP-1559","EIP-712","EIP-2930","BIP-44","BIP-49","BIP-84"]',
+    -- 狀態和時間戳記
+    is_connected INTEGER DEFAULT 0,
+    last_connected_at INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    FOREIGN KEY (wallet_id) REFERENCES wallet(id) ON DELETE CASCADE
+);
+
+-- 創建索引
+CREATE INDEX IF NOT EXISTS idx_keystone_wallet_id ON keystone_data(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_keystone_device_id ON keystone_data(device_id);
+
+-- 查詢錢包的 Keystone 資料
+selectByWalletId:
+SELECT * FROM keystone_data
+WHERE wallet_id = ?;
+
+-- 根據設備 ID 查詢
+selectByDeviceId:
+SELECT * FROM keystone_data
+WHERE device_id = ?;
+
+-- 插入或更新 Keystone 資料
+insertOrUpdate:
+INSERT OR REPLACE INTO keystone_data (
+    wallet_id, device_id, device_name, firmware_version,
+    last_sync_ur, last_sign_request_ur, last_signed_result_ur,
+    multisig_config, cosigner_index, required_signatures, total_cosigners,
+    psbt_support, supported_chains, supported_standards,
+    is_connected, last_connected_at
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 更新同步資料
+updateSyncData:
+UPDATE keystone_data
+SET last_sync_ur = ?,
+    is_connected = 1,
+    last_connected_at = strftime('%s', 'now'),
+    updated_at = strftime('%s', 'now')
+WHERE wallet_id = ?;
+
+-- 更新簽名請求
+updateSignRequest:
+UPDATE keystone_data
+SET last_sign_request_ur = ?,
+    updated_at = strftime('%s', 'now')
+WHERE wallet_id = ?;
+
+-- 更新簽名結果
+updateSignedResult:
+UPDATE keystone_data
+SET last_signed_result_ur = ?,
+    updated_at = strftime('%s', 'now')
+WHERE wallet_id = ?;
+
+-- 更新連接狀態
+updateConnectionStatus:
+UPDATE keystone_data
+SET is_connected = ?,
+    last_connected_at = CASE WHEN ? = 1 THEN strftime('%s', 'now') ELSE last_connected_at END,
+    updated_at = strftime('%s', 'now')
+WHERE wallet_id = ?;
+
+-- 更新多簽配置
+updateMultisigConfig:
+UPDATE keystone_data
+SET multisig_config = ?,
+    cosigner_index = ?,
+    required_signatures = ?,
+    total_cosigners = ?,
+    updated_at = strftime('%s', 'now')
+WHERE wallet_id = ?;
+
+-- 刪除 Keystone 資料
+delete:
+DELETE FROM keystone_data
+WHERE wallet_id = ?;
+
+-- 查詢所有已連接的 Keystone 設備
+selectConnectedDevices:
+SELECT * FROM keystone_data
+WHERE is_connected = 1
+ORDER BY last_connected_at DESC;
+
+-- 檢查設備是否存在
+existsByDeviceId:
+SELECT EXISTS(SELECT 1 FROM keystone_data WHERE device_id = ?);

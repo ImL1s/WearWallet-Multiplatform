@@ -1,0 +1,65 @@
+-- 金鑰暫存日誌表 - PR #32 Round 7
+CREATE TABLE IF NOT EXISTS staging_journal (
+    session_id TEXT PRIMARY KEY NOT NULL,
+    staged_alias TEXT NOT NULL UNIQUE,
+    backup_id TEXT NOT NULL,
+    state TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_staging_journal_state ON staging_journal(state);
+
+-- 插入金鑰佈建 Journal
+insertJournal:
+INSERT INTO staging_journal (
+    session_id, staged_alias, backup_id, state, created_at, expires_at
+)
+VALUES (?, ?, ?, ?, ?, ?);
+
+-- 更新 Journal 狀態
+updateJournalState:
+UPDATE staging_journal
+SET state = ?
+WHERE session_id = ?;
+
+-- CAS 狀態更新 (Compare-And-Set)
+updateJournalStateCas:
+UPDATE staging_journal
+SET state = :newState
+WHERE session_id = :sessionId AND state = :expectedState;
+
+-- 取得前一條語句影響之行數 (changes count)
+changesCount:
+SELECT changes();
+
+-- 查詢所有未完成的 Journal (用於重啟對帳)
+selectPendingJournals:
+SELECT * FROM staging_journal
+WHERE state NOT IN ('COMMITTED', 'ROLLED_BACK')
+ORDER BY created_at ASC;
+
+-- 根據 Session ID 查詢
+selectBySessionId:
+SELECT * FROM staging_journal
+WHERE session_id = ?;
+
+-- 根據 Staged Key Alias 查詢
+selectByStagedAlias:
+SELECT * FROM staging_journal
+WHERE staged_alias = ?;
+
+-- 刪除 Journal
+deleteJournal:
+DELETE FROM staging_journal
+WHERE session_id = ?;
+
+-- 清理已完成之歷史 Journal (保留期外)
+purgeExpiredJournals:
+DELETE FROM staging_journal
+WHERE state IN ('COMMITTED', 'ROLLED_BACK') AND expires_at < ?;
+
+-- 查詢所有 Journal
+selectAllJournals:
+SELECT * FROM staging_journal
+ORDER BY created_at DESC;

@@ -1,0 +1,236 @@
+CREATE TABLE IF NOT EXISTS price_alert (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id TEXT NOT NULL DEFAULT '',
+    asset_symbol TEXT NOT NULL,
+    asset_name TEXT,
+    contract_address TEXT,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    alert_type TEXT NOT NULL, -- 'ABOVE', 'BELOW', 'PERCENTAGE_CHANGE'
+    target_price REAL NOT NULL,
+    current_price REAL,
+    percentage_threshold REAL, -- for percentage-based alerts
+    is_enabled INTEGER NOT NULL DEFAULT 1,
+    is_triggered INTEGER NOT NULL DEFAULT 0,
+    notification_sent INTEGER NOT NULL DEFAULT 0,
+    trigger_count INTEGER NOT NULL DEFAULT 0,
+    last_triggered_at INTEGER,
+    last_checked_at INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    user_notes TEXT,
+    webhook_url TEXT,
+    repeat_interval INTEGER DEFAULT 0, -- 0 = no repeat, >0 = repeat after X minutes
+    UNIQUE(wallet_id, asset_symbol, chain_type, alert_type, target_price)
+);
+
+CREATE INDEX IF NOT EXISTS idx_price_alert_wallet_id ON price_alert(wallet_id);
+
+-- 插入價格提醒
+insert:
+INSERT INTO price_alert (
+    wallet_id, asset_symbol, asset_name, contract_address, chain_type, chain_id,
+    alert_type, target_price, current_price, percentage_threshold,
+    is_enabled, user_notes, webhook_url, repeat_interval
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 根據 ID 查詢提醒
+selectById:
+SELECT * FROM price_alert WHERE id = ?;
+
+-- 根據錢包 ID 查詢提醒
+selectByWalletId:
+SELECT * FROM price_alert WHERE wallet_id = ? ORDER BY created_at DESC;
+
+-- 根據錢包 ID 刪除提醒
+deleteByWalletId:
+DELETE FROM price_alert WHERE wallet_id = ?;
+
+-- 根據錢包 ID 計算提醒數量
+countByWalletId:
+SELECT COUNT(*) FROM price_alert WHERE wallet_id = ?;
+
+-- 查詢所有提醒
+selectAll:
+SELECT * FROM price_alert ORDER BY created_at DESC;
+
+-- 查詢啟用的提醒
+selectEnabled:
+SELECT * FROM price_alert WHERE is_enabled = 1 ORDER BY created_at DESC;
+
+-- 查詢未觸發的提醒
+selectNotTriggered:
+SELECT * FROM price_alert WHERE is_triggered = 0 AND is_enabled = 1 ORDER BY created_at DESC;
+
+-- 根據資產符號查詢提醒
+selectByAssetSymbol:
+SELECT * FROM price_alert WHERE asset_symbol = ? ORDER BY created_at DESC;
+
+-- 根據鏈類型查詢提醒
+selectByChainType:
+SELECT * FROM price_alert WHERE chain_type = ? ORDER BY created_at DESC;
+
+-- 根據提醒類型查詢
+selectByAlertType:
+SELECT * FROM price_alert WHERE alert_type = ? ORDER BY created_at DESC;
+
+-- 搜尋提醒（根據資產符號、名稱、備註）
+searchAlerts:
+SELECT * FROM price_alert 
+WHERE (asset_symbol LIKE '%' || ? || '%' 
+   OR asset_name LIKE '%' || ? || '%' 
+   OR user_notes LIKE '%' || ? || '%')
+ORDER BY created_at DESC;
+
+-- 查詢需要檢查的提醒（啟用且未觸發）
+selectForMonitoring:
+SELECT * FROM price_alert 
+WHERE is_enabled = 1 
+AND (is_triggered = 0 OR repeat_interval > 0)
+AND (last_checked_at IS NULL OR last_checked_at < ?)
+ORDER BY last_checked_at ASC;
+
+-- 查詢即將觸發的提醒（當前價格接近目標價格）
+selectNearTrigger:
+SELECT * FROM price_alert 
+WHERE is_enabled = 1 
+AND is_triggered = 0
+AND current_price IS NOT NULL
+AND (
+    (alert_type = 'ABOVE' AND current_price > target_price * 0.95)
+    OR (alert_type = 'BELOW' AND current_price < target_price * 1.05)
+)
+ORDER BY ABS(current_price - target_price) ASC;
+
+-- 檢查是否存在相同的提醒
+existsBySameConfig:
+SELECT COUNT(*) > 0 FROM price_alert 
+WHERE wallet_id = ? AND asset_symbol = ? AND chain_type = ? AND alert_type = ? AND target_price = ?;
+
+-- 更新提醒基本資訊
+update:
+UPDATE price_alert SET
+    asset_name = ?, contract_address = ?, alert_type = ?, target_price = ?,
+    percentage_threshold = ?, is_enabled = ?, user_notes = ?, webhook_url = ?,
+    repeat_interval = ?, updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 更新當前價格
+updateCurrentPrice:
+UPDATE price_alert SET
+    current_price = ?, last_checked_at = (strftime('%s', 'now') * 1000),
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 更新啟用狀態
+updateEnabledStatus:
+UPDATE price_alert SET
+    is_enabled = ?, updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 觸發提醒
+triggerAlert:
+UPDATE price_alert SET
+    is_triggered = 1, trigger_count = trigger_count + 1,
+    last_triggered_at = (strftime('%s', 'now') * 1000),
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 標記通知已發送
+markNotificationSent:
+UPDATE price_alert SET
+    notification_sent = 1, updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 重置觸發狀態（用於重複提醒）
+resetTriggerStatus:
+UPDATE price_alert SET
+    is_triggered = 0, notification_sent = 0,
+    updated_at = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- 批量更新檢查時間
+updateLastCheckedTime:
+UPDATE price_alert SET
+    last_checked_at = ?, updated_at = (strftime('%s', 'now') * 1000)
+WHERE asset_symbol = ? AND chain_type = ?;
+
+-- 根據 ID 刪除提醒
+deleteById:
+DELETE FROM price_alert WHERE id = ?;
+
+-- 根據資產符號刪除提醒
+deleteByAssetSymbol:
+DELETE FROM price_alert WHERE asset_symbol = ?;
+
+-- 刪除已觸發的提醒
+deleteTriggered:
+DELETE FROM price_alert WHERE is_triggered = 1 AND repeat_interval = 0;
+
+-- 刪除禁用的提醒
+deleteDisabled:
+DELETE FROM price_alert WHERE is_enabled = 0;
+
+-- 刪除所有提醒
+deleteAll:
+DELETE FROM price_alert;
+
+-- 統計查詢
+countAll:
+SELECT COUNT(*) FROM price_alert;
+
+countEnabled:
+SELECT COUNT(*) FROM price_alert WHERE is_enabled = 1;
+
+countTriggered:
+SELECT COUNT(*) FROM price_alert WHERE is_triggered = 1;
+
+countByAssetSymbol:
+SELECT COUNT(*) FROM price_alert WHERE asset_symbol = ?;
+
+countByChainType:
+SELECT COUNT(*) FROM price_alert WHERE chain_type = ?;
+
+countByAlertType:
+SELECT COUNT(*) FROM price_alert WHERE alert_type = ?;
+
+-- 取得最後插入的行 ID
+lastInsertRowId:
+SELECT last_insert_rowid();
+
+-- 獲取資產統計
+getAssetStats:
+SELECT 
+    asset_symbol,
+    COUNT(*),
+    SUM(CASE WHEN is_enabled = 1 THEN 1 ELSE 0 END),
+    SUM(CASE WHEN is_triggered = 1 THEN 1 ELSE 0 END)
+FROM price_alert 
+GROUP BY asset_symbol 
+ORDER BY COUNT(*) DESC;
+
+-- 獲取鏈統計
+getChainStats:
+SELECT 
+    chain_type,
+    COUNT(*),
+    SUM(CASE WHEN is_enabled = 1 THEN 1 ELSE 0 END)
+FROM price_alert 
+GROUP BY chain_type 
+ORDER BY COUNT(*) DESC;
+
+-- 獲取觸發歷史統計
+getTriggerHistory:
+SELECT 
+    id,
+    asset_symbol,
+    alert_type,
+    target_price,
+    current_price,
+    last_triggered_at,
+    trigger_count,
+    user_notes
+FROM price_alert 
+WHERE is_triggered = 1 
+ORDER BY last_triggered_at DESC
+LIMIT ?;

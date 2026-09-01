@@ -1,0 +1,1144 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09FBF5E52E24DD900013D86B /* WatchWallet Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 09FBF5E42E24DD900013D86B /* WatchWallet Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		138F4FDC193368C6850A5D25 /* Pods_WatchWallet_Watch_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52624F7ED87E7EE4309A472D /* Pods_WatchWallet_Watch_App.framework */; };
+		9F3833266E98741C30D2123B /* Pods_WatchWallet_Watch_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F1C58B7F66C52FC58B0246 /* Pods_WatchWallet_Watch_AppTests.framework */; };
+		A4BECDF7553C4CD9BDCE7901 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA7AC8D300647ECBA96BC4A /* libsqlite3.tbd */; };
+		F351E20673B9627587855D1B /* Pods_WatchWallet_Watch_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083AD380FCD1A214D85D65A1 /* Pods_WatchWallet_Watch_AppUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09FBF5CF2E24DD900013D86B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09FBF5B92E24DD8F0013D86B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09FBF5C02E24DD8F0013D86B;
+			remoteInfo = WatchWallet;
+		};
+		09FBF5D92E24DD900013D86B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09FBF5B92E24DD8F0013D86B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09FBF5C02E24DD8F0013D86B;
+			remoteInfo = WatchWallet;
+		};
+		09FBF5E62E24DD900013D86B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09FBF5B92E24DD8F0013D86B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09FBF5E32E24DD900013D86B;
+			remoteInfo = "WatchWallet Watch App";
+		};
+		09FBF5F42E24DD910013D86B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09FBF5B92E24DD8F0013D86B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09FBF5E32E24DD900013D86B;
+			remoteInfo = "WatchWallet Watch App";
+		};
+		09FBF5FE2E24DD910013D86B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09FBF5B92E24DD8F0013D86B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09FBF5E32E24DD900013D86B;
+			remoteInfo = "WatchWallet Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		09FBF60A2E24DD910013D86B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				09FBF5E52E24DD900013D86B /* WatchWallet Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		083AD380FCD1A214D85D65A1 /* Pods_WatchWallet_Watch_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchWallet_Watch_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FBF5C12E24DD8F0013D86B /* WatchWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FBF5CE2E24DD900013D86B /* WatchWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FBF5D82E24DD900013D86B /* WatchWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FBF5E42E24DD900013D86B /* WatchWallet Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchWallet Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FBF5F32E24DD910013D86B /* WatchWallet Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchWallet Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FBF5FD2E24DD910013D86B /* WatchWallet Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WatchWallet Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		12631B27A0C778C1FCAA828D /* Pods-WatchWallet Watch AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchWallet Watch AppTests.debug.xcconfig"; path = "Target Support Files/Pods-WatchWallet Watch AppTests/Pods-WatchWallet Watch AppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3AC71725FB21360C0D5E61BD /* Pods-WatchWallet Watch AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchWallet Watch AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WatchWallet Watch AppUITests/Pods-WatchWallet Watch AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4DBBB045D5E13B83009ED0A2 /* Pods-WatchWallet Watch App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchWallet Watch App.release.xcconfig"; path = "Target Support Files/Pods-WatchWallet Watch App/Pods-WatchWallet Watch App.release.xcconfig"; sourceTree = "<group>"; };
+		52624F7ED87E7EE4309A472D /* Pods_WatchWallet_Watch_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchWallet_Watch_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		850BB0737F3E0F0E0EAC6A17 /* Pods-WatchWallet Watch App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchWallet Watch App.debug.xcconfig"; path = "Target Support Files/Pods-WatchWallet Watch App/Pods-WatchWallet Watch App.debug.xcconfig"; sourceTree = "<group>"; };
+		8C2E5710A6A0B2E37760C62A /* Pods-WatchWallet Watch AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchWallet Watch AppTests.release.xcconfig"; path = "Target Support Files/Pods-WatchWallet Watch AppTests/Pods-WatchWallet Watch AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		A1F1C58B7F66C52FC58B0246 /* Pods_WatchWallet_Watch_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchWallet_Watch_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBA7AC8D300647ECBA96BC4A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		FC2D5DB46E0F0D973CED9987 /* Pods-WatchWallet Watch AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchWallet Watch AppUITests.release.xcconfig"; path = "Target Support Files/Pods-WatchWallet Watch AppUITests/Pods-WatchWallet Watch AppUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		09FBF5C32E24DD8F0013D86B /* WatchWallet */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = WatchWallet;
+			sourceTree = "<group>";
+		};
+		09FBF5D12E24DD900013D86B /* WatchWalletTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = WatchWalletTests;
+			sourceTree = "<group>";
+		};
+		09FBF5DB2E24DD900013D86B /* WatchWalletUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = WatchWalletUITests;
+			sourceTree = "<group>";
+		};
+		09FBF5E82E24DD900013D86B /* WatchWallet Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = "WatchWallet Watch App";
+			sourceTree = "<group>";
+		};
+		09FBF5F62E24DD910013D86B /* WatchWallet Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = "WatchWallet Watch AppTests";
+			sourceTree = "<group>";
+		};
+		09FBF6002E24DD910013D86B /* WatchWallet Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = "WatchWallet Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09FBF5BE2E24DD8F0013D86B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5CB2E24DD900013D86B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5D52E24DD900013D86B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5E12E24DD900013D86B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4BECDF7553C4CD9BDCE7901 /* libsqlite3.tbd in Frameworks */,
+				138F4FDC193368C6850A5D25 /* Pods_WatchWallet_Watch_App.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5F02E24DD910013D86B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F3833266E98741C30D2123B /* Pods_WatchWallet_Watch_AppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5FA2E24DD910013D86B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F351E20673B9627587855D1B /* Pods_WatchWallet_Watch_AppUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09674A032E2614C500836374 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CBA7AC8D300647ECBA96BC4A /* libsqlite3.tbd */,
+				52624F7ED87E7EE4309A472D /* Pods_WatchWallet_Watch_App.framework */,
+				A1F1C58B7F66C52FC58B0246 /* Pods_WatchWallet_Watch_AppTests.framework */,
+				083AD380FCD1A214D85D65A1 /* Pods_WatchWallet_Watch_AppUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		09FBF5B82E24DD8F0013D86B = {
+			isa = PBXGroup;
+			children = (
+				09FBF5C32E24DD8F0013D86B /* WatchWallet */,
+				09FBF5D12E24DD900013D86B /* WatchWalletTests */,
+				09FBF5DB2E24DD900013D86B /* WatchWalletUITests */,
+				09FBF5E82E24DD900013D86B /* WatchWallet Watch App */,
+				09FBF5F62E24DD910013D86B /* WatchWallet Watch AppTests */,
+				09FBF6002E24DD910013D86B /* WatchWallet Watch AppUITests */,
+				09674A032E2614C500836374 /* Frameworks */,
+				09FBF5C22E24DD8F0013D86B /* Products */,
+				BF901F14EFFE56EAB5548917 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		09FBF5C22E24DD8F0013D86B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09FBF5C12E24DD8F0013D86B /* WatchWallet.app */,
+				09FBF5CE2E24DD900013D86B /* WatchWalletTests.xctest */,
+				09FBF5D82E24DD900013D86B /* WatchWalletUITests.xctest */,
+				09FBF5E42E24DD900013D86B /* WatchWallet Watch App.app */,
+				09FBF5F32E24DD910013D86B /* WatchWallet Watch AppTests.xctest */,
+				09FBF5FD2E24DD910013D86B /* WatchWallet Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF901F14EFFE56EAB5548917 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				850BB0737F3E0F0E0EAC6A17 /* Pods-WatchWallet Watch App.debug.xcconfig */,
+				4DBBB045D5E13B83009ED0A2 /* Pods-WatchWallet Watch App.release.xcconfig */,
+				12631B27A0C778C1FCAA828D /* Pods-WatchWallet Watch AppTests.debug.xcconfig */,
+				8C2E5710A6A0B2E37760C62A /* Pods-WatchWallet Watch AppTests.release.xcconfig */,
+				3AC71725FB21360C0D5E61BD /* Pods-WatchWallet Watch AppUITests.debug.xcconfig */,
+				FC2D5DB46E0F0D973CED9987 /* Pods-WatchWallet Watch AppUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09FBF5C02E24DD8F0013D86B /* WatchWallet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09FBF60B2E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet" */;
+			buildPhases = (
+				09FBF5BD2E24DD8F0013D86B /* Sources */,
+				09FBF5BE2E24DD8F0013D86B /* Frameworks */,
+				09FBF5BF2E24DD8F0013D86B /* Resources */,
+				09FBF60A2E24DD910013D86B /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09FBF5E72E24DD900013D86B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09FBF5C32E24DD8F0013D86B /* WatchWallet */,
+			);
+			name = WatchWallet;
+			productName = WatchWallet;
+			productReference = 09FBF5C12E24DD8F0013D86B /* WatchWallet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09FBF5CD2E24DD900013D86B /* WatchWalletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09FBF60E2E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWalletTests" */;
+			buildPhases = (
+				09FBF5CA2E24DD900013D86B /* Sources */,
+				09FBF5CB2E24DD900013D86B /* Frameworks */,
+				09FBF5CC2E24DD900013D86B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09FBF5D02E24DD900013D86B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09FBF5D12E24DD900013D86B /* WatchWalletTests */,
+			);
+			name = WatchWalletTests;
+			productName = WatchWalletTests;
+			productReference = 09FBF5CE2E24DD900013D86B /* WatchWalletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		09FBF5D72E24DD900013D86B /* WatchWalletUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09FBF6112E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWalletUITests" */;
+			buildPhases = (
+				09FBF5D42E24DD900013D86B /* Sources */,
+				09FBF5D52E24DD900013D86B /* Frameworks */,
+				09FBF5D62E24DD900013D86B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09FBF5DA2E24DD900013D86B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09FBF5DB2E24DD900013D86B /* WatchWalletUITests */,
+			);
+			name = WatchWalletUITests;
+			productName = WatchWalletUITests;
+			productReference = 09FBF5D82E24DD900013D86B /* WatchWalletUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		09FBF5E32E24DD900013D86B /* WatchWallet Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09FBF6072E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet Watch App" */;
+			buildPhases = (
+				69886967CD5248256D995054 /* [CP] Check Pods Manifest.lock */,
+				09FBF5E02E24DD900013D86B /* Sources */,
+				09FBF5E12E24DD900013D86B /* Frameworks */,
+				09FBF5E22E24DD900013D86B /* Resources */,
+				E3E2F332561B650DDF3219DA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				09FBF5E82E24DD900013D86B /* WatchWallet Watch App */,
+			);
+			name = "WatchWallet Watch App";
+			productName = "WatchWallet Watch App";
+			productReference = 09FBF5E42E24DD900013D86B /* WatchWallet Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09FBF5F22E24DD910013D86B /* WatchWallet Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09FBF6142E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet Watch AppTests" */;
+			buildPhases = (
+				B652A0A9AB6F7FF0017499D5 /* [CP] Check Pods Manifest.lock */,
+				09FBF5EF2E24DD910013D86B /* Sources */,
+				09FBF5F02E24DD910013D86B /* Frameworks */,
+				09FBF5F12E24DD910013D86B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09FBF5F52E24DD910013D86B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09FBF5F62E24DD910013D86B /* WatchWallet Watch AppTests */,
+			);
+			name = "WatchWallet Watch AppTests";
+			productName = "WatchWallet Watch AppTests";
+			productReference = 09FBF5F32E24DD910013D86B /* WatchWallet Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		09FBF5FC2E24DD910013D86B /* WatchWallet Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09FBF6172E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet Watch AppUITests" */;
+			buildPhases = (
+				587BC8E01B5E24D9A730E38B /* [CP] Check Pods Manifest.lock */,
+				09FBF5F92E24DD910013D86B /* Sources */,
+				09FBF5FA2E24DD910013D86B /* Frameworks */,
+				09FBF5FB2E24DD910013D86B /* Resources */,
+				E018778C310DAE45B23F6541 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09FBF5FF2E24DD910013D86B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				09FBF6002E24DD910013D86B /* WatchWallet Watch AppUITests */,
+			);
+			name = "WatchWallet Watch AppUITests";
+			productName = "WatchWallet Watch AppUITests";
+			productReference = 09FBF5FD2E24DD910013D86B /* WatchWallet Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09FBF5B92E24DD8F0013D86B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					09FBF5C02E24DD8F0013D86B = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					09FBF5CD2E24DD900013D86B = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 09FBF5C02E24DD8F0013D86B;
+					};
+					09FBF5D72E24DD900013D86B = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 09FBF5C02E24DD8F0013D86B;
+					};
+					09FBF5E32E24DD900013D86B = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					09FBF5F22E24DD910013D86B = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 09FBF5E32E24DD900013D86B;
+					};
+					09FBF5FC2E24DD910013D86B = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 09FBF5E32E24DD900013D86B;
+					};
+				};
+			};
+			buildConfigurationList = 09FBF5BC2E24DD8F0013D86B /* Build configuration list for PBXProject "WatchWallet" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09FBF5B82E24DD8F0013D86B;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				KEYSTONE_SDK_PKG /* XCRemoteSwiftPackageReference "keystone-sdk-ios" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 09FBF5C22E24DD8F0013D86B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09FBF5C02E24DD8F0013D86B /* WatchWallet */,
+				09FBF5CD2E24DD900013D86B /* WatchWalletTests */,
+				09FBF5D72E24DD900013D86B /* WatchWalletUITests */,
+				09FBF5E32E24DD900013D86B /* WatchWallet Watch App */,
+				09FBF5F22E24DD910013D86B /* WatchWallet Watch AppTests */,
+				09FBF5FC2E24DD910013D86B /* WatchWallet Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09FBF5BF2E24DD8F0013D86B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5CC2E24DD900013D86B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5D62E24DD900013D86B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5E22E24DD900013D86B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5F12E24DD910013D86B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5FB2E24DD910013D86B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		587BC8E01B5E24D9A730E38B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchWallet Watch AppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69886967CD5248256D995054 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchWallet Watch App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B652A0A9AB6F7FF0017499D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WatchWallet Watch AppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E018778C310DAE45B23F6541 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchWallet Watch AppUITests/Pods-WatchWallet Watch AppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchWallet Watch AppUITests/Pods-WatchWallet Watch AppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WatchWallet Watch AppUITests/Pods-WatchWallet Watch AppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3E2F332561B650DDF3219DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchWallet Watch App/Pods-WatchWallet Watch App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WatchWallet Watch App/Pods-WatchWallet Watch App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WatchWallet Watch App/Pods-WatchWallet Watch App-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09FBF5BD2E24DD8F0013D86B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5CA2E24DD900013D86B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5D42E24DD900013D86B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5E02E24DD900013D86B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5EF2E24DD910013D86B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09FBF5F92E24DD910013D86B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09FBF5D02E24DD900013D86B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09FBF5C02E24DD8F0013D86B /* WatchWallet */;
+			targetProxy = 09FBF5CF2E24DD900013D86B /* PBXContainerItemProxy */;
+		};
+		09FBF5DA2E24DD900013D86B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09FBF5C02E24DD8F0013D86B /* WatchWallet */;
+			targetProxy = 09FBF5D92E24DD900013D86B /* PBXContainerItemProxy */;
+		};
+		09FBF5E72E24DD900013D86B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09FBF5E32E24DD900013D86B /* WatchWallet Watch App */;
+			targetProxy = 09FBF5E62E24DD900013D86B /* PBXContainerItemProxy */;
+		};
+		09FBF5F52E24DD910013D86B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09FBF5E32E24DD900013D86B /* WatchWallet Watch App */;
+			targetProxy = 09FBF5F42E24DD910013D86B /* PBXContainerItemProxy */;
+		};
+		09FBF5FF2E24DD910013D86B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09FBF5E32E24DD900013D86B /* WatchWallet Watch App */;
+			targetProxy = 09FBF5FE2E24DD910013D86B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		09FBF6052E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		09FBF6062E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		09FBF6082E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 850BB0737F3E0F0E0EAC6A17 /* Pods-WatchWallet Watch App.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchWallet;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.iml1s.WatchWallet;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWallet.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALID_ARCHS = arm64;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		09FBF6092E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DBBB045D5E13B83009ED0A2 /* Pods-WatchWallet Watch App.release.xcconfig */;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchWallet;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.iml1s.WatchWallet;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWallet.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = arm64;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		09FBF60C2E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../sharedKmp/build/bin/watchosSimulatorArm64/debugFramework";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchWallet;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		09FBF60D2E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchWallet;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09FBF60F2E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchWallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchWallet";
+			};
+			name = Debug;
+		};
+		09FBF6102E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchWallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchWallet";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09FBF6122E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = WatchWallet;
+			};
+			name = Debug;
+		};
+		09FBF6132E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iml1s.WatchWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = WatchWallet;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09FBF6152E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12631B27A0C778C1FCAA828D /* Pods-WatchWallet Watch AppTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iml1s.WatchWallet-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchWallet Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchWallet Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		09FBF6162E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C2E5710A6A0B2E37760C62A /* Pods-WatchWallet Watch AppTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iml1s.WatchWallet-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchWallet Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WatchWallet Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		09FBF6182E24DD910013D86B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AC71725FB21360C0D5E61BD /* Pods-WatchWallet Watch AppUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iml1s.WatchWallet-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "WatchWallet Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		09FBF6192E24DD910013D86B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC2D5DB46E0F0D973CED9987 /* Pods-WatchWallet Watch AppUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ABHJVZBWQN;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iml1s.WatchWallet-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "WatchWallet Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09FBF5BC2E24DD8F0013D86B /* Build configuration list for PBXProject "WatchWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF6052E24DD910013D86B /* Debug */,
+				09FBF6062E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09FBF6072E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF6082E24DD910013D86B /* Debug */,
+				09FBF6092E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09FBF60B2E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF60C2E24DD910013D86B /* Debug */,
+				09FBF60D2E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09FBF60E2E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWalletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF60F2E24DD910013D86B /* Debug */,
+				09FBF6102E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09FBF6112E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWalletUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF6122E24DD910013D86B /* Debug */,
+				09FBF6132E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09FBF6142E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF6152E24DD910013D86B /* Debug */,
+				09FBF6162E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09FBF6172E24DD910013D86B /* Build configuration list for PBXNativeTarget "WatchWallet Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09FBF6182E24DD910013D86B /* Debug */,
+				09FBF6192E24DD910013D86B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		KEYSTONE_SDK_PKG /* XCRemoteSwiftPackageReference "keystone-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/KeystoneHQ/keystone-sdk-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+	};
+	rootObject = 09FBF5B92E24DD8F0013D86B /* Project object */;
+}

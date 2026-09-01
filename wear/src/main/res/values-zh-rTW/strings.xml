@@ -1,0 +1,536 @@
+<resources>
+    <string name="app_name">WearWallet</string>
+    <string name="tile_label">WearWallet</string>
+    <string name="complication_label">WearWallet Complication</string>
+    
+    <!-- Common Actions -->
+    <string name="confirm">確認</string>
+    <string name="cancel">取消</string>
+    <string name="save">儲存</string>
+    <string name="delete">刪除</string>
+    <string name="edit">編輯</string>
+    <string name="add">新增</string>
+    <string name="refresh">重新整理</string>
+    <string name="retry">重試</string>
+    <string name="copy">複製</string>
+    <string name="paste">貼上</string>
+    <string name="back">返回</string>
+    <string name="next">下一步</string>
+    <string name="done">完成</string>
+    <string name="close">關閉</string>
+    <string name="ok">確定</string>
+    <string name="selected">已選擇</string>
+    
+    <!-- Common Status -->
+    <string name="loading">載入中...</string>
+    <string name="error">錯誤</string>
+    <string name="success">成功</string>
+    <string name="failed">失敗</string>
+    <string name="pending">處理中</string>
+    <string name="completed">已完成</string>
+    <string name="syncing">同步中...</string>
+    
+    <!-- Wallet Management -->
+    <string name="wallet">錢包</string>
+    <string name="wallets">錢包</string>
+    <string name="wallet_management">錢包管理</string>
+    <string name="manage_wallets">管理錢包</string>
+    <string name="add_wallet">添加錢包</string>
+    <string name="create_wallet">創建錢包</string>
+    <string name="import_wallet">導入錢包</string>
+    <string name="confirm_import">確認導入</string>
+    <string name="delete_wallet">刪除錢包</string>
+    <string name="wallet_settings">錢包設置</string>
+    <string name="wallet_name">錢包名稱</string>
+    <string name="wallet_address">錢包地址</string>
+    <string name="current_balance">目前餘額</string>
+    <string name="wallet_type_hot">熱錢包</string>
+    <string name="wallet_type_cold">冷錢包</string>
+    <string name="no_wallets">沒有錢包</string>
+    <string name="no_wallets_yet">還沒有錢包</string>
+    
+    <!-- Wallet Creation -->
+    <string name="create_hot_wallet">創建熱錢包</string>
+    <string name="connect_keystone_wallet">連接 Keystone 錢包</string>
+    <string name="hot_wallet_desc">熱錢包的私鑰存儲在設備上</string>
+    <string name="keystone_wallet_desc">使用 Keystone 硬體錢包進行最高級別的安全保護</string>
+    <string name="select_wallet_type">選擇錢包類型</string>
+    <string name="security_tip">安全提示</string>
+    <string name="wallet_security_tips">• 私鑰將被加密存儲
+• 請妥善保管助記詞
+• 切勿與他人分享</string>
+    
+    <!-- Mnemonic -->
+    <string name="mnemonic">助記詞</string>
+    <string name="generate_mnemonic">生成助記詞</string>
+    <string name="backup_mnemonic">備份助記詞</string>
+    <string name="confirm_mnemonic">確認助記詞</string>
+    <string name="write_down_mnemonic">請將以下助記詞抄寫在紙上並妥善保管</string>
+    <string name="i_have_backed_up">我已備份</string>
+    <string name="paste_mnemonic">貼上助記詞</string>
+    <string name="invalid_mnemonic">無效的助記詞</string>
+    <string name="invalid_mnemonic_format">無效的助記詞格式</string>
+    <string name="tap_to_input_mnemonic">點擊輸入助記詞</string>
+    <string name="tap_word_to_remove">點擊單字可移除</string>
+    
+    <!-- Transaction -->
+    <string name="send">發送</string>
+    <string name="receive">接收</string>
+    <string name="transaction">交易</string>
+    <string name="transactions">交易記錄</string>
+    <string name="transaction_history">交易歷史</string>
+    <string name="transaction_details">交易詳情</string>
+    <string name="from_address">發送地址</string>
+    <string name="to_address">接收地址</string>
+    <string name="amount">金額</string>
+    <string name="fee">手續費</string>
+    <string name="total">總計</string>
+    <string name="transaction_hash">交易哈希</string>
+    <string name="transaction_status">交易狀態</string>
+    <string name="transaction_time">交易時間</string>
+    <string name="no_transactions">暫無交易記錄</string>
+    <string name="transaction_limit_notice">我們只顯示最近的 100 筆交易</string>
+    <string name="view_in_explorer">在區塊鏈瀏覽器查看</string>
+    <string name="view_all_transactions">查看所有交易記錄</string>
+    
+    <!-- Transaction Status -->
+    <string name="status_pending">處理中</string>
+    <string name="status_completed">已完成</string>
+    <string name="status_failed">失敗</string>
+    <string name="status_received">收到</string>
+    <string name="status_sent">轉出</string>
+    
+    <!-- Transaction Filters -->
+    <string name="filter_all">全部</string>
+    <string name="filter_native">原生幣</string>
+    <string name="filter_received">收入</string>
+    <string name="filter_sent">支出</string>
+    <string name="filter_failed">失敗</string>
+    <string name="filter_token">代幣</string>
+    
+    <!-- Transaction Types -->
+    <string name="tx_type_receive">收到</string>
+    <string name="tx_type_send">轉出</string>
+    <string name="tx_type_transfer">轉帳</string>
+    <string name="tx_type_token_in">代幣+</string>
+    <string name="tx_type_token_out">代幣-</string>
+    <string name="tx_type_token_transfer">代幣轉</string>
+    <string name="tx_type_approve">授權</string>
+    <string name="tx_type_nft">NFT</string>
+    <string name="tx_type_nft_approve">NFT授權</string>
+    <string name="tx_type_multi_token">多代幣</string>
+    <string name="tx_type_swap">交換</string>
+    <string name="tx_type_defi">DeFi</string>
+    <string name="tx_type_deploy">部署</string>
+    <string name="tx_type_contract">合約</string>
+    <string name="tx_type_swap_platform">交換平台</string>
+    <string name="tx_type_new_contract">新合約</string>
+    
+    <!-- Token Management -->
+    <string name="token">代幣</string>
+    <string name="tokens">代幣</string>
+    <string name="select_token">選擇代幣</string>
+    <string name="token_management">代幣管理</string>
+    <string name="add_custom_token">添加自定義代幣</string>
+    <string name="contract_address">合約地址</string>
+    <string name="token_symbol">代幣符號</string>
+    <string name="token_decimals">小數位數</string>
+    <string name="auto_fetch_token_info">自動獲取代幣資訊</string>
+    <string name="enter_contract_auto_fetch">輸入合約地址自動獲取代幣資訊</string>
+    <string name="add_token">添加代幣</string>
+    <string name="valid">有效</string>
+    <string name="invalid">無效</string>
+    <string name="chain_format">鏈：%s</string>
+    <string name="contract_address_placeholder">0x...</string>
+    <string name="token_symbol_placeholder">ETH, USDT, 等等</string>
+    <string name="decimals_placeholder">18</string>
+    <string name="info">資訊</string>
+    <string name="token_name">代幣名稱</string>
+    <string name="standard_tokens">標準代幣</string>
+    <string name="custom_tokens">自定義代幣</string>
+    
+    <!-- Network -->
+    <string name="network">網路</string>
+    <string name="select_network">選擇網路</string>
+    <string name="current_network">當前網路：%s</string>
+    <string name="mainnet">主網</string>
+    <string name="testnet">測試網</string>
+    
+    <!-- QR Code -->
+    <string name="scan_qr_code">掃描 QR 碼</string>
+    <string name="show_qr_code">顯示 QR 碼</string>
+    <string name="qr_code">QR 碼</string>
+    <string name="align_qr_code">請對準 QR 碼</string>
+    <string name="scanning">正在掃描中...</string>
+    <string name="scan_complete">掃描完成</string>
+    <string name="scan_failed">掃描失敗</string>
+    <string name="qr_code_generation_failed">無法生成 QR 碼</string>
+    
+    <!-- Keystone Integration -->
+    <string name="keystone">Keystone</string>
+    <string name="connect_keystone">連接 Keystone</string>
+    <string name="keystone_connected">Keystone 已連接</string>
+    <string name="scan_with_keystone">用 Keystone 掃描</string>
+    <string name="scan_keystone_qr">掃描 Keystone QR 碼</string>
+    <string name="preparing_keystone_transaction">準備 Keystone 交易...</string>
+    <string name="scan_signed_transaction">掃描已簽名交易</string>
+    
+    <!-- Complication -->
+    <string name="complication_wearwallet_label">WearWallet</string>
+    <string name="complication_token_price_label">代幣價格</string>
+    <string name="complication_token_change_label">代幣變化率</string>
+    <string name="complication_wallet_balance_label">錢包餘額</string>
+    <string name="complication_gas_fee_label">Gas 費用</string>
+    <string name="complication_portfolio_label">投資組合</string>
+    <string name="complication_token_price_desc">即時顯示 ETH、BTC 等代幣價格</string>
+    <string name="complication_token_change_desc">即時顯示 ETH、BTC 等代幣 24 小時變化率</string>
+    <string name="complication_wallet_balance_desc">快速查看您的加密貨幣錢包餘額</string>
+    <string name="complication_gas_fee_desc">監控以太坊網路當前 Gas 費用</string>
+    <string name="complication_portfolio_desc">顯示加密貨幣投資組合總價值</string>
+    <string name="complication_qr_receive_label">快速收款</string>
+    <string name="complication_qr_receive_desc">點擊顯示收款 QR Code</string>
+    <string name="complication_settings">錶盤設定</string>
+    <string name="primary_token">主要代幣</string>
+    <string name="primary_wallet">主要錢包</string>
+    <string name="update_frequency">更新頻率</string>
+    <string name="enable_feature">啟用功能</string>
+    <string name="minutes_format">%d 分鐘</string>
+    <string name="updating_complication_data">正在更新 Complication 數據</string>
+    <string name="sync_complete">同步完成</string>
+    <string name="last_update_time">上次更新：%1$s</string>
+    <string name="sync_now">立即同步</string>
+    <string name="manual_update_all_complication_data">手動更新所有 Complication 數據</string>
+    
+    <!-- Settings -->
+    <string name="settings">設定</string>
+    <string name="general_settings">一般設定</string>
+    <string name="security_settings">安全設定</string>
+    <string name="advanced_settings">進階設定</string>
+    <string name="about">關於</string>
+    <string name="version">版本</string>
+    <string name="developer">開發者</string>
+    
+    <!-- Error Messages -->
+    <string name="error_generic">發生錯誤</string>
+    <string name="error_network">網路連接錯誤</string>
+    <string name="error_invalid_address">無效的地址</string>
+    <string name="error_invalid_amount">無效的金額</string>
+    <string name="error_insufficient_balance">餘額不足</string>
+    <string name="error_transaction_failed">交易失敗</string>
+    <string name="error_wallet_creation_failed">錢包創建失敗</string>
+    <string name="error_load_failed">載入失敗</string>
+    <string name="error_save_failed">儲存失敗</string>
+    <string name="error_delete_failed">刪除失敗</string>
+    
+    <!-- QR Code Receive -->
+    <string name="address_copied">地址已複製</string>
+    <string name="copy_address">複製地址</string>
+    <string name="set_amount">設定金額</string>
+    <string name="change_amount">更改金額</string>
+    <string name="decrease">減少</string>
+    <string name="increase">增加</string>
+    
+    <!-- Success Messages -->
+    <string name="success_wallet_created">錢包創建成功</string>
+    <string name="success_wallet_imported">錢包導入成功</string>
+    <string name="success_wallet_deleted">錢包已刪除</string>
+    <string name="success_transaction_sent">交易已發送</string>
+    <string name="success_copied">已複製到剪貼簿</string>
+    <string name="success_saved">儲存成功</string>
+    
+    <!-- Confirmation Messages -->
+    <string name="confirm_delete_wallet">確定要刪除此錢包嗎？此操作無法復原。</string>
+    <string name="confirm_send_transaction">確定要發送此交易嗎？</string>
+    <string name="confirm_logout">確定要登出嗎？</string>
+    
+    <!-- Time -->
+    <string name="just_now">剛剛</string>
+    <string name="minutes_ago">%d 分鐘前</string>
+    <string name="hours_ago">%d 小時前</string>
+    <string name="days_ago">%d 天前</string>
+    <string name="last_update">上次更新：%1$s</string>
+    
+    <!-- Units -->
+    <string name="eth_unit">ETH</string>
+    <string name="gwei_unit">Gwei</string>
+    <string name="usd_unit">USD</string>
+    <string name="percentage">%1$s%%</string>
+    
+    <!-- Placeholders -->
+    <string name="not_selected">未選擇</string>
+    <string name="not_available">不可用</string>
+    <string name="unknown">未知</string>
+    <string name="empty">空</string>
+    <string name="none">無</string>
+    
+    <!-- Notification related strings -->
+    <string name="notifications">通知</string>
+    <string name="view_details">查看詳情</string>
+    <string name="view_chart">查看圖表</string>
+    <string name="price_alerts">價格提醒</string>
+    <string name="price_alerts_channel_description">當加密貨幣達到設定價格時接收通知</string>
+    <string name="transaction_alerts">交易提醒</string>
+    <string name="transaction_alerts_channel_description">當收到或發送加密貨幣時接收通知</string>
+    <string name="security_alerts">安全提醒</string>
+    <string name="security_alerts_channel_description">關於錢包安全的重要通知</string>
+    <string name="defi_alerts">DeFi 提醒</string>
+    <string name="defi_alerts_channel_description">DeFi 協議相關的通知</string>
+    
+    <!-- Missing notification strings -->
+    <string name="no_notifications">尚無通知</string>
+    <string name="no_notifications_description">您將在這裡看到價格提醒、交易通知等資訊</string>
+    <string name="load_more">載入更多</string>
+    <string name="view_security_alert">查看安全警報</string>
+    <string name="view_defi_position">查看 DeFi 倉位</string>
+    
+    <!-- Notification Settings -->
+    <string name="notification_settings">通知設定</string>
+    <string name="push_protocol_notifications">Push Protocol 通知</string>
+    <string name="enabled">已啟用</string>
+    <string name="disabled">已停用</string>
+    <string name="price_alerts_title">價格提醒</string>
+    <string name="add_price_alert">新增價格提醒</string>
+    <string name="notification_preferences">通知偏好</string>
+    <string name="transaction_notifications">交易通知</string>
+    <string name="transaction_notifications_desc">當收到或發送加密貨幣時接收通知</string>
+    <string name="security_notifications">安全通知</string>
+    <string name="security_notifications_desc">接收關於錢包安全的重要通知</string>
+    <string name="defi_notifications">DeFi 通知</string>
+    <string name="defi_notifications_desc">接收 DeFi 協議相關的通知</string>
+    <string name="error_cannot_find_wallet">找不到錢包</string>
+    <string name="click_to_close">點擊關閉</string>
+    <string name="success_price_alert_added">價格提醒已新增</string>
+    <string name="no_price_alerts">尚無價格提醒</string>
+    <string name="no_price_alerts_desc">新增價格提醒以追蹤代幣價格變化</string>
+    <string name="price_alert_enabled">價格提醒已啟用</string>
+    <string name="price_alert_disabled">價格提醒已停用</string>
+    <string name="delete_price_alert">刪除價格提醒</string>
+    <string name="push_subscription_success">Push Protocol 訂閱成功</string>
+    <string name="push_subscription_disabled">Push Protocol 訂閱已停用</string>
+    <string name="push_subscription_error">Push Protocol 訂閱失敗</string>
+    <string name="below">低於</string>
+    <string name="above">高於</string>
+    <string name="price_above">價格高於</string>
+    <string name="price_below">價格低於</string>
+    <string name="select_token_title">選擇代幣</string>
+    <string name="alert_condition">提醒條件</string>
+    <string name="target_price_usd">目標價格 (USD)</string>
+    <string name="alert_summary">%1$s %2$s $%3$s 時提醒</string>
+    <string name="creating_alert">正在創建提醒...</string>
+    <string name="advanced_features">進階功能</string>
+    <string name="update_watch_face_data">更新錶盤數據</string>
+    <string name="security_section">安全設定</string>
+    <string name="personal_settings">個人設定</string>
+    <string name="danger_zone">危險操作</string>
+    <string name="show_mnemonic">顯示助記詞</string>
+    <string name="security_warning">安全警告</string>
+    
+    <!-- QR 掃描器 -->
+    <string name="preparing_scanner">準備掃描器...</string>
+    <string name="requesting_phone_scan">請求手機掃描...</string>
+    <string name="scan_on_phone">請在手機上掃描</string>
+    <string name="scan_with_phone">使用手機掃描</string>
+    <string name="mnemonic_warning_message">請確保周圍無人，助記詞是您恢復錢包的唯一方式</string>
+    <string name="i_understand_continue">我明白，繼續</string>
+    
+    <!-- Address Book -->
+    <string name="address_book">地址簿</string>
+    <string name="add_contact">新增聯絡人</string>
+    <string name="edit_contact">編輯聯絡人</string>
+    <string name="contact_name">聯絡人名稱</string>
+    <string name="contact_detail">聯絡人詳情</string>
+    <string name="no_contacts">沒有聯絡人</string>
+    <string name="no_contacts_message">點擊下方按鈕新增聯絡人</string>
+    <string name="search_contacts">搜尋聯絡人</string>
+    <string name="send_to_contact">發送給聯絡人</string>
+    <string name="delete_contact">刪除聯絡人</string>
+    <string name="delete_contact_confirm">確認刪除聯絡人？</string>
+    <string name="delete_contact_message">此操作無法復原</string>
+    <string name="contact_added">聯絡人已新增</string>
+    <string name="contact_updated">聯絡人已更新</string>
+    <string name="contact_deleted">聯絡人已刪除</string>
+    <string name="note">備註</string>
+    <string name="note_optional">備註（選填）</string>
+    <string name="blockchain">區塊鏈</string>
+    <string name="save_changes">儲存變更</string>
+    <string name="go_back">返回</string>
+    <string name="save_contact">儲存聯絡人</string>
+    <string name="tap_to_copy">點擊複製</string>
+    <string name="enter_name">輸入名稱</string>
+    <string name="select_chain">選擇區塊鏈</string>
+    <string name="add_note">新增備註</string>
+    
+    <!-- AI Assistant -->
+    <string name="ai_assistant">AI 助手</string>
+    <string name="ai_thinking">AI 正在思考...</string>
+    <string name="ai_usage_remaining">剩餘：%d 次請求</string>
+    <string name="quick_commands">快捷指令</string>
+    <string name="start_voice_input">開始語音輸入</string>
+    <string name="stop_voice_input">停止語音輸入</string>
+    <string name="listening">聆聽中...</string>
+    <string name="speak_now">請說話...</string>
+    <string name="voice_input_result">語音輸入結果</string>
+    <string name="remaining_requests">剩餘</string>
+    <string name="today_usage">今日</string>
+    <string name="voice_input">語音輸入</string>
+    <string name="usage_count">%d 次</string>
+    
+    <!-- Database Debug -->
+    <string name="database_management">資料庫管理</string>
+    <string name="clear_history">清除歷史</string>
+    <string name="migration_history">遷移歷史</string>
+    <string name="issues_found">發現的問題</string>
+    <string name="database_version">資料庫版本</string>
+    <string name="current_version">當前版本</string>
+    <string name="migration_count">遷移次數</string>
+    <string name="last_migration">最後遷移</string>
+    <string name="check_time">檢查時間: %s</string>
+    <string name="found_n_issues">發現 %d 個問題</string>
+    <string name="checking">檢查中...</string>
+    <string name="issue_found">發現問題</string>
+    <string name="health_status_good">健康狀態良好</string>
+    <string name="health_check">健康檢查</string>
+    
+    <!-- Firebase Debug -->
+    <string name="firebase_test">Firebase 測試</string>
+    <string name="remote_config_values">Remote Config 值</string>
+    <string name="service_status">服務狀態</string>
+    <string name="monthly_price">月付價格</string>
+    <string name="yearly_price">年付價格</string>
+    <string name="free_wallet_limit">免費錢包限制</string>
+    <string name="premium_wallet_limit">高級錢包限制</string>
+    <string name="run_test">執行測試</string>
+    <string name="test_status_normal">正常</string>
+    <string name="test_status_failed">失敗</string>
+    <string name="test_status_pending">待測</string>
+    
+    
+    <!-- AI Assistant Quick Commands -->
+    <string name="ai_response">AI 回應</string>
+    <string name="view_balance">查看餘額</string>
+    <string name="view_portfolio">投資組合</string>
+    <string name="receive_qr">收款碼</string>
+    <string name="check_price">查看價格</string>
+    
+    <!-- Keystone Connection -->
+    <string name="connect_keystone_title">連接 Keystone</string>
+    <string name="preparing_keystone_connection">準備連接到 Keystone 3 Pro...</string>
+    <string name="operation_steps">📱 操作步驟</string>
+    <string name="keystone_steps">1. 在 Keystone 3 Pro 上選擇「連接軟體錢包」\n2. Keystone 會顯示 QR 碼\n3. 點擊下方「開始掃描」按鈕\n4. 掃描 Keystone 顯示的 QR 碼</string>
+    <string name="start_scan">開始掃描</string>
+    <string name="phone_scan_hint">將使用手機相機掃描 Keystone QR 碼</string>
+    <string name="scanning_qr">正在掃描 QR 碼...</string>
+    <string name="align_camera_hint">請將 Keystone 3 Pro 的 QR 碼對準相機</string>
+    <string name="keystone_connected_success">Keystone 錢包連接成功！</string>
+    <string name="connection_failed">連接失敗</string>
+    <string name="edit_wallet_name">編輯錢包名稱</string>
+    <string name="enter_wallet_name">請輸入錢包名稱</string>
+    
+    <!-- Import Hot Wallet -->
+    <string name="manual_input">手動輸入</string>
+    <string name="entered_mnemonic">已輸入助記詞:</string>
+    <string name="input_mnemonic">輸入助記詞</string>
+    <string name="mnemonic_input_hint">請輸入12個或24個單詞，以空格分隔</string>
+    
+    <!-- Voice Command / Gemini Integration -->
+    <string name="voice_send_crypto">發送加密貨幣</string>
+    <string name="voice_send_crypto_long">使用語音發送加密貨幣</string>
+    <string name="voice_check_balance">查詢餘額</string>
+    <string name="voice_check_balance_long">透過語音查詢錢包餘額</string>
+    <string name="voice_receive_crypto">接收加密貨幣</string>
+    <string name="voice_receive_crypto_long">顯示接收地址 QR Code</string>
+    <string name="voice_ai_assistant">AI 助手</string>
+    <string name="voice_ai_assistant_long">開啟 WearWallet AI 助手</string>
+    <string name="voice_shortcut_disabled">語音快捷方式已停用</string>
+    <string name="voice_processing">正在處理語音命令...</string>
+    <string name="voice_command_error">無法處理語音命令</string>
+    <string name="voice_command_from_gemini">由 Gemini 驅動</string>
+    <string name="tap_to_switch_token">點擊切換代幣 ▼</string>
+    <string name="not_selected_wallet">未選擇錢包</string>
+
+    <!-- AI Assistant Suggestions & Responses -->
+    <string name="ai_suggestion_check_balance">查看餘額</string>
+    <string name="ai_suggestion_send_eth">發送 0.001 ETH</string>
+    <string name="ai_suggestion_show_history">顯示交易記錄</string>
+    <string name="ai_suggestion_switch_chain">切換到 BSC 鏈</string>
+    <string name="ai_suggestion_scan_tokens">掃描代幣</string>
+    <string name="ai_response_balance">您的 ETH 餘額為 %1$s ETH（約 $%2$s USD）</string>
+    <string name="ai_response_prepare_send">準備發送交易，請確認詳情</string>
+    <string name="ai_response_no_history">最近沒有交易記錄</string>
+    <string name="ai_response_chain_switched">已切換到指定的區塊鏈</string>
+    <string name="ai_response_scanning">開始掃描代幣...</string>
+    <string name="ai_response_unknown_command">抱歉，我不理解這個指令。請試試：查看餘額、發送 ETH、顯示交易記錄</string>
+    <string name="ai_error_voice_input">處理語音輸入失敗：%1$s</string>
+    <string name="ai_transaction_sent">交易已成功發送</string>
+    <string name="ai_transaction_cancelled">交易已取消</string>
+    <string name="ai_error_send_failed">發送交易失敗：%1$s</string>
+    
+    <!-- Security & Biometrics -->
+    <string name="biometric_unavailable">生物識別不可用</string>
+    <string name="biometric_factor_static">生物識別</string>
+    <string name="biometric_factor_behavior">行為模式</string>
+    <string name="biometric_factor_environment">環境因素</string>
+    <string name="biometric_factor_device_pairing">設備配對</string>
+    <string name="biometric_factor_security_question">安全問題</string>
+    <string name="biometric_factor_pin">PIN碼</string>
+    <string name="error_unknown">未知錯誤</string>
+    <string name="error_transaction_verification_failed">交易驗證失敗</string>
+    <string name="anomaly_unusual_transaction">檢測到異常交易模式</string>
+    <string name="anomaly_unusual_behavior">檢測到異常行為模式</string>
+    
+    <!-- Config & System -->
+    <string name="error_missing_api_key">未找到 %1$s API 密鑰！</string>
+    <string name="error_api_key_instructions">請通過以下方式之一設置：\n1. 在 local.properties 中設置: %1$s=your_key\n2. 在 Firebase Console 中設置 Remote Config\n3. 設置環境變數: %2$s</string>
+    <string name="push_status_disabled">Push Protocol 功能已禁用</string>
+    <string name="push_status_not_configured">頻道尚未創建，需要 50 PUSH tokens</string>
+    <string name="push_status_invalid_address">頻道地址無效</string>
+    <string name="push_status_missing_key">頻道密鑰缺失</string>
+
+    <!-- More QR Scanner Strings -->
+    <string name="qr_scan_type">掃描類型</string>
+    <string name="qr_connecting_phone">連接手機中...</string>
+    <string name="qr_requesting_phone_scanner">正在請求手機掃描器</string>
+    <string name="qr_waiting_for_scan">等待掃描中...</string>
+    <string name="qr_align_phone_hint">請在手機上對準 QR 碼</string>
+    <string name="qr_tap_to_start">點擊下方按鈕開始掃描</string>
+    <string name="qr_phone_app_required">此功能需要手機配對並安裝 WearWallet App</string>
+
+    <!-- More AI Assistant Strings -->
+    <string name="ai_suggestion_check_price">查看價格</string>
+    <string name="ai_suggestion_view_history">查看歷史</string>
+    <string name="ai_command_check_balance">查看餘額</string>
+    <string name="ai_command_send_tx">發送交易</string>
+    <string name="ai_command_check_price">查看價格</string>
+    <string name="ai_command_tx_history">交易歷史</string>
+
+    <!-- Config Validation Strings -->
+    <string name="config_issue_nft_api_key">NFT API Key 未設置</string>
+    <string name="config_issue_nft_cache_size">NFT 快取大小無效</string>
+    <string name="config_issue_cache_memory">記憶體快取大小無效</string>
+    <string name="config_issue_network_timeout">網路超時配置無效</string>
+    <string name="config_validation_error">配置驗證過程中發生錯誤: %s</string>
+
+    <!-- Settings Activity Strings -->
+    <string name="nft_settings_title">NFT 設定</string>
+    <string name="connection_status">連接狀態</string>
+    <string name="connected">已連接</string>
+    <string name="not_connected">未連接</string>
+    <string name="nft_complication">NFT 複雜功能</string>
+    <!-- enabled/disabled already exist in some form but we re-define or use existing -->
+    <string name="current_nft">當前 NFT</string>
+    <string name="auto_rotate">自動輪換</string>
+    <string name="rotate_interval_hours">間隔: %d 小時</string>
+    <string name="nft_config_phone_hint">請在手機上的 WearWallet 應用中配置 NFT 設定</string>
+    <string name="switch_nft">切換</string>
+
+    <!-- Security Warning Strings -->
+    <string name="security_warning_title">設備安全警告</string>
+    <string name="security_breach_detected">檢測到設備可能已被破解</string>
+    <string name="security_triggered_checks">觸發檢測: %d 項</string>
+    <string name="exit_app">退出應用</string>
+    <string name="accept_risk_continue">我知道風險，繼續使用</string>
+    <string name="security_disclaimer">繼續使用代表您理解並接受在破解設備上使用的風險</string>
+    <string name="detection_details">檢測詳情</string>
+    <string name="detected_issues">檢測到的問題:</string>
+    <string name="no_issues_detected">未檢測到問題</string>
+</resources>

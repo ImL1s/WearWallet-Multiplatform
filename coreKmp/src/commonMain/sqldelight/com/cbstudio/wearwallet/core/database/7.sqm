@@ -1,0 +1,54 @@
+-- Migration from Schema v7 to Schema v8
+-- PR #32 Round 15: Per-Wallet Price Alert Table Rebuild with wallet_id in UNIQUE constraint
+
+CREATE TABLE IF NOT EXISTS price_alert_new (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id TEXT NOT NULL DEFAULT '',
+    asset_symbol TEXT NOT NULL,
+    asset_name TEXT,
+    contract_address TEXT,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    alert_type TEXT NOT NULL,
+    target_price REAL NOT NULL,
+    current_price REAL,
+    percentage_threshold REAL,
+    is_enabled INTEGER NOT NULL DEFAULT 1,
+    is_triggered INTEGER NOT NULL DEFAULT 0,
+    notification_sent INTEGER NOT NULL DEFAULT 0,
+    trigger_count INTEGER NOT NULL DEFAULT 0,
+    last_triggered_at INTEGER,
+    last_checked_at INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    user_notes TEXT,
+    webhook_url TEXT,
+    repeat_interval INTEGER DEFAULT 0,
+    UNIQUE(wallet_id, asset_symbol, chain_type, alert_type, target_price)
+);
+
+INSERT OR IGNORE INTO price_alert_new (
+    id, wallet_id, asset_symbol, asset_name, contract_address,
+    chain_type, chain_id, alert_type, target_price, current_price,
+    percentage_threshold, is_enabled, is_triggered, notification_sent,
+    trigger_count, last_triggered_at, last_checked_at, created_at,
+    updated_at, user_notes, webhook_url, repeat_interval
+)
+SELECT 
+    id,
+    CASE 
+        WHEN wallet_id IS NULL OR wallet_id = '' THEN 'LEGACY_UNASSIGNED'
+        ELSE wallet_id
+    END AS wallet_id,
+    asset_symbol, asset_name, contract_address,
+    chain_type, chain_id, alert_type, target_price, current_price,
+    percentage_threshold, is_enabled, is_triggered, notification_sent,
+    trigger_count, last_triggered_at, last_checked_at, created_at,
+    updated_at, user_notes, webhook_url, repeat_interval
+FROM price_alert;
+
+DROP TABLE price_alert;
+
+ALTER TABLE price_alert_new RENAME TO price_alert;
+
+CREATE INDEX IF NOT EXISTS idx_price_alert_wallet_id ON price_alert(wallet_id);

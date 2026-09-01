@@ -1,0 +1,87 @@
+/* Common */
+"error" = "Error";
+"ok" = "OK";
+"pause" = "Pause";
+"resume" = "Resume";
+"cancel" = "Cancel";
+"timeout" = "Timeout";
+"retry" = "Retry";
+"unknown_error" = "Unknown Error";
+
+/* StoreKit Service */
+"storekit_failed_load" = "Failed to load products: %@";
+"storekit_unknown_result" = "Unknown purchase result";
+"storekit_restore_failed" = "Failed to restore purchases: %@";
+"storekit_transaction_failed" = "Transaction failure: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "Simulate watchOS Request";
+"keystone_clear_requests" = "Clear All Requests";
+"keystone_pending_requests" = "Pending Requests";
+"keystone_from_watch" = "From: Apple Watch";
+"keystone_waiting_title" = "Waiting for Apple Watch Request";
+"keystone_waiting_desc" = "When you initiate a transaction on Apple Watch,\nthe signature request will appear here";
+
+/* Status Titles */
+"keystone_status_idle" = "Idle";
+"keystone_status_waiting" = "Waiting...";
+"keystone_status_processing" = "Processing...";
+"keystone_status_displaying_qr" = "Displaying QR Code";
+"keystone_status_scanning" = "Scanning";
+"keystone_status_completed" = "Completed";
+"keystone_status_error" = "Error";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "Waiting for new requests";
+"keystone_status_waiting_desc" = "Pending signature requests";
+"keystone_status_processing_desc" = "Preparing QR Code...";
+"keystone_status_displaying_qr_desc" = "Scan with Keystone";
+"keystone_status_scanning_desc" = "Scanning signature";
+"keystone_status_completed_desc" = "Signature completed";
+"keystone_status_error_desc" = "Error occurred during processing";
+
+/* Request Types */
+"request_type_sign_tx" = "Sign Transaction";
+"request_type_get_accounts" = "Get Accounts";
+"request_type_verify_addr" = "Verify Address";
+
+/* Home Screen */
+"watch_connected" = "Watch Connected";
+"watch_waiting" = "Waiting for Watch Connection...";
+"latest_message" = "Latest Message: %@";
+"scan_keystone_qr" = "Scan Keystone QR";
+"address_book_management" = "Address Book Management";
+
+/* Address Book */
+"address_book" = "Address Book";
+"contact_info" = "Contact Info";
+"contact_name" = "Name";
+"contact_address" = "Address";
+"add_contact" = "Add Contact";
+"save" = "Save";
+"cancel" = "Cancel";
+
+/* Scanner */
+"qr_scan_guide" = "Align QR code within frame";
+"camera_not_available" = "Camera not available";
+"scanning_multipart" = "Scanning Multipart QR: %d%%";
+"scanning_progress" = "Scanning... %d%%";
+
+/* Keystone Scan/Display */
+"keystone_scan_to_sign" = "Scan to sign transaction";
+"keystone_part_format" = "Part %d of %d";
+"keystone_animation_playing" = "Animation playing...";
+"keystone_qr_timeout" = "QR Code display timed out, please retry";
+"keystone_qr_automatic_switch" = "QR Code will switch automatically, keep scanning";
+"keystone_scan_signature" = "Scan Keystone Signature";
+"keystone_scanned_parts_format" = "Scanned %d / %d parts";
+"keystone_received_signature" = "Keystone signature received successfully";
+"keystone_continue_scan_all" = "Please continue scanning all QR fragments";
+"keystone_continue_scan_format" = "Continue scanning next fragment... (%d/%d)";
+"preparing_scanner" = "Preparing scanner...";
+"not_keystone_qr" = "Not a Keystone QR Code";
+"decoding" = "Decoding...";
+"error_parse_hdkey" = "Unable to parse HD Key data";
+"error_parse_signature" = "Unable to parse signature data";
+"turn_on_torch" = "Turn on Torch";
+"turn_off_torch" = "Turn off Torch";

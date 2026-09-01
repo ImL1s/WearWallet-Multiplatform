@@ -1,0 +1,141 @@
+-- 交易記錄表
+CREATE TABLE IF NOT EXISTS transaction_record (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id INTEGER NOT NULL,
+    tx_hash TEXT NOT NULL UNIQUE,
+    from_address TEXT NOT NULL,
+    to_address TEXT NOT NULL,
+    value TEXT NOT NULL,
+    gas_price TEXT,
+    gas_limit TEXT,
+    gas_used TEXT,
+    nonce INTEGER,
+    data TEXT,
+    status TEXT NOT NULL DEFAULT 'PENDING', -- PENDING, SUCCESS, FAILED, CANCELLED
+    type TEXT NOT NULL DEFAULT 'TRANSFER', -- TRANSFER, CONTRACT_CALL, SWAP, APPROVE, NFT_TRANSFER
+    chain_type TEXT NOT NULL,
+    chain_id INTEGER NOT NULL,
+    block_number INTEGER,
+    block_timestamp INTEGER,
+    token_address TEXT,
+    token_symbol TEXT,
+    token_decimals INTEGER,
+    fee_amount TEXT,
+    fee_currency TEXT,
+    -- Keystone 硬體錢包簽名相關
+    keystone_sign_request_id TEXT,
+    keystone_signature TEXT,
+    -- 其他資訊
+    memo TEXT,
+    metadata TEXT DEFAULT '{}',
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    FOREIGN KEY (wallet_id) REFERENCES wallet(id) ON DELETE CASCADE
+);
+
+-- 創建索引
+CREATE INDEX IF NOT EXISTS idx_tx_wallet_id ON transaction_record(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_tx_hash ON transaction_record(tx_hash);
+CREATE INDEX IF NOT EXISTS idx_tx_from ON transaction_record(from_address);
+CREATE INDEX IF NOT EXISTS idx_tx_to ON transaction_record(to_address);
+CREATE INDEX IF NOT EXISTS idx_tx_status ON transaction_record(status);
+CREATE INDEX IF NOT EXISTS idx_tx_timestamp ON transaction_record(block_timestamp);
+
+-- 查詢錢包的所有交易
+selectByWalletId:
+SELECT * FROM transaction_record
+WHERE wallet_id = ?
+ORDER BY created_at DESC;
+
+-- 根據交易 hash 查詢
+selectByTxHash:
+SELECT * FROM transaction_record
+WHERE tx_hash = ?;
+
+-- 查詢待處理交易
+selectPendingTransactions:
+SELECT * FROM transaction_record
+WHERE wallet_id = ? AND status = 'PENDING'
+ORDER BY created_at DESC;
+
+-- 查詢最近交易
+selectRecentTransactions:
+SELECT * FROM transaction_record
+WHERE wallet_id = ?
+ORDER BY created_at DESC
+LIMIT ?;
+
+-- 插入交易記錄
+insert:
+INSERT INTO transaction_record (
+    wallet_id, tx_hash, from_address, to_address, value,
+    gas_price, gas_limit, gas_used, nonce, data, status, type,
+    chain_type, chain_id, block_number, block_timestamp,
+    token_address, token_symbol, token_decimals,
+    fee_amount, fee_currency, keystone_sign_request_id, keystone_signature,
+    memo, metadata
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- 更新交易狀態
+updateStatus:
+UPDATE transaction_record
+SET status = ?,
+    block_number = ?,
+    block_timestamp = ?,
+    gas_used = ?,
+    updated_at = strftime('%s', 'now')
+WHERE tx_hash = ?;
+
+-- 更新 Keystone 簽名資訊
+updateKeystoneSignature:
+UPDATE transaction_record
+SET keystone_sign_request_id = ?,
+    keystone_signature = ?,
+    updated_at = strftime('%s', 'now')
+WHERE id = ?;
+
+-- 刪除交易記錄
+delete:
+DELETE FROM transaction_record
+WHERE id = ?;
+
+-- 刪除特定錢包的所有交易記錄
+deleteByWalletId:
+DELETE FROM transaction_record
+WHERE wallet_id = ?;
+
+-- 刪除舊交易記錄 (保留最近1000筆)
+deleteOldTransactions:
+DELETE FROM transaction_record
+WHERE wallet_id = ? AND id NOT IN (
+    SELECT id FROM transaction_record
+    WHERE wallet_id = ?
+    ORDER BY created_at DESC
+    LIMIT 1000
+);
+
+-- 統計交易數量
+countTransactions:
+SELECT COUNT(*) FROM transaction_record
+WHERE wallet_id = ?;
+
+-- 統計待處理交易數量
+countPendingTransactions:
+SELECT COUNT(*) FROM transaction_record
+WHERE wallet_id = ? AND status = 'PENDING';
+
+-- 查詢地址相關的所有交易 (發送或接收)
+selectByAddress:
+SELECT * FROM transaction_record
+WHERE (from_address = ? OR to_address = ?)
+  AND chain_id = ?
+ORDER BY created_at DESC;
+
+-- 計算總 Gas 費用
+calculateTotalGasFees:
+SELECT SUM(CAST(fee_amount AS REAL)) AS total_fees
+FROM transaction_record
+WHERE wallet_id = ? 
+  AND status = 'SUCCESS'
+  AND created_at >= ?;

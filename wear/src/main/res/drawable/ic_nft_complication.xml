@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorOnSurface">
+    
+    <!-- NFT Gallery Icon -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M21,17H7V3h14V17z M19,5H9v10h10V5z" />
+    
+    <!-- Frame/Picture Icon -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M3,18h12v2H3V18z M3,14h12v2H3V14z" />
+    
+    <!-- Diamond/NFT Symbol -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M14,9l-1,-1.5L12,9l-1,-1.5L10,9l2,3L14,9z" />
+</vector>

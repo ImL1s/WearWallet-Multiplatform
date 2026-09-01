@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mobile</string>
+    <string name="intro_title">WearWallet Mobile</string>
+    <string name="intro_description">此手機端應用協助 Wear OS 端進行 QR 碼掃描與資料同步。當您的手錶需要掃描 QR 碼時，將會自動啟動手機相機。</string>
+    <string name="usage_instruction">請在手錶上操作發送功能，手機將自動響應掃描請求。</string>
+    <string name="connection_status">連接狀態</string>
+    <string name="checking_connection">檢查連接中...</string>
+    <string name="connected_devices">已連接 %d 個裝置</string>
+    <string name="no_connected_devices">未連接 Wear OS 裝置</string>
+
+    <!-- Home Screen -->
+    <string name="quick_actions">快速操作</string>
+    <string name="notification_settings">通知設定</string>
+    <string name="general_settings">一般設定</string>
+
+    <!-- Notification Settings -->
+    <string name="dismiss">關閉</string>
+    <string name="back">返回</string>
+    <string name="push_protocol_status">Push Protocol 狀態</string>
+    <string name="subscribed_to_notifications">已訂閱通知</string>
+    <string name="not_subscribed_to_notifications">未訂閱通知</string>
+    <string name="subscribe_to_push_protocol">訂閱 Push Protocol</string>
+    <string name="unsubscribe">取消訂閱</string>
+    <string name="notification_types">通知類型</string>
+    <string name="price_alerts">價格提醒</string>
+    <string name="price_alerts_description">當代幣達到設定價格時通知</string>
+    <string name="transaction_alerts">交易提醒</string>
+    <string name="transaction_alerts_description">收到或發送代幣時通知</string>
+    <string name="security_alerts">安全提醒</string>
+    <string name="security_alerts_description">異常活動或安全威脅通知</string>
+    <string name="defi_alerts">DeFi 提醒</string>
+    <string name="defi_alerts_description">流動性、收益率和清算提醒</string>
+    <string name="advanced_settings">進階設定</string>
+    <string name="minimum_transaction_amount">最小交易金額</string>
+    <string name="current_amount">當前：$%s</string>
+    <string name="no_minimum_set">無限制</string>
+    <string name="set_minimum_amount">設定最小金額</string>
+    <string name="amount_usd">金額 (USD)</string>
+    <string name="save">儲存</string>
+    <string name="cancel">取消</string>
+    <string name="quiet_hours">靜默時段</string>
+    <string name="quiet_hours_set" formatted="false">%s - %s</string>
+    <string name="quiet_hours_disabled">已停用</string>
+    <string name="set_quiet_hours">設定靜默時段</string>
+    <string name="enable_quiet_hours">啟用靜默時段</string>
+    <string name="quiet_hours_explanation">在此時段內不會收到任何通知</string>
+    <string name="vibration">振動</string>
+    <string name="sound">聲音</string>
+
+    <!-- Price Alerts -->
+    <string name="add_price_alert">新增價格提醒</string>
+    <string name="created_at">建立於 %s</string>
+    <string name="delete">刪除</string>
+    <string name="no_price_alerts">尚無價格提醒</string>
+    <string name="no_price_alerts_description">點擊上方按鈕新增您的第一個價格提醒</string>
+    <string name="create_price_alert">建立價格提醒</string>
+    <string name="select_token">選擇代幣</string>
+    <string name="condition_type">條件類型</string>
+    <string name="above">高於</string>
+    <string name="below">低於</string>
+    <string name="percentage">百分比</string>
+    <string name="price_usd">價格 (USD)</string>
+    <string name="percentage_change">百分比變化</string>
+    <string name="time_frame">時間範圍</string>
+    <string name="create">建立</string>
+    <string name="price_above">價格高於 $%s</string>
+    <string name="price_below">價格低於 $%s</string>
+    <string name="increase">上漲</string>
+    <string name="decrease">下跌</string>
+    <string name="hour">小時</string>
+    <string name="hours">小時</string>
+    <string name="days">天</string>
+    <string name="percentage_change_description" formatted="false">%s %.0f%% 在 %s 內</string>
+    <string name="just_now">剛剛</string>
+    <string name="minutes_ago">%d 分鐘前</string>
+    <string name="hours_ago">%d 小時前</string>
+    <string name="days_ago">%d 天前</string>
+
+    <!-- Camera & QR Scanning -->
+    <string name="camera_launch_failed">相機啟動失敗</string>
+    <string name="camera_permission_needed">需要相機權限以掃描 QR 碼</string>
+    <string name="keystone_decode_failed">Keystone QR code decode failed</string>
+    <string name="keystone_qr_scan_success">Keystone QR 碼掃描成功</string>
+    <string name="keystone_scan_mode_starting">啟動 Keystone 掃描模式...</string>
+    <string name="qr_scan_instruction">將 QR 碼置於框內</string>
+    <string name="scan_progress">掃描進度：%d%%</string>
+    <string name="scan_success">掃描成功</string>
+    <string name="ur_fragment_incomplete">UR 片段不完整</string>
+    <string name="ur_scan_complete">UR 掃描完成</string>
+
+    <!-- Address Book -->
+    <string name="address_book">地址簿</string>
+    <string name="add_contact">新增聯絡人</string>
+    <string name="edit_contact">編輯聯絡人</string>
+    <string name="contact_name">聯絡人名稱</string>
+    <string name="contact_detail">聯絡人詳情</string>
+    <string name="no_contacts">沒有聯絡人</string>
+    <string name="no_contacts_message">點擊下方按鈕新增聯絡人</string>
+    <string name="search_contacts">搜尋聯絡人</string>
+    <string name="send_to_contact">發送給聯絡人</string>
+    <string name="delete_contact">刪除聯絡人</string>
+    <string name="delete_contact_confirm">確認刪除聯絡人？</string>
+    <string name="delete_contact_message">此操作無法復原</string>
+    <string name="contact_added">聯絡人已新增</string>
+    <string name="contact_updated">聯絡人已更新</string>
+    <string name="contact_deleted">聯絡人已刪除</string>
+    <string name="note">備註</string>
+    <string name="note_optional">備註（選填）</string>
+    <string name="blockchain">區塊鏈</string>
+    <string name="save_changes">儲存變更</string>
+    <string name="go_back">返回</string>
+    <string name="save_contact">儲存聯絡人</string>
+    <string name="wallet_address">錢包地址</string>
+    <string name="address_copied">地址已複製</string>
+    <string name="copy_address">複製地址</string>
+    
+    <!-- NFT Watch Face Configuration -->
+    <string name="nft_watchface_config">NFT 錶盤</string>
+    <string name="nft_watchface_config_description">配置手錶錶盤上的 NFT 顯示</string>
+    <string name="nft_collection">NFT 收藏</string>
+    <string name="select_nft">選擇 NFT</string>
+    <string name="display_settings">顯示設定</string>
+    <string name="preview">預覽</string>
+    <string name="enable_nft_complication">啟用 NFT 小工具</string>
+    <string name="display_mode">顯示模式</string>
+    <string name="image_only">僅圖像</string>
+    <string name="image_with_name">圖像 + 名稱</string>
+    <string name="image_with_token_id">圖像 + 編號</string>
+    <string name="image_with_value">圖像 + 價值</string>
+    <string name="update_interval">更新間隔</string>
+    <string name="auto_rotate">自動輪換</string>
+    <string name="rotate_interval">輪換間隔</string>
+    <string name="favorite_nfts">收藏的 NFT</string>
+    <string name="no_nfts_found">未找到 NFT</string>
+    <string name="loading_nfts">載入 NFT 中...</string>
+    <string name="refresh_collection">重新整理收藏</string>
+    <string name="save_configuration">儲存配置</string>
+    <string name="configuration_saved">配置已儲存</string>
+    <string name="hour_format">%d 小時</string>
+    <string name="hours_format">%d 小時</string>
+    <string name="day_format">1 天</string>
+    <string name="days_format">%d 天</string>
+    <string name="show_qr_receive">顯示收款 QR 碼</string>
+    <string name="qr_receive_title">收款 QR 碼</string>
+    <string name="share_qr_address_instruction">向他人分享此 QR Code 或地址來接收加密貨幣</string>
+
+    <!-- Common UI Components -->
+    <string name="loading">載入中...</string>
+    <string name="error_occurred">發生錯誤</string>
+    <string name="retry">重試</string>
+    <string name="error_save_contact">儲存聯絡人失敗：%1$s</string>
+    <string name="error_load_contact">載入聯絡人失敗</string>
+    <string name="error_load_contact_failed">載入聯絡人失敗：%1$s</string>
+    <string name="error_update_contact_failed">更新聯絡人失敗：%1$s</string>
+    <string name="contact_not_found">找不到聯絡人</string>
+    <string name="error_load_nfts">載入 NFT 失敗：%1$s</string>
+    <string name="error_refresh_nfts">重新整理失敗：%1$s</string>
+    <string name="error_save_config">儲存失敗：%1$s</string>
+    <string name="hint">提示</string>
+
+    <!-- Config Validation Strings -->
+    <string name="config_issue_nft_api_key">NFT API Key 未設置</string>
+    <string name="config_issue_nft_cache_size">NFT 快取大小無效</string>
+    <string name="config_issue_cache_memory">記憶體快取大小無效</string>
+    <string name="config_issue_network_timeout">網路超時配置無效</string>
+    <string name="config_validation_error">配置驗證過程中發生錯誤: %s</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    
+    <!-- Background Circle -->
+    <path
+        android:fillColor="#1A1A1A"
+        android:pathData="M100,10 A90,90 0 1,1 100,190 A90,90 0 1,1 100,10" />
+    
+    <!-- Bitcoin Symbol -->
+    <path
+        android:fillColor="#F7931A"
+        android:pathData="M100,50 L100,70 M100,130 L100,150 M80,70 L120,70 M80,130 L120,130 M90,70 L90,130 M110,70 L110,130" />
+    
+    <!-- Price Indicator -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M60,100 L70,90 L80,95 L90,85 L100,88 L110,82 L120,85 L130,75 L140,80" 
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="2" />
+    
+    <!-- AI Insight Icon -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M160,160 C165,160 170,165 170,170 C170,175 165,180 160,180 C155,180 150,175 150,170 C150,165 155,160 160,160 M155,170 L165,170 M160,165 L160,175" />
+</vector>

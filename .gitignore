@@ -1,0 +1,65 @@
+# Build directories
+build/
+**/build/
+.gradle/
+.kotlin/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Android / Gradle outputs
+*.apk
+*.aab
+*.hprof
+android-deps-build/
+monero-java-build/
+
+# IDE & OS files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+**/__pycache__/
+*.py[cod]
+
+# Apple build artifacts
+**/.build/
+**/.swiftpm/
+**/DerivedData/
+**/*.xcresult/
+**/*.xcodeproj/xcuserdata/
+**/*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Environment and sensitive keys
+.env
+.env.*
+!.env.example
+secrets.properties
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+
+# CI-generated build artifacts
+release-checksums.txt
+
+# Temporary log files
+*.log
+firebase-debug.log
+
+# JVM crash dumps and replay logs
+hs_err_pid*.log
+replay_pid*.log
+
+# Agent & temporary workspace scratch
+.agents/
+scratch/
+ORIGINAL_REQUEST.md
+PROJECT.md
+
+# watchOS generated artifacts (regenerate with pod install / Xcode)
+watchos/Pods/
+watchos/build/
+watchos/DerivedData/
+watchos/**/*.xcuserstate
