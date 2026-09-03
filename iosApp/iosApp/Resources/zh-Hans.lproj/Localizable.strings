@@ -1,0 +1,63 @@
+/* Common */
+"error" = "错误";
+"ok" = "确定";
+"unknown_error" = "未知错误";
+
+/* StoreKit Service */
+"storekit_failed_load" = "无法加载产品: %@";
+"storekit_unknown_result" = "未知的购买结果";
+"storekit_restore_failed" = "无法恢复购买: %@";
+"storekit_transaction_failed" = "交易失败: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "模拟 watchOS 请求";
+"keystone_clear_requests" = "清除所有请求";
+"keystone_pending_requests" = "待处理请求";
+"keystone_from_watch" = "来自: Apple Watch";
+"keystone_waiting_title" = "等待 Apple Watch 请求";
+"keystone_waiting_desc" = "当您在 Apple Watch 上发起交易时，\n签名请求将显示在这里";
+
+/* Status Titles */
+"keystone_status_idle" = "空闲";
+"keystone_status_waiting" = "等待中...";
+"keystone_status_processing" = "处理中...";
+"keystone_status_displaying_qr" = "显示二维码";
+"keystone_status_scanning" = "扫描中";
+"keystone_status_completed" = "已完成";
+"keystone_status_error" = "错误";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "等待新请求";
+"keystone_status_waiting_desc" = "待处理签名请求";
+"keystone_status_processing_desc" = "正在准备二维码...";
+"keystone_status_displaying_qr_desc" = "使用 Keystone 扫描";
+"keystone_status_scanning_desc" = "正在扫描签名";
+"keystone_status_completed_desc" = "签名已完成";
+"keystone_status_error_desc" = "处理过程中发生错误";
+
+/* Request Types */
+"request_type_sign_tx" = "签名交易";
+"request_type_get_accounts" = "获取账户";
+"request_type_verify_addr" = "验证地址";
+
+/* Home Screen */
+"watch_connected" = "手表已连接";
+"watch_waiting" = "正在等待手表连接...";
+"latest_message" = "最新消息: %@";
+"scan_keystone_qr" = "扫描 Keystone 二维码";
+"address_book_management" = "地址簿管理";
+
+/* Address Book */
+"address_book" = "地址簿";
+"contact_info" = "联系人信息";
+"contact_name" = "名称";
+"contact_address" = "地址";
+"add_contact" = "添加联系人";
+"save" = "保存";
+"cancel" = "取消";
+
+/* Scanner */
+"qr_scan_guide" = "将二维码对准框内";
+"camera_not_available" = "摄像头不可用";
+"scanning_multipart" = "正在扫描分段二维码: %d%%";
+"scanning_progress" = "正在扫描... %d%%";

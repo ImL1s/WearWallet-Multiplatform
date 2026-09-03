@@ -1,0 +1,16 @@
+# Build
+build/
+
+# Idea
+.idea
+.kotlin
+*.iml
+
+# Gradle
+.gradle
+local.properties
+.gradletasknamecache
+gradle-app.setting
+
+# OS
+.DS_Store

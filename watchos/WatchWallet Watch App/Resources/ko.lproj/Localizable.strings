@@ -1,0 +1,25 @@
+/* Main Tab */
+"loading" = "로딩 중...";
+
+/* AI Assistant */
+"ai_assistant_title" = "AI 음성 어시스턴트";
+"tap_to_listen" = "탭하여 듣기 시작";
+"voice_input" = "음성 입력";
+"ai_response" = "AI 응답";
+"check_balance" = "잔액 확인";
+"send_tx" = "보내기";
+"verify_tx" = "확인";
+"auth" = "인증";
+"audit" = "감사";
+"analyze_nft" = "NFT 분석";
+"verification_result" = "결과 확인";
+"status" = "상태:";
+"risk_score" = "위험 점수:";
+"warning" = "경고:";
+"voice_biometric_auth" = "음성 생체 인증";
+"speak_phrase_instruction" = "지시에 따라 인증 문구를 말하세요";
+"start_auth" = "인증 시작";
+"authenticating" = "인증 중...";
+"auth_success" = "인증 성공";
+"auth_failed" = "인증 실패";
+"close" = "닫기";

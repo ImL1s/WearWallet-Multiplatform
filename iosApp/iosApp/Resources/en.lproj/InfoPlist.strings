@@ -1,0 +1,2 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Camera permission needed to scan Keystone QR Code";

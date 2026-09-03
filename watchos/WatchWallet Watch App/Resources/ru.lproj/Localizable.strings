@@ -1,0 +1,25 @@
+/* Main Tab */
+"loading" = "Загрузка...";
+
+/* AI Assistant */
+"ai_assistant_title" = "Голосовой помощник AI";
+"tap_to_listen" = "Нажмите, чтобы говорить";
+"voice_input" = "Голосовой ввод";
+"ai_response" = "Ответ AI";
+"check_balance" = "Баланс";
+"send_tx" = "Отправить";
+"verify_tx" = "Проверить";
+"auth" = "Вход";
+"audit" = "Аудит";
+"analyze_nft" = "Анализ NFT";
+"verification_result" = "Результат";
+"status" = "Статус:";
+"risk_score" = "Риск:";
+"warning" = "Предупреждение:";
+"voice_biometric_auth" = "Биометрический вход";
+"speak_phrase_instruction" = "Произнесите фразу";
+"start_auth" = "Начать";
+"authenticating" = "Проверка...";
+"auth_success" = "Успешно";
+"auth_failed" = "Ошибка";
+"close" = "Закрыть";

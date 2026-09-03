@@ -1,0 +1,429 @@
+<resources>
+    <string name="app_name">WearWallet</string>
+    <string name="tile_label">WearWallet</string>
+    <string name="complication_label">WearWallet Complication</string>
+
+    <!-- Common Actions -->
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
+    <string name="refresh">Refresh</string>
+    <string name="retry">Retry</string>
+    <string name="copy">Copy</string>
+    <string name="paste">Paste</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+    <string name="close">Close</string>
+    <string name="ok">OK</string>
+    <string name="selected">Selected</string>
+
+    <!-- Common Status -->
+    <string name="loading">Loading...</string>
+    <string name="error">Error</string>
+    <string name="success">Success</string>
+    <string name="failed">Failed</string>
+    <string name="pending">Pending</string>
+    <string name="completed">Completed</string>
+    <string name="syncing">Syncing...</string>
+
+    <!-- Wallet Management -->
+    <string name="wallet">Wallet</string>
+    <string name="wallets">Wallets</string>
+    <string name="wallet_management">Wallet Management</string>
+    <string name="manage_wallets">Manage Wallets</string>
+    <string name="add_wallet">Add Wallet</string>
+    <string name="create_wallet">Create Wallet</string>
+    <string name="import_wallet">Import Wallet</string>
+    <string name="confirm_import">Confirm Import</string>
+    <string name="delete_wallet">Delete Wallet</string>
+    <string name="wallet_settings">Wallet Settings</string>
+    <string name="wallet_name">Wallet Name</string>
+    <string name="wallet_address">Wallet Address</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="wallet_type_hot">Hot Wallet</string>
+    <string name="wallet_type_cold">Cold Wallet</string>
+    <string name="no_wallets">No Wallets</string>
+    <string name="no_wallets_yet">No wallets yet</string>
+
+    <!-- Wallet Creation -->
+    <string name="create_hot_wallet">Create Hot Wallet</string>
+    <string name="connect_keystone_wallet">Connect Keystone Wallet</string>
+    <string name="hot_wallet_desc">Private keys for hot wallets are stored on the device</string>
+    <string name="keystone_wallet_desc">Use a Keystone hardware wallet for the highest level of security</string>
+    <string name="select_wallet_type">Select Wallet Type</string>
+    <string name="security_tip">Security Tip</string>
+    <string name="wallet_security_tips">• Private keys will be stored encrypted\n• Keep your mnemonic phrase safe\n• Never share it with anyone</string>
+
+    <!-- Mnemonic -->
+    <string name="mnemonic">Mnemonic</string>
+    <string name="generate_mnemonic">Generate Mnemonic</string>
+    <string name="backup_mnemonic">Backup Mnemonic</string>
+    <string name="confirm_mnemonic">Confirm Mnemonic</string>
+    <string name="write_down_mnemonic">Please write down the following mnemonic phrase on paper and keep it safe</string>
+    <string name="i_have_backed_up">I have backed up</string>
+    <string name="paste_mnemonic">Paste Mnemonic</string>
+    <string name="invalid_mnemonic">Invalid Mnemonic</string>
+    <string name="invalid_mnemonic_format">Invalid mnemonic format</string>
+    <string name="tap_to_input_mnemonic">Tap to input mnemonic</string>
+    <string name="tap_word_to_remove">Tap a word to remove it</string>
+
+    <!-- Transaction -->
+    <string name="send">Send</string>
+    <string name="receive">Receive</string>
+    <string name="transaction">Transaction</string>
+    <string name="transactions">Transactions</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="transaction_details">Transaction Details</string>
+    <string name="from_address">From Address</string>
+    <string name="to_address">To Address</string>
+    <string name="amount">Amount</string>
+    <string name="fee">Fee</string>
+    <string name="total">Total</string>
+    <string name="transaction_hash">Transaction Hash</string>
+    <string name="transaction_status">Transaction Status</string>
+    <string name="transaction_time">Transaction Time</string>
+    <string name="no_transactions">No transactions yet</string>
+    <string name="view_all_transactions">View all transactions</string>
+
+    <!-- Transaction Status -->
+    <string name="status_pending">Pending</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_failed">Failed</string>
+    <string name="status_received">Received</string>
+    <string name="status_sent">Sent</string>
+
+    <!-- Transaction Filters -->
+    <string name="filter_all">All</string>
+    <string name="filter_received">Received</string>
+    <string name="filter_sent">Sent</string>
+    <string name="filter_failed">Failed</string>
+    <string name="filter_token">Token</string>
+    <string name="filter_contract">Contract</string>
+
+    <!-- Transaction Types -->
+    <string name="tx_type_receive">Receive</string>
+    <string name="tx_type_send">Send</string>
+    <string name="tx_type_transfer">Transfer</string>
+    <string name="tx_type_token_in">Token+</string>
+    <string name="tx_type_token_out">Token-</string>
+    <string name="tx_type_token_transfer">Token Transfer</string>
+    <string name="tx_type_approve">Approve</string>
+    <string name="tx_type_nft">NFT</string>
+    <string name="tx_type_nft_approve">NFT Approve</string>
+    <string name="tx_type_multi_token">Multi-Token</string>
+    <string name="tx_type_swap">Swap</string>
+    <string name="tx_type_defi">DeFi</string>
+    <string name="tx_type_deploy">Deploy</string>
+    <string name="tx_type_contract">Contract</string>
+    <string name="tx_type_swap_platform">Swap Platform</string>
+    <string name="tx_type_new_contract">New Contract</string>
+
+    <!-- Token Management -->
+    <string name="token">Token</string>
+    <string name="tokens">Tokens</string>
+    <string name="select_token">Select Token</string>
+    <string name="token_management">Token Management</string>
+    <string name="add_custom_token">Add Custom Token</string>
+    <string name="contract_address">Contract Address</string>
+    <string name="token_symbol">Token Symbol</string>
+    <string name="token_decimals">Decimals</string>
+    <string name="auto_fetch_token_info">Auto-fetch token info</string>
+    <string name="enter_contract_auto_fetch">Enter contract address to auto-fetch info</string>
+    <string name="add_token">Add Token</string>
+    <string name="valid">Valid</string>
+    <string name="invalid">Invalid</string>
+    <string name="chain_format">Chain: %s</string>
+    <string name="contract_address_placeholder">0x...</string>
+    <string name="token_symbol_placeholder">ETH, USDT, etc.</string>
+    <string name="decimals_placeholder">18</string>
+    <string name="info">Info</string>
+    <string name="token_name">Token Name</string>
+    <string name="standard_tokens">Standard Tokens</string>
+    <string name="custom_tokens">Custom Tokens</string>
+
+    <!-- Network -->
+    <string name="network">Network</string>
+    <string name="select_network">Select Network</string>
+    <string name="current_network">Current Network: %s</string>
+    <string name="mainnet">Mainnet</string>
+    <string name="testnet">Testnet</string>
+
+    <!-- QR Code -->
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="show_qr_code">Show QR Code</string>
+    <string name="qr_code">QR Code</string>
+    <string name="align_qr_code">Align with QR Code</string>
+    <string name="scanning">Scanning...</string>
+    <string name="scan_complete">Scan Complete</string>
+    <string name="scan_failed">Scan Failed</string>
+    <string name="qr_code_generation_failed">QR Code generation failed</string>
+
+    <!-- Keystone Integration -->
+    <string name="keystone">Keystone</string>
+    <string name="connect_keystone">Connect Keystone</string>
+    <string name="keystone_connected">Keystone Connected</string>
+    <string name="scan_with_keystone">Scan with Keystone</string>
+    <string name="scan_keystone_qr">Scan Keystone QR Code</string>
+    <string name="preparing_keystone_transaction">Preparing Keystone transaction...</string>
+    <string name="scan_signed_transaction">Scan signed transaction</string>
+
+    <!-- Complication -->
+    <string name="complication_wearwallet_label">WearWallet</string>
+    <string name="complication_token_price_label">Token Price</string>
+    <string name="complication_token_change_label">Token Change</string>
+    <string name="complication_wallet_balance_label">Wallet Balance</string>
+    <string name="complication_gas_fee_label">Gas Fee</string>
+    <string name="complication_portfolio_label">Portfolio</string>
+    <string name="complication_token_price_desc">Real-time display of token prices like ETH, BTC</string>
+    <string name="complication_token_change_desc">Real-time display of 24-hour change for tokens like ETH, BTC</string>
+    <string name="complication_wallet_balance_desc">Quickly view your crypto wallet balance</string>
+    <string name="complication_gas_fee_desc">Monitor the current Gas fee on the Ethereum network</string>
+    <string name="complication_portfolio_desc">Display the total value of your crypto portfolio</string>
+    <string name="complication_qr_receive_label">Quick Receive</string>
+    <string name="complication_qr_receive_desc">Tap to show receive QR Code</string>
+    <string name="complication_settings">Complication Settings</string>
+    <string name="primary_token">Primary Token</string>
+    <string name="primary_wallet">Primary Wallet</string>
+    <string name="update_frequency">Update Frequency</string>
+    <string name="enable_feature">Enable Feature</string>
+    <string name="minutes_format">%d min</string>
+    <string name="updating_complication_data">Updating Complication data...</string>
+    <string name="sync_complete">Sync Complete</string>
+    <string name="last_update_time">Last update: %1$s</string>
+    <string name="sync_now">Sync Now</string>
+    <string name="manual_update_all_complication_data">Manually update all Complication data</string>
+
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="general_settings">General Settings</string>
+    <string name="security_settings">Security Settings</string>
+    <string name="advanced_settings">Advanced Settings</string>
+    <string name="about">About</string>
+    <string name="version">Version</string>
+    <string name="developer">Developer</string>
+
+    <!-- Error Messages -->
+    <string name="error_generic">An error occurred</string>
+    <string name="error_network">Network connection error</string>
+    <string name="error_invalid_address">Invalid address</string>
+    <string name="error_invalid_amount">Invalid amount</string>
+    <string name="error_insufficient_balance">Insufficient balance</string>
+    <string name="error_transaction_failed">Transaction failed</string>
+    <string name="error_wallet_creation_failed">Wallet creation failed</string>
+    <string name="error_load_failed">Load failed</string>
+    <string name="error_save_failed">Save failed</string>
+    <string name="error_delete_failed">Delete failed</string>
+
+    <!-- QR Code Receive -->
+    <string name="address_copied">Address copied</string>
+    <string name="copy_address">Copy Address</string>
+    <string name="set_amount">Set Amount</string>
+    <string name="change_amount">Change Amount</string>
+    <string name="decrease">Decrease</string>
+    <string name="increase">Increase</string>
+
+    <!-- Success Messages -->
+    <string name="success_wallet_created">Wallet created successfully</string>
+    <string name="success_wallet_imported">Wallet imported successfully</string>
+    <string name="success_wallet_deleted">Wallet deleted</string>
+    <string name="success_transaction_sent">Transaction sent</string>
+    <string name="success_copied">Copied to clipboard</string>
+    <string name="success_saved">Saved successfully</string>
+
+    <!-- Confirmation Messages -->
+    <string name="confirm_delete_wallet">Are you sure you want to delete this wallet? This action cannot be undone.</string>
+    <string name="confirm_send_transaction">Are you sure you want to send this transaction?</string>
+    <string name="confirm_logout">Are you sure you want to log out?</string>
+
+    <!-- Time -->
+    <string name="just_now">Just now</string>
+    <string name="minutes_ago">%d min ago</string>
+    <string name="hours_ago">%d hours ago</string>
+    <string name="days_ago">%d days ago</string>
+    <string name="last_update">Last update: %1$s</string>
+
+    <!-- Units -->
+    <string name="eth_unit">ETH</string>
+    <string name="gwei_unit">Gwei</string>
+    <string name="usd_unit">USD</string>
+    <string name="percentage">%1$s%%</string>
+
+    <!-- Placeholders -->
+    <string name="not_selected">Not selected</string>
+    <string name="not_available">N/A</string>
+    <string name="unknown">Unknown</string>
+    <string name="empty">Empty</string>
+    <string name="none">None</string>
+
+    <!-- Notification related strings -->
+    <string name="notifications">Notifications</string>
+    <string name="view_details">View Details</string>
+    <string name="view_chart">View Chart</string>
+    <string name="price_alerts">Price Alerts</string>
+    <string name="price_alerts_channel_description">Receive notifications when cryptocurrencies reach set prices</string>
+    <string name="transaction_alerts">Transaction Alerts</string>
+    <string name="transaction_alerts_channel_description">Receive notifications when sending or receiving crypto</string>
+    <string name="security_alerts">Security Alerts</string>
+    <string name="security_alerts_channel_description">Important notifications about wallet security</string>
+    <string name="defi_alerts">DeFi Alerts</string>
+    <string name="defi_alerts_channel_description">Notifications related to DeFi protocols</string>
+
+    <!-- Missing notification strings -->
+    <string name="no_notifications">No notifications yet</string>
+    <string name="no_notifications_description">You will see price alerts, transaction notifications, etc. here</string>
+    <string name="load_more">Load More</string>
+    <string name="view_security_alert">View Security Alert</string>
+    <string name="view_defi_position">View DeFi Position</string>
+
+    <!-- Notification Settings -->
+    <string name="notification_settings">Notification Settings</string>
+    <string name="push_protocol_notifications">Push Protocol Notifications</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="price_alerts_title">Price Alerts</string>
+    <string name="add_price_alert">Add Price Alert</string>
+    <string name="notification_preferences">Notification Preferences</string>
+    <string name="transaction_notifications">Transaction Notifications</string>
+    <string name="transaction_notifications_desc">Receive notifications for incoming and outgoing transactions</string>
+    <string name="security_notifications">Security Notifications</string>
+    <string name="security_notifications_desc">Receive important notifications about your wallet\'s security</string>
+    <string name="defi_notifications">DeFi Notifications</string>
+    <string name="defi_notifications_desc">Receive notifications related to DeFi protocols</string>
+    <string name="error_cannot_find_wallet">Cannot find wallet</string>
+    <string name="click_to_close">Tap to close</string>
+    <string name="success_price_alert_added">Price alert added successfully</string>
+    <string name="no_price_alerts">No price alerts yet</string>
+    <string name="no_price_alerts_desc">Add a price alert to track token price changes</string>
+    <string name="price_alert_enabled">Price alert enabled</string>
+    <string name="price_alert_disabled">Price alert disabled</string>
+    <string name="delete_price_alert">Delete Price Alert</string>
+    <string name="push_subscription_success">Push Protocol subscription successful</string>
+    <string name="push_subscription_disabled">Push Protocol subscription disabled</string>
+    <string name="push_subscription_error">Push Protocol subscription failed</string>
+    <string name="below">Below</string>
+    <string name="above">Above</string>
+    <string name="price_above">Price is above</string>
+    <string name="price_below">Price is below</string>
+    <string name="select_token_title">Select Token</string>
+    <string name="alert_condition">Alert Condition</string>
+    <string name="target_price_usd">Target Price (USD)</string>
+    <string name="alert_summary">Alert when %1$s is %2$s $%3$s</string>
+    <string name="creating_alert">Creating alert...</string>
+    <string name="advanced_features">Advanced Features</string>
+    <string name="update_watch_face_data">Update Watch Face Data</string>
+    <string name="security_section">Security</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="danger_zone">Danger Zone</string>
+    <string name="show_mnemonic">Show Mnemonic</string>
+    <string name="security_warning">Security Warning</string>
+
+    <!-- QR Scanner -->
+    <string name="preparing_scanner">Preparing scanner...</string>
+    <string name="requesting_phone_scan">Requesting phone scan...</string>
+    <string name="scan_on_phone">Please scan on your phone</string>
+    <string name="scan_with_phone">Scan with Phone</string>
+    <string name="mnemonic_warning_message">Make sure no one is around. The mnemonic is the only way to recover your wallet.</string>
+    <string name="i_understand_continue">I understand, continue</string>
+
+    <!-- Address Book -->
+    <string name="address_book">Address Book</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="edit_contact">Edit Contact</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="contact_detail">Contact Details</string>
+    <string name="no_contacts">No contacts</string>
+    <string name="no_contacts_message">Tap the button below to add a contact</string>
+    <string name="search_contacts">Search Contacts</string>
+    <string name="send_to_contact">Send to Contact</string>
+    <string name="delete_contact">Delete Contact</string>
+    <string name="delete_contact_confirm">Delete contact?</string>
+    <string name="delete_contact_message">This action cannot be undone.</string>
+    <string name="contact_added">Contact added</string>
+    <string name="contact_updated">Contact updated</string>
+    <string name="contact_deleted">Contact deleted</string>
+    <string name="note">Note</string>
+    <string name="note_optional">Note (optional)</string>
+    <string name="blockchain">Blockchain</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="go_back">Go Back</string>
+    <string name="save_contact">Save Contact</string>
+    <string name="tap_to_copy">Tap to copy</string>
+    <string name="enter_name">Enter name</string>
+    <string name="select_chain">Select Chain</string>
+    <string name="add_note">Add Note</string>
+    
+    <!-- AI Assistant -->
+    <string name="ai_assistant">AI Assistant</string>
+    <string name="ai_thinking">AI is thinking...</string>
+    <string name="ai_usage_remaining">Remaining: %d requests</string>
+    <string name="quick_commands">Quick Commands</string>
+    <string name="start_voice_input">Start Voice Input</string>
+    <string name="stop_voice_input">Stop Voice Input</string>
+    <string name="listening">Listening...</string>
+    <string name="speak_now">Speak now...</string>
+    <string name="voice_input_result">Voice Input Result</string>
+    <string name="remaining_requests">Remaining</string>
+    <string name="today_usage">Today</string>
+    <string name="voice_input">Voice Input</string>
+    <string name="usage_count">%d times</string>
+    
+    <!-- Database Debug -->
+    <string name="database_management">Database Management</string>
+    <string name="clear_history">Clear History</string>
+    <string name="migration_history">Migration History</string>
+    <string name="issues_found">Issues Found</string>
+    <string name="database_version">Database Version</string>
+    <string name="current_version">Current Version</string>
+    <string name="migration_count">Migration Count</string>
+    <string name="last_migration">Last Migration</string>
+    <string name="check_time">Check Time: %s</string>
+    <string name="found_n_issues">Found %d issues</string>
+    <string name="checking">Checking...</string>
+    <string name="issue_found">Issue Found</string>
+    <string name="health_status_good">Health Status Good</string>
+    <string name="health_check">Health Check</string>
+    
+    <!-- Firebase Debug -->
+    <string name="firebase_test">Firebase Test</string>
+    <string name="remote_config_values">Remote Config Values</string>
+    <string name="service_status">Service Status</string>
+    <string name="monthly_price">Monthly Price</string>
+    <string name="yearly_price">Yearly Price</string>
+    <string name="free_wallet_limit">Free Wallet Limit</string>
+    <string name="premium_wallet_limit">Premium Wallet Limit</string>
+    <string name="run_test">Run Test</string>
+    <string name="test_status_normal">Normal</string>
+    <string name="test_status_failed">Failed</string>
+    <string name="test_status_pending">Pending</string>
+    
+    
+    <!-- AI Assistant Quick Commands -->
+    <string name="ai_response">AI Response</string>
+    <string name="view_balance">View Balance</string>
+    <string name="view_portfolio">Portfolio</string>
+    <string name="receive_qr">Receive QR</string>
+    
+    <!-- Keystone Connection -->
+    <string name="connect_keystone_title">Connect Keystone</string>
+    <string name="preparing_keystone_connection">Preparing to connect to Keystone 3 Pro...</string>
+    <string name="operation_steps">📱 Operation Steps</string>
+    <string name="keystone_steps">1. Select "Connect Software Wallet" on Keystone 3 Pro\n2. Keystone will display a QR code\n3. Click "Start Scan" button below\n4. Scan the QR code displayed by Keystone</string>
+    <string name="start_scan">Start Scan</string>
+    <string name="phone_scan_hint">Will use phone camera to scan Keystone QR code</string>
+    <string name="scanning_qr">Scanning QR code...</string>
+    <string name="align_camera_hint">Please align the Keystone 3 Pro QR code with the camera</string>
+    <string name="keystone_connected_success">Keystone wallet connected successfully!</string>
+    <string name="connection_failed">Connection Failed</string>
+    <string name="edit_wallet_name">Edit Wallet Name</string>
+    <string name="enter_wallet_name">Please enter wallet name</string>
+    
+    <!-- Import Hot Wallet -->
+    <string name="manual_input">Manual Input</string>
+    <string name="entered_mnemonic">Entered mnemonic:</string>
+    <string name="input_mnemonic">Input Mnemonic</string>
+    <string name="mnemonic_input_hint">Please enter 12 or 24 words, separated by spaces</string>
+</resources>

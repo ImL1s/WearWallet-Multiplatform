@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 發送加密貨幣 - 支援自然語言 -->
+    <capability android:name="custom.actions.intent.SEND_CRYPTO">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_SEND_CRYPTO"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity">
+            <!-- 支援 "Send 0.1 ETH to John" 格式 -->
+            <parameter
+                android:name="amount"
+                android:key="amount"/>
+            <parameter
+                android:name="currency"
+                android:key="currency"/>
+            <parameter
+                android:name="recipient"
+                android:key="recipient"/>
+            <!-- 可選參數 -->
+            <parameter
+                android:name="network"
+                android:key="network"/>
+        </intent>
+    </capability>
+    
+    <!-- 檢查餘額 -->
+    <capability android:name="custom.actions.intent.CHECK_BALANCE">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_CHECK_BALANCE"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity">
+            <parameter
+                android:name="currency"
+                android:key="currency"
+                android:mimeType="text/plain"/>
+        </intent>
+    </capability>
+    
+    <!-- 顯示接收地址 QR Code -->
+    <capability android:name="custom.actions.intent.SHOW_RECEIVE_ADDRESS">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_SHOW_RECEIVE"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity">
+            <parameter
+                android:name="currency"
+                android:key="currency"/>
+        </intent>
+    </capability>
+    
+    <!-- 查看交易歷史 -->
+    <capability android:name="custom.actions.intent.SHOW_TRANSACTIONS">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_SHOW_TRANSACTIONS"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity">
+            <parameter
+                android:name="filter"
+                android:key="filter"/>
+        </intent>
+    </capability>
+    
+    <!-- 開啟 AI 助手 -->
+    <capability android:name="custom.actions.intent.OPEN_AI_ASSISTANT">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_AI_ASSISTANT"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity">
+            <parameter
+                android:name="query"
+                android:key="query"/>
+        </intent>
+    </capability>
+    
+    <!-- 切換錢包 -->
+    <capability android:name="custom.actions.intent.SWITCH_WALLET">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_SWITCH_WALLET"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity">
+            <parameter
+                android:name="wallet_name"
+                android:key="walletName"/>
+        </intent>
+    </capability>
+    
+    <!-- 快捷方式定義 -->
+    <shortcut
+        android:shortcutId="send_crypto"
+        android:enabled="true"
+        android:shortcutShortLabel="@string/voice_send_crypto"
+        android:shortcutLongLabel="@string/voice_send_crypto_long"
+        android:shortcutDisabledMessage="@string/voice_shortcut_disabled">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_SEND_CRYPTO"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity"/>
+        <capability-binding android:key="custom.actions.intent.SEND_CRYPTO"/>
+    </shortcut>
+    
+    <shortcut
+        android:shortcutId="check_balance"
+        android:enabled="true"
+        android:shortcutShortLabel="@string/voice_check_balance"
+        android:shortcutLongLabel="@string/voice_check_balance_long">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_CHECK_BALANCE"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity"/>
+        <capability-binding android:key="custom.actions.intent.CHECK_BALANCE"/>
+    </shortcut>
+    
+    <shortcut
+        android:shortcutId="receive_crypto"
+        android:enabled="true"
+        android:shortcutShortLabel="@string/voice_receive_crypto"
+        android:shortcutLongLabel="@string/voice_receive_crypto_long">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_SHOW_RECEIVE"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity"/>
+        <capability-binding android:key="custom.actions.intent.SHOW_RECEIVE_ADDRESS"/>
+    </shortcut>
+    
+    <shortcut
+        android:shortcutId="ai_assistant"
+        android:enabled="true"
+        android:shortcutShortLabel="@string/voice_ai_assistant"
+        android:shortcutLongLabel="@string/voice_ai_assistant_long">
+        <intent
+            android:action="com.cbstudio.wearwallet.ACTION_AI_ASSISTANT"
+            android:targetPackage="com.cbstudio.wearwallet"
+            android:targetClass="com.cbstudio.wearwallet.presentation.voice.VoiceCommandActivity"/>
+        <capability-binding android:key="custom.actions.intent.OPEN_AI_ASSISTANT"/>
+    </shortcut>
+    
+</shortcuts>

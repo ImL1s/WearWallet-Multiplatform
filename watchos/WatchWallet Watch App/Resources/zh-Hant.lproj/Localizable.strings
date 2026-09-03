@@ -1,0 +1,25 @@
+/* Main Tab */
+"loading" = "載入中...";
+
+/* AI Assistant */
+"ai_assistant_title" = "AI 語音助手";
+"tap_to_listen" = "點擊開始聆聽";
+"voice_input" = "語音輸入";
+"ai_response" = "AI 回應";
+"check_balance" = "查餘額";
+"send_tx" = "發送";
+"verify_tx" = "驗證";
+"auth" = "認證";
+"audit" = "合約審計";
+"analyze_nft" = "NFT 分析";
+"verification_result" = "驗證結果";
+"status" = "狀態：";
+"risk_score" = "風險評分：";
+"warning" = "警告：";
+"voice_biometric_auth" = "語音生物識別認證";
+"speak_phrase_instruction" = "請按照指示說出驗證短語";
+"start_auth" = "開始認證";
+"authenticating" = "正在認證...";
+"auth_success" = "認證成功";
+"auth_failed" = "認證失敗";
+"close" = "關閉";

@@ -1,0 +1,63 @@
+/* Common */
+"error" = "오류";
+"ok" = "확인";
+"unknown_error" = "알 수 없는 오류";
+
+/* StoreKit Service */
+"storekit_failed_load" = "제품을 로드하지 못했습니다: %@";
+"storekit_unknown_result" = "알 수 없는 구매 결과";
+"storekit_restore_failed" = "구매 복원 실패: %@";
+"storekit_transaction_failed" = "거래 실패: %@";
+
+/* Keystone Bridge */
+"keystone_simulate_watch" = "watchOS 요청 시뮬레이션";
+"keystone_clear_requests" = "모든 요청 지우기";
+"keystone_pending_requests" = "대기 중인 요청";
+"keystone_from_watch" = "출처: Apple Watch";
+"keystone_waiting_title" = "Apple Watch 요청 대기 중";
+"keystone_waiting_desc" = "Apple Watch에서 거래를 시작하면\n서명 요청이 여기에 나타납니다";
+
+/* Status Titles */
+"keystone_status_idle" = "유휴 상태";
+"keystone_status_waiting" = "대기 중...";
+"keystone_status_processing" = "처리 중...";
+"keystone_status_displaying_qr" = "QR 코드 표시 중";
+"keystone_status_scanning" = "스캔 중";
+"keystone_status_completed" = "완료됨";
+"keystone_status_error" = "오류";
+
+/* Status Descriptions */
+"keystone_status_idle_desc" = "새 요청 대기 중";
+"keystone_status_waiting_desc" = "대기 중인 서명 요청";
+"keystone_status_processing_desc" = "QR 코드 준비 중...";
+"keystone_status_displaying_qr_desc" = "Keystone으로 스캔하세요";
+"keystone_status_scanning_desc" = "서명 스캔 중";
+"keystone_status_completed_desc" = "서명 완료";
+"keystone_status_error_desc" = "처리 중 오류 발생";
+
+/* Request Types */
+"request_type_sign_tx" = "거래 서명";
+"request_type_get_accounts" = "계정 가져오기";
+"request_type_verify_addr" = "주소 확인";
+
+/* Home Screen */
+"watch_connected" = "워치 연결됨";
+"watch_waiting" = "워치 연결 대기 중...";
+"latest_message" = "최근 메시지: %@";
+"scan_keystone_qr" = "Keystone QR 스캔";
+"address_book_management" = "주소록 관리";
+
+/* Address Book */
+"address_book" = "주소록";
+"contact_info" = "연락처 정보";
+"contact_name" = "이름";
+"contact_address" = "주소";
+"add_contact" = "연락처 추가";
+"save" = "저장";
+"cancel" = "취소";
+
+/* Scanner */
+"qr_scan_guide" = "QR 코드를 프레임 안에 맞추세요";
+"camera_not_available" = "카메라를 사용할 수 없음";
+"scanning_multipart" = "멀티파트 QR 스캔 중: %d%%";
+"scanning_progress" = "스캔 중... %d%%";

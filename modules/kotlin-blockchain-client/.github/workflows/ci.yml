@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "dev", "master" ]
+  pull_request:
+    branches: [ "main", "dev", "master" ]
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_ACTOR: ${{ github.actor }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        path: kotlin-blockchain-client
+    
+    # Checkout dependencies
+    - uses: actions/checkout@v4
+      with:
+        repository: ImL1s/kotlin-crypto-pure
+        path: kotlin-crypto-pure
+        
+    - uses: actions/checkout@v4
+      with:
+        repository: ImL1s/kotlin-tx-builder
+        path: kotlin-tx-builder
+        
+    - uses: actions/checkout@v4
+      with:
+        repository: ImL1s/kotlin-address
+        path: kotlin-address
+
+    - uses: actions/checkout@v4
+      with:
+        repository: ImL1s/kotlin-utxo
+        path: kotlin-utxo
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      
+    - name: Build with Gradle
+      run: |
+        cd kotlin-blockchain-client
+        chmod +x gradlew
+        ./gradlew build --stacktrace

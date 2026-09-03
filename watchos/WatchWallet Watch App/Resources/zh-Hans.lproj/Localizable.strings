@@ -1,0 +1,25 @@
+/* Main Tab */
+"loading" = "加载中...";
+
+/* AI Assistant */
+"ai_assistant_title" = "AI 语音助手";
+"tap_to_listen" = "点击开始聆听";
+"voice_input" = "语音输入";
+"ai_response" = "AI 回应";
+"check_balance" = "查余额";
+"send_tx" = "发送";
+"verify_tx" = "验证";
+"auth" = "认证";
+"audit" = "合约审计";
+"analyze_nft" = "NFT 分析";
+"verification_result" = "验证结果";
+"status" = "状态：";
+"risk_score" = "风险评分：";
+"warning" = "警告：";
+"voice_biometric_auth" = "语音生物识别认证";
+"speak_phrase_instruction" = "请按照指示说出验证短语";
+"start_auth" = "开始认证";
+"authenticating" = "正在认证...";
+"auth_success" = "认证成功";
+"auth_failed" = "认证失败";
+"close" = "关闭";

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.WearWallet" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Add this new theme for AppCompat activities -->
+    <style name="Theme.WearWallet.AppCompat" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- You can customize the AppCompat theme here if needed -->
+    </style>
+</resources>

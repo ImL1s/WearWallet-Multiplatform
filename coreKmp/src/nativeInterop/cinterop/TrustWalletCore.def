@@ -1,0 +1,10 @@
+# TrustWallet Core C API Interop Definition
+# iOS/watchOS 平台使用 TrustWallet Core 進行 Ed25519 簽名
+
+language = Objective-C
+headers = TrustWalletCore/TWPrivateKey.h TrustWalletCore/TWPublicKey.h TrustWalletCore/TWCurve.h TrustWalletCore/TWData.h TrustWalletCore/TWString.h
+package = platform.TrustWalletCore
+
+# CocoaPods framework 路徑（通過 pod install 安裝）
+# ✅ 使用正確的模塊名稱 WalletCore（而非 pod 名稱 TrustWalletCore）
+compilerOpts = -framework WalletCore

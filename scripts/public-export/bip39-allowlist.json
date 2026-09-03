@@ -1,0 +1,45 @@
+{
+  "_comment": "Reviewed BIP39 mnemonic fingerprints for the public export. Each entry is keyed by sha256(lowercase, single-space-joined phrase) — a content fingerprint, not a path. Only add an entry after manual review confirms the phrase is (a) a publicly-documented spec test vector, or (b) a project-owned fixture with zero real-fund risk (e.g. a testnet-only wallet). Never add a mainnet mnemonic, regardless of whether it currently holds funds. scripts/public-export/tools/bip39_scan.py enforces this list; unreviewed matches fail the export.",
+  "entries": [
+    {
+      "sha256": "c557eec878dfd852ba3f88087c4f350f09c55537ab5e549c3cd14320ec3cef38",
+      "word_count": 12,
+      "note": "Official BIP-39 spec reference vector: all-zero entropy (128 bits). Public domain, reused verbatim by nearly every BIP-39 implementation's test suite (Trezor python-mnemonic, this project's own Bip39 tests, etc.). Zero real-fund risk."
+    },
+    {
+      "sha256": "8e3756e6c2fd5fedc1f59b9c7fa188fbf87532be779d7decb20d37954a832c3a",
+      "word_count": 12,
+      "note": "Project fixture: coreKmp TestnetConfig.MNEMONIC_1. Testnet-only wallet used across automated integration/E2E tests (Sepolia/BSC testnet/Shasta/devnet). No mainnet value, analogous to widely-published dev-only test mnemonics (e.g. Hardhat/Anvil default account seed)."
+    },
+    {
+      "sha256": "fddad1b1a537a63a63637e503789adce114952446961d34e367af3687ef39800",
+      "word_count": 12,
+      "note": "Project fixture: coreKmp TestnetConfig.MNEMONIC_2. Testnet-only wallet, same rationale as MNEMONIC_1 above."
+    },
+    {
+      "sha256": "ecb0e7ba498c5920991f0b3483e91f7abafa9ecc6bd82a9a51494589592b1a8f",
+      "word_count": 12,
+      "note": "Official BIP-39 spec reference vector #2 (0x7f repeated, 128-bit entropy) — 'legal winner thank ... yellow'. Same public-domain trezor/python-mnemonic spec vector used in coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt's 24-word test (via 3x repetition) and reused as testMnemonic2 in coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/integration/KeyVaultLifecycleIntegrationTest.kt. Zero real-fund risk."
+    },
+    {
+      "sha256": "fdd1a61d387b95c7ee89bc89097d43c8c339c93f72922272e51a7370362209d0",
+      "word_count": 15,
+      "note": "coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt 15-word vector: all-zero-entropy 'abandon' repeated 14x + checksum word 'address'. Same all-zero-entropy construction as the canonical 12-word spec vector, just at a different BIP-39 word count for test coverage. No corresponding funded address; derived test values are hardcoded expectations in the same file. Zero real-fund risk."
+    },
+    {
+      "sha256": "29aedb051d65bcc80e3379acb13afb2a0807f5f4bbb346a9846c056720e0a7cd",
+      "word_count": 18,
+      "note": "coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt 18-word vector: all-zero-entropy 'abandon' repeated 17x + checksum word 'agent'. Same rationale as the 15-word entry above."
+    },
+    {
+      "sha256": "a09c39b019c0b2ed6fea6b731b873f38454fba7054d525da20bc0a208ba2bb14",
+      "word_count": 21,
+      "note": "coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt 21-word vector: all-zero-entropy 'abandon' repeated 20x + checksum word 'admit'. Same rationale as the 15-word entry above."
+    },
+    {
+      "sha256": "3b1c5e02107409ea60548d8d8f686fd8d722791f3618deb1f9eb1e9f5c02cd35",
+      "word_count": 24,
+      "note": "coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt 24-word vector: official BIP-39 spec reference vector (0x7f7f... 256-bit entropy, 3x-repeated 'legal winner thank year wave sausage worth useful' + checksum 'title'). Public-domain trezor/python-mnemonic spec vector. Zero real-fund risk."
+    }
+  ]
+}

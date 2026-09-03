@@ -1,0 +1,14 @@
+# Monerujo Native Library Definition File
+# 定義與 libmonerujo.so 的互操作介面
+
+# 需要的頭檔案
+headers = monerujo.h wallet_api.h
+
+# 編譯器選項
+compilerOpts = -std=c++17
+
+# 連結選項
+linkerOpts = -lmonerujo
+
+# 包含路徑（根據 Monerujo 專案結構調整）
+# includeDirs = /path/to/monerujo/include

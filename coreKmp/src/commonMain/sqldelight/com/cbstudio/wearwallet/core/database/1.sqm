@@ -1,0 +1,9 @@
+-- Migration from Schema v1 to Schema v2
+-- PR #32 Round 5: Add KeyVault identity, backend, format version, and authorization requirement columns
+
+ALTER TABLE wallet ADD COLUMN key_alias TEXT;
+ALTER TABLE wallet ADD COLUMN key_backend TEXT NOT NULL DEFAULT 'LEGACY_ENCRYPTED_PREFS';
+ALTER TABLE wallet ADD COLUMN key_format_version INTEGER NOT NULL DEFAULT 1;
+ALTER TABLE wallet ADD COLUMN requires_auth INTEGER NOT NULL DEFAULT 0;
+
+CREATE INDEX idx_wallet_key_alias ON wallet(key_alias);

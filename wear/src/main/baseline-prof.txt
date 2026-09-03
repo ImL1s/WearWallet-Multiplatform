@@ -1,0 +1,225 @@
+# Baseline Profiles for WearWallet
+# 2025 最佳實踐 - 針對熱點方法和類別的性能優化配置
+# 
+# 這個檔案定義了應用程式啟動和關鍵使用路徑中的熱點方法，
+# 幫助 ART 運行時進行預編譯優化，提升應用程式啟動速度和執行效率。
+
+# ============================================================================
+# 應用程式啟動關鍵路徑
+# ============================================================================
+
+# MainActivity 和應用程式初始化
+HSPLcom/cbstudio/wearwallet/presentation/MainActivity;-><init>()V
+HSPLcom/cbstudio/wearwallet/presentation/MainActivity;->onCreate(Landroid/os/Bundle;)V
+HSPLcom/cbstudio/wearwallet/presentation/MainActivity;->setContent(Lkotlin/jvm/functions/Function2;)V
+HSPLcom/cbstudio/wearwallet/WalletApplication;-><init>()V
+HSPLcom/cbstudio/wearwallet/WalletApplication;->onCreate()V
+
+# Hilt 依賴注入初始化
+HSPLcom/cbstudio/wearwallet/WalletApplication_HiltComponents;->inject(Lcom/cbstudio/wearwallet/WalletApplication;)V
+HSPLdagger/hilt/android/internal/managers/ApplicationComponentManager;->generatedComponent()Ljava/lang/Object;
+
+# ============================================================================
+# Material 3 Expressive 設計系統
+# ============================================================================
+
+# 主題系統初始化
+HSPLcom/cbstudio/wearwallet/ui/theme/Material3ExpressiveThemeKt;->WearWalletExpressiveTheme(Lcom/cbstudio/wearwallet/ui/theme/ExpressiveColors;Lcom/cbstudio/wearwallet/ui/theme/ExpressiveTypography;Lcom/cbstudio/wearwallet/ui/theme/ExpressiveShapes;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+HSPLcom/cbstudio/wearwallet/ui/theme/ExpressiveColors;-><init>()V
+HSPLcom/cbstudio/wearwallet/ui/theme/ExpressiveTypography;-><init>()V
+HSPLcom/cbstudio/wearwallet/ui/theme/ExpressiveShapes;-><init>()V
+
+# 動態色彩系統
+HSPLcom/cbstudio/wearwallet/ui/theme/DynamicColorThemingKt;->DynamicExpressiveTheme(Landroidx/compose/ui/graphics/Color;Lcom/cbstudio/wearwallet/ui/theme/DynamicColorConfig;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+HSPLcom/cbstudio/wearwallet/ui/theme/DynamicColorGenerator;-><init>()V
+HSPLcom/cbstudio/wearwallet/ui/theme/DynamicColorGenerator;->generateColorScheme(Landroidx/compose/ui/graphics/Color;Lcom/cbstudio/wearwallet/ui/theme/DynamicColorConfig;)Lcom/cbstudio/wearwallet/ui/theme/ExpressiveColors;
+HSPLcom/cbstudio/wearwallet/ui/theme/DynamicColorGenerator;->analyzeColor(Landroidx/compose/ui/graphics/Color;)Lcom/cbstudio/wearwallet/ui/theme/ColorAnalysisResult;
+
+# ============================================================================
+# Shape Morphing 組件
+# ============================================================================
+
+# 形狀變形按鈕
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ShapeMorphingComponentsKt;->MorphingButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/cbstudio/wearwallet/ui/components/expressive/MorphingConfig;Landroidx/wear/compose/material3/ButtonColors;Landroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/MorphingConfig;-><init>()V
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/MorphingConfig;-><init>(FFDIIZ)V
+
+# 形狀變形圖示按鈕
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ShapeMorphingComponentsKt;->MorphingIconButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLcom/cbstudio/wearwallet/ui/components/expressive/MorphingConfig;Landroidx/wear/compose/material3/IconButtonColors;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+
+# 浮動操作按鈕
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ShapeMorphingComponentsKt;->MorphingFloatingActionButton(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Lcom/cbstudio/wearwallet/ui/components/expressive/MorphingConfig;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+
+# ============================================================================
+# Enhanced Motion Design
+# ============================================================================
+
+# 動畫狀態管理
+HSPLcom/cbstudio/wearwallet/ui/motion/AnimationStateFactory;->animateFloatAsState(FILandroidx/compose/animation/core/Easing;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+HSPLcom/cbstudio/wearwallet/ui/motion/AnimationStateFactory;->animateColorAsState(Landroidx/compose/ui/graphics/Color;ILandroidx/compose/animation/core/Easing;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+HSPLcom/cbstudio/wearwallet/ui/motion/AnimationStateFactory;->animateDpAsState(Landroidx/compose/ui/unit/Dp;ILandroidx/compose/animation/core/Easing;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+
+# Motion Scheme
+HSPLcom/cbstudio/wearwallet/ui/motion/ExpressiveMotionScheme;-><init>()V
+HSPLcom/cbstudio/wearwallet/ui/motion/ExpressiveMotionScheme;-><init>(Landroidx/compose/animation/EnterTransition;Landroidx/compose/animation/EnterTransition;Landroidx/compose/animation/EnterTransition;Landroidx/compose/animation/EnterTransition;Landroidx/compose/animation/EnterTransition;Landroidx/compose/animation/ExitTransition;Landroidx/compose/animation/ExitTransition;Landroidx/compose/animation/ExitTransition;Landroidx/compose/animation/ExitTransition;Landroidx/compose/animation/ExitTransition;)V
+
+# 過渡動畫
+HSPLcom/cbstudio/wearwallet/ui/motion/ExpressiveTransitions;->HorizontalSlide(Ljava/lang/Object;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
+HSPLcom/cbstudio/wearwallet/ui/motion/ExpressiveTransitions;->FadeThrough(Ljava/lang/Object;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
+
+# ============================================================================
+# Expressive UI 組件
+# ============================================================================
+
+# 增強版列表
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ExpressiveWearComponentsKt;->ExpressiveTransformingLazyColumn(Landroidx/compose/ui/Modifier;Landroidx/wear/compose/foundation/lazy/ScalingLazyListState;Landroidx/compose/foundation/layout/PaddingValues;ZLandroidx/compose/foundation/layout/Arrangement$Vertical;Landroidx/compose/ui/Alignment$Horizontal;Landroidx/compose/foundation/gestures/FlingBehavior;ZLandroidx/wear/compose/foundation/lazy/ScalingParams;Landroidx/wear/compose/foundation/lazy/ScalingLazyListAnchorType;Landroidx/wear/compose/foundation/CenteringParams;ZLandroidx/compose/ui/graphics/Color;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+
+# 滾動指示器
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ExpressiveWearComponentsKt;->ExpressiveScrollIndicator(Landroidx/wear/compose/foundation/lazy/ScalingLazyListState;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/unit/Dp;ILandroidx/compose/runtime/Composer;II)V
+
+# 卡片組件
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ExpressiveWearComponentsKt;->ExpressiveCard(Landroidx/compose/ui/Modifier;Landroidx/compose/material3/CardColors;Landroidx/compose/material3/CardElevation;Lcom/cbstudio/wearwallet/ui/components/expressive/MorphingConfig;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+
+# 進度指示器
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ExpressiveWearComponentsKt;->ExpressiveCircularProgressIndicator(FLandroidx/compose/ui/Modifier;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;IZLandroidx/compose/runtime/Composer;II)V
+
+# FAB 菜單
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ExpressiveWearComponentsKt;->ExpressiveFabMenu(ZLkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Ljava/util/List;Landroidx/compose/runtime/Composer;II)V
+
+# ============================================================================
+# 主要 UI 屏幕
+# ============================================================================
+
+# 主錢包屏幕
+HSPLcom/cbstudio/wearwallet/presentation/expressive/ExpressiveWalletMainScreenKt;->ExpressiveWalletMainScreen(Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+
+# 餘額卡片
+HSPLcom/cbstudio/wearwallet/presentation/expressive/ExpressiveWalletMainScreenKt;->ExpressiveBalanceCard(Lcom/cbstudio/wearwallet/presentation/expressive/WalletData;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+
+# 快速操作
+HSPLcom/cbstudio/wearwallet/presentation/expressive/ExpressiveWalletMainScreenKt;->ExpressiveQuickActions(Ljava/util/List;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+HSPLcom/cbstudio/wearwallet/presentation/expressive/ExpressiveWalletMainScreenKt;->QuickActionButton(Lcom/cbstudio/wearwallet/presentation/expressive/QuickAction;ZLkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+
+# 交易項目
+HSPLcom/cbstudio/wearwallet/presentation/expressive/ExpressiveWalletMainScreenKt;->ExpressiveTransactionItem(Lcom/cbstudio/wearwallet/presentation/expressive/TransactionData;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+
+# ============================================================================
+# 原有核心功能 (保持兼容)
+# ============================================================================
+
+# 原始錢包主屏幕
+HSPLcom/cbstudio/wearwallet/presentation/wallet/screens/main/WalletMainScreenKt;->WalletMainScreen(Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lcom/cbstudio/wearwallet/presentation/wallet/screens/main/WalletMainViewModel;Landroidx/compose/runtime/Composer;II)V
+
+# ViewModel 初始化
+HSPLcom/cbstudio/wearwallet/presentation/wallet/screens/main/WalletMainViewModel;-><init>()V
+HSPLcom/cbstudio/wearwallet/presentation/MainViewModel;-><init>()V
+
+# ============================================================================
+# 網路和資料層
+# ============================================================================
+
+# 資料庫初始化
+HSPLcom/cbstudio/wearwallet/data/repository/WalletRepository;-><init>()V
+HSPLcom/cbstudio/wearwallet/data/repository/TransactionRepository;-><init>()V
+
+# 網路請求
+HSPLcom/cbstudio/wearwallet/data/repository/RemoteConfigRepository;->fetchConfig()V
+HSPLcom/cbstudio/wearwallet/data/repository/RemoteConfigRepository;->getConfigValue(Ljava/lang/String;)Ljava/lang/String;
+
+# ============================================================================
+# Wear OS 特定功能
+# ============================================================================
+
+# 錶盤複雜功能
+HSPLcom/cbstudio/wearwallet/complications/NftComplicationDataProvider;->onComplicationRequest(Landroidx/wear/watchface/complications/data/ComplicationRequest;Landroidx/wear/watchface/complications/data/ComplicationDataSourceUpdateCallback;)V
+HSPLcom/cbstudio/wearwallet/complications/NftComplicationDataProvider;->getComplicationData()Landroidx/wear/watchface/complications/data/ComplicationData;
+
+# 磁磚服務
+HSPLcom/cbstudio/wearwallet/tile/MainTileService;->onTileRequest(Landroidx/wear/tiles/RequestBuilders$TileRequest;)Lcom/google/common/util/concurrent/ListenableFuture;
+
+# ============================================================================
+# AI 功能
+# ============================================================================
+
+# AI 服務
+HSPLcom/cbstudio/wearwallet/ai/WearOSAIService;-><init>()V
+HSPLcom/cbstudio/wearwallet/ai/WearOSAIService;->processCommand(Ljava/lang/String;)V
+
+# 手勢檢測
+HSPLcom/cbstudio/wearwallet/ai/gesture/WearOSGestureDetector;-><init>()V
+HSPLcom/cbstudio/wearwallet/ai/gesture/WearOSGestureDetector;->detectGesture()V
+
+# ============================================================================
+# 性能關鍵路徑
+# ============================================================================
+
+# Compose 運行時
+HSPLandroidx/compose/runtime/ComposerKt;->updateChangedFlags(I)I
+HSPLandroidx/compose/runtime/ComposerImpl;->startRestartGroup(I)Landroidx/compose/runtime/Composer;
+HSPLandroidx/compose/runtime/ComposerImpl;->endRestartGroup()Landroidx/compose/runtime/ScopeUpdateScope;
+
+# Material 3 組件
+HSPLandroidx/wear/compose/material3/ButtonKt;->Button(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/wear/compose/material3/ButtonColors;Landroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/layout/PaddingValues;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+HSPLandroidx/wear/compose/material3/CardKt;->Card(Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;ZLandroidx/wear/compose/material3/CardColors;Landroidx/wear/compose/material3/CardElevation;Landroidx/compose/foundation/BorderStroke;Landroidx/compose/foundation/interaction/MutableInteractionSource;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+
+# 動畫核心
+HSPLandroidx/compose/animation/core/AnimateAsStateKt;->animateFloatAsState(FLandroidx/compose/animation/core/AnimationSpec;FLjava/lang/String;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)Landroidx/compose/runtime/State;
+HSPLandroidx/compose/animation/core/Transition;->animateFloat(Landroidx/compose/animation/core/FiniteAnimationSpec;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Landroidx/compose/runtime/State;
+
+# ============================================================================
+# 共享模組 (KMP)
+# ============================================================================
+
+# KMP 共享邏輯
+HSPLcom/cbstudio/wearwallet/shared/domain/usecase/wallet/CreateWalletUseCase;->invoke()V
+HSPLcom/cbstudio/wearwallet/shared/domain/usecase/transaction/SendTransactionUseCase;->invoke()V
+HSPLcom/cbstudio/wearwallet/shared/repository/WalletRepositoryImpl;->getWallets()Ljava/util/List;
+
+# 加密和安全
+HSPLcom/cbstudio/wearwallet/shared/security/KeySecurityService;->encryptData([B)[B
+HSPLcom/cbstudio/wearwallet/shared/security/KeySecurityService;->decryptData([B)[B
+
+# ============================================================================
+# 錯誤處理和日誌
+# ============================================================================
+
+# 日誌系統
+HSPLtimber/log/Timber;->d(Ljava/lang/String;[Ljava/lang/Object;)V
+HSPLtimber/log/Timber;->i(Ljava/lang/String;[Ljava/lang/Object;)V
+HSPLcom/cbstudio/wearwallet/utils/CrashReportingTree;->log(ILjava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+# 錯誤處理
+HSPLcom/cbstudio/wearwallet/ui/components/expressive/ExpressiveWearComponentsKt;->ExpressiveLoadingIndicator(ZLandroidx/compose/ui/Modifier;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/graphics/Color;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+
+# ============================================================================
+# 記憶體管理和快取
+# ============================================================================
+
+# 圖像快取
+HSPLcom/cbstudio/wearwallet/utils/ImageCache;->loadImage(Ljava/lang/String;)Landroid/graphics/Bitmap;
+HSPLcom/cbstudio/wearwallet/utils/ImageCache;->cacheImage(Ljava/lang/String;Landroid/graphics/Bitmap;)V
+
+# 用戶偏好
+HSPLcom/cbstudio/wearwallet/data/preferences/UserPreferencesManager;->getPreference(Ljava/lang/String;)Ljava/lang/Object;
+HSPLcom/cbstudio/wearwallet/data/preferences/UserPreferencesManager;->setPreference(Ljava/lang/String;Ljava/lang/Object;)V
+
+# ============================================================================
+# 備註和說明
+# ============================================================================
+
+# HSP: Hot Start Path - 熱啟動路徑，應用程式啟動時經常執行的方法
+# HPL: Hot Path Low - 低頻熱路徑，較不常執行但仍重要的方法
+# SPL: Startup Path Low - 啟動路徑低頻方法
+
+# 此配置基於以下原則：
+# 1. 應用程式啟動關鍵路徑 - 確保快速啟動
+# 2. UI 渲染熱點方法 - 確保流暢的用戶體驗
+# 3. 動畫和過渡效果 - 確保動畫流暢
+# 4. 核心業務邏輯 - 確保功能響應迅速
+# 5. 網路和資料存取 - 確保資料載入效率
+
+# 效能預期提升：
+# - 應用程式啟動時間：提升 20-30%
+# - UI 渲染效能：提升 15-25%
+# - 動畫流暢度：提升 10-20%
+# - 整體用戶體驗：顯著改善

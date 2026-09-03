@@ -1,0 +1,248 @@
+-- Schema v1 Baseline
+-- CoreWalletDatabase initial schema
+
+CREATE TABLE IF NOT EXISTS wallet (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL UNIQUE,
+    public_key TEXT NOT NULL,
+    encrypted_private_key TEXT NOT NULL,
+    encrypted_mnemonic TEXT,
+    derivation_path TEXT NOT NULL DEFAULT "m/44'/60'/0'/0/0",
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    wallet_type TEXT NOT NULL DEFAULT 'HOT_WALLET',
+    is_active INTEGER NOT NULL DEFAULT 0,
+    is_watch_only INTEGER NOT NULL DEFAULT 0,
+    master_fingerprint TEXT,
+    keystone_sign_request TEXT,
+    keystone_sync_data TEXT,
+    metadata TEXT DEFAULT '{}',
+    avatar_id INTEGER,
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_wallet_address ON wallet(address);
+CREATE INDEX IF NOT EXISTS idx_wallet_chain_id ON wallet(chain_id);
+CREATE INDEX IF NOT EXISTS idx_wallet_type ON wallet(wallet_type);
+CREATE INDEX IF NOT EXISTS idx_wallet_active ON wallet(is_active);
+
+CREATE TABLE IF NOT EXISTS address_book (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    address TEXT NOT NULL,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    category TEXT DEFAULT 'OTHER',
+    tags TEXT DEFAULT '',
+    notes TEXT DEFAULT '',
+    is_favorite INTEGER NOT NULL DEFAULT 0,
+    is_verified INTEGER NOT NULL DEFAULT 0,
+    usage_count INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    last_used_at INTEGER,
+    UNIQUE(address, chain_type)
+);
+
+CREATE INDEX IF NOT EXISTS idx_address_book_address ON address_book(address);
+CREATE INDEX IF NOT EXISTS idx_address_book_chain_type ON address_book(chain_type);
+CREATE INDEX IF NOT EXISTS idx_address_book_category ON address_book(category);
+CREATE INDEX IF NOT EXISTS idx_address_book_favorite ON address_book(is_favorite);
+CREATE INDEX IF NOT EXISTS idx_address_book_usage_count ON address_book(usage_count);
+CREATE INDEX IF NOT EXISTS idx_address_book_last_used ON address_book(last_used_at);
+CREATE INDEX IF NOT EXISTS idx_address_book_name ON address_book(name);
+
+CREATE TABLE IF NOT EXISTS keystone_data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id INTEGER NOT NULL UNIQUE,
+    device_id TEXT NOT NULL,
+    device_name TEXT,
+    firmware_version TEXT,
+    last_sync_ur TEXT,
+    last_sign_request_ur TEXT,
+    last_signed_result_ur TEXT,
+    multisig_config TEXT,
+    cosigner_index INTEGER,
+    required_signatures INTEGER,
+    total_cosigners INTEGER,
+    psbt_support INTEGER DEFAULT 1,
+    supported_chains TEXT DEFAULT '["ETHEREUM","BSC","POLYGON","ARBITRUM","OPTIMISM","AVALANCHE","BITCOIN"]',
+    supported_standards TEXT DEFAULT '["EIP-1559","EIP-712","EIP-2930","BIP-44","BIP-49","BIP-84"]',
+    is_connected INTEGER DEFAULT 0,
+    last_connected_at INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    FOREIGN KEY (wallet_id) REFERENCES wallet(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_keystone_wallet_id ON keystone_data(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_keystone_device_id ON keystone_data(device_id);
+
+CREATE TABLE IF NOT EXISTS nft (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    token_id TEXT NOT NULL,
+    contract_address TEXT NOT NULL,
+    wallet_address TEXT NOT NULL,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    name TEXT,
+    description TEXT,
+    image_url TEXT,
+    metadata_url TEXT,
+    attributes TEXT,
+    collection_name TEXT,
+    creator_address TEXT,
+    owner_address TEXT,
+    is_favorite INTEGER NOT NULL DEFAULT 0,
+    is_hidden INTEGER NOT NULL DEFAULT 0,
+    rarity_rank INTEGER,
+    rarity_score REAL,
+    price_eth REAL,
+    price_usd REAL,
+    last_sale_price REAL,
+    last_sale_date INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    synced_at INTEGER,
+    UNIQUE(token_id, contract_address, chain_type)
+);
+
+CREATE TABLE IF NOT EXISTS notification_history (
+    id TEXT PRIMARY KEY NOT NULL,
+    wallet_id TEXT NOT NULL,
+    notification_type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    data TEXT NOT NULL DEFAULT '{}',
+    timestamp INTEGER NOT NULL,
+    read INTEGER NOT NULL DEFAULT 0,
+    push_notification_id TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_notification_history_wallet_id ON notification_history(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_notification_history_type ON notification_history(notification_type);
+CREATE INDEX IF NOT EXISTS idx_notification_history_timestamp ON notification_history(timestamp);
+CREATE INDEX IF NOT EXISTS idx_notification_history_read ON notification_history(read);
+
+CREATE TABLE IF NOT EXISTS notification_preferences (
+    wallet_id TEXT PRIMARY KEY NOT NULL,
+    push_enabled INTEGER NOT NULL DEFAULT 0,
+    price_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+    transaction_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+    security_alerts_enabled INTEGER NOT NULL DEFAULT 1,
+    defi_alerts_enabled INTEGER NOT NULL DEFAULT 0,
+    minimum_transaction_amount TEXT,
+    quiet_hours_start INTEGER,
+    quiet_hours_end INTEGER,
+    vibration_enabled INTEGER NOT NULL DEFAULT 1,
+    sound_enabled INTEGER NOT NULL DEFAULT 1,
+    last_updated_at INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS price_alert (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    asset_symbol TEXT NOT NULL,
+    asset_name TEXT,
+    contract_address TEXT,
+    chain_type TEXT NOT NULL DEFAULT 'ETHEREUM',
+    chain_id INTEGER NOT NULL DEFAULT 1,
+    alert_type TEXT NOT NULL,
+    target_price REAL NOT NULL,
+    current_price REAL,
+    percentage_threshold REAL,
+    is_enabled INTEGER NOT NULL DEFAULT 1,
+    is_triggered INTEGER NOT NULL DEFAULT 0,
+    notification_sent INTEGER NOT NULL DEFAULT 0,
+    trigger_count INTEGER NOT NULL DEFAULT 0,
+    last_triggered_at INTEGER,
+    last_checked_at INTEGER,
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    user_notes TEXT,
+    webhook_url TEXT,
+    repeat_interval INTEGER DEFAULT 0,
+    UNIQUE(asset_symbol, chain_type, alert_type, target_price)
+);
+
+CREATE TABLE IF NOT EXISTS push_subscription (
+    wallet_address TEXT NOT NULL,
+    channel_address TEXT NOT NULL,
+    subscribed INTEGER NOT NULL DEFAULT 0,
+    subscribed_at INTEGER,
+    unsubscribed_at INTEGER,
+    last_synced_at INTEGER NOT NULL,
+    PRIMARY KEY (wallet_address, channel_address)
+);
+
+CREATE INDEX IF NOT EXISTS idx_push_subscription_wallet ON push_subscription(wallet_address);
+CREATE INDEX IF NOT EXISTS idx_push_subscription_channel ON push_subscription(channel_address);
+CREATE INDEX IF NOT EXISTS idx_push_subscription_status ON push_subscription(subscribed);
+CREATE INDEX IF NOT EXISTS idx_push_subscription_sync ON push_subscription(last_synced_at);
+
+CREATE TABLE IF NOT EXISTS token (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id INTEGER NOT NULL,
+    address TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    name TEXT NOT NULL,
+    decimals INTEGER NOT NULL DEFAULT 18,
+    chain_type TEXT NOT NULL,
+    chain_id INTEGER NOT NULL,
+    balance TEXT NOT NULL DEFAULT '0',
+    usd_price REAL,
+    price_change_24h REAL,
+    logo_url TEXT,
+    is_native INTEGER NOT NULL DEFAULT 0,
+    is_hidden INTEGER NOT NULL DEFAULT 0,
+    contract_type TEXT DEFAULT 'ERC20',
+    metadata TEXT DEFAULT '{}',
+    last_updated INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    FOREIGN KEY (wallet_id) REFERENCES wallet(id) ON DELETE CASCADE,
+    UNIQUE(wallet_id, address, chain_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_token_wallet_id ON token(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_token_chain_id ON token(chain_id);
+CREATE INDEX IF NOT EXISTS idx_token_symbol ON token(symbol);
+
+CREATE TABLE IF NOT EXISTS transaction_record (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wallet_id INTEGER NOT NULL,
+    tx_hash TEXT NOT NULL UNIQUE,
+    from_address TEXT NOT NULL,
+    to_address TEXT NOT NULL,
+    value TEXT NOT NULL,
+    gas_price TEXT,
+    gas_limit TEXT,
+    gas_used TEXT,
+    nonce INTEGER,
+    data TEXT,
+    status TEXT NOT NULL DEFAULT 'PENDING',
+    type TEXT NOT NULL DEFAULT 'TRANSFER',
+    chain_type TEXT NOT NULL,
+    chain_id INTEGER NOT NULL,
+    block_number INTEGER,
+    block_timestamp INTEGER,
+    token_address TEXT,
+    token_symbol TEXT,
+    token_decimals INTEGER,
+    fee_amount TEXT,
+    fee_currency TEXT,
+    keystone_sign_request_id TEXT,
+    keystone_signature TEXT,
+    memo TEXT,
+    metadata TEXT DEFAULT '{}',
+    created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now')),
+    FOREIGN KEY (wallet_id) REFERENCES wallet(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_tx_wallet_id ON transaction_record(wallet_id);
+CREATE INDEX IF NOT EXISTS idx_tx_hash ON transaction_record(tx_hash);
+CREATE INDEX IF NOT EXISTS idx_tx_from ON transaction_record(from_address);
+CREATE INDEX IF NOT EXISTS idx_tx_to ON transaction_record(to_address);
+CREATE INDEX IF NOT EXISTS idx_tx_status ON transaction_record(status);
+CREATE INDEX IF NOT EXISTS idx_tx_timestamp ON transaction_record(block_timestamp);

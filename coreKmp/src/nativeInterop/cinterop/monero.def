@@ -1,0 +1,43 @@
+# Monero Native Interop Definition for iOS
+# 
+# 此文件定義 Kotlin Native 如何與 Objective-C++ MoneroWrapper 互操作
+# 用於 iOS 平台的 Monero 功能實現
+
+language = Objective-C
+package = com.cbstudio.wearwallet.monero.native
+
+# 頭文件
+headers = MoneroWrapper.h
+
+# 頭文件搜索路徑
+headerFilter = ios/MoneroWrapper/**
+
+# 編譯器選項
+compilerOpts = -framework Foundation
+compilerOpts.ios_arm64 = -DTARGET_OS_IPHONE
+compilerOpts.ios_simulator_arm64 = -DTARGET_OS_SIMULATOR
+compilerOpts.ios_x64 = -DTARGET_OS_SIMULATOR
+
+# 鏈接器選項
+linkerOpts = -framework Foundation -framework Security
+linkerOpts.ios_arm64 = -L/usr/lib/swift -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos
+linkerOpts.ios_simulator_arm64 = -L/usr/lib/swift -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator
+linkerOpts.ios_x64 = -L/usr/lib/swift -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator
+
+# 包含 XCFramework
+linkerOpts = -F${projectDir}/ios/Frameworks -framework MoneroCpp
+
+# 排除的符號（避免命名衝突）
+excludedFunctions = malloc free
+
+# 靜態庫
+staticLibraries = libMoneroWrapper.a
+libraryPaths = ios/build
+
+# 導出的類
+# MoneroWrapper 主類將自動導出
+# 數據結構類也會自動導出：
+# - MoneroUTXO
+# - MoneroRingCTSignature  
+# - MoneroMLSAGSignature
+# - MoneroBulletproof

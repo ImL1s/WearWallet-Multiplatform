@@ -1,0 +1,179 @@
+# Semantic Release 配置檔案
+# 用於自動化版本管理和發布流程
+
+branches:
+  - main
+  - name: release/*
+    prerelease: true
+  - name: beta
+    prerelease: beta
+  - name: alpha
+    prerelease: alpha
+
+# 插件配置
+plugins:
+  # 1. 分析提交訊息
+  - - "@semantic-release/commit-analyzer"
+    - preset: conventionalcommits
+      releaseRules:
+        - type: feat
+          release: minor
+        - type: fix
+          release: patch
+        - type: perf
+          release: patch
+        - type: revert
+          release: patch
+        - type: docs
+          release: false
+        - type: style
+          release: false
+        - type: refactor
+          release: false
+        - type: test
+          release: false
+        - type: build
+          release: false
+        - type: ci
+          release: false
+        - type: chore
+          release: false
+        - breaking: true
+          release: major
+        - scope: no-release
+          release: false
+      parserOpts:
+        noteKeywords:
+          - BREAKING CHANGE
+          - BREAKING CHANGES
+
+  # 2. 生成發布說明
+  - - "@semantic-release/release-notes-generator"
+    - preset: conventionalcommits
+      presetConfig:
+        types:
+          - type: feat
+            section: "✨ Features"
+            hidden: false
+          - type: fix
+            section: "🐛 Bug Fixes"
+            hidden: false
+          - type: perf
+            section: "⚡ Performance Improvements"
+            hidden: false
+          - type: revert
+            section: "⏪ Reverts"
+            hidden: false
+          - type: docs
+            section: "📚 Documentation"
+            hidden: false
+          - type: style
+            section: "💄 Styles"
+            hidden: true
+          - type: refactor
+            section: "♻️ Code Refactoring"
+            hidden: false
+          - type: test
+            section: "✅ Tests"
+            hidden: true
+          - type: build
+            section: "🏗️ Build System"
+            hidden: false
+          - type: ci
+            section: "🤖 Continuous Integration"
+            hidden: true
+          - type: chore
+            section: "🔧 Chores"
+            hidden: true
+      writerOpts:
+        groupBy: type
+        commitGroupsSort: title
+        commitsSort: header
+
+  # 3. 生成 CHANGELOG
+  - - "@semantic-release/changelog"
+    - changelogFile: CHANGELOG.md
+      changelogTitle: |
+        # Changelog
+
+        All notable changes to WearWallet will be documented in this file.
+
+        The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+        and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+  # 4. 執行自定義命令（可選）
+  - - "@semantic-release/exec"
+    - verifyReleaseCmd: "echo ${nextRelease.version}"
+      prepareCmd: |
+        # 更新 Android 版本
+        sed -i "s/versionName=.*/versionName=${nextRelease.version}/" gradle.properties
+        VERSION_CODE=$(date +%Y%m%d%H)
+        sed -i "s/versionCode=.*/versionCode=$VERSION_CODE/" gradle.properties
+        
+        # 更新 iOS/watchOS 版本（如果存在）
+        if [ -f "watchos/WatchWallet.xcodeproj/project.pbxproj" ]; then
+          sed -i "s/MARKETING_VERSION = .*/MARKETING_VERSION = ${nextRelease.version};/" watchos/WatchWallet.xcodeproj/project.pbxproj
+        fi
+        
+        # 更新 package.json（如果存在）
+        if [ -f "package.json" ]; then
+          npm version ${nextRelease.version} --no-git-tag-version
+        fi
+
+  # 5. 提交變更
+  - - "@semantic-release/git"
+    - assets:
+        - CHANGELOG.md
+        - gradle.properties
+        - watchos/WatchWallet.xcodeproj/project.pbxproj
+        - package.json
+      message: |
+        chore(release): ${nextRelease.version} [skip ci]
+
+        ${nextRelease.notes}
+
+  # 6. 發布到 GitHub
+  - - "@semantic-release/github"
+    - assets:
+        - path: wear/build/outputs/apk/release/*.apk
+          name: WearWallet-Wear-${nextRelease.version}.apk
+          label: Wear OS APK (v${nextRelease.version})
+        - path: mobile/build/outputs/apk/release/*.apk
+          name: WearWallet-Mobile-${nextRelease.version}.apk
+          label: Android APK (v${nextRelease.version})
+        - path: wear/build/outputs/bundle/release/*.aab
+          name: WearWallet-Wear-${nextRelease.version}.aab
+          label: Wear OS Bundle (v${nextRelease.version})
+        - path: mobile/build/outputs/bundle/release/*.aab
+          name: WearWallet-Mobile-${nextRelease.version}.aab
+          label: Android Bundle (v${nextRelease.version})
+        - path: watchos/build/*.ipa
+          name: WearWallet-watchOS-${nextRelease.version}.ipa
+          label: watchOS IPA (v${nextRelease.version})
+        - path: iosApp/build/*.ipa
+          name: WearWallet-iOS-${nextRelease.version}.ipa
+          label: iOS IPA (v${nextRelease.version})
+      successComment: |
+        🎉 Version ${nextRelease.version} has been released!
+        
+        See the [release notes](${releases.url}) for more details.
+        
+        ### Installation
+        
+        #### Android/Wear OS
+        - Download the APK files from the [release page](${releases.url})
+        - Or wait for the Play Store update
+        
+        #### iOS/watchOS
+        - Download the IPA files from the [release page](${releases.url})
+        - Or wait for the App Store update
+      failTitle: "❌ Release of version ${nextRelease.version} failed"
+      failComment: |
+        The release of version ${nextRelease.version} failed. Please check the logs for more information.
+      labels:
+        - released
+      addReleases: bottom
+
+# 預設配置
+tagFormat: v${version}
+dryRun: false

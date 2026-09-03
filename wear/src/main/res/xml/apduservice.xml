@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ULTRATHINK - WearWallet NFC APDU Service 配置
+    
+    定義 Host Card Emulation (HCE) 服務的 AID 和設置
+    支援 WearWallet 和 Flexa 支付網絡的 AID
+-->
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/nfc_payment_service_desc"
+    android:requireDeviceUnlock="false"
+    android:apduServiceBanner="@drawable/ic_nfc_payment">
+    
+    <!-- WearWallet 專有 AID -->
+    <!-- F0 = 專有應用標識 -->
+    <!-- 5765617257616C6C6574 = "WearWallet" in hex -->
+    <aid-filter android:name="F05765617257616C6C6574"
+        android:description="@string/wearwallet_aid_desc" />
+    
+    <!-- Flexa Payment Network AID (兼容性) -->
+    <!-- F0436F696E50617973 = Flexa 支付 AID -->
+    <aid-filter android:name="F0436F696E50617973"
+        android:description="@string/flexa_aid_desc" />
+    
+    <!-- 
+        AID 分組設置
+        payment: 支付類別，系統會優先選擇此類別
+        other: 其他類別
+    -->
+    <aid-group android:category="payment">
+        <!-- 主要支付 AID -->
+        <aid-filter android:name="F05765617257616C6C6574"
+            android:description="@string/wearwallet_payment_desc" />
+        
+        <!-- Flexa 網絡支付 AID -->
+        <aid-filter android:name="F0436F696E50617973"
+            android:description="@string/flexa_payment_desc" />
+    </aid-group>
+    
+</host-apdu-service>

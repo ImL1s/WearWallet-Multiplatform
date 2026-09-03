@@ -1,0 +1,46 @@
+# Gitleaks config for sanitized public export trees.
+# Complementary guards live in scripts/export-public.sh and
+# scripts/public-export/tools/bip39_scan.py.
+#
+# Policy: use gitleaks' full default rule set (including generic-api-key —
+# it must stay ENABLED; do not silence it with a dummy-regex override). False
+# positives from generic-api-key are suppressed only via the narrow,
+# per-finding fingerprints in scripts/public-export/.gitleaksignore (exact
+# "path:rule:line" triples) — never a blanket regex-disable of a whole rule.
+# gitleaks.toml `[allowlist]` here is reserved for narrow, static path
+# allowlists: the Firebase example stub, and modules/** (vendored,
+# independently-public upstream git submodules — see the allowlist
+# description below and ALREADY_PUBLIC_DIRS in scripts/export-public.sh).
+# It intentionally does NOT list fingerprints — gitleaks fingerprint
+# suppression is only honored via `--gitleaks-ignore-path` / .gitleaksignore,
+# not via TOML config.
+#
+# Reviewing a new .gitleaksignore fingerprint:
+#   1. Confirm the flagged string is not a real secret (test vector, public
+#      contract/token address, RFC/BIP test data, code identifier, etc).
+#   2. Add exactly that "<path>:<rule-id>:<line>" fingerprint to
+#      scripts/public-export/.gitleaksignore with a comment.
+#   3. If source changes shift the line number, gitleaks will re-flag it and
+#      the export will fail until it is re-reviewed — this is intentional.
+
+title = "WearWallet public export"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = '''Firebase example stub filenames, plus modules/** (vendored,
+  independently-public upstream submodules — see ALREADY_PUBLIC_DIRS in
+  scripts/export-public.sh; visibility=public verified for every one of
+  ImL1s/kotlin-tx-builder, kotlin-address, kotlin-crypto-pure,
+  kotlin-blockchain-client, kotlin-secure-storage, kotlin-caip-standards,
+  kotlin-utxo, ACINQ/secp256k1-kmp, ACINQ/bitcoin-kmp, and the nested
+  bitcoin-core/secp256k1). Their content ships to this export tree byte-for-
+  byte from each submodule''s own pinned-SHA object store, so it is already
+  reviewable (and already public) at its own upstream repo; this export does
+  not re-review third-party history. Real secrets accidentally vendored here
+  would need fixing upstream, not suppressed by this exporter.'''
+paths = [
+  '''.*/google-services\.json\.example''',
+  '''^modules/.*''',
+]
