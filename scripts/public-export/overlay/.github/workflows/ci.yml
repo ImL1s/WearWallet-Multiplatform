@@ -96,6 +96,20 @@ jobs:
       # has repeatedly hung 30–60+ minutes on those suites without adding
       # signal beyond the assemble gate.
 
+  ci-pat-fallback-guard:
+    name: CI PAT fallback guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Fail if CI requires GH_TOKEN_PACKAGES with no fallback
+        run: |
+          python3 scripts/tests/test_check_ci_pat_fallback.py
+          python3 scripts/check_ci_pat_fallback.py
+
   markdown-link-check:
     name: Markdown link check
     runs-on: ubuntu-latest
@@ -122,6 +136,7 @@ jobs:
             docs/PUBLIC_BUILD.md
             docs/PUBLIC_SNAPSHOT.md
             docs/LICENSING.md
+            docs/THIRD_PARTY.md
             docs/SCREENSHOTS.md
             docs/DEVELOPMENT_GUIDE.md
             docs/CONTRIBUTING.md
@@ -137,3 +152,59 @@ jobs:
             npx --no-install markdown-link-check -c .github/markdown-link-check.json -q "$f" || rc=1
           done
           exit "$rc"
+
+  release-manifest-attack-surface:
+    name: Release manifest attack surface
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Create local gradle.properties
+        run: |
+          cat >> gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx4g -XX:+HeapDumpOnOutOfMemoryError
+          org.gradle.parallel=true
+          android.useAndroidX=true
+          ksp.useKSP2=true
+          EOF
+          TOKEN='${{ secrets.GH_TOKEN_PACKAGES }}'
+          ACTOR='${{ secrets.GH_ACTOR_NAME }}'
+          if [ -z "$TOKEN" ]; then
+            TOKEN='${{ secrets.GITHUB_TOKEN }}'
+            ACTOR='${{ github.actor }}'
+          fi
+          if [ "${{ github.event.pull_request.head.repo.fork }}" != "true" ] && [ -n "$TOKEN" ]; then
+            echo "github.actor=${ACTOR:-${{ github.actor }}}" >> gradle.properties
+            echo "github.token=$TOKEN" >> gradle.properties
+          fi
+
+      - name: Check committed release source manifests
+        run: python3 scripts/check_release_manifest_attack_surface.py
+
+      - name: Merge release manifests and re-check
+        env:
+          GITHUB_ACTOR: ${{ secrets.GH_ACTOR_NAME != '' && secrets.GH_ACTOR_NAME || github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_PACKAGES != '' && secrets.GH_TOKEN_PACKAGES || secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew checkMergedReleaseManifestAttackSurface -PpublicSnapshot=true --no-daemon --stacktrace --console=plain

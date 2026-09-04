@@ -10,7 +10,7 @@
 
 ## 開始前
 
-1. 先搜尋[現有 Issue](https://github.com/ImL1s/WearWallet/issues)。
+1. 先搜尋[現有 Issue](https://github.com/ImL1s/WearWallet-public/issues)。
 2. 閱讀[開發指南](./DEVELOPMENT_GUIDE.zh-TW.md)。
 3. 以 `settings.gradle.kts` 與模組 build 檔確認現行模組和 target。
 4. 不要把無關的本機變更帶進分支。

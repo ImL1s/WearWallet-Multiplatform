@@ -38,8 +38,7 @@ Notable examples already documented in this repository:
 
 - `modules/bitcoin-kmp/LICENSE` and `modules/secp256k1-kmp/LICENSE` —
   Apache License 2.0 (ACINQ SAS)
-- `modules/secp256k1-kmp/native/secp256k1/COPYING` and
-  `coreKmp/native/archived/secp256k1_c_source/COPYING` — MIT License
+- `modules/secp256k1-kmp/native/secp256k1/COPYING` — MIT License
   (Pieter Wuille)
 - `modules/kotlin-utxo/LICENSE` and `modules/kotlin-crypto-pure/LICENSE`
   — Apache License 2.0 (CB Studio)
@@ -49,10 +48,17 @@ Notable examples already documented in this repository:
   Apache License 2.0); see each dependency's own repository for the
   authoritative text.
 
-See [`/NOTICE`](../NOTICE) for the current summary list. Nothing in this
+See [`/NOTICE`](../NOTICE) and [`THIRD_PARTY.md`](./THIRD_PARTY.md) for the
+current inventory. **That inventory is not legal advice.** Nothing in this
 document changes the license of any third-party code; it only explains
 how those components relate to the GPL-3.0-or-later license that covers
 WearWallet's own source.
+
+Flattened modules without a LICENSE file in this tree
+(`kotlin-address`, `kotlin-tx-builder`, `kotlin-blockchain-client`,
+`kotlin-secure-storage`) are recorded as missing a redistributable license.
+Do not invent a license for them. Corresponding `WearCapability` rows are
+`UNSUPPORTED`.
 
 ## Questions
 

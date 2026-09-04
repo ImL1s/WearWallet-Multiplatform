@@ -3,9 +3,10 @@
 This file provides guidance to Claude Code (or any AI coding assistant) when
 working with this repository.
 
-> This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
+> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
 > tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
-> vault. Do **not** force-export from private over this `main`. This tree has
+> vault **forever**. Do **not** force-export from private over this `main`.
+> Do **not** rewrite private git and push it here. This tree has
 > no private development history, no credential-management tooling, and no
 > production store-upload automation. See
 > [`docs/PUBLIC_BUILD.md`](docs/PUBLIC_BUILD.md) and
@@ -98,13 +99,14 @@ WearWallet/
 
 ### Version pins (do not casually bump)
 
-- Kotlin **2.1.0** (2.2.0 changes ABI compatibility for this project)
-- Signum **3.16.3** (3.17.0 requires Kotlin 2.2.0)
-- Ktor **2.3.12** (avoids an `HttpTimeout` plugin conflict)
+- Kotlin **2.2.21** (`gradle/libs.versions.toml`)
+- Signum **3.17.0**
+- Ktor **3.0.0**
 
 ## Notes for this tree
 
-- Public CI today is Wear `assembleDebug` plus curated Markdown link checks.
+- Public CI today is Wear `assembleDebug`, curated Markdown link checks, the
+  release-manifest attack-surface job, and the PAT-fallback guard.
   That is **not** a full unit suite and not proof of issue #30. Run targeted
   Gradle tests locally (`-PpublicSnapshot=true`) when you change wallet or
   security code.

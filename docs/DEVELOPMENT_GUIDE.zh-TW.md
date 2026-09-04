@@ -26,26 +26,22 @@
 ## 下載與設定
 
 ```bash
-git clone --recurse-submodules https://github.com/ImL1s/WearWallet.git
-cd WearWallet
+git clone https://github.com/ImL1s/WearWallet-public.git
+cd WearWallet-public
 ```
 
-既有 checkout 在執行 Gradle 前要先初始化鎖定版本的模組：
-
-```bash
-./scripts/init-submodules.sh
-# 等價：git submodule update --init --recursive
-```
+Modules are vendored as plain trees. Do not run `git submodule update`.
 
 watchOS 建置需要重新產生 CocoaPods 輸出（不進版控）：
 
 ```bash
 cd watchos
 ./build-kmp.sh   # 建 KMP framework，接著執行 pod install
-open WearWallet.xcworkspace
+open WatchWallet.xcodeproj
 ```
 
-部分依賴從 GitHub Packages 取得，請用環境變數提供憑證：
+TrustWallet Core 仍可能需要 GitHub Packages 憑證（CI 用 job `GITHUB_TOKEN`，
+不需要 maintainer PAT）：
 
 ```bash
 export GITHUB_ACTOR=YOUR_GITHUB_USER

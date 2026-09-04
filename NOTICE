@@ -18,8 +18,6 @@ Bundled/vendored components with their own license files
 - `modules/secp256k1-kmp/LICENSE` — Apache License 2.0 (Copyright ACINQ SAS)
 - `modules/secp256k1-kmp/native/secp256k1/COPYING` — MIT License
   (Copyright Pieter Wuille), for the vendored native libsecp256k1 sources
-- `coreKmp/native/archived/secp256k1_c_source/COPYING` — MIT License
-  (Copyright Pieter Wuille)
 - `modules/kotlin-utxo/LICENSE` — Apache License 2.0 (Copyright CB Studio)
 - `modules/kotlin-crypto-pure/LICENSE` — Apache License 2.0 (Copyright CB Studio)
 - `modules/kotlin-caip-standards/LICENSE` — Apache License 2.0 (Copyright iml1s)

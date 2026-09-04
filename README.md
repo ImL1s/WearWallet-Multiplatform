@@ -12,10 +12,11 @@ watchOS, and shared Kotlin Multiplatform code.
 </div>
 
 > [!IMPORTANT]
-> This repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
+> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
 > tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
-> vault. Do **not** force-export from private over this `main` as ongoing sync.
-> This tree has **no private development history** — last sanitized orphan
+> vault **forever**. Do **not** force-export from private over this `main` as
+> ongoing sync. Do **not** rewrite private git and push it here. This tree has
+> **no private development history** — last sanitized orphan
 > export from private tip `8be876e`
 > (`8be876ef60d7d27418232a799f1c1a93aa3b0ca7`). Do **not** use with real funds. It is not a security audit, release
 > certification, or guarantee of safe use. See
@@ -49,8 +50,9 @@ truth. Do not infer support from screenshots, TODOs, or historical docs.
 - Kotlin Multiplatform targets for Android, iOS, and watchOS
 - Wallet, address book, token, transaction, and price-related domain code
 - QR-based Keystone integration components
-- A public Ubuntu CI workflow (`.github/workflows/ci.yml`: Wear debug assemble +
-  Markdown links) and a prerelease workflow (`.github/workflows/release.yml`)
+- A public Ubuntu CI workflow (`.github/workflows/ci.yml`: Wear debug assemble,
+  Markdown links, release-manifest job, PAT-fallback guard) and a prerelease
+  workflow (`.github/workflows/release.yml`)
 
 ## Wear OS preview
 
@@ -78,15 +80,16 @@ See [docs/SCREENSHOTS.md](./docs/SCREENSHOTS.md) for the full gallery and captur
 - JDK 17
 - Android SDK 35
 - macOS and Xcode for Apple targets
-- GitHub Packages credentials when dependency resolution requires them
+- Optional GitHub Packages credentials only if TrustWallet Core resolution 401s
+  (CI uses the job `GITHUB_TOKEN`, not a maintainer PAT)
 
 The repository uses the checked-in Gradle 8.13 wrapper and Kotlin 2.2.21.
 
 ### Configure and build
 
 ```bash
-git clone https://github.com/ImL1s/WearWallet-Multiplatform.git
-cd WearWallet-Multiplatform
+git clone https://github.com/ImL1s/WearWallet-public.git
+cd WearWallet-public
 ```
 
 `modules/` here is a **flattened, plain-tree vendoring** of each library at
@@ -95,16 +98,15 @@ and nothing to `git submodule update`. If you need the independently-versioned
 library repositories, see each library's own upstream GitHub repository.
 
 ```bash
-export GITHUB_ACTOR=YOUR_GITHUB_USER
-export GITHUB_TOKEN=YOUR_READ_PACKAGES_TOKEN
-
-# Public builds never require google-services.json (or any Firebase
-# config) — -PpublicSnapshot=true skips those plugins entirely.
+# Public snapshot: no google-services.json. Tracked gradle.properties has no
+# github.token. CI falls back to the job GITHUB_TOKEN when GH_TOKEN_PACKAGES
+# is empty; fork PRs do not get github.token in gradle.properties.
 ./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ./gradlew :mobile:assembleDebug -PpublicSnapshot=true
 
-# watchOS (macOS + Xcode + CocoaPods). Pods are not committed.
-cd watchos && ./build-kmp.sh && open WearWallet.xcworkspace
+# watchOS (macOS + Xcode + CocoaPods). Pods are not committed. There is no
+# WearWallet.xcworkspace in this tree; the checked-in project is WatchWallet.
+cd watchos && ./build-kmp.sh && open WatchWallet.xcodeproj
 ```
 
 The root `gradle.properties` file is tracked and contains shared build settings;
@@ -115,7 +117,7 @@ setup, credentials, and validation commands.
 ## Releases
 
 Experimental **debug** packages (Wear APK + source tarball) are on
-[GitHub Releases](https://github.com/ImL1s/WearWallet-Multiplatform/releases)
+[GitHub Releases](https://github.com/ImL1s/WearWallet-public/releases)
 as prereleases. They are not Play-signed and **not for real funds**.
 How a tag is cut: [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md).
 
@@ -144,6 +146,7 @@ results do not prove physical Keystone, watch, phone, or mainnet behavior.
 Start at the **[documentation index](./docs/README.md)**.
 
 - [Feature status matrix](./docs/FEATURE_STATUS.md)
+- [Third-party / vendored license inventory](./docs/THIRD_PARTY.md)
 - [Public build notes](./docs/PUBLIC_BUILD.md)
 - [Public tree provenance](./docs/PUBLIC_SNAPSHOT.md)
 - [Wear debug QA harness](./docs/WEAR_QA_HARNESS.md)
@@ -160,4 +163,6 @@ request. Large or structural contributions are best discussed in an issue first.
 
 ## License
 
-WearWallet is available under the [GNU GPL-3.0-or-later](./LICENSE). See [docs/LICENSING.md](./docs/LICENSING.md) for third-party license notes.
+WearWallet is available under the [GNU GPL-3.0-or-later](./LICENSE). See
+[docs/LICENSING.md](./docs/LICENSING.md) and
+[docs/THIRD_PARTY.md](./docs/THIRD_PARTY.md) (inventory, not legal advice).

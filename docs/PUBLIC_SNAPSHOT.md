@@ -1,17 +1,22 @@
 # Public tree provenance
 
-This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
+This public repo (`ImL1s/WearWallet-public`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
-vault. Do **not** force-export from private over this `main` as ongoing sync.
+vault **forever**. Do **not** force-export from private over this `main` as
+ongoing sync.
 
 This tree has **no private git ancestry**. It began as a sanitized orphan
 export and is no longer a regularly-replaced snapshot of the private repo.
+We will **not** rewrite private git history and push it onto this repository.
+The original “make the private repo public after filter-repo” approach is
+rejected.
 
 ## What ships here
 
 - Flattened `modules/*` trees at pinned SHAs (not git submodules).
 - Public CI using `-PpublicSnapshot=true` (no production Firebase config).
-- Wear `assembleDebug` plus curated Markdown link checks on GitHub-hosted Ubuntu.
+- Wear `assembleDebug`, curated Markdown link checks, a release-manifest
+  attack-surface job, and a PAT-fallback guard on GitHub-hosted Ubuntu.
 
 ## What does not ship here
 

@@ -3,6 +3,7 @@
 | Doc | Purpose |
 | --- | --- |
 | [FEATURE_STATUS.md](./FEATURE_STATUS.md) | Authoritative feature matrix (only public capability claims) |
+| [THIRD_PARTY.md](./THIRD_PARTY.md) | Vendored-module license inventory (not legal advice) |
 | [PUBLIC_BUILD.md](./PUBLIC_BUILD.md) | Clone, credentials, CI/CD, GitHub Releases |
 | [WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md) | Wear debug emulator overlay (not mainnet) |
 | [PUBLIC_SNAPSHOT.md](./PUBLIC_SNAPSHOT.md) | Provenance: public is canonical; last sanitized export |
