@@ -1,0 +1,52 @@
+name: Feature request
+description: A product or docs change. Nothing is PRODUCTION unless FEATURE_STATUS.md says so.
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Capability claims live only in [FEATURE_STATUS.md](https://github.com/ImL1s/WearWallet-public/blob/main/docs/FEATURE_STATUS.md). A merged feature is not a production wallet.
+
+        Security-sensitive reports go through [SECURITY.md](https://github.com/ImL1s/WearWallet-public/blob/main/SECURITY.md), not this form.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is fail-closed, missing, or misleading today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Smallest reversible change. Name tests that would fail closed.
+    validations:
+      required: true
+  - type: input
+    id: capability
+    attributes:
+      label: Capability id
+      description: From FEATURE_STATUS.md (example wear_send). Use n/a if docs/CI only.
+      placeholder: wear_send
+    validations:
+      required: true
+  - type: dropdown
+    id: maturity
+    attributes:
+      label: Honest target maturity after this work
+      options:
+        - Keep current (BETA / EXPERIMENTAL / MAINTENANCE / UNSUPPORTED)
+        - Documentation / CI only
+        - PRODUCTION (requires device, mainnet, and release-gate evidence — do not select unless you will supply it)
+    validations:
+      required: true
+  - type: checkboxes
+    id: honesty
+    attributes:
+      label: Honesty
+      options:
+        - label: I will not treat a screenshot, compile, or green CI job as mainnet or hardware proof.
+          required: true
+        - label: I will not include seeds, keys, credentials, or real funds.
+          required: true

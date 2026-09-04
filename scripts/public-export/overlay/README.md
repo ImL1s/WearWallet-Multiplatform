@@ -50,9 +50,10 @@ truth. Do not infer support from screenshots, TODOs, or historical docs.
 - Kotlin Multiplatform targets for Android, iOS, and watchOS
 - Wallet, address book, token, transaction, and price-related domain code
 - QR-based Keystone integration components
-- A public Ubuntu CI workflow (`.github/workflows/ci.yml`: Wear debug assemble,
-  Markdown links, release-manifest job, PAT-fallback guard) and a prerelease
-  workflow (`.github/workflows/release.yml`)
+- A public Ubuntu CI workflow (`.github/workflows/ci.yml`: **Fail-closed unit
+  slice**, Wear debug assemble, Markdown links, release-manifest job,
+  PAT-fallback guard) and a prerelease workflow (`.github/workflows/release.yml`).
+  That unit slice is still not private-grade issue #30 completeness.
 
 ## Wear OS preview
 

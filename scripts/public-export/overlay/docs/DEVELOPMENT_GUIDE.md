@@ -30,8 +30,9 @@ chmod +x gradlew
 Wear debug emulator overlay (not mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).
 
 Apple / watchOS Xcode builds are **not** CI-proven on this public tip.
-Public CI is Wear `assembleDebug`, Markdown links, the release-manifest job,
-and the PAT-fallback guard — not a full unit suite and not issue #30.
+Public CI includes the **Fail-closed unit slice** job (timeout 20 minutes),
+Wear `assembleDebug`, Markdown links, the release-manifest job, and the
+PAT-fallback guard — not a full unit suite, not 3-OS CI, and not issue #30.
 
 ## Contributing
 

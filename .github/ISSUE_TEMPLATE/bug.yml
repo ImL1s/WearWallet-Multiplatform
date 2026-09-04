@@ -1,0 +1,77 @@
+name: Bug report
+description: A defect in this experimental tree. Not for vulnerabilities or PRODUCTION claims.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This project is experimental. **Do not use with real funds.**
+
+        **Do not report security vulnerabilities here.** Use GitHub Security Advisories or the contact in [SECURITY.md](https://github.com/ImL1s/WearWallet-public/blob/main/SECURITY.md). Never paste seed phrases, private keys, keystores, or production credentials.
+  - type: input
+    id: sha
+    attributes:
+      label: Commit SHA
+      description: Exact commit you built or ran (git rev-parse HEAD).
+      placeholder: "0000000000000000000000000000000000000000"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Wear OS
+        - Android companion
+        - watchOS
+        - Shared / coreKmp / Gradle
+        - CI / docs
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: build_mode
+    attributes:
+      label: Build mode
+      options:
+        - debug / publicSnapshot
+        - release (local)
+        - CI
+        - unknown
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Sanitized steps only. No secrets, no mainnet keys, no real funds.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: capability
+    attributes:
+      label: Capability id (from FEATURE_STATUS.md)
+      description: Example wear_send, keystone. Leave blank if not a product surface.
+      placeholder: wear_send
+  - type: checkboxes
+    id: honesty
+    attributes:
+      label: Honesty
+      options:
+        - label: I did not include seeds, keys, credentials, or mainnet funds.
+          required: true
+        - label: I am not asking to mark this capability PRODUCTION without evidence.
+          required: true

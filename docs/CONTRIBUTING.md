@@ -22,16 +22,32 @@ or the contact in [SECURITY.md](../SECURITY.md).
 
 Never commit mnemonics, private keys, keystores, or production API credentials.
 
+Use the bug/feature forms under `.github/ISSUE_TEMPLATE/` and the pull-request
+template. Do not add `CODEOWNERS` with invented emails.
+
 ## Local checks
 
 ```bash
-./gradlew :coreKmp:testDebugUnitTest :wear:testDebugUnitTest -PpublicSnapshot=true
+./gradlew :wear:testDebugUnitTest \
+  --tests '*ReleaseFeatureGateTest' \
+  --tests '*WalletNavigationReleaseGateTest' \
+  -PpublicSnapshot=true
+./gradlew :coreKmp:testDebugUnitTest \
+  --tests '*EvmRecipientAddressPolicyTest' \
+  --tests '*EvmBroadcastOutcomeTest' \
+  -PpublicSnapshot=true
 ./scripts/check_markdown_links.py
 ```
 
-Public CI today is Wear `assembleDebug`, Markdown links, the release-manifest
-job, and the PAT-fallback guard. That is **not** a full unit suite. Run the
-Gradle tests locally when you change wallet or security code.
+Public CI's required unit slice is those four test classes (job **Fail-closed
+unit slice**, timeout 20 minutes), plus Wear `assembleDebug`, Markdown links,
+the release-manifest job, and the PAT-fallback guard. That is **still not** a
+full unit suite and **not** private-grade issue #30 completeness. Run the
+broader Gradle tests locally when you change wallet or security code.
+
+```bash
+./gradlew :coreKmp:testDebugUnitTest :wear:testDebugUnitTest -PpublicSnapshot=true
+```
 
 ```bash
 python3 scripts/tests/test_check_ci_pat_fallback.py

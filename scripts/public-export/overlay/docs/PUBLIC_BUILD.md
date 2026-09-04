@@ -36,13 +36,21 @@ python3 scripts/tests/test_check_ci_pat_fallback.py
 python3 scripts/check_ci_pat_fallback.py
 ```
 
-TrustWallet Core is still resolved from
-`https://maven.pkg.github.com/trustwallet/wallet-core`. GitHub Packages
-often returns **401** without *some* GitHub token (the job token is enough
-in this repo's CI; a maintainer PAT is not required). A fully anonymous
-clean clone with empty `GITHUB_TOKEN` / `github.token` may still fail
-resolution. That remaining blocker is recorded; this tree does not vendor
-Wallet Core.
+### Remaining limitation (public #6 stays closed with this named)
+
+TrustWallet Core is still resolved from GitHub Packages
+(`https://maven.pkg.github.com/trustwallet/wallet-core`). That registry
+**still can 401 without a token**. The job `GITHUB_TOKEN` is enough in
+this repo's CI; a maintainer PAT is not required. A fully anonymous
+clean clone (empty `GITHUB_TOKEN` / `github.token`, empty Gradle
+dependency cache) can still fail resolution.
+
+A warm local Gradle cache can make `:wear:assembleDebug` succeed with
+empty `-Pgithub.token=` / `-Pgithub.actor=`. That is **not** anonymous
+clean-clone proof. Verified without a cached `com.trustwallet:wallet-core`
+artifact: Gradle `Could not GET ... Received status code 401`; an
+unauthenticated HTTP GET of the same POM also returns **401**. This tree
+does **not** vendor Wallet Core.
 
 Optional local packages credentials live only in untracked
 `gradle.properties.example` / `.env` / user Gradle properties — never in
@@ -55,14 +63,16 @@ the tracked `gradle.properties`.
 
 | Workflow | Trigger | What it actually gates |
 | --- | --- | --- |
-| `.github/workflows/ci.yml` | push / PR to `main` | Ubuntu: Wear **debug** APK assemble, curated Markdown link check, release-manifest attack-surface job, and the PAT-fallback guard. The APK is uploaded as a workflow artifact (14 days). |
+| `.github/workflows/ci.yml` | push / PR to `main` | Ubuntu: **Fail-closed unit slice** (timeout 20 minutes) — Wear `ReleaseFeatureGateTest` + `WalletNavigationReleaseGateTest` and coreKmp `EvmRecipientAddressPolicyTest` + `EvmBroadcastOutcomeTest`; Wear **debug** APK assemble/upload; curated Markdown link check; release-manifest attack-surface job; PAT-fallback guard. |
 | `.github/workflows/release.yml` | tag `v*` or manual dispatch | Ubuntu: Wear debug APK + source tarball + `SHA256SUMS.txt` → GitHub **prerelease** |
 
-Public CI does **not** run the full Wear/coreKmp unit suite (those jobs have
-hung for 30–60+ minutes on GitHub-hosted Ubuntu). Assemble + markdown links +
-the release-manifest job are **not** proof of issue #30, an Apple
-compile/link matrix, or a Play-signed release. Run targeted Gradle tests
-locally with `-PpublicSnapshot=true`.
+The **Fail-closed unit slice** job is the required unit slice. It is **still
+not** private-grade issue #30 completeness: no 3-OS matrix, no full
+`:wear:testDebugUnitTest`, no coverage/SAST-as-complete, no Play-signed
+release. Public CI does **not** run the full Wear/coreKmp unit suite (those
+jobs have hung for 30–60+ minutes on GitHub-hosted Ubuntu). Assemble +
+markdown links + the release-manifest job are **not** an Apple compile/link
+matrix. Run targeted Gradle tests locally with `-PpublicSnapshot=true`.
 
 ## Releases
 
@@ -92,4 +102,5 @@ Wear debug emulator overlay (not mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNES
 `scripts/export-public.sh` is leftover sanitizer tooling from the last private
 → public orphan export. Do **not** run it as ongoing sync. Consumers should
 not run it. The original “filter-repo the private repo then make it public”
-approach is rejected.
+approach is rejected. The generated root `export-manifest.json` dump is
+gitignored and is not source.

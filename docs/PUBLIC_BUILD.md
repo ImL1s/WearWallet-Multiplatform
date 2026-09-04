@@ -63,14 +63,16 @@ the tracked `gradle.properties`.
 
 | Workflow | Trigger | What it actually gates |
 | --- | --- | --- |
-| `.github/workflows/ci.yml` | push / PR to `main` | Ubuntu: Wear **debug** APK assemble, curated Markdown link check, release-manifest attack-surface job, and the PAT-fallback guard. The APK is uploaded as a workflow artifact (14 days). |
+| `.github/workflows/ci.yml` | push / PR to `main` | Ubuntu: **Fail-closed unit slice** (timeout 20 minutes) — Wear `ReleaseFeatureGateTest` + `WalletNavigationReleaseGateTest` and coreKmp `EvmRecipientAddressPolicyTest` + `EvmBroadcastOutcomeTest`; Wear **debug** APK assemble/upload; curated Markdown link check; release-manifest attack-surface job; PAT-fallback guard. |
 | `.github/workflows/release.yml` | tag `v*` or manual dispatch | Ubuntu: Wear debug APK + source tarball + `SHA256SUMS.txt` → GitHub **prerelease** |
 
-Public CI does **not** run the full Wear/coreKmp unit suite (those jobs have
-hung for 30–60+ minutes on GitHub-hosted Ubuntu). Assemble + markdown links +
-the release-manifest job are **not** proof of issue #30, an Apple
-compile/link matrix, or a Play-signed release. Run targeted Gradle tests
-locally with `-PpublicSnapshot=true`.
+The **Fail-closed unit slice** job is the required unit slice. It is **still
+not** private-grade issue #30 completeness: no 3-OS matrix, no full
+`:wear:testDebugUnitTest`, no coverage/SAST-as-complete, no Play-signed
+release. Public CI does **not** run the full Wear/coreKmp unit suite (those
+jobs have hung for 30–60+ minutes on GitHub-hosted Ubuntu). Assemble +
+markdown links + the release-manifest job are **not** an Apple compile/link
+matrix. Run targeted Gradle tests locally with `-PpublicSnapshot=true`.
 
 ## Releases
 
@@ -100,4 +102,5 @@ Wear debug emulator overlay (not mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNES
 `scripts/export-public.sh` is leftover sanitizer tooling from the last private
 → public orphan export. Do **not** run it as ongoing sync. Consumers should
 not run it. The original “filter-repo the private repo then make it public”
-approach is rejected.
+approach is rejected. The generated root `export-manifest.json` dump is
+gitignored and is not source.

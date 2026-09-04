@@ -55,9 +55,13 @@ replay_pid*.log
 # Agent & temporary workspace scratch
 .agents/
 .omg/
+.superpowers/
 scratch/
 ORIGINAL_REQUEST.md
 PROJECT.md
+
+# Generated public-export dump (not source; leftover scripts/export-public.sh)
+/export-manifest.json
 
 # watchOS generated artifacts (regenerate with pod install / Xcode)
 watchos/Pods/
