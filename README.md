@@ -1,12 +1,3 @@
-> [!IMPORTANT]
-> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
-> tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
-> vault. Do **not** force-export from private over this `main`. Do **not** use
-> with real funds. See [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md) and
-> [`docs/PUBLIC_SNAPSHOT.md`](./docs/PUBLIC_SNAPSHOT.md).
->
-> Last sanitized export from private tip: `8be876e`
-
 <div align="center">
 
 **English** | **[繁體中文](./docs/zh-TW/README.md)**
