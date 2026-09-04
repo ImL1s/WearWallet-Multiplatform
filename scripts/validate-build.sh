@@ -21,14 +21,14 @@ if [[ -f "$repo_root/.gitmodules" ]]; then
 
         if [[ "$status_char" == "-" ]]; then
             echo "ERROR: required submodule is not initialized: $path"
-            echo "Run: ./scripts/init-submodules.sh"
+            echo "This public tree has no .gitmodules; inspect the missing path."
             empty_submodules=1
             continue
         fi
 
         if [[ ! -d "$repo_root/$path" ]]; then
             echo "ERROR: required submodule path is missing: $path"
-            echo "Run: ./scripts/init-submodules.sh"
+            echo "This public tree has no .gitmodules; inspect the missing path."
             empty_submodules=1
             continue
         fi
@@ -36,7 +36,7 @@ if [[ -f "$repo_root/.gitmodules" ]]; then
         # Use -quit so find exits 0 itself (avoid SIGPIPE under pipefail from `head`).
         if ! find "$repo_root/$path" -mindepth 1 ! -name '.git' -print -quit 2>/dev/null | grep -q .; then
             echo "ERROR: required submodule is missing or empty: $path"
-            echo "Run: ./scripts/init-submodules.sh"
+            echo "This public tree has no .gitmodules; inspect the missing path."
             empty_submodules=1
         fi
     done < <(git -C "$repo_root" submodule status --recursive)
