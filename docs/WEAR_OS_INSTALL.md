@@ -58,9 +58,22 @@ Generic adb install notes:
 
 ### Android Studio Run
 
-You can skip adb: select the Wear AVD in the Run device list and press **Run**.
-Studio installs and launches the `wear` module. Official:
+Select the Wear AVD in the Run device list and press **Run**. Studio installs
+and launches the `wear` module. Official:
 [Debug a Wear OS app](https://developer.android.com/training/wearables/get-started/debugging).
+
+On this public tree you still must pass `-PpublicSnapshot=true`, or the Google
+Services plugin looks for a real `google-services.json` that is not shipped.
+In **Settings → Build, Execution, Deployment → Build Tools → Gradle**, set
+Command-line options to:
+
+```text
+-PpublicSnapshot=true
+```
+
+Do not add that flag to the tracked `gradle.properties`. If the IDE build
+fails on a missing Firebase config, use the CLI assemble + `adb install`
+path above instead.
 
 ## 4. Debug QA overlay (emulator only)
 
