@@ -36,13 +36,21 @@ python3 scripts/tests/test_check_ci_pat_fallback.py
 python3 scripts/check_ci_pat_fallback.py
 ```
 
-TrustWallet Core is still resolved from
-`https://maven.pkg.github.com/trustwallet/wallet-core`. GitHub Packages
-often returns **401** without *some* GitHub token (the job token is enough
-in this repo's CI; a maintainer PAT is not required). A fully anonymous
-clean clone with empty `GITHUB_TOKEN` / `github.token` may still fail
-resolution. That remaining blocker is recorded; this tree does not vendor
-Wallet Core.
+### Remaining limitation (public #6 stays closed with this named)
+
+TrustWallet Core is still resolved from GitHub Packages
+(`https://maven.pkg.github.com/trustwallet/wallet-core`). That registry
+**still can 401 without a token**. The job `GITHUB_TOKEN` is enough in
+this repo's CI; a maintainer PAT is not required. A fully anonymous
+clean clone (empty `GITHUB_TOKEN` / `github.token`, empty Gradle
+dependency cache) can still fail resolution.
+
+A warm local Gradle cache can make `:wear:assembleDebug` succeed with
+empty `-Pgithub.token=` / `-Pgithub.actor=`. That is **not** anonymous
+clean-clone proof. Verified without a cached `com.trustwallet:wallet-core`
+artifact: Gradle `Could not GET ... Received status code 401`; an
+unauthenticated HTTP GET of the same POM also returns **401**. This tree
+does **not** vendor Wallet Core.
 
 Optional local packages credentials live only in untracked
 `gradle.properties.example` / `.env` / user Gradle properties — never in
