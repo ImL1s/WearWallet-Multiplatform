@@ -164,7 +164,7 @@ class Challenger2M2OptionAUiStressTest : KoinTest {
 
         // Step 4: Final SUCCESS state
         testScheduler.advanceUntilIdle()
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xsuccessful_tx_hash_option_a", viewModel.uiState.value.txHash)
         assertFalse(viewModel.uiState.value.isSubmitting)
     }
@@ -250,7 +250,7 @@ class Challenger2M2OptionAUiStressTest : KoinTest {
 
         testScheduler.advanceUntilIdle()
         assertEquals(1, executionCounter.get())
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xsingle_execution_hash", viewModel.uiState.value.txHash)
     }
 

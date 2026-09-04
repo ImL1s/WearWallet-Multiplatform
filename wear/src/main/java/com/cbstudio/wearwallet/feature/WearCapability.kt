@@ -5,8 +5,9 @@ import com.cbstudio.wearwallet.presentation.navigation.WalletRoute
 /**
  * Wear-facing capability registry. Status values are the code source of
  * truth used by [ReleaseFeatureGate]; `docs/FEATURE_STATUS.md` is the
- * public matrix. Nothing here is PRODUCTION: send still has Task D gaps,
- * and no physical-device / mainnet / store evidence exists in this tree.
+ * public matrix. Nothing here is PRODUCTION: no physical-device / mainnet /
+ * store evidence exists in this tree. Send is BETA (checksum + fail-closed
+ * fees; a tx hash is not confirmation).
  */
 enum class WearCapability(
     val id: String,

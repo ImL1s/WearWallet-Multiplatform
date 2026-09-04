@@ -198,7 +198,7 @@ class SendTransaction10StateAdversarialStressTest : KoinTest {
 
         // Complete execution -> SUCCESS
         testScheduler.advanceUntilIdle()
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xsuccesshash999", viewModel.uiState.value.txHash)
         assertFalse(viewModel.uiState.value.isSubmitting)
         assertFalse(viewModel.uiState.value.isLoading)
@@ -322,7 +322,7 @@ class SendTransaction10StateAdversarialStressTest : KoinTest {
 
         testScheduler.advanceUntilIdle()
         assertEquals(1, executionCount.get())
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertFalse(viewModel.uiState.value.isSubmitting)
     }
 
@@ -408,7 +408,7 @@ class SendTransaction10StateAdversarialStressTest : KoinTest {
         viewModel.onBiometricAuthSuccess(handle)
         testScheduler.advanceUntilIdle()
 
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xbiometrichash123", viewModel.uiState.value.txHash)
     }
 }

@@ -4,9 +4,12 @@ import androidx.biometric.BiometricPrompt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cbstudio.wearwallet.core.common.Result
+import com.cbstudio.wearwallet.core.domain.address.EvmRecipientAddressPolicy
 import com.cbstudio.wearwallet.core.domain.model.ChainType
 import com.cbstudio.wearwallet.core.domain.model.Token
+import com.cbstudio.wearwallet.core.domain.model.TransactionStatus
 import com.cbstudio.wearwallet.core.domain.model.WalletAccount
+import com.cbstudio.wearwallet.core.domain.transaction.EvmBroadcastOutcome
 import com.cbstudio.wearwallet.core.domain.model.context.ChainExecutionContextRegistry
 import com.cbstudio.wearwallet.core.domain.model.context.ChainSelection
 import com.cbstudio.wearwallet.core.domain.model.intent.ConfirmedEvmTransactionIntent
@@ -119,7 +122,8 @@ class SendTransactionViewModel : ViewModel(), KoinComponent {
         SIGNING,            // 簽名中
         BROADCASTING,       // 廣播中
         SENDING,            // 相容原有 SENDING
-        SUCCESS,            // 成功
+        BROADCASTED,        // hash returned; not chain confirmation
+        SUCCESS,            // retained; send-hash path uses BROADCASTED
         AUTH_CANCELLED,     // 認證取消
         AUTH_EXPIRED,       // 認證過期
         FAILED              // 失敗
@@ -149,6 +153,7 @@ class SendTransactionViewModel : ViewModel(), KoinComponent {
         val isEstimatingGas: Boolean = false,
         val error: String? = null,
         val txHash: String? = null,
+        val broadcastStatus: TransactionStatus? = null,
         val addressError: String? = null,
         val amountError: String? = null,
         // 地址簿相關
@@ -164,7 +169,24 @@ class SendTransactionViewModel : ViewModel(), KoinComponent {
         val estimatedGasLimit: String? get() = estimatedGasLimitObj?.toLong()?.toString()
         val estimatedGasPriceGweiFormatted: String? get() = estimatedGasPriceWei?.toGweiString()?.let { "$it Gwei" }
         val isReadyToSign: Boolean get() = confirmedSnapshot != null && authorizedFingerprint != null && (authorizedFingerprint == confirmedSnapshot.signingDigestHex || authorizedFingerprint == confirmedSnapshot.canonicalFingerprint)
+        val reviewFields: EvmSendReviewFields?
+            get() {
+                val snap = confirmedSnapshot ?: return null
+                return EvmSendReviewFields(
+                    toAddress = snap.recipient.value,
+                    chainId = snap.executionContext.chainId,
+                    nonce = snap.nonce.toLong(),
+                    contractAddress = snap.tokenContract?.value,
+                )
+            }
     }
+
+    data class EvmSendReviewFields(
+        val toAddress: String,
+        val chainId: Long,
+        val nonce: Long,
+        val contractAddress: String?,
+    )
     
     private val _uiState = MutableStateFlow(SendTransactionUiState())
     val uiState: StateFlow<SendTransactionUiState> = _uiState.asStateFlow()
@@ -351,6 +373,7 @@ class SendTransactionViewModel : ViewModel(), KoinComponent {
             when {
                 !address.startsWith("0x") -> "地址格式錯誤"
                 address.length != 42 -> "地址長度錯誤"
+                !EvmRecipientAddressPolicy.isValid(address) -> "地址校驗和錯誤"
                 else -> null
             }
         }
@@ -1076,12 +1099,13 @@ class SendTransactionViewModel : ViewModel(), KoinComponent {
                             _uiState.update { 
                                 it.copy(
                                     txHash = result.data,
-                                    currentStep = TransactionStep.SUCCESS,
+                                    currentStep = TransactionStep.BROADCASTED,
+                                    broadcastStatus = EvmBroadcastOutcome.statusForSubmittedHash(),
                                     isLoading = false,
                                     isSubmitting = false
                                 )
                             }
-                            Timber.d("交易成功: ${result.data}")
+                            Timber.d("交易已送出（待鏈上確認）: ${result.data}")
                         }
                         is Result.Failure -> {
                             _uiState.update { 

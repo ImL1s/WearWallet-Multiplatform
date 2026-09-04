@@ -1,6 +1,7 @@
 package com.cbstudio.wearwallet.core.domain.usecase.transaction
 
 import com.cbstudio.wearwallet.core.common.Result
+import com.cbstudio.wearwallet.core.domain.address.EvmRecipientAddressPolicy
 import com.cbstudio.wearwallet.core.domain.model.TransactionEstimate
 import com.cbstudio.wearwallet.core.domain.model.ChainType
 import com.cbstudio.wearwallet.core.domain.model.TransactionRequest
@@ -170,11 +171,10 @@ class EstimateTransactionUseCase(
     )
     
     /**
-     * 驗證地址格式
+     * 驗證地址格式（EIP-55：混合大小寫必須通過 checksum）
      */
     private fun isValidAddress(address: String): Boolean {
-        return address.isNotBlank() && 
-               address.matches(Regex("^0x[a-fA-F0-9]{40}$"))
+        return EvmRecipientAddressPolicy.isValid(address)
     }
     
     /**
@@ -190,63 +190,64 @@ class EstimateTransactionUseCase(
     }
     
     /**
-     * 計算交易費用
+     * 計算交易費用。Missing/unparseable gas must fail closed — never 21000/20/"0.0".
      */
     private fun calculateFee(gasLimit: String, gasPrice: String): String {
-        return try {
-            val limit = gasLimit.toLongOrNull() ?: 21000L
-            val price = gasPrice.toLongOrNull() ?: 20L
-            val fee = limit * price
-            // Convert from Wei to ETH (or native token)
-            (fee / 1_000_000_000.0).toString()
-        } catch (e: Exception) {
-            "0.0"
-        }
+        val limit = gasLimit.toLongOrNull()
+            ?: throw IllegalArgumentException("Invalid or missing gas limit: '$gasLimit'")
+        val price = gasPrice.toLongOrNull()
+            ?: throw IllegalArgumentException("Invalid or missing gas price: '$gasPrice'")
+        require(limit > 0L) { "Gas limit must be positive, got $limit" }
+        require(price > 0L) { "Gas price must be positive, got $price" }
+        val fee = limit * price
+        return (fee / 1_000_000_000.0).toString()
     }
     
     /**
-     * 將十六進制 Wei 轉換為 Gwei 字串
+     * 將十六進制 Wei 轉換為 Gwei 字串。Parse failure is not a silent 20 Gwei fallback.
      */
     private fun hexToGwei(hexWei: String): String {
-        return try {
-            val cleanHex = hexWei.removePrefix("0x")
-            if (cleanHex.isEmpty() || cleanHex == "0") return "1"
-            val wei = cleanHex.toLong(16)
-            val gwei = wei / 1_000_000_000L // Wei to Gwei
-            if (gwei < 1) "1" else gwei.toString()
-        } catch (e: Exception) {
-            "20" // fallback
+        val cleanHex = hexWei.removePrefix("0x").removePrefix("0X")
+        if (cleanHex.isEmpty() || cleanHex == "0") {
+            throw IllegalArgumentException("Missing gas price: '$hexWei'")
         }
+        val wei = cleanHex.toLongOrNull(16)
+            ?: throw IllegalArgumentException("Invalid gas price hex: '$hexWei'")
+        if (wei <= 0L) {
+            throw IllegalArgumentException("Gas price must be positive, got $wei wei")
+        }
+        val gwei = wei / 1_000_000_000L
+        if (gwei < 1L) {
+            throw IllegalArgumentException("Gas price below 1 Gwei: $wei wei")
+        }
+        return gwei.toString()
     }
     
     /**
-     * 驗證估算結果
+     * 驗證估算結果。Over-max gas fails closed — do not silently rewrite to 500 Gwei.
      */
     private fun validateEstimate(
         estimate: TransactionEstimate,
         chainType: ChainType
     ): TransactionEstimate {
-        // 確保 Gas 價格在合理範圍內
         val maxGasPrice = when (chainType) {
-            ChainType.ETHEREUM -> "500" // 500 Gwei
-            ChainType.BSC -> "50"       // 50 Gwei
-            ChainType.POLYGON -> "1000"  // 1000 Gwei
-            else -> "100"
+            ChainType.ETHEREUM -> 500.0
+            ChainType.BSC -> 50.0
+            ChainType.POLYGON -> 1000.0
+            else -> 100.0
         }
         
-        val estimatedGasPrice = estimate.gasPrice.toDoubleOrNull() ?: return estimate
-        val maxPrice = maxGasPrice.toDoubleOrNull() ?: return estimate
-        
-        return if (estimatedGasPrice > maxPrice) {
-            Logger.w("EstimateTransaction", 
-                "Gas price exceeds maximum: $estimatedGasPrice > $maxPrice")
-            estimate.copy(
-                gasPrice = maxGasPrice,
-                warning = "Gas price was capped at maximum: $maxGasPrice Gwei"
+        val estimatedGasPrice = estimate.gasPrice.toDoubleOrNull()
+            ?: throw IllegalArgumentException("Invalid gas price in estimate: '${estimate.gasPrice}'")
+        if (estimatedGasPrice <= 0.0) {
+            throw IllegalArgumentException("Gas price must be positive, got $estimatedGasPrice")
+        }
+        if (estimatedGasPrice > maxGasPrice) {
+            throw IllegalArgumentException(
+                "Gas price $estimatedGasPrice Gwei exceeds maximum $maxGasPrice Gwei for $chainType"
             )
-        } else {
-            estimate
         }
+        return estimate
     }
     
     /**

@@ -2,6 +2,8 @@ package com.cbstudio.wearwallet.presentation.wallet.screens.main.tx
 
 import com.cbstudio.wearwallet.core.common.Result
 import com.cbstudio.wearwallet.core.domain.model.ChainType
+import com.cbstudio.wearwallet.core.domain.model.Token
+import com.cbstudio.wearwallet.core.domain.model.TransactionStatus
 import com.cbstudio.wearwallet.core.domain.model.WalletAccount
 import com.cbstudio.wearwallet.core.domain.model.WalletType
 import com.cbstudio.wearwallet.core.domain.model.context.ChainExecutionContext
@@ -216,7 +218,7 @@ class SendTransactionViewModelTest : KoinTest {
         // Then
         val state = viewModel.uiState.value
         assertEquals("0xtxhash", state.txHash)
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, state.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, state.currentStep)
     }
     
     @Test
@@ -305,7 +307,7 @@ class SendTransactionViewModelTest : KoinTest {
         assertEquals(expectedFingerprint, viewModel.uiState.value.authorizedFingerprint)
 
         testScheduler.advanceUntilIdle()
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xhash123456", viewModel.uiState.value.txHash)
         assertFalse(viewModel.uiState.value.isSubmitting)
     }
@@ -795,7 +797,7 @@ class SendTransactionViewModelTest : KoinTest {
         viewModel.onBiometricAuthSuccess(authHandle)
         testScheduler.advanceUntilIdle()
 
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xtx_migrated_success", viewModel.uiState.value.txHash)
     }
 
@@ -826,5 +828,120 @@ class SendTransactionViewModelTest : KoinTest {
 
         kotlin.test.assertNull(viewModel.uiState.value.confirmedSnapshot, "Confirmed snapshot MUST NOT be generated without valid keyAlias")
         assertEquals(SendTransactionViewModel.TransactionStep.MIGRATION_REQUIRED, viewModel.uiState.value.currentStep)
+    }
+
+    @Test
+    fun `validateAddress rejects mixed-case EIP-55 mismatch and accepts known checksum`() = runTest {
+        coEvery { walletRepository.getActiveWallet() } returns Result.Success(mockWallet)
+        viewModel = SendTransactionViewModel()
+        testScheduler.advanceUntilIdle()
+
+        viewModel.setRecipientAddress(EIP55_WRONG_MIXED)
+        assertTrue(
+            viewModel.uiState.value.addressError != null,
+            "wrong mixed-case checksum must set addressError",
+        )
+
+        viewModel.setRecipientAddress(EIP55_GOOD)
+        assertEquals(EIP55_GOOD, viewModel.uiState.value.recipientAddress)
+        assertEquals(null, viewModel.uiState.value.addressError)
+
+        viewModel.setRecipientAddress(EIP55_ALL_LOWER)
+        assertEquals(null, viewModel.uiState.value.addressError)
+
+        viewModel.setRecipientAddress(EIP55_ALL_UPPER)
+        assertEquals(null, viewModel.uiState.value.addressError)
+    }
+
+    @Test
+    fun `successful broadcast hash is BROADCASTED with PENDING status not CONFIRMED`() = runTest {
+        coEvery { walletRepository.getActiveWallet() } returns Result.Success(mockWallet)
+        coEvery { walletRepository.getNativeBalance(any(), any()) } returns 1.0
+        val gasEstimation = EstimateGasUseCase.GasEstimation(
+            weiGasPrice = com.cbstudio.wearwallet.core.domain.model.quantities.Wei.fromGwei(10),
+            gasLimitObj = com.cbstudio.wearwallet.core.domain.model.quantities.GasLimit.fromDecimalString("21000"),
+            totalFee = "0.00021"
+        )
+        coEvery { estimateGasUseCase(any(), any(), any(), any(), any()) } returns flowOf(
+            Result.Success(gasEstimation)
+        )
+
+        viewModel = SendTransactionViewModel()
+        testScheduler.advanceUntilIdle()
+        viewModel.setRecipientAddress(EIP55_GOOD)
+        viewModel.setAmount("0.1")
+        testScheduler.advanceUntilIdle()
+        viewModel.proceedToConfirm()
+        testScheduler.advanceUntilIdle()
+
+        coEvery { sendTransactionUseCase(intent = any(), authContext = any()) } returns flowOf(
+            Result.Success("0xtxhash")
+        )
+        val snapshot = viewModel.uiState.value.confirmedSnapshot!!
+        val handle = com.cbstudio.wearwallet.core.security.TestPlatformAuthenticator.issueHandle(
+            keyId = snapshot.keyAlias,
+            operation = com.cbstudio.wearwallet.core.security.AuthOperation.SIGN,
+            intentFingerprint = snapshot.signingDigestHex
+        )
+        viewModel.onBiometricAuthSuccess(handle)
+        testScheduler.advanceUntilIdle()
+
+        val state = viewModel.uiState.value
+        assertEquals("0xtxhash", state.txHash)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, state.currentStep)
+        assertEquals(TransactionStatus.PENDING, state.broadcastStatus)
+        assertTrue(state.broadcastStatus != TransactionStatus.CONFIRMED)
+        assertTrue(state.currentStep != SendTransactionViewModel.TransactionStep.SUCCESS)
+    }
+
+    @Test
+    fun `review state keeps full to-address chainId nonce and contract untruncated`() = runTest {
+        coEvery { walletRepository.getActiveWallet() } returns Result.Success(mockWallet)
+        coEvery { walletRepository.getNativeBalance(any(), any()) } returns 100.0
+        val gasEstimation = EstimateGasUseCase.GasEstimation(
+            weiGasPrice = com.cbstudio.wearwallet.core.domain.model.quantities.Wei.fromGwei(10),
+            gasLimitObj = com.cbstudio.wearwallet.core.domain.model.quantities.GasLimit.fromDecimalString("65000"),
+            totalFee = "0.00065"
+        )
+        coEvery { estimateGasUseCase(any(), any(), any(), any(), any(), any()) } returns flowOf(
+            Result.Success(gasEstimation)
+        )
+
+        viewModel = SendTransactionViewModel()
+        testScheduler.advanceUntilIdle()
+        viewModel.setRecipientAddress(EIP55_GOOD)
+        val token = Token(
+            id = "usdc",
+            address = TOKEN_CONTRACT,
+            name = "USD Coin",
+            symbol = "USDC",
+            decimals = 6,
+            chainType = ChainType.ETHEREUM,
+            balance = "100.0",
+        )
+        viewModel.selectToken(token)
+        viewModel.setAmount("1.0")
+        testScheduler.advanceUntilIdle()
+        viewModel.proceedToConfirm()
+        testScheduler.advanceUntilIdle()
+
+        val review = viewModel.uiState.value.reviewFields
+        assertNotNull(review)
+        assertEquals(EIP55_GOOD, review.toAddress)
+        assertEquals(42, review.toAddress.length)
+        assertFalse(review.toAddress.contains("..."))
+        assertTrue(review.chainId > 0L)
+        assertTrue(review.nonce >= 0L)
+        assertEquals(TOKEN_CONTRACT, review.contractAddress)
+        assertFalse(review.contractAddress!!.contains("..."))
+        assertEquals(42, review.contractAddress!!.length)
+    }
+
+    companion object {
+        const val EIP55_GOOD = "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"
+        const val EIP55_WRONG_MIXED = "0x5aaeb6053F3E94C9b9A09f33669435E7Ef1BeAed"
+        const val EIP55_ALL_LOWER = "0x5aaeb6053f3e94c9b9a09f33669435e7ef1beaed"
+        const val EIP55_ALL_UPPER = "0x5AAEB6053F3E94C9B9A09F33669435E7EF1BEAED"
+        const val TOKEN_CONTRACT = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
     }
 }

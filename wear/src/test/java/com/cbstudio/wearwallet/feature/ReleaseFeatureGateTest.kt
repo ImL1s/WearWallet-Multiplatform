@@ -63,7 +63,7 @@ class ReleaseFeatureGateTest {
         )
         assertTrue("missing matrix rows: ${required - ids}", ids.containsAll(required))
         assertTrue(
-            "nothing in this tree is PRODUCTION until Task D and device evidence exist",
+            "nothing in this tree is PRODUCTION until device/mainnet evidence exists",
             WearCapability.entries.none { it.maturity == FeatureMaturity.PRODUCTION }
         )
         assertEquals(FeatureMaturity.BETA, WearCapability.WEAR_SEND.maturity)

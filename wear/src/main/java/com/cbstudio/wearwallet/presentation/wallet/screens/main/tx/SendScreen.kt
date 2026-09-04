@@ -4,7 +4,9 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -127,6 +129,7 @@ fun SendScreen(
             SendTransactionViewModel.TransactionStep.SIGNING -> 0.85f
             SendTransactionViewModel.TransactionStep.BROADCASTING,
             SendTransactionViewModel.TransactionStep.SENDING -> 0.95f
+            SendTransactionViewModel.TransactionStep.BROADCASTED,
             SendTransactionViewModel.TransactionStep.SUCCESS -> 1f
             SendTransactionViewModel.TransactionStep.AUTH_CANCELLED,
             SendTransactionViewModel.TransactionStep.AUTH_EXPIRED,
@@ -142,6 +145,7 @@ fun SendScreen(
     ) {
         // 步驟進度指示器
         if (uiState.currentStep != SendTransactionViewModel.TransactionStep.SUCCESS &&
+            uiState.currentStep != SendTransactionViewModel.TransactionStep.BROADCASTED &&
             uiState.currentStep != SendTransactionViewModel.TransactionStep.FAILED &&
             uiState.currentStep != SendTransactionViewModel.TransactionStep.AUTH_CANCELLED &&
             uiState.currentStep != SendTransactionViewModel.TransactionStep.AUTH_EXPIRED) {
@@ -206,6 +210,9 @@ fun SendScreen(
                     } else {
                         ModernConfirmationScreen(
                             recipientAddress = snapshot.recipient.value,
+                            chainId = snapshot.executionContext.chainId,
+                            nonce = snapshot.nonce.toLong(),
+                            contractAddress = snapshot.tokenContract?.value,
                             amount = snapshot.humanAmount,
                             estimatedFee = snapshot.totalFee,
                             selectedToken = snapshot.tokenSymbol,
@@ -378,6 +385,9 @@ fun SendScreen(
                         snapshot?.let { snap ->
                             ModernConfirmationScreen(
                                 recipientAddress = snap.recipient.value,
+                                chainId = snap.executionContext.chainId,
+                                nonce = snap.nonce.toLong(),
+                                contractAddress = snap.tokenContract?.value,
                                 amount = snap.humanAmount,
                                 estimatedFee = snap.totalFee,
                                 selectedToken = snap.tokenSymbol,
@@ -400,6 +410,7 @@ fun SendScreen(
                     ModernSendingScreen(title = "廣播中...", subtitle = "正在提交至區塊鏈網絡")
                 }
                 
+                SendTransactionViewModel.TransactionStep.BROADCASTED,
                 SendTransactionViewModel.TransactionStep.SUCCESS -> {
                     ModernSuccessScreen(
                         txHash = uiState.txHash ?: "",
@@ -832,6 +843,9 @@ private fun ModernAmountInputScreen(
 @Composable
 private fun ModernConfirmationScreen(
     recipientAddress: String,
+    chainId: Long,
+    nonce: Long,
+    contractAddress: String? = null,
     amount: String,
     estimatedFee: String,
     selectedToken: String?,
@@ -892,7 +906,7 @@ private fun ModernConfirmationScreen(
                     
                     ThemedDivider()
                     
-                    // 接收地址
+                    // 接收地址（完整；可橫向捲動）
                     Column {
                         Text(
                             text = "接收地址",
@@ -900,11 +914,65 @@ private fun ModernConfirmationScreen(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Text(
-                            text = "${recipientAddress.take(6)}...${recipientAddress.takeLast(4)}",
-                            style = MaterialTheme.typography.bodyMedium,
+                            text = recipientAddress,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            fontFamily = FontFamily.Monospace,
+                            modifier = Modifier.horizontalScroll(rememberScrollState())
+                        )
+                    }
+
+                    ThemedDivider()
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Chain ID",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = chainId.toString(),
+                            style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface,
                             fontFamily = FontFamily.Monospace
                         )
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = "Nonce",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = nonce.toString(),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            fontFamily = FontFamily.Monospace
+                        )
+                    }
+
+                    if (!contractAddress.isNullOrBlank()) {
+                        Column {
+                            Text(
+                                text = "合約地址",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                            Text(
+                                text = contractAddress,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                fontFamily = FontFamily.Monospace,
+                                modifier = Modifier.horizontalScroll(rememberScrollState())
+                            )
+                        }
                     }
                     
                     ThemedDivider()
@@ -1106,10 +1174,11 @@ private fun ModernSuccessScreen(
             }
             
             Text(
-                text = "交易成功！",
+                text = "已送出，待鏈上確認",
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onBackground,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
             )
             
             if (txHash.isNotEmpty()) {

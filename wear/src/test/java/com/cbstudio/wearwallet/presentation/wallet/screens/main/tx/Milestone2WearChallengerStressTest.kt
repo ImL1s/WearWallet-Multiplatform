@@ -185,7 +185,7 @@ class Milestone2WearChallengerStressTest : KoinTest {
         testScheduler.advanceUntilIdle()
 
         assertEquals(1, callCount.get(), "SendTransactionUseCase must only be invoked exactly ONCE among 50 concurrent submissions")
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xhash_concurrent_success", viewModel.uiState.value.txHash)
         assertFalse(viewModel.uiState.value.isSubmitting)
     }
@@ -308,7 +308,7 @@ class Milestone2WearChallengerStressTest : KoinTest {
         viewModel.onBiometricAuthSuccess(handle)
         testScheduler.advanceUntilIdle()
 
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xbio_tx_hash", viewModel.uiState.value.txHash)
         assertEquals(expectedFingerprint, viewModel.uiState.value.authorizedFingerprint)
     }

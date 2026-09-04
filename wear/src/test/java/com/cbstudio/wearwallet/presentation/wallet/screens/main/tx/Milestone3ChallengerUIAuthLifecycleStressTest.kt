@@ -296,7 +296,7 @@ class Milestone3ChallengerUIAuthLifecycleStressTest : KoinTest {
         viewModel.onBiometricAuthSuccess(authHandle)
         testScheduler.advanceUntilIdle()
 
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         // Verify the handle was invalidated in finally block
         assertTrue(authHandle.isInvalidated, "Auth handle must be invalidated in sendTransaction finally block")
     }
@@ -338,7 +338,7 @@ class Milestone3ChallengerUIAuthLifecycleStressTest : KoinTest {
         testScheduler.advanceUntilIdle()
 
         assertEquals(1, executionCounter.get(), "Mutex must restrict execution to exactly 1 call among 100 rapid concurrent attempts")
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xtx_mutex_test", viewModel.uiState.value.txHash)
         assertFalse(viewModel.uiState.value.isSubmitting)
     }
@@ -375,7 +375,7 @@ class Milestone3ChallengerUIAuthLifecycleStressTest : KoinTest {
         testScheduler.advanceUntilIdle()
 
         assertEquals(1, executionCounter.get(), "Racing biometric auth submissions must be deduplicated by mutex")
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
     }
 
     @Test
@@ -423,7 +423,7 @@ class Milestone3ChallengerUIAuthLifecycleStressTest : KoinTest {
         viewModel.onBiometricAuthSuccess(handle2)
         testScheduler.advanceUntilIdle()
 
-        assertEquals(SendTransactionViewModel.TransactionStep.SUCCESS, viewModel.uiState.value.currentStep)
+        assertEquals(SendTransactionViewModel.TransactionStep.BROADCASTED, viewModel.uiState.value.currentStep)
         assertEquals("0xsuccess_after_retry", viewModel.uiState.value.txHash)
         assertEquals(2, callCount)
     }
