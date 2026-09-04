@@ -15,8 +15,9 @@ watchOS, and shared Kotlin Multiplatform code.
 > This public repo (`ImL1s/WearWallet-public`) is the **canonical development
 > tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 > vault. Do **not** force-export from private over this `main` as ongoing sync.
-> This tree has **no private development history** (last sanitized orphan
-> export). Do **not** use with real funds. It is not a security audit, release
+> This tree has **no private development history** — last sanitized orphan
+> export from private tip `8be876e`
+> (`8be876ef60d7d27418232a799f1c1a93aa3b0ca7`). Do **not** use with real funds. It is not a security audit, release
 > certification, or guarantee of safe use. See
 > [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md) and
 > [`docs/PUBLIC_SNAPSHOT.md`](./docs/PUBLIC_SNAPSHOT.md).
