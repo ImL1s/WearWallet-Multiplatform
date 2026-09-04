@@ -35,19 +35,23 @@ A generated signature or a `Result.success` is not an on-chain send.
 
 ## Run it
 
+Create and start a Wear OS AVD first. Full steps (including physical-watch
+sideload) are in [WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md).
+
 From this repository (`-PpublicSnapshot=true` skips Firebase plugins):
 
 ```bash
 ./gradlew :wear:assembleDebug -PpublicSnapshot=true
-# private tree can omit -PpublicSnapshot=true if google-services.json is present
 ```
 
-Install on a Wear OS emulator, not a production watch store build:
+Install on a **running Wear OS emulator**, not a production watch store build.
+Use the serial from `adb devices -l` (often `emulator-5554`, not always):
 
 ```bash
 adb devices -l
-adb -s emulator-5554 install -r wear/build/outputs/apk/debug/wear-debug.apk
-adb -s emulator-5554 shell monkey -p com.cbstudio.wearwallet -c android.intent.category.LAUNCHER 1
+# Copy the Wear emulator serial (emulator-XXXX). Do not assume the first row.
+adb -s SERIAL install -r wear/build/outputs/apk/debug/wear-debug.apk
+adb -s SERIAL shell monkey -p com.cbstudio.wearwallet -c android.intent.category.LAUNCHER 1
 ```
 
 You should see the QA banner on token / history / contact / QR / send-confirm

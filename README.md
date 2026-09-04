@@ -107,6 +107,9 @@ library repositories, see each library's own upstream GitHub repository.
 ./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ./gradlew :mobile:assembleDebug -PpublicSnapshot=true
 
+# Wear OS: create a Wear AVD, then adb install the debug APK.
+# See docs/WEAR_OS_INSTALL.md (not a Play/store install).
+
 # watchOS (macOS + Xcode + CocoaPods). Pods are not committed.
 # build-kmp.sh runs pod install and creates a local WearWallet.xcworkspace.
 # Open that workspace (not WatchWallet.xcodeproj) so the Pods target is included.

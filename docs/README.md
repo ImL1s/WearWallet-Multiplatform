@@ -19,6 +19,7 @@ shipped in this tree.
 | --- | --- |
 | Clone, credentials, CI, releases | [Public build notes](./PUBLIC_BUILD.md) |
 | Public-safe development notes | [Development guide](./DEVELOPMENT_GUIDE.md) · [繁體中文](./DEVELOPMENT_GUIDE.zh-TW.md) |
+| Install Wear debug APK (emulator / sideload) | [Wear OS install](./WEAR_OS_INSTALL.md) |
 | Wear debug emulator QA overlays | [Wear QA harness](./WEAR_QA_HARNESS.md) |
 | Select and run checks | [Testing guide](./TESTING_GUIDE.md) |
 | Understand current modules and data flow | [Architecture](./ARCHITECTURE.md) · [繁體中文](./ARCHITECTURE.zh-TW.md) |
@@ -32,6 +33,7 @@ shipped in this tree.
 
 ## Platform guides
 
+- [Wear OS install (debug APK)](./WEAR_OS_INSTALL.md)
 - [watchOS development](./WATCHOS_DEVELOPMENT_GUIDE.md) · [繁體中文](./WATCHOS_DEVELOPMENT_GUIDE.zh-TW.md)
 - [Keystone integration](./KEYSTONE_INTEGRATION_GUIDE.md)
 

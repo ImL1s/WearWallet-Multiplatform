@@ -36,7 +36,8 @@ chmod +x gradlew
 ./gradlew :coreKmp:testDebugUnitTest :wear:testDebugUnitTest :wear:assembleDebug -PpublicSnapshot=true
 ```
 
-Wear debug 模擬器 overlay（不是 mainnet）：[WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md)。
+把 Wear debug APK 裝到模擬器或開發用手錶：[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md)。
+Debug 模擬器 overlay（不是 mainnet）：[WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md)。
 
 Apple / watchOS 的 Xcode 建置**不是**這個公開 tip 的 CI 證據。公開 CI 包含
 **Fail-closed unit slice**（20 分鐘 timeout）、Wear `assembleDebug`、Markdown

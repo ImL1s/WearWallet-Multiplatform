@@ -27,7 +27,9 @@ chmod +x gradlew
 ./gradlew :coreKmp:testDebugUnitTest :wear:testDebugUnitTest :wear:assembleDebug -PpublicSnapshot=true
 ```
 
-Wear debug emulator overlay (not mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).
+Install the Wear debug APK on an emulator or developer watch:
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md). Debug emulator overlay (not
+mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).
 
 Apple / watchOS Xcode builds are **not** CI-proven on this public tip.
 Public CI includes the **Fail-closed unit slice** job (timeout 20 minutes),

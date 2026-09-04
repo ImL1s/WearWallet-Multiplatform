@@ -221,6 +221,7 @@ jobs:
             docs/COREKMP_API_OVERVIEW.md
             docs/WEBVIEW_CONTRACT.md
             docs/WEAR_QA_HARNESS.md
+            docs/WEAR_OS_INSTALL.md
             docs/zh-TW/README.md
             watchos/README.md
           )
