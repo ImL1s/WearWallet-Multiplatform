@@ -56,10 +56,11 @@ coreKmp/build/bin/watchosSimulatorArm64/debugFramework/coreKmp.framework
 
 The checked-in app is `WatchWallet.xcodeproj` plus `WatchWallet Watch App`.
 `watchos/WatchWallet/` is a small iOS companion target in that same project
-(not a second watch app); its CocoaPods target is commented out.
-`watchos/build-kmp.sh` prepares `watchos/Frameworks/coreKmp.framework`.
-Framework Search Paths must point at `coreKmp.framework`; do not restore
-`WearWalletShared.framework` or a `sharedKmp/` path.
+(not a second watch app, not a supported entry). Its CocoaPods target is
+commented out; do not give it a watchOS `coreKmp` Framework Search Path.
+`watchos/build-kmp.sh` prepares `watchos/Frameworks/coreKmp.framework` for
+the watchOS app via CocoaPods. Do not restore `WearWalletShared.framework`
+or a `sharedKmp/` path.
 
 There is no committed `WearWallet.xcworkspace`. `watchos/build-kmp.sh` runs
 `pod install` and creates a local workspace. After that script, open
