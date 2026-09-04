@@ -1,0 +1,45 @@
+-- 刪除細項帳本表 - PR #32 Round 11
+CREATE TABLE IF NOT EXISTS deletion_step_ledger (
+    wallet_id INTEGER NOT NULL,
+    step_name TEXT NOT NULL,
+    status TEXT NOT NULL, -- 'PENDING', 'PASS', 'FAILED'
+    error_message TEXT,
+    retry_count INTEGER NOT NULL DEFAULT 0,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (wallet_id, step_name),
+    FOREIGN KEY (wallet_id) REFERENCES deletion_journal(wallet_id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_deletion_step_ledger_status ON deletion_step_ledger(wallet_id, status);
+
+-- 插入或更新子步驟
+upsertStep:
+INSERT OR REPLACE INTO deletion_step_ledger (
+    wallet_id, step_name, status, error_message, retry_count, updated_at
+) VALUES (?, ?, ?, ?, ?, ?);
+
+-- 查詢特定錢包的所有子步驟
+selectStepsByWalletId:
+SELECT * FROM deletion_step_ledger
+WHERE wallet_id = ?
+ORDER BY step_name ASC;
+
+-- 查詢特定錢包未完成或失敗的子步驟
+selectPendingOrFailedSteps:
+SELECT * FROM deletion_step_ledger
+WHERE wallet_id = ? AND status != 'PASS';
+
+-- 查詢特定子步驟
+selectStep:
+SELECT * FROM deletion_step_ledger
+WHERE wallet_id = ? AND step_name = ?;
+
+-- 刪除特定錢包的所有子步驟記錄
+deleteStepsByWalletId:
+DELETE FROM deletion_step_ledger
+WHERE wallet_id = ?;
+
+-- 查詢所有步驟記錄
+selectAllSteps:
+SELECT * FROM deletion_step_ledger
+ORDER BY wallet_id ASC, step_name ASC;

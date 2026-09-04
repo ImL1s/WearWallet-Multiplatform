@@ -1,0 +1,43 @@
+# Build artifacts
+build/
+.gradle/
+*.class
+*.jar
+*.war
+*.aar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+.DS_Store
+
+# Local configuration
+local.properties
+*.local
+
+# Kotlin/Native
+*.klib
+*.kotlin_module
+
+# Generated sources
+**/generated/
+**/GeneratedDefFile/
+
+# Test outputs
+**/test-results/
+**/reports/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Secrets (should never be committed)
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+secrets.properties

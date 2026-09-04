@@ -1,0 +1,109 @@
+-- PushSubscription.sq
+-- Push Protocol 訂閱記錄表
+
+CREATE TABLE IF NOT EXISTS push_subscription (
+    wallet_address TEXT NOT NULL,
+    channel_address TEXT NOT NULL,
+    subscribed INTEGER NOT NULL DEFAULT 0,
+    subscribed_at INTEGER,
+    unsubscribed_at INTEGER,
+    last_synced_at INTEGER NOT NULL,
+    PRIMARY KEY (wallet_address, channel_address)
+);
+
+-- 索引提升查詢效能
+CREATE INDEX IF NOT EXISTS idx_push_subscription_wallet ON push_subscription(wallet_address);
+CREATE INDEX IF NOT EXISTS idx_push_subscription_channel ON push_subscription(channel_address);
+CREATE INDEX IF NOT EXISTS idx_push_subscription_status ON push_subscription(subscribed);
+CREATE INDEX IF NOT EXISTS idx_push_subscription_sync ON push_subscription(last_synced_at);
+
+-- 查詢錢包的所有訂閱
+selectByWallet:
+SELECT * FROM push_subscription 
+WHERE wallet_address = ? 
+ORDER BY last_synced_at DESC;
+
+-- 查詢錢包的活躍訂閱
+selectActiveByWallet:
+SELECT * FROM push_subscription 
+WHERE wallet_address = ? AND subscribed = 1 
+ORDER BY subscribed_at DESC;
+
+-- 查詢特定訂閱狀態
+selectSubscriptionStatus:
+SELECT * FROM push_subscription 
+WHERE wallet_address = ? AND channel_address = ?;
+
+-- 檢查是否已訂閱
+checkSubscribed:
+SELECT subscribed FROM push_subscription 
+WHERE wallet_address = ? AND channel_address = ?;
+
+-- 計算頻道訂閱者數量
+countChannelSubscribers:
+SELECT COUNT(*) FROM push_subscription 
+WHERE channel_address = ? AND subscribed = 1;
+
+-- 查詢需要同步的訂閱（超過指定時間）
+selectNeedingSync:
+SELECT * FROM push_subscription 
+WHERE last_synced_at < ? 
+ORDER BY last_synced_at ASC 
+LIMIT ?;
+
+-- 計算錢包訂閱數量
+countSubscriptions:
+SELECT COUNT(*) FROM push_subscription 
+WHERE wallet_address = ? AND subscribed = 1;
+
+-- 查詢最近訂閱的記錄
+selectRecentlySubscribed:
+SELECT * FROM push_subscription 
+WHERE wallet_address = ? AND subscribed = 1 
+ORDER BY subscribed_at DESC 
+LIMIT ?;
+
+-- 插入或更新訂閱
+upsertSubscription:
+INSERT OR REPLACE INTO push_subscription (
+    wallet_address, channel_address, subscribed, subscribed_at, unsubscribed_at, last_synced_at
+) VALUES (?, ?, ?, ?, ?, ?);
+
+-- 訂閱頻道
+subscribe:
+INSERT OR REPLACE INTO push_subscription (
+    wallet_address, channel_address, subscribed, subscribed_at, unsubscribed_at, last_synced_at
+) VALUES (?, ?, 1, ?, NULL, ?);
+
+-- 取消訂閱
+unsubscribe:
+UPDATE push_subscription 
+SET subscribed = 0, unsubscribed_at = ?, last_synced_at = ? 
+WHERE wallet_address = ? AND channel_address = ?;
+
+-- 更新同步時間
+updateSyncTime:
+UPDATE push_subscription 
+SET last_synced_at = ? 
+WHERE wallet_address = ? AND channel_address = ?;
+
+-- 批量更新錢包的同步時間
+batchUpdateSyncTime:
+UPDATE push_subscription 
+SET last_synced_at = ? 
+WHERE wallet_address = ?;
+
+-- 刪除訂閱記錄
+deleteSubscription:
+DELETE FROM push_subscription 
+WHERE wallet_address = ? AND channel_address = ?;
+
+-- 刪除錢包的所有訂閱
+deleteAllByWallet:
+DELETE FROM push_subscription 
+WHERE wallet_address = ?;
+
+-- 清理舊的取消訂閱記錄
+cleanupOldUnsubscriptions:
+DELETE FROM push_subscription 
+WHERE subscribed = 0 AND unsubscribed_at < ?;

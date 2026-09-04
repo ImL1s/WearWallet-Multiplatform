@@ -1,0 +1,3 @@
+headers = CommonCrypto/CommonCrypto.h CommonCrypto/CommonKeyDerivation.h CommonCrypto/CommonCryptor.h CommonCrypto/CommonDigest.h
+package = commonCrypto
+compilerOpts = -framework Security

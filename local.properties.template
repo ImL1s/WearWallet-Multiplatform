@@ -1,0 +1,47 @@
+# ============================================
+# WearWallet API Keys Configuration Template
+# ============================================
+#
+# 使用說明：
+# 1. 複製此檔案為 local.properties
+# 2. 填入你的 API 金鑰
+# 3. 請勿將 local.properties 提交到版本控制！
+#
+# ============================================
+
+# Android SDK 路徑
+sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
+
+# ==================== Infura RPC Keys ====================
+# 從 https://infura.io 取得
+INFURA_API_KEY=your_infura_mainnet_key
+INFURA_HOLESKY_KEY=your_infura_holesky_key
+INFURA_POLYGON_KEY=your_infura_polygon_key
+
+# ==================== Block Explorer API Keys ====================
+# Etherscan: https://etherscan.io/apis
+# Polygonscan: https://polygonscan.com/apis
+# 其他區塊瀏覽器請參考各自官網
+ETHERSCAN_API_KEY=your_etherscan_key
+POLYGONSCAN_API_KEY=your_polygonscan_key
+ARBISCAN_API_KEY=your_arbiscan_key
+BASESCAN_API_KEY=your_basescan_key
+OPTIMISM_API_KEY=your_optimism_key
+BSCSCAN_API_KEY=your_bscscan_key
+
+# ==================== DEX Aggregators ====================
+# Rango: https://rango.exchange/
+RANGO_API_KEY=your_rango_api_key
+
+# 0x Protocol: https://0x.org/
+ZEROX_API_KEY=your_0x_api_key
+
+# ==================== Web3 Services ====================
+# Moralis: https://moralis.io/
+MORALIS_API_KEY=your_moralis_jwt_token
+
+# Tron: https://tronscan.org/
+TRON_API_KEY=your_tron_api_key
+
+# GetBlock: https://getblock.io/
+GETBLOCK_API_KEY=your_getblock_api_key

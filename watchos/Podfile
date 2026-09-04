@@ -1,0 +1,94 @@
+# CocoaPods 官方源（必需）
+source 'https://cdn.cocoapods.org'
+
+# 抑制 CocoaPods 警告
+inhibit_all_warnings!
+
+use_frameworks!
+
+# Workspace 配置
+workspace 'WearWallet'
+
+# iOS App Target - TEMPORARILY DISABLED to fix watchOS build
+# Uncomment when iOS companion app is needed
+# target 'WatchWallet' do
+#   platform :ios, '13.0'
+#
+#   # ✅ TrustWalletBridge 依賴（本地 Pod，包含 TrustWalletCore）
+#   pod 'TrustWalletBridge', :path => '../TrustWalletBridge'
+#
+#   # KMP Framework - iOS 平台可以完整使用 TrustWalletCore
+#   pod 'coreKmp', :path => '../coreKmp'
+#
+#   # Firebase Integration (iOS)
+#   pod 'Firebase/Analytics'
+#   pod 'Firebase/Crashlytics'
+#   pod 'Firebase/Performance'
+#   pod 'Firebase/Messaging'
+# end
+
+# watchOS App Target - 使用 CoreKmp 純 Kotlin 加密實現
+target 'WatchWallet Watch App' do
+  platform :watchos, '9.0'
+
+  # 重要說明:
+  # - TrustWalletCore 不支援 watchOS 平台 (截至 4.3.18 版本)
+  # - watchOS 使用 CoreKmp 提供的純 Kotlin 加密實現:
+  #   • curve25519-kotlin: Ed25519 簽名 (Solana, Aptos)
+  #   • secp256k1: ECDSA 簽名 (Ethereum, Bitcoin 等)
+  #   • BIP39/BIP44: 助記詞和密鑰派生
+  #   • Keccak256: 以太坊哈希算法
+  # - CoreKmp 覆蓋度 73.75%，足夠當前 watchOS 使用需求
+
+  # CoreKmp Framework (包含所有必要加密功能)
+  pod 'coreKmp', :path => '../coreKmp'
+
+
+  # Firebase Integration (watchOS)
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Messaging'
+
+  target 'WatchWallet Watch AppTests' do
+    inherit! :search_paths
+    # pod 'coreKmp', :path => '../coreKmp' # Removed to link via Host App
+  end
+
+  target 'WatchWallet Watch AppUITests' do
+    inherit! :search_paths
+    pod 'coreKmp', :path => '../coreKmp'
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/Messaging'
+    pod 'SQLCipher'
+  end
+end
+
+# 配置後處理
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # 確保編譯設置正確
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '9.0'
+
+      # Swift 版本
+      config.build_settings['SWIFT_VERSION'] = '5.0'
+
+      # 為 watchOS 優化
+      if target.platform_name == :watchos
+        config.build_settings['ENABLE_BITCODE'] = 'YES'
+        config.build_settings['BITCODE_GENERATION_MODE'] = 'bitcode'
+      else
+        config.build_settings['ENABLE_BITCODE'] = 'NO'
+      end
+
+      # 架構設置
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      # config.build_settings['EXCLUDED_ARCHS[sdk=watchsimulator*]'] = 'arm64' # Removed to allow arm64
+      
+      # 強制 watchOS 模擬器使用 arm64 (Apple Silicon) - 僅在非排除時
+      if target.platform_name == :watchos
+        # config.build_settings['ARCHS[sdk=watchsimulator*]'] = 'arm64' # 不要強制，讓 EXCLUDED_ARCHS 處理
+      end
+    end
+  end
+end

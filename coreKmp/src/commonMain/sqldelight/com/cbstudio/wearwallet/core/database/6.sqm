@@ -1,0 +1,6 @@
+-- Migration from Schema v6 to Schema v7
+-- PR #32 Round 14: Per-Wallet Price Alert Isolation
+
+ALTER TABLE price_alert ADD COLUMN wallet_id TEXT NOT NULL DEFAULT '';
+
+CREATE INDEX IF NOT EXISTS idx_price_alert_wallet_id ON price_alert(wallet_id);

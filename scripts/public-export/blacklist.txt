@@ -1,0 +1,128 @@
+# Paths removed from the public export (git pathspecs / globs relative to repo root).
+# Lines starting with # are comments. Blank lines ignored.
+# Globs with * MUST be matched via find (see export-public.sh); trailing / is OK.
+
+# Production Firebase / Google config
+wear/google-services.json
+mobile/google-services.json
+firebase.json
+
+# Flattened modules — .gitmodules would be misleading
+.gitmodules
+
+# Credential loaders & store publishing (private ops)
+scripts/load-credentials.sh
+scripts/deploy_to_play_console.py
+scripts/check-1password-vaults.sh
+scripts/test-1password-keys.sh
+scripts/import-api-keys-from-tb-android.sh
+scripts/generate-release-keystore.sh
+scripts/setup.sh
+scripts/setup-renovate.sh
+scripts/prepare-release.sh
+scripts/verify-addresses.sh
+scripts/run-complete-test-suite.sh
+scripts/run-blockchain-tests.sh
+scripts/verify-explorer-fix.sh
+scripts/test-transaction-history.sh
+scripts/execute-real-device-tests.sh
+rewrite_authors.sh
+set_clipboard.js
+e2e_test.py
+e2e_functional_test.py
+e2e_screenshots/
+e2e_functional_results/
+sonar-project.properties
+
+# Internal / legacy / vault docs
+docs/archive/
+docs/ONEPASSWORD_SETUP.md
+docs/en/1PASSWORD-SETUP.md
+docs/zh-TW/1PASSWORD-SETUP.md
+docs/GITHUB_TOKEN_SETUP.md
+docs/RENOVATE_SETUP.md
+docs/RENOVATE_QUICK_REFERENCE.md
+docs/AUTOMATED_DEPENDENCY_MANAGEMENT.md
+docs/en/SCRIPTS-OVERVIEW.md
+docs/zh-TW/SCRIPTS-OVERVIEW.md
+docs/evidence/
+docs/WEAROS_PLAY_STORE_CHECKLIST.md
+docs/KMP_MIGRATION_PROGRESS.md
+docs/en/PROJECT_STATUS.md
+docs/zh-TW/PROJECT_STATUS.md
+
+# Agent / IDE scratch (never publish)
+.claude/
+.serena/
+.kiro/
+.agents/
+.idea/
+.cursorrules
+CLAUDE.md
+GEMINI.md
+TODO.md
+scratch/
+ORIGINAL_REQUEST.md
+PROJECT.md
+watchos/.swiftpm/
+**/xcuserdata/
+**/*.xcuserstate
+
+# Build / dependency / native binaries
+**/build/
+watchos/Pods/
+watchos/DerivedData/
+watchos/Frameworks/
+watchos/build-xcframework/
+coreKmp/src/main/jniLibs/
+coreKmp/native/archived/
+**/*.so
+**/*.bak
+**/*.backup
+**/*.disabled
+**/*.old
+**/build_log*.txt
+**/test_log*.txt
+
+# Debug / E2E / mnemonic fixtures
+wear/src/main/java/com/cbstudio/wearwallet/presentation/debug/
+wear_e2e_full_automated.yaml
+wear/tests_backup/
+wear/integration_tests_backup/
+wear/src/androidTest/
+**/TronShastaTestApp.kt
+**/TronSignerTestApp.kt
+**/MoneroMnemonicUtils.kt
+**/MoneroSimpleTest.kt
+**/monerujo_dynamic_bridge.cpp
+**/RealWallet*Test.kt
+**/ShastaReal*.kt
+**/MoneroKMP*.kt
+**/MoneroDeviceTestActivity.kt
+# Keep monero/crypto androidMain sources required to compile; only strip fixture apps above.
+
+# watchOS create/import/mnemonic UI ships in the public snapshot (product UX).
+# Dummy BIP-39 spec-vector copy in those screens is fine; keep test harnesses out.
+watchos/test*.swift
+watchos/Test*.swift
+watchos/validate_kmp.swift
+
+# Private-only CI / billing / bots (replaced or removed for public)
+.github/workflows/ci.yml
+.github/workflows/code-quality.yml
+.github/workflows/dependency-review.yml
+.github/workflows/documentation.yml
+.github/workflows/kmp-integration-tests.yml
+.github/workflows/performance.yml
+.github/workflows/sec13-security-verification.yml
+.github/workflows/security.yml
+.github/workflows/deploy-android.yml
+.github/workflows/deploy-ios.yml
+.github/workflows/release.yml
+.github/workflows/renovate.yml
+.github/workflows/scheduled-tests.yml
+.github/workflows/build.yml.example
+.github/dependabot.yml
+renovate.json
+**/modules/**/.github/
+**/native/**/.github/

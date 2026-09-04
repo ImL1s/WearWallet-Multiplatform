@@ -1,0 +1,152 @@
+# Gitleaks per-finding ignore list for the WearWallet public export tree.
+# Format: <path>:<rule-id>:<start-line>  (see `gitleaks` --gitleaks-ignore-path docs)
+#
+# Every fingerprint below was manually reviewed and confirmed to be a false
+# positive of the generic-api-key rule (which stays ENABLED — see
+# gitleaks.toml): crypto test vectors (hex keys/signatures/hashes), public
+# on-chain contract/token addresses, RFC/BIP-39 spec test data, or a code
+# identifier matched by the rule's broad regex. None are real secrets.
+#
+# If a source edit shifts these line numbers, gitleaks will re-flag the
+# finding and the export will fail until it is re-reviewed. That is
+# intentional fail-closed behavior — do not add path-wide or regex-wide
+# exceptions here; only exact reviewed fingerprints.
+coreKmp/docs/RFC6979_TEST_VECTORS.md:generic-api-key:81
+coreKmp/docs/RFC6979_TEST_VECTORS.md:generic-api-key:86
+# MoneroStubService — fabricated view/spend hex for offline stub wallets only
+# (not mainnet keys; file is a local test double, not live wallet material).
+coreKmp/src/androidMain/kotlin/com/cbstudio/wearwallet/core/multichain/monero/MoneroStubService.kt:generic-api-key:26
+coreKmp/src/androidMain/kotlin/com/cbstudio/wearwallet/core/multichain/monero/MoneroStubService.kt:generic-api-key:27
+coreKmp/src/androidMain/kotlin/com/cbstudio/wearwallet/core/multichain/monero/MoneroStubService.kt:generic-api-key:58
+coreKmp/src/androidMain/kotlin/com/cbstudio/wearwallet/core/multichain/monero/MoneroStubService.kt:generic-api-key:59
+coreKmp/src/androidMain/kotlin/com/cbstudio/wearwallet/core/multichain/monero/MoneroStubService.kt:generic-api-key:76
+coreKmp/src/androidMain/kotlin/com/cbstudio/wearwallet/core/multichain/monero/MoneroStubService.kt:generic-api-key:77
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:124
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:143
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:162
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:180
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:198
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:219
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:236
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:254
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:255
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:275
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:326
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:350
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:50
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:59
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:79
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/ECDSACrossPlatformTest.kt:generic-api-key:98
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/Ed25519CrossPlatformTest.kt:generic-api-key:31
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/Ed25519CrossPlatformTest.kt:generic-api-key:42
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/Ed25519CrossPlatformTest.kt:generic-api-key:53
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/Ed25519CrossPlatformTest.kt:generic-api-key:64
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/Ed25519CrossPlatformTest.kt:generic-api-key:75
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/Ed25519SecurityTest.kt:generic-api-key:28
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/PublicKeyDerivationTest.kt:generic-api-key:26
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/crypto/PublicKeyDerivationTest.kt:generic-api-key:48
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/data/repository/WalletRepositoryKeyVaultMigrationTest.kt:generic-api-key:38
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/data/repository/WalletRepositoryLegacyMigrationTest.kt:generic-api-key:30
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/Challenger2M2SendConcurrencyAndZeroKeyLeakTest.kt:generic-api-key:267
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/Challenger2M2SendConcurrencyAndZeroKeyLeakTest.kt:generic-api-key:46
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/Milestone2Challenger1EmpiricalVerificationTest.kt:generic-api-key:47
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/Milestone3ChallengerAdversarialTest.kt:generic-api-key:29
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/SendPathAndEip1559EmpiricalChallengeTest.kt:generic-api-key:54
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/SendTransactionUseCaseErc20DecimalsTest.kt:generic-api-key:28
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/transaction/SendTransactionUseCaseTest.kt:generic-api-key:168
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/domain/usecase/wallet/ImportWalletUseCaseTest.kt:generic-api-key:153
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/integration/KeyVaultLifecycleIntegrationTest.kt:generic-api-key:57
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/integration/KeyVaultLifecycleIntegrationTest.kt:generic-api-key:58
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/multichain/tokens/TokenTransferManagerTest.kt:generic-api-key:104
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/multichain/tokens/TokenTransferManagerTest.kt:generic-api-key:127
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/AdversarialAuthHandleChallengeTest.kt:generic-api-key:27
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/AdversarialAuthHandleChallengeTest.kt:generic-api-key:28
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/AndroidSecureKeyManagerTest.kt:generic-api-key:333
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/AndroidSecureKeyManagerTest.kt:generic-api-key:416
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/AndroidSecureKeyManagerTest.kt:generic-api-key:99
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/AuthHandle50ThreadConcurrentStressTest.kt:generic-api-key:27
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Challenger1EmpiricalValidationTest.kt:generic-api-key:38
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Challenger2Round5AdversarialVerificationTest.kt:generic-api-key:53
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/CrossWalletIsolation50ThreadConcurrentTest.kt:generic-api-key:29
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/DeleteAndRevealForgeryDefenseTest.kt:generic-api-key:260
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/KeyVaultProvisioningAndLifecycleTest.kt:generic-api-key:31
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1Challenger1ContextTamperingStressTest.kt:generic-api-key:70
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1Challenger2ConcurrencyLifecycleTest.kt:generic-api-key:32
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1Challenger2EmpiricalStressTest.kt:generic-api-key:47
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1ChallengerEmpiricalTest.kt:generic-api-key:318
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1ChallengerEmpiricalTest.kt:generic-api-key:33
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1EmpiricalStressChallengeTest.kt:generic-api-key:37
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1P02ReconciliationAdversarialChallengeTest.kt:generic-api-key:226
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1P02ReconciliationAdversarialChallengeTest.kt:generic-api-key:275
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone1P02ReconciliationAdversarialChallengeTest.kt:generic-api-key:361
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2AndMilestone5SecurityTest.kt:generic-api-key:47
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2AuthContextFailClosedAdversarialTest.kt:generic-api-key:48
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2Challenger1CrossWalletAdversarialStressTest.kt:generic-api-key:46
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2Challenger2ConcurrencyLifecycleTest.kt:generic-api-key:48
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2Challenger2KeyPresencePermutationTest.kt:generic-api-key:50
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2ChallengerAdversarialTest.kt:generic-api-key:40
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2ChallengerEnclaveAdversarialTest.kt:generic-api-key:18
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone2ProvisioningMagicKeyAdversarialTest.kt:generic-api-key:43
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone3Challenger2StagingJournalCasTest.kt:generic-api-key:46
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Milestone3FaultInjectionLedgerTest.kt:generic-api-key:43
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/ReconciliationFailClosedTest.kt:generic-api-key:191
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Round13Challenger2PlatformAuthHandleAdversarialTest.kt:generic-api-key:28
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Round13Challenger2PlatformAuthHandleAdversarialTest.kt:generic-api-key:29
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Round14AdversarialChallenger1Test.kt:generic-api-key:59
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Round14Challenger2EmpiricalAdversarialTest.kt:generic-api-key:38
+coreKmp/src/androidUnitTest/kotlin/com/cbstudio/wearwallet/core/security/Round14Challenger2EmpiricalAdversarialTest.kt:generic-api-key:39
+coreKmp/src/commonMain/kotlin/com/cbstudio/wearwallet/core/caip/adapters/SolanaCAIPAdapter.kt:generic-api-key:20
+coreKmp/src/commonMain/kotlin/com/cbstudio/wearwallet/test/CAIPSystemVerificationTest.kt:generic-api-key:265
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/advanced/AdvancedFeatureTest.kt:generic-api-key:83
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/database/DatabaseMigrationTest.kt:generic-api-key:124
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/multichain/sdk/RealBlockchainSDKTest.kt:generic-api-key:112
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/multichain/sdk/RealBlockchainSDKTest.kt:generic-api-key:168
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/multichain/sdk/RealTronSDKTest.kt:generic-api-key:136
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt:generic-api-key:12
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt:generic-api-key:15
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt:generic-api-key:17
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt:generic-api-key:19
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/Bip39TestVectorsTest.kt:generic-api-key:21
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CrossPlatformFixedCryptoVectorsTest.kt:generic-api-key:24
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CrossPlatformFixedCryptoVectorsTest.kt:generic-api-key:93
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CryptoServiceTest.kt:generic-api-key:25
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CryptoServiceTest.kt:generic-api-key:39
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CryptoServiceTest.kt:generic-api-key:40
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CryptoServiceTest.kt:generic-api-key:558
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/CryptoUtilsSecurityTest.kt:generic-api-key:233
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/PrivateKeyManagerSecurityTest.kt:generic-api-key:169
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/PrivateKeyManagerSecurityTest.kt:generic-api-key:26
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/ProvisioningSessionTest.kt:generic-api-key:118
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/ProvisioningSessionTest.kt:generic-api-key:136
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/ProvisioningSessionTest.kt:generic-api-key:156
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/ProvisioningSessionTest.kt:generic-api-key:38
+coreKmp/src/commonTest/kotlin/com/cbstudio/wearwallet/core/security/ProvisioningSessionTest.kt:generic-api-key:77
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Bip32PlatformConsistencyTest.kt:generic-api-key:24
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Bip32PlatformConsistencyTest.kt:generic-api-key:98
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/CrossPlatformConsistencyTest.kt:generic-api-key:52
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/CrossPlatformConsistencyTest.kt:generic-api-key:66
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:100
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:147
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:277
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:322
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:363
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:37
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:507
+coreKmp/src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt:generic-api-key:73
+coreKmp/src/iosMain/kotlin/com/cbstudio/wearwallet/core/trustwallet/TrustWalletBridgeUsageExample.kt:generic-api-key:144
+coreKmp/src/iosTest/kotlin/com/cbstudio/wearwallet/core/blockchain/crypto/Ed25519SignatureVerificationTest.kt:generic-api-key:104
+coreKmp/src/iosTest/kotlin/com/cbstudio/wearwallet/core/blockchain/crypto/Ed25519SignatureVerificationTest.kt:generic-api-key:105
+coreKmp/src/iosTest/kotlin/com/cbstudio/wearwallet/core/multichain/MoneroiOSIntegrationTest.kt:generic-api-key:25
+coreKmp/src/iosTest/kotlin/com/cbstudio/wearwallet/core/multichain/MoneroiOSIntegrationTest.kt:generic-api-key:26
+coreKmp/src/iosTest/kotlin/com/cbstudio/wearwallet/core/multichain/MoneroiOSIntegrationTest.kt:generic-api-key:31
+coreKmp/src/iosTest/kotlin/com/cbstudio/wearwallet/core/multichain/MoneroiOSIntegrationTest.kt:generic-api-key:32
+coreKmp/src/watchosTest/kotlin/io/github/iml1s/crypto/BigIntegerTest.kt:generic-api-key:36
+coreKmp/src/watchosTest/kotlin/io/github/iml1s/crypto/Secp256k1SecurityValidationTest.kt:generic-api-key:194
+coreKmp/src/watchosTest/kotlin/io/github/iml1s/crypto/Secp256k1SecurityValidationTest.kt:generic-api-key:229
+coreKmp/src/watchosTest/kotlin/io/github/iml1s/crypto/Secp256k1SecurityValidationTest.kt:generic-api-key:294
+watchos/WatchWallet Watch AppTests/CryptoTests.swift:generic-api-key:108
+watchos/WatchWallet Watch AppTests/CryptoTests.swift:generic-api-key:169
+watchos/WatchWallet Watch AppTests/CryptoTests.swift:generic-api-key:85
+wear/src/main/java/com/cbstudio/wearwallet/presentation/settings/PushProtocolSetupViewModel.kt:generic-api-key:34
+wear/src/test/java/com/cbstudio/wearwallet/presentation/wallet/screens/import/ImportWalletViewModelTest.kt:generic-api-key:110
+wear/src/test/java/com/cbstudio/wearwallet/security/SecurityAuditTest.kt:generic-api-key:37

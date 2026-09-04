@@ -1,0 +1,15 @@
+-- Migration from Schema v4 to Schema v5
+-- PR #32 Round 11: Granular 17-Layer Deletion Step Ledger
+
+CREATE TABLE IF NOT EXISTS deletion_step_ledger (
+    wallet_id INTEGER NOT NULL,
+    step_name TEXT NOT NULL,
+    status TEXT NOT NULL,
+    error_message TEXT,
+    retry_count INTEGER NOT NULL DEFAULT 0,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (wallet_id, step_name),
+    FOREIGN KEY (wallet_id) REFERENCES deletion_journal(wallet_id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_deletion_step_ledger_status ON deletion_step_ledger(wallet_id, status);

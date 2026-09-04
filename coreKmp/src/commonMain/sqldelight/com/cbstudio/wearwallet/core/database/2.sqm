@@ -1,0 +1,6 @@
+-- Migration from Schema v2 to Schema v3
+-- PR #32 Round 6: Add 2-Phase Deletion Tombstone Flag
+
+ALTER TABLE wallet ADD COLUMN is_deletion_pending INTEGER NOT NULL DEFAULT 0;
+
+CREATE INDEX idx_wallet_deletion_pending ON wallet(is_deletion_pending);

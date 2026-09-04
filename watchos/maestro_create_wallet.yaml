@@ -1,0 +1,6 @@
+appId: com.iml1s.WatchWallet.watchkitapp
+---
+- launchApp
+- tapOn:
+    point: "50%, 90%"
+- assertVisible: "助記詞"

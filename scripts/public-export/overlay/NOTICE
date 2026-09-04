@@ -1,0 +1,36 @@
+WearWallet
+Copyright (C) 2024 CBStudio
+
+This product is licensed under the GNU General Public License v3.0 or
+later (GPL-3.0-or-later). See the `LICENSE` file in the repository root
+for the full license text.
+
+This NOTICE file is a summary pointer to third-party license information
+already present in this repository. It does not modify or relicense any
+of the components below; each component remains under its own license,
+as permitted by GPL-3.0-or-later section 7 (aggregation) and standard
+license-compatibility practice for combining permissively licensed code
+into a GPL-licensed work.
+
+Bundled/vendored components with their own license files
+----------------------------------------------------------
+- `modules/bitcoin-kmp/LICENSE` — Apache License 2.0 (Copyright ACINQ SAS)
+- `modules/secp256k1-kmp/LICENSE` — Apache License 2.0 (Copyright ACINQ SAS)
+- `modules/secp256k1-kmp/native/secp256k1/COPYING` — MIT License
+  (Copyright Pieter Wuille), for the vendored native libsecp256k1 sources
+- `coreKmp/native/archived/secp256k1_c_source/COPYING` — MIT License
+  (Copyright Pieter Wuille)
+- `modules/kotlin-utxo/LICENSE` — Apache License 2.0 (Copyright CB Studio)
+- `modules/kotlin-crypto-pure/LICENSE` — Apache License 2.0 (Copyright CB Studio)
+- `modules/kotlin-caip-standards/LICENSE` — Apache License 2.0 (Copyright iml1s)
+
+Notable third-party dependencies (see each dependency's own distribution
+for authoritative license text; this list is informational only)
+----------------------------------------------------------
+- TrustWallet Core — Apache License 2.0
+- Web3j — Apache License 2.0
+- Signum — Apache License 2.0
+- Keystone SDK / bc-ur — see upstream project license
+
+If you believe an attribution is missing or incorrect, please open an
+issue so it can be corrected.

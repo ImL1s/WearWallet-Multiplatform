@@ -1,0 +1,138 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+  pull-requests: read
+  packages: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx4g -XX:+HeapDumpOnOutOfMemoryError"'
+
+# Public CI: GitHub-hosted only. Never register self-hosted runners on this repo.
+jobs:
+  build-test:
+    name: Test & Debug Build (Ubuntu)
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Create local gradle.properties
+        run: |
+          cat >> gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx4g -XX:+HeapDumpOnOutOfMemoryError
+          org.gradle.parallel=true
+          android.useAndroidX=true
+          ksp.useKSP2=true
+          EOF
+          # Prefer a maintainer-provided read:packages PAT when present; otherwise
+          # fall back to the job token (works for public GitHub Packages auth).
+          TOKEN='${{ secrets.GH_TOKEN_PACKAGES }}'
+          ACTOR='${{ secrets.GH_ACTOR_NAME }}'
+          if [ -z "$TOKEN" ]; then
+            TOKEN='${{ secrets.GITHUB_TOKEN }}'
+            ACTOR='${{ github.actor }}'
+          fi
+          if [ "${{ github.event.pull_request.head.repo.fork }}" != "true" ] && [ -n "$TOKEN" ]; then
+            echo "github.actor=${ACTOR:-${{ github.actor }}}" >> gradle.properties
+            echo "github.token=$TOKEN" >> gradle.properties
+          fi
+
+      # Assemble first so a hung/slow unit suite cannot block the APK artifact.
+      - name: Assemble Wear debug APK
+        id: apk
+        env:
+          GITHUB_ACTOR: ${{ secrets.GH_ACTOR_NAME != '' && secrets.GH_ACTOR_NAME || github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_PACKAGES != '' && secrets.GH_TOKEN_PACKAGES || secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew :wear:assembleDebug -PpublicSnapshot=true --no-daemon --stacktrace --console=plain
+
+      - name: Upload Wear debug APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wear-debug-apk
+          path: 'wear/build/outputs/apk/debug/*.apk'
+          retention-days: 14
+          if-no-files-found: error
+
+      # Public CI gates: markdown link check + Wear debug APK assemble/upload.
+      # This is not a full unit suite and not proof of issue #30. Local
+      # `./gradlew :coreKmp:testDebugUnitTest :wear:testDebugUnitTest
+      # -PpublicSnapshot=true` remains the unit-test path; GitHub-hosted Ubuntu
+      # has repeatedly hung 30–60+ minutes on those suites without adding
+      # signal beyond the assemble gate.
+
+  markdown-link-check:
+    name: Markdown link check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # Explicit file list only. The gaurav-nelson action's file-path input is
+      # unreliable with multiline YAML and still walked modules/, watchos/, etc.
+      - name: Check links in public entry Markdown
+        run: |
+          set -euo pipefail
+          npm install --no-save markdown-link-check@3.12.2
+          files=(
+            README.md
+            SECURITY.md
+            CLAUDE.md
+            CONTRIBUTING.md
+            docs/README.md
+            docs/PUBLIC_BUILD.md
+            docs/PUBLIC_SNAPSHOT.md
+            docs/LICENSING.md
+            docs/SCREENSHOTS.md
+            docs/DEVELOPMENT_GUIDE.md
+            docs/CONTRIBUTING.md
+          )
+          rc=0
+          for f in "${files[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "MISSING curated doc: $f"
+              rc=1
+              continue
+            fi
+            echo "==> $f"
+            npx --no-install markdown-link-check -c .github/markdown-link-check.json -q "$f" || rc=1
+          done
+          exit "$rc"

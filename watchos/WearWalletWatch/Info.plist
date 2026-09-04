@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>com.cbstudio.wearwallet</string>
+	<key>WKWatchOnly</key>
+	<true/>
+	<key>CLKComplicationPrincipalClass</key>
+	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
+	<key>CLKComplicationSupportedFamilies</key>
+	<array>
+		<string>CLKComplicationFamilyCircularSmall</string>
+		<string>CLKComplicationFamilyModularSmall</string>
+		<string>CLKComplicationFamilyUtilitarianSmall</string>
+		<string>CLKComplicationFamilyGraphicCorner</string>
+		<string>CLKComplicationFamilyGraphicCircular</string>
+	</array>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>CLKComplicationDescriptors</key>
+			<array>
+				<dict>
+					<key>CLKComplicationIdentifier</key>
+					<string>WearWallet-TokenPrice</string>
+					<key>CLKComplicationDisplayName</key>
+					<string>代幣價格</string>
+					<key>CLKComplicationDescription</key>
+					<string>顯示加密貨幣即時價格和24小時變化率</string>
+					<key>CLKComplicationSupportedFamilies</key>
+					<array>
+						<string>CLKComplicationFamilyCircularSmall</string>
+						<string>CLKComplicationFamilyModularSmall</string>
+						<string>CLKComplicationFamilyGraphicCircular</string>
+						<string>CLKComplicationFamilyGraphicCorner</string>
+					</array>
+				</dict>
+				<dict>
+					<key>CLKComplicationIdentifier</key>
+					<string>WearWallet-WalletBalance</string>
+					<key>CLKComplicationDisplayName</key>
+					<string>錢包餘額</string>
+					<key>CLKComplicationDescription</key>
+					<string>顯示錢包總餘額（USD 價值）</string>
+					<key>CLKComplicationSupportedFamilies</key>
+					<array>
+						<string>CLKComplicationFamilyUtilitarianSmall</string>
+						<string>CLKComplicationFamilyModularSmall</string>
+						<string>CLKComplicationFamilyGraphicCircular</string>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,25 @@
+/* Main Tab */
+"loading" = "Laden...";
+
+/* AI Assistant */
+"ai_assistant_title" = "AI Sprachassistent";
+"tap_to_listen" = "Zum Zuhören tippen";
+"voice_input" = "Spracheingabe";
+"ai_response" = "AI Antwort";
+"check_balance" = "Kontostand";
+"send_tx" = "Senden";
+"verify_tx" = "Prüfen";
+"auth" = "Auth";
+"audit" = "Audit";
+"analyze_nft" = "NFT Analyse";
+"verification_result" = "Ergebnis";
+"status" = "Status:";
+"risk_score" = "Risiko:";
+"warning" = "Warnung:";
+"voice_biometric_auth" = "Biometrische Auth";
+"speak_phrase_instruction" = "Verifizierungssatz sprechen";
+"start_auth" = "Start";
+"authenticating" = "Authentifizierung...";
+"auth_success" = "Erfolg";
+"auth_failed" = "Fehler";
+"close" = "Schließen";

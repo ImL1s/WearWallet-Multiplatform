@@ -1,0 +1,65 @@
+-- 刪除日誌表 - PR #32 Round 9
+CREATE TABLE IF NOT EXISTS deletion_journal (
+    wallet_id INTEGER PRIMARY KEY NOT NULL,
+    key_alias TEXT,
+    state TEXT NOT NULL,
+    last_error TEXT,
+    retry_count INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_deletion_journal_state ON deletion_journal(state);
+
+-- 插入刪除日誌
+insertDeletionJournal:
+INSERT INTO deletion_journal (
+    wallet_id, key_alias, state, last_error, retry_count, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- 更新刪除日誌狀態
+updateDeletionState:
+UPDATE deletion_journal
+SET state = ?,
+    last_error = ?,
+    retry_count = retry_count + 1,
+    updated_at = ?
+WHERE wallet_id = ?;
+
+-- CAS 狀態更新 (Compare-And-Set)
+updateDeletionStateCas:
+UPDATE deletion_journal
+SET state = :newState,
+    last_error = :lastError,
+    updated_at = :updatedAt
+WHERE wallet_id = :walletId AND state = :expectedState;
+
+-- 取得前一條語句影響之行數 (changes count)
+changesCount:
+SELECT changes();
+
+-- 根據 Wallet ID 查詢
+selectByWalletId:
+SELECT * FROM deletion_journal
+WHERE wallet_id = ?;
+
+-- 查詢所有未完成的刪除日誌 (用於重啟恢復)
+selectPendingDeletions:
+SELECT * FROM deletion_journal
+WHERE state NOT IN ('COMPLETED')
+ORDER BY created_at ASC;
+
+-- 刪除指定刪除日誌
+deleteDeletionJournal:
+DELETE FROM deletion_journal
+WHERE wallet_id = ?;
+
+-- 查詢所有刪除日誌
+selectAllDeletionJournals:
+SELECT * FROM deletion_journal
+ORDER BY created_at DESC;
+
+-- 清理已完成之歷史刪除日誌
+purgeCompletedDeletions:
+DELETE FROM deletion_journal
+WHERE state = 'COMPLETED' AND updated_at < ?;

@@ -1,0 +1,61 @@
+# TrustWallet Bridge Interop Definition for iOS
+#
+# ✅ 更新日期：2025-10-10
+# ✅ 最終解決方案：使用獨立的 TrustWalletBridge Pod
+# ✅ 用途：允許 Kotlin/Native 調用 TrustWallet Core 功能
+# ✅ 架構：Kotlin → TrustWalletBridge Pod (C functions) → Swift Bridge → TrustWallet Core
+# ✅ 優勢：完全解耦，無循環依賴，符合 iOS 最佳實踐
+
+# 語言設置為 Objective-C
+language = Objective-C
+
+# 生成的 Kotlin 包名
+package = com.cbstudio.wearwallet.core.native.trustwallet
+
+# ✅ 使用 TrustWalletBridge Pod 的公開頭文件
+# 這個頭文件不依賴 Swift 自動生成，在 Pod 安裝時就存在
+headers = TrustWalletBridge/TrustWalletBridge.h
+
+# 頭文件過濾器
+headerFilter = TrustWalletBridge.h
+
+# 編譯器選項
+# ✅ 框架依賴由 Pod 管理，這裡只需要基礎的編譯選項
+compilerOpts = -framework Foundation
+compilerOpts.ios_arm64 = -DTARGET_OS_IPHONE
+compilerOpts.ios_simulator_arm64 = -DTARGET_OS_SIMULATOR
+compilerOpts.ios_x64 = -DTARGET_OS_SIMULATOR
+
+# 鏈接器選項
+# ✅ TrustWalletBridge 和 WalletCore 的鏈接由 CocoaPods 自動處理
+linkerOpts = -framework Foundation
+linkerOpts.ios_arm64 = -L/usr/lib/swift
+linkerOpts.ios_simulator_arm64 = -L/usr/lib/swift
+linkerOpts.ios_x64 = -L/usr/lib/swift
+
+# 排除標準 C 函數，避免命名衝突
+excludedFunctions = malloc free calloc realloc
+
+# 說明
+# ========================================
+# Swift 自動生成的 Objective-C 橋接頭文件機制:
+#
+# 1. Swift 編譯器會自動為所有 @objc 標記的類和方法生成 Objective-C 兼容的頭文件
+# 2. 頭文件名稱格式: <framework-baseName>-Swift.h
+# 3. 對於我們的 coreKmp framework，生成的頭文件是: coreKmp-Swift.h
+# 4. 這個頭文件在編譯時自動生成，位於 framework 的 Headers 目錄中
+# 5. Kotlin cinterop 可以直接解析這個頭文件，生成 Kotlin 綁定
+#
+# TrustWalletSwiftBridge.swift 要求:
+# - 類必須使用 @objc 標註
+# - 類必須繼承自 NSObject
+# - 所有需要暴露的方法和屬性都使用 @objc 標註
+#
+# Kotlin 使用範例:
+# ```kotlin
+# import com.cbstudio.wearwallet.core.native.trustwallet.*
+#
+# val bridge = TrustWalletSwiftBridge()
+# val mnemonic = bridge.generateMnemonic(12)
+# val signature = bridge.signWithEd25519(messageHex, privateKeyHex)
+# ```
