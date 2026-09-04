@@ -61,18 +61,31 @@ the tracked `gradle.properties`.
 
 ## CI / CD
 
+Canonical PR and Actions traffic is **`ImL1s/WearWallet-Multiplatform`**. The
+private `ImL1s/WearWallet` vault does not run this pipeline on push.
+
 | Workflow | Trigger | What it actually gates |
 | --- | --- | --- |
-| `.github/workflows/ci.yml` | push / PR to `main` | Ubuntu: **Fail-closed unit slice** (timeout 20 minutes) — Wear `ReleaseFeatureGateTest` + `WalletNavigationReleaseGateTest` and coreKmp `EvmRecipientAddressPolicyTest` + `EvmBroadcastOutcomeTest`; Wear **debug** APK assemble/upload; curated Markdown link check; release-manifest attack-surface job; PAT-fallback guard. |
+| `.github/workflows/ci.yml` | **pull_request** and push to `main` | Ubuntu: **Fail-closed unit slice** (timeout 20 minutes) — Wear `ReleaseFeatureGateTest` + `WalletNavigationReleaseGateTest` and coreKmp `EvmRecipientAddressPolicyTest` + `EvmBroadcastOutcomeTest`; Wear **debug** APK assemble/upload; curated Markdown link check; release-manifest attack-surface job; PAT-fallback guard. |
 | `.github/workflows/release.yml` | tag `v*` or manual dispatch | Ubuntu: Wear debug APK + source tarball + `SHA256SUMS.txt` → GitHub **prerelease** |
 
-The **Fail-closed unit slice** job is the required unit slice. It is **still
-not** private-grade issue #30 completeness: no 3-OS matrix, no full
-`:wear:testDebugUnitTest`, no coverage/SAST-as-complete, no Play-signed
-release. Public CI does **not** run the full Wear/coreKmp unit suite (those
-jobs have hung for 30–60+ minutes on GitHub-hosted Ubuntu). Assemble +
-markdown links + the release-manifest job are **not** an Apple compile/link
-matrix. Run targeted Gradle tests locally with `-PpublicSnapshot=true`.
+`main` is protected so product changes land through a **pull request**. Required
+GitHub Actions checks (exact job names):
+
+- `Test & Debug Build (Ubuntu)`
+- `Fail-closed unit slice`
+- `CI PAT fallback guard`
+- `Markdown link check`
+- `Release manifest attack surface`
+
+Reviews are **not** required (solo maintainer can merge after those checks).
+Force-pushes to `main` are blocked. This is still **not** private-grade issue
+#30 completeness: no 3-OS matrix, no full `:wear:testDebugUnitTest`, no
+coverage/SAST-as-complete, no Play-signed release. Public CI does **not** run
+the full Wear/coreKmp unit suite (those jobs have hung for 30–60+ minutes on
+GitHub-hosted Ubuntu). Assemble + markdown links + the release-manifest job
+are **not** an Apple compile/link matrix. Run targeted Gradle tests locally
+with `-PpublicSnapshot=true`.
 
 ## Releases
 
