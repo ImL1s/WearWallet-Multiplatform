@@ -1,8 +1,11 @@
 # TrustWalletBridge source map
 
-`TrustWalletBridge` is an iOS CocoaPods bridge that exposes a small Objective-C
-C-function surface backed by `TrustWalletSwiftBridge.swift` and the
-`TrustWalletCore` pod.
+`TrustWalletBridge` is an experimental iOS-only CocoaPods bridge. It is **not**
+a Gradle module, **not** watchOS-capable, and **not** a public CI input. The
+watchOS companion Podfile target that referenced it is commented out.
+
+It exposes a small Objective-C C-function surface backed by
+`TrustWalletSwiftBridge.swift` and the `TrustWalletCore` pod.
 
 > [!WARNING]
 > This source tree is not an independent cryptographic audit, secure-memory
