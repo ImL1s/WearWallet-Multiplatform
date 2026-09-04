@@ -11,9 +11,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     
-    <!-- AI 語音控制權限 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     
     <!-- 生物識別權限 -->
@@ -22,7 +19,6 @@
     
     <!-- 前台服務權限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
     
     <!-- NFC 權限 — HCE must not be required for install. -->
     <uses-permission android:name="android.permission.NFC" />
@@ -214,17 +210,6 @@
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
                 <data android:scheme="wear" android:host="*" android:path="/ping" />
-            </intent-filter>
-        </service>
-        
-        <!-- AI 系統級服務 -->
-        <service
-            android:name=".ai.system.WearWalletGeminiLiveService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="microphone">
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.AI_LIVE_SERVICE" />
             </intent-filter>
         </service>
 

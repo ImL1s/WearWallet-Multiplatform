@@ -5,7 +5,8 @@ Inspects committed ``src/main`` + ``src/release`` overlays by default.
 With ``--merged``, inspects AGP merged release manifests instead (after
 ``:wear:processReleaseMainManifest`` / ``:mobile:processReleaseMainManifest``).
 
-``src/debug`` is intentionally ignored: VoiceCommandActivity may live there.
+``src/debug`` is intentionally ignored: VoiceCommandActivity and Gemini Live
+may live there.
 """
 
 from __future__ import annotations
@@ -101,6 +102,12 @@ def scan_manifest(path: pathlib.Path) -> list[str]:
             violations.append(f"{path}: {tag} declares MoneroDeviceTest ({android_name})")
         if "VoiceCommandActivity" in android_name:
             violations.append(f"{path}: {tag} declares VoiceCommandActivity ({android_name})")
+        if "WearWalletGeminiLiveService" in android_name:
+            violations.append(
+                f"{path}: {tag} declares WearWalletGeminiLiveService ({android_name})"
+            )
+        if "FOREGROUND_SERVICE_MICROPHONE" in android_name:
+            violations.append(f"{path}: {tag} declares FOREGROUND_SERVICE_MICROPHONE")
         if ".presentation.debug." in android_name:
             violations.append(
                 f"{path}: {tag} android:name contains .presentation.debug. ({android_name})"

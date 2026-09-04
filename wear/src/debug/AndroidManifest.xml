@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Debug/maintenance voice entry points. Merged into debug only, not release. -->
+    <!-- Debug/maintenance voice + Gemini Live. Merged into debug only, not release. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
     <application>
+        <service
+            android:name=".ai.system.WearWalletGeminiLiveService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="microphone">
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.AI_LIVE_SERVICE" />
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="android.app.shortcuts"
             android:resource="@xml/shortcuts" />

@@ -10,8 +10,8 @@ import android.os.Build
 import android.os.IBinder
 
 /**
- * Minimal stub for system-level Gemini Live foreground service on Wear.
- * This satisfies references from gesture detector and can be expanded later.
+ * Debug-only Gemini Live foreground service. Must not appear in the release
+ * compile graph or merged release manifest.
  */
 class WearWalletGeminiLiveService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null

@@ -14,30 +14,16 @@
 
 package com.cbstudio.wearwallet.ai.gesture
 
-import android.content.Context
-import android.content.Intent
-import android.os.VibrationEffect
-import android.os.Vibrator
-import android.view.MotionEvent
-import android.view.ScaleGestureDetector
 import androidx.compose.foundation.gestures.detectTransformGestures
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.rotary.onRotaryScrollEvent
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.dp
-import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.ViewModel
-import com.cbstudio.wearwallet.ai.system.WearWalletGeminiLiveService
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import kotlin.math.abs
 
 /**
@@ -63,10 +49,6 @@ data class GestureDetectionResult(
  * 系統級手勢檢測服務
  */
 class WearOSGestureDetectionService : KoinComponent {
-    
-    private val context: Context by inject<Context>()
-    
-    private val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     
     // Crown 旋轉檢測參數
     private var crownRotationAccumulator = 0f
@@ -177,45 +159,11 @@ class WearOSGestureDetectionService : KoinComponent {
     }
     
     /**
-     * 觸發 AI 語音助手
+     * Release builds do not ship Gemini Live. Fail-closed: no service start,
+     * no in-app "assistant" navigation that would look like success.
      */
-    fun triggerAIAssistant(gestureType: AIGestureType) {
-        // 震動反饋
-        val vibrationPattern = when (gestureType) {
-            AIGestureType.CROWN_ROTATION -> VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE)
-            AIGestureType.PINCH_GESTURE -> VibrationEffect.createWaveform(longArrayOf(0, 50, 50, 50), -1)
-            AIGestureType.LONG_PRESS_CROWN -> VibrationEffect.createOneShot(200, VibrationEffect.EFFECT_HEAVY_CLICK)
-            AIGestureType.TRIPLE_TAP -> VibrationEffect.createWaveform(longArrayOf(0, 30, 50, 30, 50, 30), -1)
-        }
-        
-        vibrator.vibrate(vibrationPattern)
-        
-        // 啟動系統級 AI 服務
-        val serviceIntent = Intent(context, WearWalletGeminiLiveService::class.java).apply {
-            action = "com.cbstudio.wearwallet.AI_GESTURE_TRIGGER"
-            putExtra("gesture_type", gestureType.name)
-            putExtra("trigger_time", System.currentTimeMillis())
-        }
-        
-        try {
-            context.startForegroundService(serviceIntent)
-        } catch (e: Exception) {
-            // 回退到普通應用內 AI 助手
-            triggerInAppAIAssistant()
-        }
-    }
-    
-    /**
-     * 回退到應用內 AI 助手
-     */
-    private fun triggerInAppAIAssistant() {
-        val appIntent = Intent().apply {
-            setClassName(context.packageName, "com.cbstudio.wearwallet.MainActivity")
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            putExtra("navigate_to", "ai_assistant")
-            putExtra("trigger_source", "gesture")
-        }
-        context.startActivity(appIntent)
+    fun triggerAIAssistant(@Suppress("UNUSED_PARAMETER") gestureType: AIGestureType) {
+        return
     }
 }
 
@@ -228,7 +176,6 @@ fun AIGestureDetector(
     onGestureDetected: (WearOSGestureDetectionService) -> Unit = {},
     content: @Composable () -> Unit
 ) {
-    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     
     // 注入手勢檢測服務
