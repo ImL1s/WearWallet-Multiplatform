@@ -89,4 +89,20 @@ enum class WearCapability(
         id = "mainnet_software_sign",
         maturity = FeatureMaturity.UNSUPPORTED,
     ),
+    VENDORED_KOTLIN_ADDRESS(
+        id = "vendored_kotlin_address",
+        maturity = FeatureMaturity.UNSUPPORTED,
+    ),
+    VENDORED_KOTLIN_TX_BUILDER(
+        id = "vendored_kotlin_tx_builder",
+        maturity = FeatureMaturity.UNSUPPORTED,
+    ),
+    VENDORED_KOTLIN_BLOCKCHAIN_CLIENT(
+        id = "vendored_kotlin_blockchain_client",
+        maturity = FeatureMaturity.UNSUPPORTED,
+    ),
+    VENDORED_KOTLIN_SECURE_STORAGE(
+        id = "vendored_kotlin_secure_storage",
+        maturity = FeatureMaturity.UNSUPPORTED,
+    ),
 }

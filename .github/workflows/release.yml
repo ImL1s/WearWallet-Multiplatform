@@ -99,7 +99,7 @@ jobs:
           done
           # Always ship a source snapshot of this sanitized tip.
           # Exclude dist/ so tar does not race its own output archive.
-          tar -czf "dist/WearWallet-public-${{ steps.meta.outputs.tag }}-source.tar.gz" \
+          tar -czf "dist/WearWallet-Multiplatform-${{ steps.meta.outputs.tag }}-source.tar.gz" \
             --exclude='./dist' --exclude='.git' --exclude='**/build' --exclude='.gradle' \
             --exclude='wear/google-services.json' --exclude='mobile/google-services.json' .
           (

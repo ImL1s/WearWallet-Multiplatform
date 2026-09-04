@@ -12,7 +12,7 @@ watchOS, and shared Kotlin Multiplatform code.
 </div>
 
 > [!IMPORTANT]
-> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
+> This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 > tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 > vault. Do **not** force-export from private over this `main` as ongoing sync.
 > This tree has **no private development history** (last sanitized orphan
@@ -84,8 +84,8 @@ The repository uses the checked-in Gradle 8.13 wrapper and Kotlin 2.2.21.
 ### Configure and build
 
 ```bash
-git clone https://github.com/ImL1s/WearWallet-public.git
-cd WearWallet-public
+git clone https://github.com/ImL1s/WearWallet-Multiplatform.git
+cd WearWallet-Multiplatform
 ```
 
 `modules/` here is a **flattened, plain-tree vendoring** of each library at
@@ -114,7 +114,7 @@ setup, credentials, and validation commands.
 ## Releases
 
 Experimental **debug** packages (Wear APK + source tarball) are on
-[GitHub Releases](https://github.com/ImL1s/WearWallet-public/releases)
+[GitHub Releases](https://github.com/ImL1s/WearWallet-Multiplatform/releases)
 as prereleases. They are not Play-signed and **not for real funds**.
 How a tag is cut: [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md).
 

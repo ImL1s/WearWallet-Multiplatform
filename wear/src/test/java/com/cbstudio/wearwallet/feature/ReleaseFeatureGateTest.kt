@@ -60,6 +60,10 @@ class ReleaseFeatureGateTest {
             "mobile_companion",
             "broadcast",
             "mainnet_software_sign",
+            "vendored_kotlin_address",
+            "vendored_kotlin_tx_builder",
+            "vendored_kotlin_blockchain_client",
+            "vendored_kotlin_secure_storage",
         )
         assertTrue("missing matrix rows: ${required - ids}", ids.containsAll(required))
         assertTrue(
@@ -74,6 +78,10 @@ class ReleaseFeatureGateTest {
         assertEquals(FeatureMaturity.MAINTENANCE, WearCapability.DIRECT_KMP.maturity)
         assertEquals(FeatureMaturity.UNSUPPORTED, WearCapability.BROADCAST.maturity)
         assertEquals(FeatureMaturity.UNSUPPORTED, WearCapability.MAINNET_SOFTWARE_SIGN.maturity)
+        assertEquals(FeatureMaturity.UNSUPPORTED, WearCapability.VENDORED_KOTLIN_ADDRESS.maturity)
+        assertEquals(FeatureMaturity.UNSUPPORTED, WearCapability.VENDORED_KOTLIN_TX_BUILDER.maturity)
+        assertEquals(FeatureMaturity.UNSUPPORTED, WearCapability.VENDORED_KOTLIN_BLOCKCHAIN_CLIENT.maturity)
+        assertEquals(FeatureMaturity.UNSUPPORTED, WearCapability.VENDORED_KOTLIN_SECURE_STORAGE.maturity)
     }
 
     @Test

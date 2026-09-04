@@ -1,6 +1,6 @@
 # Public tree provenance
 
-This public repo (`ImL1s/WearWallet-public`) is the **canonical development
+This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 vault. Do **not** force-export from private over this `main` as ongoing sync.
 

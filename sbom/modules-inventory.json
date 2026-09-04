@@ -1,0 +1,123 @@
+{
+  "disclaimer": "This is an engineering inventory of license files present in this public tree. It is not legal advice, a license compatibility opinion, an SBOM of Maven/Gradle/CocoaPods graphs, or a redistribution clearance.",
+  "schema_version": 1,
+  "repository": "ImL1s/WearWallet-public",
+  "root": [
+    {
+      "path": "LICENSE",
+      "license_id": "GPL-3.0-or-later",
+      "license_file": "LICENSE",
+      "upstream_url": "https://github.com/ImL1s/WearWallet-public",
+      "notes": "Root project license for WearWallet's own source."
+    },
+    {
+      "path": "NOTICE",
+      "license_id": null,
+      "license_file": "NOTICE",
+      "upstream_url": "https://github.com/ImL1s/WearWallet-public",
+      "notes": "Attribution pointer only. Does not relicense any component."
+    }
+  ],
+  "modules": [
+    {
+      "path": "modules/bitcoin-kmp",
+      "license_id": "Apache-2.0",
+      "license_file": "modules/bitcoin-kmp/LICENSE",
+      "upstream_url": "https://github.com/ACINQ/bitcoin-kmp",
+      "in_settings_gradle": false,
+      "capability_ids": [],
+      "redistributable_license_file_present": true,
+      "notes": "Vendored ACINQ tree. Not included in root settings.gradle.kts."
+    },
+    {
+      "path": "modules/secp256k1-kmp",
+      "license_id": "Apache-2.0",
+      "license_file": "modules/secp256k1-kmp/LICENSE",
+      "upstream_url": "https://github.com/ACINQ/secp256k1-kmp",
+      "in_settings_gradle": false,
+      "capability_ids": [],
+      "redistributable_license_file_present": true,
+      "notes": "Vendored ACINQ wrapper. Not included in root settings.gradle.kts."
+    },
+    {
+      "path": "modules/secp256k1-kmp/native/secp256k1",
+      "license_id": "MIT",
+      "license_file": "modules/secp256k1-kmp/native/secp256k1/COPYING",
+      "upstream_url": "https://github.com/bitcoin-core/secp256k1",
+      "in_settings_gradle": false,
+      "capability_ids": [],
+      "redistributable_license_file_present": true,
+      "notes": "Native libsecp256k1 sources (Pieter Wuille) inside the ACINQ wrapper tree."
+    },
+    {
+      "path": "modules/kotlin-utxo",
+      "license_id": "Apache-2.0",
+      "license_file": "modules/kotlin-utxo/LICENSE",
+      "upstream_url": "https://github.com/ImL1s/kotlin-utxo",
+      "in_settings_gradle": true,
+      "capability_ids": [],
+      "redistributable_license_file_present": true,
+      "notes": "LICENSE file is Apache-2.0 (Copyright 2024 CB Studio). README says MIT; LICENSE file is the inventory source, not the README claim."
+    },
+    {
+      "path": "modules/kotlin-crypto-pure",
+      "license_id": "Apache-2.0",
+      "license_file": "modules/kotlin-crypto-pure/LICENSE",
+      "upstream_url": "https://github.com/ImL1s/kotlin-crypto-pure",
+      "in_settings_gradle": true,
+      "capability_ids": [],
+      "redistributable_license_file_present": true,
+      "notes": "LICENSE file is Apache-2.0 (Copyright 2024 CB Studio). README says MIT; LICENSE file is the inventory source."
+    },
+    {
+      "path": "modules/kotlin-caip-standards",
+      "license_id": "Apache-2.0",
+      "license_file": "modules/kotlin-caip-standards/LICENSE",
+      "upstream_url": "https://github.com/ImL1s/kotlin-caip-standards",
+      "in_settings_gradle": true,
+      "capability_ids": [],
+      "redistributable_license_file_present": true,
+      "notes": "LICENSE file is Apache-2.0 (Copyright 2024 iml1s). README says MIT; LICENSE file is the inventory source."
+    },
+    {
+      "path": "modules/kotlin-address",
+      "license_id": null,
+      "license_file": null,
+      "upstream_url": "https://github.com/ImL1s/kotlin-address",
+      "in_settings_gradle": true,
+      "capability_ids": ["vendored_kotlin_address"],
+      "redistributable_license_file_present": false,
+      "notes": "No LICENSE file in the flattened tree. README says MIT. Do not invent a license. Corresponding capability is UNSUPPORTED."
+    },
+    {
+      "path": "modules/kotlin-tx-builder",
+      "license_id": null,
+      "license_file": null,
+      "upstream_url": "https://github.com/ImL1s/kotlin-tx-builder",
+      "in_settings_gradle": true,
+      "capability_ids": ["vendored_kotlin_tx_builder"],
+      "redistributable_license_file_present": false,
+      "notes": "No LICENSE file. README badge claims Apache-2.0 and links to a missing LICENSE. Do not invent a license. Corresponding capability is UNSUPPORTED."
+    },
+    {
+      "path": "modules/kotlin-blockchain-client",
+      "license_id": null,
+      "license_file": null,
+      "upstream_url": "https://github.com/ImL1s/kotlin-blockchain-client",
+      "in_settings_gradle": true,
+      "capability_ids": ["vendored_kotlin_blockchain_client"],
+      "redistributable_license_file_present": false,
+      "notes": "No LICENSE file. README says MIT. Do not invent a license. Corresponding capability is UNSUPPORTED."
+    },
+    {
+      "path": "modules/kotlin-secure-storage",
+      "license_id": null,
+      "license_file": null,
+      "upstream_url": "https://github.com/ImL1s/kotlin-secure-storage",
+      "in_settings_gradle": true,
+      "capability_ids": ["vendored_kotlin_secure_storage"],
+      "redistributable_license_file_present": false,
+      "notes": "No LICENSE file. README badge claims Apache-2.0 and links to a missing LICENSE. Do not invent a license. Corresponding capability is UNSUPPORTED."
+    }
+  ]
+}

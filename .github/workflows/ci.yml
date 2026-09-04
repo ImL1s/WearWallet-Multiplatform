@@ -96,6 +96,20 @@ jobs:
       # has repeatedly hung 30–60+ minutes on those suites without adding
       # signal beyond the assemble gate.
 
+  ci-pat-fallback-guard:
+    name: CI PAT fallback guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Fail if CI requires GH_TOKEN_PACKAGES with no fallback
+        run: |
+          python3 scripts/tests/test_check_ci_pat_fallback.py
+          python3 scripts/check_ci_pat_fallback.py
+
   markdown-link-check:
     name: Markdown link check
     runs-on: ubuntu-latest
@@ -122,6 +136,7 @@ jobs:
             docs/PUBLIC_BUILD.md
             docs/PUBLIC_SNAPSHOT.md
             docs/LICENSING.md
+            docs/THIRD_PARTY.md
             docs/SCREENSHOTS.md
             docs/DEVELOPMENT_GUIDE.md
             docs/CONTRIBUTING.md
