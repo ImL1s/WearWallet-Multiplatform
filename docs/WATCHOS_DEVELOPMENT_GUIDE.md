@@ -19,8 +19,9 @@ lives in `coreKmp`. Kotlin/Native produces a framework named `coreKmp`.
 - macOS and Xcode
 - JDK 17
 - an Android SDK visible to Gradle
-- initialized Git submodules
 - GitHub Packages credentials when private dependency resolution requires them
+
+Modules are vendored as plain trees. There is no `.gitmodules`.
 
 See the [development guide](./DEVELOPMENT_GUIDE.md) for environment setup.
 
@@ -62,19 +63,20 @@ Swift sources import the module as:
 import coreKmp
 ```
 
-The checked-in Xcode project still contains a retired `sharedKmp` framework
-search path. Until that project setting is repaired and an Xcode build passes,
-do not present the following as a verified one-command workflow:
+The checked-in Xcode project is `watchos/WatchWallet.xcodeproj`. Framework
+Search Paths should point at `coreKmp.framework` (not `sharedKmp` /
+`WearWalletShared.framework`). `watchos/build-kmp.sh` can copy the simulator
+framework into `watchos/Frameworks/` and run `pod install`; CocoaPods may then
+create a local `WearWallet.xcworkspace` that is **not** committed.
+
+Do not present the following as a verified one-command workflow until an Xcode
+build is recorded separately:
 
 ```bash
 cd watchos
 ./build-kmp.sh
-open WearWallet.xcworkspace
+open WatchWallet.xcodeproj
 ```
-
-When repairing the project, make Framework Search Paths and framework references
-point to `coreKmp.framework`; do not restore `WearWalletShared.framework` or a
-`sharedKmp/` path.
 
 ## Verification lanes
 
@@ -88,5 +90,5 @@ Record these separately:
 6. hardware-wallet and network evidence
 7. signed archive and store/release state
 
-Historical setup notes are under the [watchOS report archive](./archive/watchos-reports/)
-and [migration archive](./archive/watchos-migration/).
+Historical watchOS migration reports are not shipped in this public tree.
+Use this guide and [`watchos/README.md`](../watchos/README.md).

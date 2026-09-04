@@ -13,7 +13,5 @@ behavior. Before using an asset:
 3. remove secrets, personal data, device framing, overlays, or unsupported copy;
 4. record review, device, Play Console, and durable listing evidence separately.
 
-Use the uncompleted
-[Wear OS release evidence checklist](../docs/WEAROS_PLAY_STORE_CHECKLIST.md).
-Historical asset reports and listing drafts are retained under
-[`docs/archive/store-assets/`](../docs/archive/store-assets/).
+These images are draft inputs only. Historical listing drafts are not shipped
+in this public tree. Store submission is not a public-CI lane.

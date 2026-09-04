@@ -268,4 +268,3 @@ fun `cross-platform k generation consistency`() {
 ## 🔗 相關文檔
 
 - [目前 cross-validation test source](../src/commonTest/kotlin/io/github/iml1s/crypto/Secp256k1CrossValidationTest.kt)
-- [歷史以太坊簽名安全審查](../../docs/archive/design-and-status/ETHEREUM_SIGNER_SECURITY_REVIEW-legacy.md)（不可作為目前 production approval）

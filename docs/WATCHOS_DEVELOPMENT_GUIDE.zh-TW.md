@@ -18,8 +18,9 @@
 - macOS 與 Xcode
 - JDK 17
 - Gradle 可找到 Android SDK
-- 已初始化 Git submodule
 - 私有套件解析需要時，提供 GitHub Packages 憑證
+
+模組是平面 vendoring，沒有 `.gitmodules`。
 
 環境設定請先看[開發指南](./DEVELOPMENT_GUIDE.zh-TW.md)。
 
@@ -61,17 +62,18 @@ Swift 原始碼使用：
 import coreKmp
 ```
 
-目前追蹤中的 Xcode 專案仍保留退役的 `sharedKmp` framework search path。
-在修正該設定並取得 Xcode build 證據前，不可把以下流程寫成已驗證的一鍵操作：
+追蹤中的 Xcode 專案是 `watchos/WatchWallet.xcodeproj`。Framework Search Paths
+應指向 `coreKmp.framework`（不是 `sharedKmp` / `WearWalletShared.framework`）。
+`watchos/build-kmp.sh` 可把模擬器 framework 拷到 `watchos/Frameworks/` 並跑
+`pod install`；CocoaPods 之後可能產生**未提交**的本機 `WearWallet.xcworkspace`。
+
+在另外記錄 Xcode build 證據前，不可把以下流程寫成已驗證的一鍵操作：
 
 ```bash
 cd watchos
 ./build-kmp.sh
-open WearWallet.xcworkspace
+open WatchWallet.xcodeproj
 ```
-
-修正專案時，Framework Search Paths 與 framework reference 應指向
-`coreKmp.framework`，不可恢復 `WearWalletShared.framework` 或 `sharedKmp/`。
 
 ## 驗證層級
 
@@ -85,5 +87,5 @@ open WearWallet.xcworkspace
 6. 硬體錢包與網路證據
 7. 簽署 archive 與商店／發佈狀態
 
-歷史設定說明已移到 [watchOS 報告封存](./archive/watchos-reports/)與
-[遷移文件封存](./archive/watchos-migration/)。
+歷史 watchOS 遷移報告不會出貨到這個公開樹。請用本指南與
+[`watchos/README.md`](../watchos/README.md)。

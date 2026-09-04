@@ -10,27 +10,27 @@ the lane it exercised.
 ./scripts/check_markdown_links.py
 
 # Shared Android/JVM unit tests
-./gradlew :coreKmp:testDebugUnitTest
+./gradlew :coreKmp:testDebugUnitTest -PpublicSnapshot=true
 
 # Wear OS unit tests
-./gradlew :wear:testDebugUnitTest
+./gradlew :wear:testDebugUnitTest -PpublicSnapshot=true
 
 # Android companion unit tests
-./gradlew :mobile:testDebugUnitTest
+./gradlew :mobile:testDebugUnitTest -PpublicSnapshot=true
 ```
 
 ## Build checks
 
 ```bash
 # Shared Android compilation
-./gradlew :coreKmp:compileDebugKotlinAndroid
+./gradlew :coreKmp:compileDebugKotlinAndroid -PpublicSnapshot=true
 
 # Application debug builds
-./gradlew :wear:assembleDebug
-./gradlew :mobile:assembleDebug
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
+./gradlew :mobile:assembleDebug -PpublicSnapshot=true
 
 # Wear OS release assembly without publishing
-./gradlew :wear:assembleRelease
+./gradlew :wear:assembleRelease -PpublicSnapshot=true
 ```
 
 Release tasks may require local signing or service configuration. Do not commit
@@ -98,10 +98,11 @@ proof.
 
 ## CI source of truth
 
-Current workflows live in [`.github/workflows/`](../.github/workflows/). The main
-platform matrix is in [`ci.yml`](../.github/workflows/ci.yml), with additional
-security checks in
-[`sec13-security-verification.yml`](../.github/workflows/sec13-security-verification.yml).
+Current workflows live in [`.github/workflows/`](../.github/workflows/). Public
+CI is [`ci.yml`](../.github/workflows/ci.yml) (fail-closed unit slice, Wear debug
+assemble, curated Markdown links, PAT-fallback and release-manifest guards) and
+[`release.yml`](../.github/workflows/release.yml) (debug APK + source tarball
+prerelease). There is no `sec13-security-verification.yml` on this public tree.
 
 Before reporting a pull request as green, verify checks ran against the exact
 head commit and inspect any skipped, cancelled, or neutral jobs.

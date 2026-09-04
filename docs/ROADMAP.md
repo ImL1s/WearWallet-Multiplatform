@@ -47,7 +47,8 @@ required device or hardware evidence exist.
 ## 5. Developer experience and documentation
 
 - Keep one maintained documentation index and dependency-free local link check.
-- Shorten historical status reports or move them to an archive/evidence area.
+- Keep historical status reports out of this public tree; the private vault
+  remains the ops/history store.
 - Make setup and validation commands reproducible from a clean clone.
 - Remove tracked generated outputs, logs, and platform dependency artifacts in
   a dedicated cleanup after ownership and regeneration are verified.
@@ -63,5 +64,5 @@ required device or hardware evidence exist.
 | Device verified | Required physical device or hardware check is recorded |
 | Released | Signed artifact and store/release state are confirmed |
 
-The previous long-form 2025 roadmap is retained as a
-[historical snapshot](./archive/ROADMAP-legacy-2025.md), not current status.
+Older long-form roadmaps are not shipped in this public tree. Use this page
+and [FEATURE_STATUS.md](./FEATURE_STATUS.md) for current intent.
