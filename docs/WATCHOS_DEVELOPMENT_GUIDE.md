@@ -70,12 +70,13 @@ framework into `watchos/Frameworks/` and run `pod install`; CocoaPods may then
 create a local `WearWallet.xcworkspace` that is **not** committed.
 
 Do not present the following as a verified one-command workflow until an Xcode
-build is recorded separately:
+build is recorded separately. After `build-kmp.sh` / `pod install`, open the
+generated workspace (not the standalone xcodeproj):
 
 ```bash
 cd watchos
 ./build-kmp.sh
-open WatchWallet.xcodeproj
+open WearWallet.xcworkspace
 ```
 
 ## Verification lanes

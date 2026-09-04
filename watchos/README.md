@@ -61,8 +61,10 @@ The checked-in app is `WatchWallet.xcodeproj` plus `WatchWallet Watch App`.
 Framework Search Paths must point at `coreKmp.framework`; do not restore
 `WearWalletShared.framework` or a `sharedKmp/` path.
 
-There is no committed `WearWallet.xcworkspace`. `pod install` may create one
-locally. Open `WatchWallet.xcodeproj` unless you have just regenerated Pods.
+There is no committed `WearWallet.xcworkspace`. `watchos/build-kmp.sh` runs
+`pod install` and creates a local workspace. After that script, open
+`WearWallet.xcworkspace` so `Pods_WatchWallet_Watch_App.framework` is linked.
+Opening `WatchWallet.xcodeproj` alone omits the Pods project.
 
 An Xcode / simulator / physical-watch result is a separate evidence lane. See
 the [watchOS development guide](../docs/WATCHOS_DEVELOPMENT_GUIDE.md).

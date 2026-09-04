@@ -67,12 +67,13 @@ import coreKmp
 `watchos/build-kmp.sh` 可把模擬器 framework 拷到 `watchos/Frameworks/` 並跑
 `pod install`；CocoaPods 之後可能產生**未提交**的本機 `WearWallet.xcworkspace`。
 
-在另外記錄 Xcode build 證據前，不可把以下流程寫成已驗證的一鍵操作：
+在另外記錄 Xcode build 證據前，不可把以下流程寫成已驗證的一鍵操作。
+`build-kmp.sh` / `pod install` 之後請開產生的 workspace（不要只開 xcodeproj）：
 
 ```bash
 cd watchos
 ./build-kmp.sh
-open WatchWallet.xcodeproj
+open WearWallet.xcworkspace
 ```
 
 ## 驗證層級
