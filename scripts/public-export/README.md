@@ -2,10 +2,10 @@
 
 This directory powered a **one-way, fail-closed sanitized export** from the
 private repo (`ImL1s/WearWallet`) to the public repo
-(`ImL1s/WearWallet-public`, pinned by numeric repo id in
+(`ImL1s/WearWallet-Multiplatform`, pinned by numeric repo id in
 `scripts/export-public.sh`).
 
-**Public `ImL1s/WearWallet-public` is now the canonical development tree.**
+**Public `ImL1s/WearWallet-Multiplatform` is now the canonical development tree.**
 The private repo is frozen as a historical / ops vault. Do **not** treat
 `export-public.sh --push` as ongoing sync over public `main`.
 
@@ -13,7 +13,7 @@ The private repo is frozen as a historical / ops vault. Do **not** treat
 last sanitized export: private main (clean HEAD) --(export-public.sh)--> public main (orphan tip)
 ```
 
-- Public development continues on `ImL1s/WearWallet-public`.
+- Public development continues on `ImL1s/WearWallet-Multiplatform`.
 - The public repo has no private git ancestry (orphan tip).
 - Credential vaults and store-upload ops stay out of the public tree.
 - Every guard below either passes or aborts the **entire** export — there is
@@ -30,7 +30,7 @@ last sanitized export: private main (clean HEAD) --(export-public.sh)--> public 
 
 # Publish (requires `gh auth login`; verifies destination repo id/visibility/
 # default branch, and that no unexpected public branches/tags exist)
-./scripts/export-public.sh --push --repo ImL1s/WearWallet-public
+./scripts/export-public.sh --push --repo ImL1s/WearWallet-Multiplatform
 
 # If the public repo intentionally has extra tags (reviewed), allow them:
 ./scripts/export-public.sh --push --allow-tags

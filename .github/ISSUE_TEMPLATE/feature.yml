@@ -6,9 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Capability claims live only in [FEATURE_STATUS.md](https://github.com/ImL1s/WearWallet-public/blob/main/docs/FEATURE_STATUS.md). A merged feature is not a production wallet.
+        Capability claims live only in [FEATURE_STATUS.md](https://github.com/ImL1s/WearWallet-Multiplatform/blob/main/docs/FEATURE_STATUS.md). A merged feature is not a production wallet.
 
-        Security-sensitive reports go through [SECURITY.md](https://github.com/ImL1s/WearWallet-public/blob/main/SECURITY.md), not this form.
+        Security-sensitive reports go through [SECURITY.md](https://github.com/ImL1s/WearWallet-Multiplatform/blob/main/SECURITY.md), not this form.
   - type: textarea
     id: problem
     attributes:

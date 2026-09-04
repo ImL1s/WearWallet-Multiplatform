@@ -1,6 +1,6 @@
 # Development
 
-> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
+> This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 > tree**. See [`PUBLIC_BUILD.md`](./PUBLIC_BUILD.md) for clone, CI, and release
 > facts and [`FEATURE_STATUS.md`](./FEATURE_STATUS.md) for capability claims.
 > The private repo stays private **forever**. Do **not** use with real funds.
@@ -8,8 +8,8 @@
 ## Clone
 
 ```bash
-git clone https://github.com/ImL1s/WearWallet-public.git
-cd WearWallet-public
+git clone https://github.com/ImL1s/WearWallet-Multiplatform.git
+cd WearWallet-Multiplatform
 ```
 
 ## Prerequisites
@@ -37,7 +37,7 @@ PAT-fallback guard — not a full unit suite, not 3-OS CI, and not issue #30.
 ## Contributing
 
 Open issues and PRs on
-[ImL1s/WearWallet-public](https://github.com/ImL1s/WearWallet-public).
+[ImL1s/WearWallet-Multiplatform](https://github.com/ImL1s/WearWallet-Multiplatform).
 Security reports: see [SECURITY.md](../SECURITY.md) / GitHub Security Advisories.
 
 Do not commit secrets, keystores, or production Firebase configs.

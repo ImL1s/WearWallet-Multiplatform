@@ -1,6 +1,6 @@
 # Security Policy
 
-This public repo (`ImL1s/WearWallet-public`) is the **canonical development
+This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is a historical / ops vault and
 stays **private forever**. We will **not** rewrite private git history and
 push it here. This tree has **no private git ancestry**. **Do not use with
@@ -16,7 +16,7 @@ release and no guarantee of fitness for storing or transferring real funds.
 Please **do not** open a public GitHub issue for security vulnerabilities.
 
 Report privately via **GitHub Security Advisories** on
-[ImL1s/WearWallet-public](https://github.com/ImL1s/WearWallet-public)
+[ImL1s/WearWallet-Multiplatform](https://github.com/ImL1s/WearWallet-Multiplatform)
 (Security → Advisories → New draft security advisory), or email
 `security@cbstudio.dev` if advisories are unavailable.
 

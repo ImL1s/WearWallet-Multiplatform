@@ -1,20 +1,20 @@
 {
   "disclaimer": "This is an engineering inventory of license files present in this public tree. It is not legal advice, a license compatibility opinion, an SBOM of Maven/Gradle/CocoaPods graphs, or a redistribution clearance.",
   "schema_version": 1,
-  "repository": "ImL1s/WearWallet-public",
+  "repository": "ImL1s/WearWallet-Multiplatform",
   "root": [
     {
       "path": "LICENSE",
       "license_id": "GPL-3.0-or-later",
       "license_file": "LICENSE",
-      "upstream_url": "https://github.com/ImL1s/WearWallet-public",
+      "upstream_url": "https://github.com/ImL1s/WearWallet-Multiplatform",
       "notes": "Root project license for WearWallet's own source."
     },
     {
       "path": "NOTICE",
       "license_id": null,
       "license_file": "NOTICE",
-      "upstream_url": "https://github.com/ImL1s/WearWallet-public",
+      "upstream_url": "https://github.com/ImL1s/WearWallet-Multiplatform",
       "notes": "Attribution pointer only. Does not relicense any component."
     }
   ],

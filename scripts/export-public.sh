@@ -25,8 +25,8 @@ BIP39_WORDLIST_REL="scripts/public-export/tools/bip39-english.txt"
 BIP39_ALLOWLIST_REL="scripts/public-export/bip39-allowlist.json"
 MANIFEST_TOOL_REL="scripts/public-export/tools/gen_manifest.py"
 
-PUBLIC_REPO="${PUBLIC_REPO:-ImL1s/WearWallet-public}"
-PUBLIC_REPO_ID_EXPECTED="1353027767"   # pinned via `gh api repos/ImL1s/WearWallet-public --jq .id`
+PUBLIC_REPO="${PUBLIC_REPO:-ImL1s/WearWallet-Multiplatform}"
+PUBLIC_REPO_ID_EXPECTED="1353027767"   # pinned via `gh api repos/ImL1s/WearWallet-Multiplatform --jq .id`
 PUBLIC_DEFAULT_BRANCH_EXPECTED="main"
 
 # Directories treated as "already public upstream" for the two noisier
@@ -276,15 +276,15 @@ note "scrubbing private-ops phrasing from docs"
 BANNER_FILE="$EXPORT_DIR/README.md"
 if [[ -f "$BANNER_FILE" ]]; then
   sed -i.bak \
-    -e 's|https://github.com/ImL1s/WearWallet.git|https://github.com/ImL1s/WearWallet-public.git|g' \
-    -e 's|github.com/ImL1s/WearWallet)|github.com/ImL1s/WearWallet-public)|g' \
+    -e 's|https://github.com/ImL1s/WearWallet.git|https://github.com/ImL1s/WearWallet-Multiplatform.git|g' \
+    -e 's|github.com/ImL1s/WearWallet)|github.com/ImL1s/WearWallet-Multiplatform)|g' \
     -e 's|Automated unit, build, security, and cross-platform CI workflows|Public Ubuntu CI: Wear assembleDebug + markdown links (not a full unit suite)|g' \
     "$BANNER_FILE" && rm -f "${BANNER_FILE}.bak"
   if ! grep -q 'canonical development tree' "$BANNER_FILE"; then
     tmp="$(mktemp)"
     cat >"$tmp" <<EOF
 > [!IMPORTANT]
-> This public repo (\`ImL1s/WearWallet-public\`) is the **canonical development
+> This public repo (\`ImL1s/WearWallet-Multiplatform\`) is the **canonical development
 > tree**. The private repo (\`ImL1s/WearWallet\`) is frozen as a historical / ops
 > vault. Do **not** force-export from private over this \`main\`. Do **not** use
 > with real funds. See [\`docs/PUBLIC_BUILD.md\`](./docs/PUBLIC_BUILD.md) and
@@ -308,7 +308,7 @@ PROVENANCE_FILE="$EXPORT_DIR/docs/PUBLIC_SNAPSHOT.md"
     cat <<'HDR'
 # Public tree provenance
 
-This public repo (`ImL1s/WearWallet-public`) is the **canonical development tree**.
+This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development tree**.
 The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops vault.
 Do **not** force-export from private over this `main` as ongoing sync.
 
@@ -543,8 +543,8 @@ fi
 #     default branch=main. Verified live via `gh api` right before push.
 # ---------------------------------------------------------------------------
 note "verifying pinned destination repo: $PUBLIC_REPO"
-[[ "$PUBLIC_REPO" == "ImL1s/WearWallet-public" ]] \
-  || fail "PUBLIC_REPO is pinned to ImL1s/WearWallet-public; refusing to push to '$PUBLIC_REPO'"
+[[ "$PUBLIC_REPO" == "ImL1s/WearWallet-Multiplatform" ]] \
+  || fail "PUBLIC_REPO is pinned to ImL1s/WearWallet-Multiplatform; refusing to push to '$PUBLIC_REPO'"
 command -v gh >/dev/null 2>&1 || fail "gh CLI is required to verify the destination repo before push"
 REPO_JSON="$(gh api "repos/$PUBLIC_REPO" 2>/dev/null)" || fail "cannot query destination repo via gh api: $PUBLIC_REPO"
 REPO_ID="$(echo "$REPO_JSON" | python3 -c 'import json,sys;print(json.load(sys.stdin)["id"])')"
@@ -580,7 +580,7 @@ if [[ -n "$PRIOR" ]]; then
   echo "NOTE: replacing public main tip $PRIOR (orphan rewrite)."
 fi
 
-WORKDIR="$(mktemp -d)/WearWallet-public"
+WORKDIR="$(mktemp -d)/WearWallet-Multiplatform"
 mkdir -p "$WORKDIR"
 git -C "$WORKDIR" init -b main
 git -C "$WORKDIR" remote add origin "https://github.com/${PUBLIC_REPO}.git"

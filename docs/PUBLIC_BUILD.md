@@ -1,6 +1,6 @@
 # Public build notes
 
-This public repo (`ImL1s/WearWallet-public`) is the **canonical development
+This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 vault **forever**. Do **not** force-export from private over this `main` as
 ongoing sync. Do **not** rewrite private git history and push it here.
@@ -10,8 +10,8 @@ This tree has **no private git ancestry**. **Do not use with real funds.**
 ## Clone
 
 ```bash
-git clone https://github.com/ImL1s/WearWallet-public.git
-cd WearWallet-public
+git clone https://github.com/ImL1s/WearWallet-Multiplatform.git
+cd WearWallet-Multiplatform
 ```
 
 Modules are vendored as plain trees (no gitlinks). Do not expect
@@ -77,14 +77,14 @@ matrix. Run targeted Gradle tests locally with `-PpublicSnapshot=true`.
 ## Releases
 
 Downloadable packages live on
-[GitHub Releases](https://github.com/ImL1s/WearWallet-public/releases)
+[GitHub Releases](https://github.com/ImL1s/WearWallet-Multiplatform/releases)
 (prerelease). They are **debug / experimental**, not store uploads, and **not
 for real funds**.
 
 Cut a tag from this public repo after `main` already has the commit you want:
 
 ```bash
-gh workflow run "Release Snapshot" --repo ImL1s/WearWallet-public \
+gh workflow run "Release Snapshot" --repo ImL1s/WearWallet-Multiplatform \
   -f tag=v0.1.0-public.3
 ```
 
@@ -92,7 +92,7 @@ The workflow checks out current `main`, builds `:wear:assembleDebug -PpublicSnap
 and publishes:
 
 - `WearWallet-wear-<tag>-debug.apk`
-- `WearWallet-public-<tag>-source.tar.gz`
+- `WearWallet-Multiplatform-<tag>-source.tar.gz`
 - `SHA256SUMS.txt`
 
 Wear debug emulator overlay (not mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).

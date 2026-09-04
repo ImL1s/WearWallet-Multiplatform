@@ -8,7 +8,7 @@ body:
       value: |
         This project is experimental. **Do not use with real funds.**
 
-        **Do not report security vulnerabilities here.** Use GitHub Security Advisories or the contact in [SECURITY.md](https://github.com/ImL1s/WearWallet-public/blob/main/SECURITY.md). Never paste seed phrases, private keys, keystores, or production credentials.
+        **Do not report security vulnerabilities here.** Use GitHub Security Advisories or the contact in [SECURITY.md](https://github.com/ImL1s/WearWallet-Multiplatform/blob/main/SECURITY.md). Never paste seed phrases, private keys, keystores, or production credentials.
   - type: input
     id: sha
     attributes:

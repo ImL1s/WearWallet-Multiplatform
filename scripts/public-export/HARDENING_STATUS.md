@@ -5,8 +5,8 @@ Scope of this report: `scripts/export-public.sh`, `scripts/public-export/**`,
 Gradle property). No mnemonic phrases are printed anywhere in this file.
 
 Destination pinned in `scripts/export-public.sh`:
-`PUBLIC_REPO=ImL1s/WearWallet-public`, `PUBLIC_REPO_ID_EXPECTED=1353027767`
-(verified live via `gh api repos/ImL1s/WearWallet-public` — `visibility:
+`PUBLIC_REPO=ImL1s/WearWallet-Multiplatform`, `PUBLIC_REPO_ID_EXPECTED=1353027767`
+(verified live via `gh api repos/ImL1s/WearWallet-Multiplatform` — `visibility:
 public`, `default_branch: main`).
 
 ## TL;DR
@@ -70,7 +70,7 @@ public`, `default_branch: main`).
 - Guard #9: explicit rejection of `.mobileprovision`, real `.env*`
   (`.env.example` excluded), and GCP `service_account` JSON keys, in
   addition to the pre-existing JKS/keystore/P12/PEM/`.so` checks.
-- Guard #10 (push-only): verifies `PUBLIC_REPO == ImL1s/WearWallet-public`,
+- Guard #10 (push-only): verifies `PUBLIC_REPO == ImL1s/WearWallet-Multiplatform`,
   then queries `gh api repos/$PUBLIC_REPO` and hard-fails unless
   `id == 1353027767`, `visibility == public`, `default_branch == main`.
 - Guard #11 (push-only): hard-fails if any branch other than `main`
@@ -143,7 +143,7 @@ See docstrings in each file. `bip39_scan.py` never prints phrases;
 ### `scripts/public-export/overlay/README.md`, `overlay/CLAUDE.md` (new)
 
 - `overlay/README.md`: full curated public README — public clone URL
-  (`WearWallet-public`, no `--recurse-submodules`), explicit "modules are
+  (`WearWallet-Multiplatform`, no `--recurse-submodules`), explicit "modules are
   a flattened plain-tree vendoring, not git submodules" note, all
   `./gradlew` examples updated to `-PpublicSnapshot=true`, links only to
   docs that actually ship publicly, same experimental/no-real-funds
@@ -249,7 +249,7 @@ fixture paths above remain blacklisted. Do not weaken the phrase guard.
 
 ## Known operational follow-up (not a code bug)
 
-- **`ImL1s/WearWallet-public` already has one tag**, `v0.1.0-public.1`
+- **`ImL1s/WearWallet-Multiplatform` already has one tag**, `v0.1.0-public.1`
   (from a prior release), in addition to `main`. Guard #11 will
   therefore fail-closed on the very next real `--push` unless the
   operator either deletes that tag (if it's stale/unwanted) or passes
@@ -257,7 +257,7 @@ fixture paths above remain blacklisted. Do not weaken the phrase guard.
   previous release marker worth keeping. This is a one-time policy
   decision for whoever runs the next `--push`, not something this
   exporter should decide unilaterally.
-- Verified this session: `gh api repos/ImL1s/WearWallet-public` →
+- Verified this session: `gh api repos/ImL1s/WearWallet-Multiplatform` →
   `id: 1353027767`, `visibility: public`, `default_branch: main`,
   `branches: [main]` (no unexpected branches).
 
@@ -265,9 +265,9 @@ fixture paths above remain blacklisted. Do not weaken the phrase guard.
 
 ```bash
 # Repo/branch/tag verification
-gh api repos/ImL1s/WearWallet-public --jq '{id,visibility,default_branch,private}'
-gh api repos/ImL1s/WearWallet-public/branches --jq '.[].name'
-gh api repos/ImL1s/WearWallet-public/tags --jq '.[].name'
+gh api repos/ImL1s/WearWallet-Multiplatform --jq '{id,visibility,default_branch,private}'
+gh api repos/ImL1s/WearWallet-Multiplatform/branches --jq '.[].name'
+gh api repos/ImL1s/WearWallet-Multiplatform/tags --jq '.[].name'
 for r in ImL1s/kotlin-tx-builder ImL1s/kotlin-address ImL1s/kotlin-crypto-pure \
          ImL1s/kotlin-blockchain-client ImL1s/kotlin-secure-storage \
          ImL1s/kotlin-caip-standards ImL1s/kotlin-utxo \

@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (or any AI coding assistant) when
 working with this repository.
 
-> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
+> This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 > tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 > vault **forever**. Do **not** force-export from private over this `main`.
 > Do **not** rewrite private git and push it here. This tree has

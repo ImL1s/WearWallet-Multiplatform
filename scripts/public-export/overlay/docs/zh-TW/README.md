@@ -10,7 +10,7 @@ WearWallet 是以穿戴裝置為主的加密貨幣錢包專案，包含 Wear OS�
 App、watchOS 與 Kotlin Multiplatform 共享核心。
 
 > [!IMPORTANT]
-> 這個公開 repo（[`ImL1s/WearWallet-public`](https://github.com/ImL1s/WearWallet-public)）
+> 這個公開 repo（[`ImL1s/WearWallet-Multiplatform`](https://github.com/ImL1s/WearWallet-Multiplatform)）
 > 是 **正式開發樹**。私有 repo（`ImL1s/WearWallet`）已凍結為歷史／維運保管庫，
 > **永遠保持私有**。**不要**再從私有樹 force-export 覆蓋公開 `main`，也**不要**
 > 改寫私有 git 再推上來。本樹 **沒有**私有開發歷史。**不要用真實資金。**
@@ -34,8 +34,8 @@ App、watchOS 與 Kotlin Multiplatform 共享核心。
 需要 JDK 17、Android SDK 35；Apple target 另需 macOS 與 Xcode。
 
 ```bash
-git clone https://github.com/ImL1s/WearWallet-public.git
-cd WearWallet-public
+git clone https://github.com/ImL1s/WearWallet-Multiplatform.git
+cd WearWallet-Multiplatform
 
 ./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ./gradlew :mobile:assembleDebug -PpublicSnapshot=true
@@ -50,7 +50,7 @@ Wear OS **debug 模擬器**可用本機 QA overlay 點 QR / 代幣 / 歷史 / �
 那不是主網資料。見 [Wear QA harness](../WEAR_QA_HARNESS.md)。
 
 實驗性 Wear **debug APK** 在
-[GitHub Releases](https://github.com/ImL1s/WearWallet-public/releases)
+[GitHub Releases](https://github.com/ImL1s/WearWallet-Multiplatform/releases)
 （prerelease，非商店版，不可當主網證據）。建置與打 tag 見
 [公開建置說明](../PUBLIC_BUILD.md)。
 

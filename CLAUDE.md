@@ -3,13 +3,14 @@
 This file provides guidance to Claude Code (or any AI coding assistant) when
 working with this repository.
 
-> This public repo (`ImL1s/WearWallet-public`) is the **canonical development
-> tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
-> vault **forever**. Do **not** force-export from private over this `main`.
-> Do **not** rewrite private git and push it here. This tree has
-> no private development history, no credential-management tooling, and no
-> production store-upload automation. See
-> [`docs/PUBLIC_BUILD.md`](docs/PUBLIC_BUILD.md) and
+> This public repo (`ImL1s/WearWallet-Multiplatform`, officially renamed from
+> `WearWallet-public`) is the **canonical development tree**. Do **NOT** rename
+> or revert this repository identity back to `WearWallet-public`. The private
+> repo (`ImL1s/WearWallet`) is frozen as a historical / ops vault **forever**.
+> Do **not** force-export from private over this `main`. Do **not** rewrite
+> private git and push it here. This tree has no private development history,
+> no credential-management tooling, and no production store-upload automation.
+> See [`docs/PUBLIC_BUILD.md`](docs/PUBLIC_BUILD.md) and
 > [`docs/PUBLIC_SNAPSHOT.md`](docs/PUBLIC_SNAPSHOT.md).
 
 ## Build & test commands

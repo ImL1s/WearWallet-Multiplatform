@@ -26,8 +26,8 @@
 ## 下載與設定
 
 ```bash
-git clone https://github.com/ImL1s/WearWallet-public.git
-cd WearWallet-public
+git clone https://github.com/ImL1s/WearWallet-Multiplatform.git
+cd WearWallet-Multiplatform
 ```
 
 Modules are vendored as plain trees. Do not run `git submodule update`.

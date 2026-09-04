@@ -1,15 +1,15 @@
 # Contributing
 
 Thanks for interest in WearWallet. This public repo
-([ImL1s/WearWallet-public](https://github.com/ImL1s/WearWallet-public)) is the
+([ImL1s/WearWallet-Multiplatform](https://github.com/ImL1s/WearWallet-Multiplatform)) is the
 **canonical development tree**. It is experimental — not a production wallet.
 
 ## How to contribute
 
-1. Fork [ImL1s/WearWallet-public](https://github.com/ImL1s/WearWallet-public).
+1. Fork [ImL1s/WearWallet-Multiplatform](https://github.com/ImL1s/WearWallet-Multiplatform).
 2. Create a branch from `main`.
 3. Keep changes focused; include tests when touching wallet/security code.
-4. Open a pull request against `ImL1s/WearWallet-public`.
+4. Open a pull request against `ImL1s/WearWallet-Multiplatform`.
 
 The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops vault
 **forever**. Do **not** force-export from private over this `main`. Product
