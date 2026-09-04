@@ -49,9 +49,9 @@ Use the serial from `adb devices -l` (often `emulator-5554`, not always):
 
 ```bash
 adb devices -l
-SERIAL="$(adb devices | awk 'NR==2 {print $1}')"
-adb -s "$SERIAL" install -r wear/build/outputs/apk/debug/wear-debug.apk
-adb -s "$SERIAL" shell monkey -p com.cbstudio.wearwallet -c android.intent.category.LAUNCHER 1
+# Copy the Wear emulator serial (emulator-XXXX). Do not assume the first row.
+adb -s SERIAL install -r wear/build/outputs/apk/debug/wear-debug.apk
+adb -s SERIAL shell monkey -p com.cbstudio.wearwallet -c android.intent.category.LAUNCHER 1
 ```
 
 You should see the QA banner on token / history / contact / QR / send-confirm

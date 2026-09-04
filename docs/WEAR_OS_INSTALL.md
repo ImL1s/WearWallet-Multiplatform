@@ -45,17 +45,16 @@ List devices and use the serial you actually have. It is **not** always
 
 ```bash
 adb devices -l
-SERIAL="$(adb devices | awk 'NR==2 {print $1}')"
-echo "using $SERIAL"
-adb -s "$SERIAL" install -r wear/build/outputs/apk/debug/wear-debug.apk
-adb -s "$SERIAL" shell monkey -p com.cbstudio.wearwallet -c android.intent.category.LAUNCHER 1
+# Copy the Wear emulator serial (emulator-XXXX). Do not assume the first row.
+adb -s SERIAL install -r wear/build/outputs/apk/debug/wear-debug.apk
+adb -s SERIAL shell monkey -p com.cbstudio.wearwallet -c android.intent.category.LAUNCHER 1
 ```
+
+Replace `SERIAL` with the Wear row. If a phone and a watch are both attached,
+the first `adb devices` line is often the phone.
 
 Generic adb install notes:
 [Android Debug Bridge](https://developer.android.com/tools/adb).
-
-If several devices are connected, do not use the `NR==2` one-liner; pick the
-Wear serial from `adb devices -l` by hand.
 
 ### Android Studio Run
 
