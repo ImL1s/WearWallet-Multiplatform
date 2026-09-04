@@ -63,7 +63,7 @@ before copying the list into automation.
 | Documentation only | Markdown link check and `git diff --check` |
 | `coreKmp` common code | Focused test plus `:coreKmp:testDebugUnitTest` |
 | Wear OS code | Focused test, `:wear:testDebugUnitTest`, and `:wear:assembleDebug` |
-| Wear debug emulator overlay | [Wear QA harness](./WEAR_QA_HARNESS.md); overlay UI is not mainnet proof |
+| Wear debug emulator overlay | [Wear OS install](./WEAR_OS_INSTALL.md) then [Wear QA harness](./WEAR_QA_HARNESS.md); overlay UI is not mainnet proof |
 | Android companion code | Focused test, `:mobile:testDebugUnitTest`, and `:mobile:assembleDebug` |
 | Apple source set | Target-specific compile/link task on macOS |
 | Signing or crypto path | Fixed vectors, negative cases, capability-gate tests, and target build |
