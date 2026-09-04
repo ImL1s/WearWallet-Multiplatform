@@ -45,7 +45,6 @@ import com.cbstudio.wearwallet.core.keystone.KeystoneManager
 import com.cbstudio.wearwallet.core.domain.service.KeystoneService
 import com.cbstudio.wearwallet.core.network.*
 import com.cbstudio.wearwallet.core.security.CryptoProvider
-import com.cbstudio.wearwallet.core.security.CommonCryptoProvider
 import com.cbstudio.wearwallet.core.security.PrivateKeyManager
 import com.cbstudio.wearwallet.core.security.KeystoreManager
 import com.cbstudio.wearwallet.core.security.KeystoreManagerFactory
@@ -76,9 +75,11 @@ val coreModule: Module = module {
     single { EthereumRpcClient(get(), get()) }
     
     // Crypto Provider and Security
+    // CryptoProvider is bound only by platformProviderModule (Android/iOS/watchOS).
+    // Do not bind CommonCryptoProvider here — it is a helper for tests/mnemonic utilities,
+    // not a production signing implementation.
     single<SideEffectTracker> { GlobalSideEffectTracker.instance }
     single<com.cbstudio.wearwallet.core.security.SecurityAuditLogger> { com.cbstudio.wearwallet.core.security.GlobalSecurityAuditLogger.instance }
-    single<CryptoProvider> { CommonCryptoProvider(get()) }
     single<com.cbstudio.wearwallet.core.security.CapabilityGate> { com.cbstudio.wearwallet.core.security.ReleaseProductionCapabilityGate() }
     single<com.cbstudio.wearwallet.core.security.BackendAttestationProvider> { com.cbstudio.wearwallet.core.security.DefaultBackendAttestationProvider() }
     // 使用工廠來創建 KeystoreManager

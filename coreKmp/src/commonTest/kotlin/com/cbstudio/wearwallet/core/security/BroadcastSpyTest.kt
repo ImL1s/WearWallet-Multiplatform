@@ -8,6 +8,7 @@ import com.cbstudio.wearwallet.core.domain.model.WalletAccount
 import com.cbstudio.wearwallet.core.domain.repository.TransactionRepository
 import com.cbstudio.wearwallet.core.domain.repository.WalletRepository
 import com.cbstudio.wearwallet.core.domain.usecase.transaction.SendTransactionUseCase
+import com.cbstudio.wearwallet.core.domain.usecase.transaction.TypedUnsupportedTransactionException
 import com.cbstudio.wearwallet.core.platform.SecureStorage
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -116,7 +117,13 @@ class BroadcastSpyTest {
         val useCase = SendTransactionUseCase(walletRepo, spyTxRepo, provider, secureStorage, capabilityGate = ReleaseProductionCapabilityGate(allowEvmMainnetSend = false), secureKeyManager = secureKeyManager)
         val results = useCase("0x2222222222222222222222222222222222222222", "1.0").toList()
 
-        assertTrue(results.last() is Result.Failure)
+        val last = results.last()
+        assertTrue(last is Result.Failure, "Unsupported chain signing must fail closed, not return success")
+        val failureEx = (last as Result.Failure).exception
+        assertTrue(
+            failureEx is TypedUnsupportedTransactionException || failureEx is UnsupportedOperationException,
+            "Unsupported chain must throw typed fail-closed exception, not a fake success: ${failureEx::class.simpleName}: ${failureEx.message}"
+        )
         assertEquals(false, spyTxRepo.sendTransactionCalled, "Must NOT call sendTransaction on unsupported chain failure")
         assertEquals(0, spyTxRepo.broadcastCount, "broadcastCount MUST be 0 on unsupported chain")
         assertTrue(spyTxRepo.broadcastCount <= 1, "broadcastCount MUST be <= 1 across all paths")
