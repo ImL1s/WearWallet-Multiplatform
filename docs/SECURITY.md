@@ -73,17 +73,17 @@ pins. Verify the instantiated client and live failure behavior for each release.
   their associated network feature is exercised.
 - Keep local values in environment variables, ignored `.env`, or an ignored
   `local.properties`; never place them in tracked `gradle.properties`.
-- Review [API configuration](./API_CONFIGURATION.md) and
-  [1Password setup](./ONEPASSWORD_SETUP.md) before running setup tools.
+- Review [API configuration](./API_CONFIGURATION.md). This public tree does
+  not ship 1Password setup or other private credential-management tooling.
 
 ## Verification lanes
 
 Run the smallest relevant checks, then retain exact-head evidence:
 
 ```bash
-./gradlew :coreKmp:testDebugUnitTest
-./gradlew :wear:testDebugUnitTest
-./gradlew :wear:assembleDebug
+./gradlew :coreKmp:testDebugUnitTest -PpublicSnapshot=true
+./gradlew :wear:testDebugUnitTest -PpublicSnapshot=true
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ```
 
 A release decision additionally needs targeted security tests, dependency and
@@ -92,4 +92,6 @@ validation where applicable, signed-artifact inspection, CI for the exact commit
 and review of unresolved findings. Missing credentials or hardware must be
 reported as an unverified lane, never converted into a pass.
 
-Historical implementation claims belong in the [documentation archive](./archive/README.md).
+Historical implementation claims from the private vault are **not** shipped
+here. Treat current source, `settings.gradle.kts`, and exact-head CI as the
+implementation source of truth.

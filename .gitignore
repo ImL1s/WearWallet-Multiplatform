@@ -71,3 +71,6 @@ watchos/Pods/
 watchos/build/
 watchos/DerivedData/
 watchos/**/*.xcuserstate
+
+# Local npm installs from markdown-link-check
+node_modules/

@@ -44,10 +44,10 @@ export GITHUB_TOKEN=YOUR_READ_PACKAGES_TOKEN
 ./gradlew help
 ```
 
-See the [GitHub Packages credential guide](./GITHUB_TOKEN_SETUP.md). An optional
-user-level `~/.gradle/gradle.properties` can hold `github.actor` and
-`github.token`; the repository's tracked `gradle.properties` must remain free
-of secrets.
+Token scope is `read:packages` only. Clone and credential notes live in
+[PUBLIC_BUILD.md](./PUBLIC_BUILD.md). An optional user-level
+`~/.gradle/gradle.properties` can hold `github.actor` and `github.token`; the
+repository's tracked `gradle.properties` must remain free of secrets.
 
 ## Wear OS service values
 
@@ -92,22 +92,9 @@ cp local.properties.template local.properties
 Do not assume an environment variable with the same name reaches BuildKonfig;
 follow the current `coreKmp/build.gradle.kts` implementation.
 
-## Optional 1Password flow
-
-```bash
-docs/PUBLIC_BUILD.md
-
-set -a
-source .env
-set +a
-./scripts/validate-build.sh
-```
-
-The setup script requires an existing, readable `a local secrets manager (never commit)` item and
-may edit missing fields after an explicit prompt before copying supported values
-to ignored `.env`. A failed lookup stops without creating a vault or item. Run
-it only when those field edits are intended. The environment validator checks
-presence without printing secret values.
+This public tree does **not** ship 1Password setup, `scripts/setup.sh`, or
+Play Console automation. Keep local values in environment variables or ignored
+`local.properties`.
 
 ## Verification boundaries
 

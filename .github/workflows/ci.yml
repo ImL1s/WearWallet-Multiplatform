@@ -208,7 +208,21 @@ jobs:
             docs/THIRD_PARTY.md
             docs/SCREENSHOTS.md
             docs/DEVELOPMENT_GUIDE.md
+            docs/DEVELOPMENT_GUIDE.zh-TW.md
             docs/CONTRIBUTING.md
+            docs/CONTRIBUTING.zh-TW.md
+            docs/ARCHITECTURE.md
+            docs/TESTING_GUIDE.md
+            docs/ROADMAP.md
+            docs/SECURITY.md
+            docs/API_CONFIGURATION.md
+            docs/KEYSTONE_INTEGRATION_GUIDE.md
+            docs/WATCHOS_DEVELOPMENT_GUIDE.md
+            docs/COREKMP_API_OVERVIEW.md
+            docs/WEBVIEW_CONTRACT.md
+            docs/WEAR_QA_HARNESS.md
+            docs/zh-TW/README.md
+            watchos/README.md
           )
           rc=0
           for f in "${files[@]}"; do

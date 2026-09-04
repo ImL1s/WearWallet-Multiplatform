@@ -39,8 +39,8 @@ git switch -c type/short-description
 
 ```bash
 ./scripts/check_markdown_links.py
-./gradlew :coreKmp:testDebugUnitTest
-./gradlew :wear:testDebugUnitTest :wear:assembleDebug
+./gradlew :coreKmp:testDebugUnitTest -PpublicSnapshot=true
+./gradlew :wear:testDebugUnitTest :wear:assembleDebug -PpublicSnapshot=true
 git diff --check
 ```
 

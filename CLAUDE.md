@@ -51,7 +51,7 @@ so builds never require a real `google-services.json`. Use the committed
 ```bash
 cd watchos
 ./build-kmp.sh
-open WatchWallet.xcodeproj
+open WearWallet.xcworkspace
 ```
 
 ## Project architecture

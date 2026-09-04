@@ -35,10 +35,11 @@ Do **not** use with real funds.
 
 - Private source tip: `8be876ef60d7d27418232a799f1c1a93aa3b0ca7`
 - Export UTC time: `2026-09-04T02:16:23Z`
-- Method: `scripts/export-public.sh` (blacklist + overlay + guards)
+- Method: private-vault `scripts/export-public.sh` (blacklist + overlay +
+  guards). That script is **not** part of this public tree.
 
 This repository intentionally has **no private development history**.
 This was the last intended overwrite of public `main` from private.
-Consumers should not run the export script.
+Consumers should not run any export script.
 Root `export-manifest.json` was a generated guard/scanner dump from that
 export. It is gitignored and is not source; do not commit it.

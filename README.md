@@ -29,9 +29,11 @@ watchOS, and shared Kotlin Multiplatform code.
 | --- | --- |
 | [`wear/`](./wear/) | Wear OS application |
 | [`mobile/`](./mobile/) | Android companion application |
-| [`watchos/`](./watchos/) | Native watchOS application |
+| [`watchos/`](./watchos/) | Native watchOS application (`WatchWallet.xcodeproj`) |
 | [`coreKmp/`](./coreKmp/) | Shared Kotlin Multiplatform business, data, and security code |
 | [`modules/`](./modules/) | Focused Kotlin libraries used by the applications and core module (vendored as plain trees here — see below) |
+| [`TrustWalletBridge/`](./TrustWalletBridge/) | Experimental iOS-only CocoaPods bridge; not a Gradle module, not watchOS, not public CI |
+| [`iosApp/`](./iosApp/) | Experimental iOS companion leftovers; not the supported entry |
 
 The active Gradle modules are defined in
 [`settings.gradle.kts`](./settings.gradle.kts). Historical design and migration
@@ -105,9 +107,10 @@ library repositories, see each library's own upstream GitHub repository.
 ./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ./gradlew :mobile:assembleDebug -PpublicSnapshot=true
 
-# watchOS (macOS + Xcode + CocoaPods). Pods are not committed. There is no
-# WearWallet.xcworkspace in this tree; the checked-in project is WatchWallet.
-cd watchos && ./build-kmp.sh && open WatchWallet.xcodeproj
+# watchOS (macOS + Xcode + CocoaPods). Pods are not committed.
+# build-kmp.sh runs pod install and creates a local WearWallet.xcworkspace.
+# Open that workspace (not WatchWallet.xcodeproj) so the Pods target is included.
+cd watchos && ./build-kmp.sh && open WearWallet.xcworkspace
 ```
 
 The root `gradle.properties` file is tracked and contains shared build settings;
