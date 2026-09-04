@@ -52,9 +52,11 @@ artifact: Gradle `Could not GET ... Received status code 401`; an
 unauthenticated HTTP GET of the same POM also returns **401**. This tree
 does **not** vendor Wallet Core.
 
-Optional local packages credentials live only in untracked
-`gradle.properties.example` / `.env` / user Gradle properties — never in
-the tracked `gradle.properties`.
+Optional local packages credentials belong in ignored `.env`, user-level
+`~/.gradle/gradle.properties`, or a **local copy** of the tracked
+[`gradle.properties.example`](../gradle.properties.example) — never in the
+tracked `gradle.properties`. The example file is tracked and must stay free
+of real tokens.
 
 - Do **not** commit real Firebase `google-services.json`; use `*.example`.
 - There is no 1Password / Play Console automation in this tree.
@@ -99,8 +101,8 @@ Wear debug emulator overlay (not mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNES
 
 ## Export tooling
 
-`scripts/export-public.sh` is leftover sanitizer tooling from the last private
-→ public orphan export. Do **not** run it as ongoing sync. Consumers should
-not run it. The original “filter-repo the private repo then make it public”
-approach is rejected. The generated root `export-manifest.json` dump is
-gitignored and is not source.
+The sanitizer that produced this orphan tree is **not** shipped here. Do not
+look for `scripts/export-public.sh` on the public clone, and do not run any
+private-vault export over this `main`. The original “filter-repo the private
+repo then make it public” approach is rejected. Provenance of the last
+sanitized export is [PUBLIC_SNAPSHOT.md](./PUBLIC_SNAPSHOT.md).

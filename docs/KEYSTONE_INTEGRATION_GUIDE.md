@@ -84,5 +84,24 @@ The test suite includes UR and xpub-policy tests, but a green unit-test task is
 not hardware evidence. Record unit tests, platform compilation, simulator,
 physical device, hardware wallet, network, and release checks separately.
 
-For historical context only, see the [Keystone archive](./archive/keystone/) and
-[current troubleshooting notes](./keystone/KEYSTONE_TROUBLESHOOTING.md).
+## Implementation pitfalls (not hardware evidence)
+
+These are recurring encoding mismatches in the Kotlin/Android path. They do
+**not** prove a physical Keystone, camera, or broadcast result. Verify against
+current source rather than copied line numbers from older reports.
+
+- **EIP-1559 `v` / yParity:** Keystone may return yParity `0`/`1`. Older web3j
+  `Sign.getRecId()` rejected `v=0`. Convert using the current signing helper;
+  do not assume a green parse is an on-chain success.
+- **UR case and SDK type:** Ethereum signing requests should use the
+  `eth-sign-request` / `KeystoneEthereumSDK` path, not an `evm-sign-request`
+  mix-up. UR part case must match what the device firmware expects.
+- **Request-id mismatch logs:** concurrent parsers can log an ID mismatch
+  while another coroutine already consumed the signature. That log is a
+  correlation guard, not proof the transaction failed or succeeded.
+- **QR / scroll UI:** watch-sized Keystone screens must actually receive
+  `qrCodeData` from the current ViewModel; a rendered scaffold is not a
+  displayed UR.
+
+Callers must still fail closed on malformed, uncorrelated, or unexpected-network
+payloads. See the source map above.

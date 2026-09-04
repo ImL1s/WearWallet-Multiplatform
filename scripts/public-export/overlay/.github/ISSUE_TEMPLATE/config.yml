@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Report a security vulnerability
-    url: https://github.com/ImL1s/WearWallet-Multiplatform/security/advisories/new
-    about: Private GitHub Security Advisories only. Do not file a public issue. See SECURITY.md.
-  - name: Security policy
-    url: https://github.com/ImL1s/WearWallet-Multiplatform/blob/main/SECURITY.md
-    about: Supported versions, disclosure expectations, and contact path.

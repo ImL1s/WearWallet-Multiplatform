@@ -41,9 +41,10 @@ export GITHUB_TOKEN=YOUR_READ_PACKAGES_TOKEN
 ./gradlew help
 ```
 
-詳見 [GitHub Packages 憑證設定](./GITHUB_TOKEN_SETUP.md)。若要使用 Gradle
-property，放在 repository 外的 `~/.gradle/gradle.properties`；不可修改根目錄
-追蹤中的共用檔來保存秘密。
+Token 權限只要 `read:packages`。Clone 與憑證說明見
+[PUBLIC_BUILD.md](./PUBLIC_BUILD.md)。若要使用 Gradle property，放在
+repository 外的 `~/.gradle/gradle.properties`；不可修改根目錄追蹤中的共用檔
+來保存秘密。
 
 ## Wear OS 服務值
 
@@ -87,20 +88,8 @@ cp local.properties.template local.properties
 不可假設同名環境變數一定會進入 BuildKonfig；以目前
 `coreKmp/build.gradle.kts` 為準。
 
-## 選用 1Password 流程
-
-```bash
-docs/PUBLIC_BUILD.md
-
-set -a
-source .env
-set +a
-./scripts/validate-build.sh
-```
-
-設定腳本需要現有且可讀取的 `a local secrets manager (never commit)` item，明確提示後才可能
-修改缺少欄位，再把支援的值複製到已忽略的 `.env`。查詢失敗時不會自動建立
-vault 或 item。只有明確要做欄位變更時才使用；驗證腳本只回報是否存在，不會輸出秘密值。
+這個公開樹**沒有** 1Password 設定、`scripts/setup.sh` 或 Play Console
+自動化。本機值放在環境變數或已忽略的 `local.properties`。
 
 ## 驗證界線
 

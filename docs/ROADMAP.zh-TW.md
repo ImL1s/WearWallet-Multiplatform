@@ -55,5 +55,5 @@
 | Device verified | 必要的實體裝置或硬體檢查已有記錄 |
 | Released | 已確認簽章產物與商店／release 狀態 |
 
-原本的 2025 長版 roadmap 保留為[歷史快照](./archive/ROADMAP-legacy-2025.zh-TW.md)，
-不代表目前狀態。
+較舊的長版 roadmap 不會出貨到這個公開樹。目前意圖以本頁與
+[FEATURE_STATUS.md](./FEATURE_STATUS.md) 為準。

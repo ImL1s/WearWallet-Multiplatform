@@ -59,21 +59,22 @@ client 都使用有效 pin；每次 release 都要驗證實際 client 與失敗�
 - Infura、Moralis 與 explorer key 在使用對應網路功能前都是選用。
 - 本機值放在環境變數、被忽略的 `.env` 或 `local.properties`，不可寫入被追蹤的
   `gradle.properties`。
-- 執行設定工具前先看 [API 設定](./API_CONFIGURATION.zh-TW.md)與
-  [1Password 設定](./ONEPASSWORD_SETUP.md)。
+- 執行設定前先看 [API 設定](./API_CONFIGURATION.zh-TW.md)。這個公開樹沒有
+  1Password 或其他私有憑證管理工具。
 
 ## 驗證層級
 
 先執行最小相關檢查，再保留 exact-head 證據：
 
 ```bash
-./gradlew :coreKmp:testDebugUnitTest
-./gradlew :wear:testDebugUnitTest
-./gradlew :wear:assembleDebug
+./gradlew :coreKmp:testDebugUnitTest -PpublicSnapshot=true
+./gradlew :wear:testDebugUnitTest -PpublicSnapshot=true
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ```
 
 release 決策還需要針對性安全測試、dependency／secret scan、平台建置、副作用檢查、
 適用時的實機與硬體驗證、簽署 artifact 檢查、同一 commit 的 CI，以及未解決 finding
 審查。缺少憑證或硬體時必須標示該層未驗證，不可當成通過。
 
-歷史實作聲明請查閱[文件封存](./archive/README.md)。
+私有保管庫的歷史實作聲明**不會**出貨到這棵樹。實作以目前原始碼、
+`settings.gradle.kts` 與 exact-head CI 為準。

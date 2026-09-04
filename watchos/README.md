@@ -14,8 +14,10 @@ framework as `coreKmp`.
 - macOS with Xcode
 - JDK 17
 - Android SDK configured for the Gradle project
-- Git submodules initialized
 - GitHub Packages credentials when dependency resolution requires them
+
+`modules/` in this public tree are plain vendored copies. There is no
+`.gitmodules`.
 
 See the main [development guide](../docs/DEVELOPMENT_GUIDE.md) for credential
 and Android SDK setup.
@@ -52,16 +54,20 @@ coreKmp/build/bin/watchosSimulatorArm64/debugFramework/coreKmp.framework
 
 ## Xcode integration status
 
-The checked-in Xcode project still contains a retired `sharedKmp` framework
-search path. `watchos/build-kmp.sh` can prepare
-`watchos/Frameworks/coreKmp.framework`, but the Xcode project is not a verified
-one-command build until that setting is repaired and an Xcode build passes.
+The checked-in app is `WatchWallet.xcodeproj` plus `WatchWallet Watch App`.
+`watchos/WatchWallet/` is a small iOS companion target in that same project
+(not a second watch app); its CocoaPods target is commented out.
+`watchos/build-kmp.sh` prepares `watchos/Frameworks/coreKmp.framework`.
+Framework Search Paths must point at `coreKmp.framework`; do not restore
+`WearWalletShared.framework` or a `sharedKmp/` path.
 
-After repairing the project, confirm Framework Search Paths and the embedded
-framework reference point to `coreKmp.framework`; do not restore
-`WearWalletShared.framework` or a `sharedKmp/` path. See the
-[watchOS development guide](../docs/WATCHOS_DEVELOPMENT_GUIDE.md) for the
-separate evidence lanes.
+There is no committed `WearWallet.xcworkspace`. `watchos/build-kmp.sh` runs
+`pod install` and creates a local workspace. After that script, open
+`WearWallet.xcworkspace` so `Pods_WatchWallet_Watch_App.framework` is linked.
+Opening `WatchWallet.xcodeproj` alone omits the Pods project.
+
+An Xcode / simulator / physical-watch result is a separate evidence lane. See
+the [watchOS development guide](../docs/WATCHOS_DEVELOPMENT_GUIDE.md).
 
 ## Validate
 
@@ -77,9 +83,4 @@ Relevant repository checks include:
 ./gradlew :coreKmp:linkDebugFrameworkWatchosSimulatorArm64
 ```
 
-## Historical documents
-
-Older Xcode setup notes, migration plans, and point-in-time fix reports are
-preserved under [`docs/archive/watchos-reports/`](../docs/archive/watchos-reports/)
-and [`docs/archive/watchos-migration/`](../docs/archive/watchos-migration/).
-They intentionally retain historical context and are not current instructions.
+Historical watchOS migration reports are not shipped in this public tree.

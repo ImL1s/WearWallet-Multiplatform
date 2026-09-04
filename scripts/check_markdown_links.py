@@ -23,7 +23,7 @@ DEFAULT_EXCLUDED_PREFIXES = (
     "coreKmp/native/archived/",
     "docs/archive/",
     "docs/evidence/",
-    "scripts/public-export/overlay/",
+    "modules/",
     "watchos/Pods/",
 )
 
