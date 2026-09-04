@@ -841,7 +841,6 @@
 				DEVELOPMENT_TEAM = ABHJVZBWQN;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../coreKmp/build/bin/watchosSimulatorArm64/debugFramework";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = WatchWallet;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
