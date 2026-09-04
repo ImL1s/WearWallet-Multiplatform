@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Debug/maintenance voice entry points. Merged into debug only, not release. -->
+    <application>
+        <meta-data
+            android:name="android.app.shortcuts"
+            android:resource="@xml/shortcuts" />
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/shortcuts" />
+
+        <activity
+            android:name=".presentation.voice.VoiceCommandActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog"
+            android:launchMode="singleTask"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.ACTION_SEND_CRYPTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.ACTION_CHECK_BALANCE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.ACTION_SHOW_RECEIVE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.ACTION_SHOW_TRANSACTIONS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.ACTION_AI_ASSISTANT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.cbstudio.wearwallet.ACTION_SWITCH_WALLET" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Strip overlay permission even if a dependency redeclares it. -->
+    <uses-permission
+        android:name="android.permission.SYSTEM_ALERT_WINDOW"
+        tools:node="remove" />
+
+    <application>
+        <!-- Debug/maintenance activities must never survive into release merge. -->
+        <activity
+            android:name=".presentation.voice.VoiceCommandActivity"
+            tools:node="remove" />
+        <activity
+            android:name=".presentation.debug.MoneroDeviceTestActivity"
+            tools:node="remove" />
+    </application>
+</manifest>

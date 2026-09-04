@@ -139,6 +139,30 @@ kover {
     }
 }
 
+// Release attack-surface gate (public #4): source XML is cheap; merged XML
+// follows :wear/:mobile processReleaseMainManifest (no emulator / no assemble).
+tasks.register<Exec>("checkReleaseManifestAttackSurface") {
+    group = "verification"
+    description = "Fail if wear/mobile src/main+src/release manifests expose debug/backup/overlay surface"
+    workingDir = rootDir
+    commandLine(
+        "python3",
+        rootProject.file("scripts/check_release_manifest_attack_surface.py").absolutePath,
+    )
+}
+
+tasks.register<Exec>("checkMergedReleaseManifestAttackSurface") {
+    group = "verification"
+    description = "Process wear/mobile release manifests, then assert attack-surface rules"
+    dependsOn(":wear:processReleaseMainManifest", ":mobile:processReleaseMainManifest")
+    workingDir = rootDir
+    commandLine(
+        "python3",
+        rootProject.file("scripts/check_release_manifest_attack_surface.py").absolutePath,
+        "--merged",
+    )
+}
+
 // Top-level task execution ordering optimization for KMP + AGP multi-module build
 gradle.projectsEvaluated {
     val allCleanTasks = rootProject.allprojects.flatMap { p -> p.tasks.matching { it.name.lowercase().contains("clean") } }

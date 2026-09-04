@@ -4,8 +4,8 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
     
-    <!-- 語音生物識別所需硬體功能 -->
-    <uses-feature android:name="android.hardware.microphone" android:required="true" />
+    <!-- Microphone is optional; voice Gemini live is not a verified release capability. -->
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
     <uses-feature android:name="android.software.sip.voip" android:required="false" />
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -23,32 +23,24 @@
     <!-- 前台服務權限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     
-    <!-- NFC 權限 -->
+    <!-- NFC 權限 — HCE must not be required for install. -->
     <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc.hce" android:required="true" />
+    <uses-feature android:name="android.hardware.nfc.hce" android:required="false" />
     
     <!-- 開啟外部瀏覽器權限 -->
     <uses-permission android:name="com.google.android.wearable.permission.URI_REDIRECT_TO_REMOTE" />
 
     <application
         android:name=".WalletApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault"
-        tools:replace="android:name">
-        
-        <!-- Google Assistant / Gemini 語音整合 -->
-        <meta-data 
-            android:name="android.app.shortcuts"
-            android:resource="@xml/shortcuts" />
-            
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/shortcuts" />
+        tools:replace="android:name,android:allowBackup">
         
         <!-- WearWallet Complication Services -->
         
@@ -256,58 +248,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        
-        <!-- 語音命令處理活動 - 處理來自 Gemini/Google Assistant 的命令 -->
-        <activity
-            android:name=".presentation.voice.VoiceCommandActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog"
-            android:launchMode="singleTask"
-            android:excludeFromRecents="true">
-            <!-- 發送加密貨幣 -->
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.ACTION_SEND_CRYPTO" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <!-- 檢查餘額 -->
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.ACTION_CHECK_BALANCE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <!-- 顯示接收地址 -->
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.ACTION_SHOW_RECEIVE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <!-- 查看交易歷史 -->
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.ACTION_SHOW_TRANSACTIONS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <!-- 開啟 AI 助手 -->
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.ACTION_AI_ASSISTANT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            <!-- 切換錢包 -->
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.ACTION_SWITCH_WALLET" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-
-        <!-- Monero 實體機測試 Activity (開發模式) -->
-        <activity
-            android:name=".presentation.debug.MoneroDeviceTestActivity"
-            android:exported="true"
-            android:label="Monero Test"
-            android:theme="@android:style/Theme.DeviceDefault">
-            <intent-filter>
-                <action android:name="com.cbstudio.wearwallet.MONERO_TEST" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

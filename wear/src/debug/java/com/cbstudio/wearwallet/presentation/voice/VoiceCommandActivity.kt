@@ -17,8 +17,7 @@ import androidx.wear.compose.material3.*
 import com.cbstudio.wearwallet.presentation.theme.WearWalletTheme
 
 /**
- * Voice Command Activity - 簡化版本
- * ULTRATHINK Phase 13 - 激進清理後的最小化實現
+ * Debug-only voice command activity. Must not appear in the release merged manifest.
  */
 class VoiceCommandActivity : ComponentActivity() {
 

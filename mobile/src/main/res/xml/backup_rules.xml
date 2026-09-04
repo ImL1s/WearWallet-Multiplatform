@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fail-closed: exclude wallet state from Auto Backup (API < 31). -->
+<full-backup-content>
+    <exclude domain="sharedpref" />
+    <exclude domain="database" />
+    <exclude domain="file" />
+    <exclude domain="external" />
+    <exclude domain="root" />
+</full-backup-content>
