@@ -68,7 +68,7 @@ private `ImL1s/WearWallet` vault does not run this pipeline on push.
 
 | Workflow | Trigger | What it actually gates |
 | --- | --- | --- |
-| `.github/workflows/ci.yml` | **pull_request** and push to `main` | Ubuntu: **Fail-closed unit slice** (timeout 20 minutes) — Wear `ReleaseFeatureGateTest` + `WalletNavigationReleaseGateTest` and coreKmp `EvmRecipientAddressPolicyTest` + `EvmBroadcastOutcomeTest`; Wear **debug** APK assemble/upload; curated Markdown link check; release-manifest attack-surface job; PAT-fallback guard. |
+| `.github/workflows/ci.yml` | push and **pull_request** to `main` and `develop`, plus `workflow_dispatch` | Ubuntu: **Fail-closed unit slice** (timeout 20 minutes) — Wear `ReleaseFeatureGateTest` + `WalletNavigationReleaseGateTest` and coreKmp `EvmRecipientAddressPolicyTest` + `EvmBroadcastOutcomeTest`; Wear **debug** APK assemble/upload; curated Markdown link check; release-manifest attack-surface job; PAT-fallback guard. Required checks on **`main`** are listed below. |
 | `.github/workflows/release.yml` | tag `v*` or manual dispatch | Ubuntu: Wear debug APK + source tarball + `SHA256SUMS.txt` → GitHub **prerelease** |
 
 `main` is protected so product changes land through a **pull request**. Required
