@@ -58,22 +58,26 @@ Generic adb install notes:
 
 ### Android Studio Run
 
-Select the Wear AVD in the Run device list and press **Run**. Studio installs
-and launches the `wear` module. Official:
+The supported public-clone path is CLI assemble + `adb install` above. Studio
+**Run** is optional and easy to miss-configure.
+
+If you use it:
+
+1. Create or select an **Android App** run configuration for the **`wear`
+   module**, not `mobile`. Both modules can share `com.cbstudio.wearwallet`;
+   running `mobile` at a Wear AVD can overwrite or fail the watch install.
+2. Deploy target: the Wear AVD.
+3. This public tree still needs `publicSnapshot=true` or Google Services looks
+   for a real `google-services.json` that is not shipped. Put it in
+   **user-level** `~/.gradle/gradle.properties` (not the tracked repo file):
+
+   ```properties
+   publicSnapshot=true
+   ```
+
+Official device/debug UI:
 [Debug a Wear OS app](https://developer.android.com/training/wearables/get-started/debugging).
-
-On this public tree you still must pass `-PpublicSnapshot=true`, or the Google
-Services plugin looks for a real `google-services.json` that is not shipped.
-In **Settings → Build, Execution, Deployment → Build Tools → Gradle**, set
-Command-line options to:
-
-```text
--PpublicSnapshot=true
-```
-
-Do not add that flag to the tracked `gradle.properties`. If the IDE build
-fails on a missing Firebase config, use the CLI assemble + `adb install`
-path above instead.
+If the IDE build still fails on Firebase config, use the CLI path.
 
 ## 4. Debug QA overlay (emulator only)
 
