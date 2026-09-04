@@ -16,6 +16,7 @@ import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyListAnchorType
 import androidx.wear.compose.material3.*
 import com.cbstudio.wearwallet.feature.ReleaseFeatureGate
+import com.cbstudio.wearwallet.presentation.navigation.WalletRoute
 
 /**
  * Wallet Settings Screen - 完整設定畫面恢復
@@ -157,7 +158,11 @@ fun WalletSettingsScreen(
             */
             
             // 進階功能 — AI assistant is MAINTENANCE and omitted from release
-            if (!ReleaseFeatureGate.isReleaseBuild()) {
+            if (ReleaseFeatureGate.allowsRoute(
+                    WalletRoute.AI_ASSISTANT,
+                    ReleaseFeatureGate.isReleaseBuild(),
+                )
+            ) {
             item {
                 SectionHeader("進階功能")
             }

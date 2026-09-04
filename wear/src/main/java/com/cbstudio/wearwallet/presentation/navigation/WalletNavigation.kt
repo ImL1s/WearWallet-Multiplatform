@@ -243,7 +243,7 @@ fun NavGraphBuilder.walletNavigation(
         )
     }
     
-    if (!isRelease) {
+    if (ReleaseFeatureGate.allowsRoute(WalletRoute.AI_ASSISTANT, isRelease)) {
     // AI 助手 — MAINTENANCE: omitted from release navigation
     composable(WalletRoute.AI_ASSISTANT) {
         val viewModel: AIAssistantViewModel = koinViewModel()
@@ -261,7 +261,7 @@ fun NavGraphBuilder.walletNavigation(
         )
     }
     
-    if (!isRelease) {
+    if (ReleaseFeatureGate.allowsRoute(WalletRoute.WRIST_TRANSFER, isRelease)) {
     // NFC wrist transfer — MAINTENANCE: omitted from release navigation
     composable(WalletRoute.WRIST_TRANSFER) {
         WristToWristTransferScreen(
@@ -382,7 +382,7 @@ fun NavGraphBuilder.walletNavigation(
     // kmp_test / push_protocol_settings / nfc_payment）不註冊路由，
     // 對應的 UI 入口也不應顯示，避免點擊無反應。
     
-    if (!isRelease) {
+    if (ReleaseFeatureGate.allowsRoute(WalletRoute.DEBIT_CARD, isRelease)) {
     // Debit card — MAINTENANCE: omitted from release navigation
     composable(WalletRoute.DEBIT_CARD) {
         CryptoDebitCardScreen(
