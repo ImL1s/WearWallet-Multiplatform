@@ -854,6 +854,79 @@ class SendTransactionViewModelTest : KoinTest {
     }
 
     @Test
+    fun `proceedToConfirm re-checks addressError and rejects mixed-case checksum even if gas is forced`() = runTest {
+        coEvery { walletRepository.getActiveWallet() } returns Result.Success(mockWallet)
+        coEvery { walletRepository.getNativeBalance(any(), any()) } returns 1.0
+        val gasEstimation = EstimateGasUseCase.GasEstimation(
+            weiGasPrice = com.cbstudio.wearwallet.core.domain.model.quantities.Wei.fromGwei(10),
+            gasLimitObj = com.cbstudio.wearwallet.core.domain.model.quantities.GasLimit.fromDecimalString("21000"),
+            totalFee = "0.00021"
+        )
+        coEvery { estimateGasUseCase(any(), any(), any(), any(), any()) } returns flowOf(
+            Result.Success(gasEstimation)
+        )
+
+        viewModel = SendTransactionViewModel()
+        testScheduler.advanceUntilIdle()
+        viewModel.setRecipientAddress(EIP55_GOOD)
+        viewModel.setAmount("0.1")
+        testScheduler.advanceUntilIdle()
+
+        viewModel.setRecipientAddress(EIP55_WRONG_MIXED)
+        assertTrue(
+            viewModel.uiState.value.addressError != null,
+            "wrong mixed-case checksum must set addressError",
+        )
+        viewModel.updateGasParameters(
+            com.cbstudio.wearwallet.core.domain.model.quantities.Wei.fromGwei(10),
+            com.cbstudio.wearwallet.core.domain.model.quantities.GasLimit.fromDecimalString("21000"),
+        )
+
+        viewModel.proceedToConfirm()
+        testScheduler.advanceUntilIdle()
+
+        val state = viewModel.uiState.value
+        kotlin.test.assertNull(state.confirmedSnapshot, "bad checksum must not create a confirm snapshot")
+        assertEquals("請輸入有效的地址", state.error)
+        assertTrue(state.addressError != null)
+        assertTrue(state.currentStep != SendTransactionViewModel.TransactionStep.REVIEWED)
+        assertTrue(state.currentStep != SendTransactionViewModel.TransactionStep.CONFIRM)
+    }
+
+    @Test
+    fun `proceedToConfirm re-validates invalid address even if addressError was cleared`() = runTest {
+        coEvery { walletRepository.getActiveWallet() } returns Result.Success(mockWallet)
+        coEvery { walletRepository.getNativeBalance(any(), any()) } returns 1.0
+        val gasEstimation = EstimateGasUseCase.GasEstimation(
+            weiGasPrice = com.cbstudio.wearwallet.core.domain.model.quantities.Wei.fromGwei(10),
+            gasLimitObj = com.cbstudio.wearwallet.core.domain.model.quantities.GasLimit.fromDecimalString("21000"),
+            totalFee = "0.00021"
+        )
+        coEvery { estimateGasUseCase(any(), any(), any(), any(), any()) } returns flowOf(
+            Result.Success(gasEstimation)
+        )
+
+        viewModel = SendTransactionViewModel()
+        testScheduler.advanceUntilIdle()
+        viewModel.setRecipientAddress("not-a-valid-address")
+        viewModel.setAmount("0.1")
+        testScheduler.advanceUntilIdle()
+        viewModel.updateGasParameters(
+            com.cbstudio.wearwallet.core.domain.model.quantities.Wei.fromGwei(10),
+            com.cbstudio.wearwallet.core.domain.model.quantities.GasLimit.fromDecimalString("21000"),
+        )
+
+        viewModel.proceedToConfirm()
+        testScheduler.advanceUntilIdle()
+
+        kotlin.test.assertNull(viewModel.uiState.value.confirmedSnapshot)
+        assertEquals("請輸入有效的地址", viewModel.uiState.value.error)
+        assertTrue(
+            viewModel.uiState.value.currentStep != SendTransactionViewModel.TransactionStep.REVIEWED,
+        )
+    }
+
+    @Test
     fun `successful broadcast hash is BROADCASTED with PENDING status not CONFIRMED`() = runTest {
         coEvery { walletRepository.getActiveWallet() } returns Result.Success(mockWallet)
         coEvery { walletRepository.getNativeBalance(any(), any()) } returns 1.0

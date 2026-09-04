@@ -109,9 +109,39 @@ class KeystoneSendViewModelTest : KoinTest {
         viewModel.handleScanResult(mockData)
         advanceUntilIdle()
         
-        assertEquals(KeystoneSendStep.SUCCESS, viewModel.uiState.value.step)
         assertEquals("0xhash", viewModel.uiState.value.txHash)
         assertEquals(mockSignature, viewModel.uiState.value.signature)
+        assertTrue(
+            viewModel.uiState.value.step != KeystoneSendStep.SUCCESS,
+            "submitted hash must not be treated as SUCCESS/chain confirmation",
+        )
+        assertEquals("BROADCASTED", viewModel.uiState.value.step.name)
+    }
+
+    @Test
+    fun `submitted hash must not use KeystoneSendStep SUCCESS`() = runTest {
+        val mockData = "UR:ETH-SIGNATURE/..."
+        whenever(keystoneManager.handleScan(any<String>())).thenReturn(
+            Result.Success(ScanResult.Complete(data = mockData)),
+        )
+        whenever(keystoneService.parseSignature(any<String>())).thenReturn(
+            KeystoneSignatureResult.Success("0xabc123", "req1"),
+        )
+        whenever(
+            transactionRepository.sendTransaction(
+                any<String>(),
+                any<com.cbstudio.wearwallet.core.domain.model.ChainType>(),
+            ),
+        ).thenReturn("0xhash")
+
+        viewModel.handleScanResult(mockData)
+        advanceUntilIdle()
+
+        val step = viewModel.uiState.value.step
+        assertEquals("0xhash", viewModel.uiState.value.txHash)
+        assertTrue(step != KeystoneSendStep.SUCCESS, "SUCCESS after hash is forbidden")
+        assertTrue(step != KeystoneSendStep.FAILED)
+        assertEquals("BROADCASTED", step.name)
     }
     
     @Test

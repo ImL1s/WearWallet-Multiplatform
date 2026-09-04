@@ -32,7 +32,7 @@ fun KeystoneSendScreen(
     
     // 監聽成功狀態
     LaunchedEffect(uiState.step, uiState.txHash) {
-        if (uiState.step == KeystoneSendStep.SUCCESS && uiState.txHash != null) {
+        if (uiState.step == KeystoneSendStep.BROADCASTED && uiState.txHash != null) {
             // 延遲一下讓用戶看到成功畫面
             delay(1500)
             onTransactionSent(uiState.txHash!!)
@@ -76,8 +76,9 @@ fun KeystoneSendScreen(
         KeystoneSendStep.BROADCASTING -> {
             LoadingScreen("廣播交易中...")
         }
+        KeystoneSendStep.BROADCASTED,
         KeystoneSendStep.SUCCESS -> {
-            SuccessScreen()
+            BroadcastedScreen()
         }
         KeystoneSendStep.FAILED -> {
             ErrorScreen(
@@ -231,7 +232,7 @@ private fun ScanInstructionScreen(
 }
 
 @Composable
-private fun SuccessScreen() {
+private fun BroadcastedScreen() {
      Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -246,7 +247,7 @@ private fun SuccessScreen() {
                 tint = Color.Green,
                 modifier = Modifier.size(48.dp)
             )
-            Text(text = "Transaction Sent!", textAlign = TextAlign.Center)
+            Text(text = "已送出，待鏈上確認", textAlign = TextAlign.Center)
         }
     }
 }

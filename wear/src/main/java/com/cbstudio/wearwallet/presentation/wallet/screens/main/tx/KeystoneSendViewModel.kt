@@ -44,7 +44,8 @@ enum class KeystoneSendStep {
     SHOW_QR,     // Show Sign Request
     SCAN_QR,     // Scan Sign Response
     BROADCASTING,
-    SUCCESS,
+    BROADCASTED, // hash returned; not chain confirmation
+    SUCCESS,     // retained; send-hash path uses BROADCASTED
     FAILED
 }
 
@@ -177,7 +178,7 @@ class KeystoneSendViewModel(
              // 廣播
              val txHash = transactionRepository.sendTransaction(signedTxHex, ChainType.ETHEREUM)
              
-             _uiState.update { it.copy(step = KeystoneSendStep.SUCCESS, txHash = txHash) }
+             _uiState.update { it.copy(step = KeystoneSendStep.BROADCASTED, txHash = txHash) }
              
         } catch (e: Exception) {
              _uiState.update { it.copy(step = KeystoneSendStep.FAILED, error = "Broadcast failed: ${e.message}") }

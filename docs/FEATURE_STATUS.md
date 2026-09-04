@@ -28,7 +28,7 @@ release binary.
 
 | id | Surface | Maturity | Release Wear nav | Funds | Limitations |
 | --- | --- | --- | --- | --- | --- |
-| `wear_send` | Wear OS send | `BETA` | Yes | Signing possible only if a capability gate allows it | EIP-55 mixed-case checksum is enforced (all-lower/all-upper accepted). Missing/invalid gas fails closed (no 21000/20 Gwei fallback; no silent 500 Gwei cap). A returned tx hash is **PENDING/BROADCASTED**, not on-chain confirmation. Replaced/Dropped remain `UNSUPPORTED`. No mainnet proof — not `PRODUCTION`. |
+| `wear_send` | Wear OS send | `BETA` | Yes | Signing possible only if a capability gate allows it | EIP-55 mixed-case checksum is enforced (all-lower/all-upper accepted), including a `proceedToConfirm` re-check. Missing/invalid gas fails closed (no 21000/20 Gwei fallback; no silent 500 Gwei cap). Valid sub-1 Gwei Wei is a decimal Gwei string, not fail-closed. Software send and Keystone submitted hashes are **PENDING/BROADCASTED**, not on-chain confirmation. Replaced/Dropped remain `UNSUPPORTED`. No mainnet proof — not `PRODUCTION`. |
 | `wear_receive` | Wear OS receive / address QR | `BETA` | Yes | Display only | Emulator QA overlay is not mainnet data. No production certification. |
 | `wallet_backup_create_import` | Create, import, backup / reveal mnemonic | `BETA` | Yes | Key material | Fail-closed under `ReleaseProductionCapabilityGate` for restricted tuples. Reveal/export is sensitive; not a store-ready backup product. |
 | `keystone` | QR Keystone connect / sign | `EXPERIMENTAL` | Yes | Hardware sign request | Components exist. No physical Keystone interoperability evidence in this public tree. |

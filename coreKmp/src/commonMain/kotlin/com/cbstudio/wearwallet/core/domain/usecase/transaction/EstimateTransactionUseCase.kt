@@ -195,16 +195,17 @@ class EstimateTransactionUseCase(
     private fun calculateFee(gasLimit: String, gasPrice: String): String {
         val limit = gasLimit.toLongOrNull()
             ?: throw IllegalArgumentException("Invalid or missing gas limit: '$gasLimit'")
-        val price = gasPrice.toLongOrNull()
+        val price = gasPrice.toDoubleOrNull()
             ?: throw IllegalArgumentException("Invalid or missing gas price: '$gasPrice'")
         require(limit > 0L) { "Gas limit must be positive, got $limit" }
-        require(price > 0L) { "Gas price must be positive, got $price" }
-        val fee = limit * price
-        return (fee / 1_000_000_000.0).toString()
+        require(price > 0.0) { "Gas price must be positive, got $price" }
+        val fee = limit * price / 1_000_000_000.0
+        return fee.toString()
     }
     
     /**
      * 將十六進制 Wei 轉換為 Gwei 字串。Parse failure is not a silent 20 Gwei fallback.
+     * Sub-1 Gwei (valid positive Wei) is a decimal string, not fail-closed.
      */
     private fun hexToGwei(hexWei: String): String {
         val cleanHex = hexWei.removePrefix("0x").removePrefix("0X")
@@ -216,11 +217,15 @@ class EstimateTransactionUseCase(
         if (wei <= 0L) {
             throw IllegalArgumentException("Gas price must be positive, got $wei wei")
         }
-        val gwei = wei / 1_000_000_000L
-        if (gwei < 1L) {
-            throw IllegalArgumentException("Gas price below 1 Gwei: $wei wei")
-        }
-        return gwei.toString()
+        return formatWeiAsGwei(wei)
+    }
+
+    private fun formatWeiAsGwei(wei: Long): String {
+        val whole = wei / 1_000_000_000L
+        val remainder = wei % 1_000_000_000L
+        if (remainder == 0L) return whole.toString()
+        val frac = remainder.toString().padStart(9, '0').trimEnd('0')
+        return "$whole.$frac"
     }
     
     /**

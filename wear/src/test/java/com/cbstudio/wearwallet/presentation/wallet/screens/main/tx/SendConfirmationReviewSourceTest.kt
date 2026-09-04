@@ -43,6 +43,24 @@ class SendConfirmationReviewSourceTest {
     }
 
     @Test
+    fun `Keystone post-hash UI must not claim SUCCESS or chain confirmation`() {
+        val candidates = listOf(
+            File("src/main/java/com/cbstudio/wearwallet/presentation/wallet/screens/main/tx/KeystoneSendScreen.kt"),
+            File("wear/src/main/java/com/cbstudio/wearwallet/presentation/wallet/screens/main/tx/KeystoneSendScreen.kt"),
+        )
+        val source = candidates.firstOrNull { it.isFile }?.readText()
+            ?: error("KeystoneSendScreen.kt not found from ${File(".").canonicalPath}")
+        assertFalse(
+            "Keystone copy must not claim Transaction Sent / 交易成功 as chain confirmation",
+            source.contains("Transaction Sent!") || source.contains("交易成功"),
+        )
+        assertTrue(
+            "Keystone post-hash UI must say submitted/pending",
+            source.contains("已送出") || source.contains("待鏈上確認") || source.contains("BROADCASTED"),
+        )
+    }
+
+    @Test
     fun `post-broadcast screen must not claim on-chain confirmation`() {
         val source = locateSendScreen().readText()
         val success = extractFunction(source, "ModernSuccessScreen")

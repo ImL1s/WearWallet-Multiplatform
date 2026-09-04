@@ -637,6 +637,16 @@ class SendTransactionViewModel : ViewModel(), KoinComponent {
      */
     fun proceedToConfirm() {
         val state = _uiState.value
+        val refreshedAddressError = validateAddress(state.recipientAddress)
+        if (refreshedAddressError != null || state.addressError != null) {
+            _uiState.update {
+                it.copy(
+                    addressError = refreshedAddressError ?: state.addressError,
+                    error = "請輸入有效的地址"
+                )
+            }
+            return
+        }
         if (state.amountError != null) {
             _uiState.update { 
                 it.copy(error = "請輸入有效的金額")

@@ -146,6 +146,36 @@ class EstimateTransactionUseCaseTest {
     }
 
     @Test
+    fun `sub-1 Gwei valid wei hex is decimal gwei not fail-closed`() = runBlocking {
+        // 500_000_000 wei = 0.5 Gwei
+        Mockito.`when`(transactionRepository.estimateGas(any(TransactionRequest::class.java)))
+            .thenReturn("21000")
+        Mockito.`when`(transactionRepository.getGasPrice(ChainType.ETHEREUM))
+            .thenReturn("0x1dcd6500")
+        Mockito.`when`(transactionRepository.getNonce(EIP55_ALL_LOWER, ChainType.ETHEREUM))
+            .thenReturn(1L)
+
+        val results = useCase(
+            fromAddress = EIP55_ALL_LOWER,
+            toAddress = EIP55_GOOD,
+            amount = "0.1",
+            chainType = ChainType.ETHEREUM,
+        ).toList()
+
+        val success = results.lastOrNull { it is Result.Success<*> }
+        assertTrue(
+            "valid sub-1 Gwei wei hex must succeed, got $results",
+            success is Result.Success<*>,
+        )
+        val estimate = (success as Result.Success<TransactionEstimate>).data
+        val gwei = estimate.gasPrice.toDouble()
+        assertEquals(0.5, gwei, 0.0000001)
+        assertEquals("0.5", estimate.gasPrice)
+        val fee = estimate.estimatedFee.toDouble()
+        assertEquals(0.0000105, fee, 0.0000001)
+    }
+
+    @Test
     fun `valid live gas estimate does not use 21000 or 20 fallbacks`() = runBlocking {
         Mockito.`when`(transactionRepository.estimateGas(any(TransactionRequest::class.java)))
             .thenReturn("21000")
