@@ -6,10 +6,15 @@ Thanks for interest in WearWallet. This public repo
 
 ## How to contribute
 
+Product PRs and CI/CD live on **this** repository only.
+
 1. Fork [ImL1s/WearWallet-Multiplatform](https://github.com/ImL1s/WearWallet-Multiplatform).
 2. Create a branch from `main`.
 3. Keep changes focused; include tests when touching wallet/security code.
-4. Open a pull request against `ImL1s/WearWallet-Multiplatform`.
+4. Open a pull request against `ImL1s/WearWallet-Multiplatform` `main`.
+
+Do **not** open product PRs on the private vault (`ImL1s/WearWallet`). That
+repo is frozen; its Actions workflows are manual `workflow_dispatch` only.
 
 The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops vault
 **forever**. Do **not** force-export from private over this `main`. Product

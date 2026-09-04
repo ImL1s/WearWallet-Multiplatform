@@ -118,6 +118,9 @@ never add credentials to it. Do not commit `.env`, signing files, or API keys.
 See [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md) for the supported public
 setup, credentials, and validation commands.
 
+Product **pull requests and GitHub Actions** belong on this repository
+(`ImL1s/WearWallet-Multiplatform`). See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ## Releases
 
 Experimental **debug** packages (Wear APK + source tarball) are on

@@ -2,6 +2,9 @@
 
 <!-- What changed and why. Link the issue. -->
 
+Open this PR against **`ImL1s/WearWallet-Multiplatform`** `main` only — not the
+private vault. Public CI must pass before merge.
+
 Closes #
 
 ## Honesty

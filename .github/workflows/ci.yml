@@ -21,7 +21,9 @@ concurrency:
 env:
   GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx4g -XX:+HeapDumpOnOutOfMemoryError"'
 
-# Public CI: GitHub-hosted only. Never register self-hosted runners on this repo.
+# Public CI: GitHub-hosted only on ImL1s/WearWallet-Multiplatform.
+# Product PRs and required checks live here. Never register self-hosted runners.
+# Private ImL1s/WearWallet is frozen (workflow_dispatch only) — do not treat it as CI home.
 jobs:
   build-test:
     name: Test & Debug Build (Ubuntu)
