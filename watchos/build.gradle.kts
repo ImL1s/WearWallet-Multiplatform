@@ -12,7 +12,8 @@ tasks.register("buildWatchOS") {
 tasks.register("info") {
     doLast {
         println("watchOS module - Use Xcode to build the actual watchOS app")
-        println("The KMP shared framework is available at:")
-        println("  :sharedKmp:build/bin/watchosSimulatorArm64/debugFramework/WearWalletShared.framework")
+        println("The KMP core framework is available at:")
+        println("  :coreKmp:build/bin/watchosSimulatorArm64/debugFramework/coreKmp.framework")
+        println("  :coreKmp:build/bin/watchosArm64/debugFramework/coreKmp.framework")
     }
 }
