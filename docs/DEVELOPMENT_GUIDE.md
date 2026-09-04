@@ -2,7 +2,8 @@
 
 > This public repo (`ImL1s/WearWallet-public`) is the **canonical development
 > tree**. See [`PUBLIC_BUILD.md`](./PUBLIC_BUILD.md) for clone, CI, and release
-> facts. Do **not** use with real funds.
+> facts and [`FEATURE_STATUS.md`](./FEATURE_STATUS.md) for capability claims.
+> Do **not** use with real funds.
 
 ## Clone
 

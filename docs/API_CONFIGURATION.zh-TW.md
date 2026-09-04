@@ -7,7 +7,8 @@
 </div>
 
 WearWallet 的依賴下載、Wear OS App 與 `coreKmp` 使用不同設定路徑。設定了 API
-Key 不代表對應鏈、後端或硬體流程已達 production-ready。
+Key 不代表對應鏈、後端或硬體流程已支援。見
+[FEATURE_STATUS.md](./FEATURE_STATUS.md)。
 
 ## 安全規則
 

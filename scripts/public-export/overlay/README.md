@@ -38,6 +38,11 @@ configuration and source tree as the implementation source of truth.
 
 ## What is in the project
 
+Capability claims are **only** those in the
+[feature status matrix](./docs/FEATURE_STATUS.md). That matrix (and
+`WearCapability` / `FeatureMaturity` in Wear navigation) is the source of
+truth. Do not infer support from screenshots, TODOs, or historical docs.
+
 - Wear OS and Android Compose application modules
 - A native SwiftUI watchOS application
 - Kotlin Multiplatform targets for Android, iOS, and watchOS
@@ -45,11 +50,6 @@ configuration and source tree as the implementation source of truth.
 - QR-based Keystone integration components
 - A public Ubuntu CI workflow (`.github/workflows/ci.yml`: Wear debug assemble +
   Markdown links) and a prerelease workflow (`.github/workflows/release.yml`)
-
-Capability varies by chain, platform, and signing backend. See the
-[`coreKmp` API map](./docs/COREKMP_API_OVERVIEW.md), current source, capability
-gates, and exact-head tests before treating a feature as implemented or
-production-ready.
 
 ## Wear OS preview
 
@@ -142,6 +142,7 @@ results do not prove physical Keystone, watch, phone, or mainnet behavior.
 
 Start at the **[documentation index](./docs/README.md)**.
 
+- [Feature status matrix](./docs/FEATURE_STATUS.md)
 - [Public build notes](./docs/PUBLIC_BUILD.md)
 - [Public tree provenance](./docs/PUBLIC_SNAPSHOT.md)
 - [Wear debug QA harness](./docs/WEAR_QA_HARNESS.md)

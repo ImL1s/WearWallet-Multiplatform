@@ -118,6 +118,7 @@ jobs:
             CLAUDE.md
             CONTRIBUTING.md
             docs/README.md
+            docs/FEATURE_STATUS.md
             docs/PUBLIC_BUILD.md
             docs/PUBLIC_SNAPSHOT.md
             docs/LICENSING.md

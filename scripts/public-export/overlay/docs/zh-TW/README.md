@@ -56,8 +56,14 @@ Wear OS **debug 模擬器**可用本機 QA overlay 點 QR / 代幣 / 歷史 / �
 （prerelease，非商店版，不可當主網證據）。建置與打 tag 見
 [公開建置說明](../PUBLIC_BUILD.md)。
 
+## 功能狀態
+
+產品能力**只以** [功能狀態矩陣](../FEATURE_STATUS.md) 為準（`FeatureMaturity` /
+`WearCapability`）。不要把截圖、TODO 或歷史文件當成已支援。**不要**用真實資金。
+
 ## 文件
 
+- [功能狀態矩陣](../FEATURE_STATUS.md)
 - [文件總索引](../README.md)
 - [公開建置說明](../PUBLIC_BUILD.md)
 - [Wear debug QA overlay](../WEAR_QA_HARNESS.md)

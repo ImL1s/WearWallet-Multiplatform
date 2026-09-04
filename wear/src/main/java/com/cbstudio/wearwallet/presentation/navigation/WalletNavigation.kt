@@ -55,6 +55,7 @@ import com.cbstudio.wearwallet.presentation.wallet.screens.bitcoin.BitcoinWallet
 import com.cbstudio.wearwallet.presentation.wallet.screens.utxo.UTXOSendScreen
 import com.cbstudio.wearwallet.presentation.wallet.screens.utxo.UTXOSendViewModel
 import com.cbstudio.wearwallet.core.domain.model.ChainType
+import com.cbstudio.wearwallet.feature.ReleaseFeatureGate
 // import com.cbstudio.wearwallet.presentation.screens.wearfi.WearFiScreen
 // import com.cbstudio.wearwallet.presentation.screens.ai.AIInvestmentAdvisorScreen
 // import com.cbstudio.wearwallet.presentation.screens.defi.DeFiOneClickScreen
@@ -101,7 +102,8 @@ object WalletRoute {
  * 錢包導航圖 - 連接所有畫面到 coreKmp UseCases
  */
 fun NavGraphBuilder.walletNavigation(
-    navController: NavController
+    navController: NavController,
+    isRelease: Boolean = ReleaseFeatureGate.isReleaseBuild()
 ) {
     // 發送交易（支援 QR/通訊錄/代幣列表帶入的預填參數）
     composable(
@@ -241,13 +243,15 @@ fun NavGraphBuilder.walletNavigation(
         )
     }
     
-    // AI 助手
+    if (!isRelease) {
+    // AI 助手 — MAINTENANCE: omitted from release navigation
     composable(WalletRoute.AI_ASSISTANT) {
         val viewModel: AIAssistantViewModel = koinViewModel()
         AIAssistantScreen(
             viewModel = viewModel,
             onBackClick = { navController.popBackStack() }
         )
+    }
     }
     
     // Swap - Cross-chain and same-chain swap
@@ -257,11 +261,13 @@ fun NavGraphBuilder.walletNavigation(
         )
     }
     
-    // 手腕對手腕傳輸
+    if (!isRelease) {
+    // NFC wrist transfer — MAINTENANCE: omitted from release navigation
     composable(WalletRoute.WRIST_TRANSFER) {
         WristToWristTransferScreen(
             onNavigateBack = { navController.popBackStack() }
         )
+    }
     }
     
     // 助記詞顯示
@@ -376,11 +382,13 @@ fun NavGraphBuilder.walletNavigation(
     // kmp_test / push_protocol_settings / nfc_payment）不註冊路由，
     // 對應的 UI 入口也不應顯示，避免點擊無反應。
     
-    // 加密借記卡
+    if (!isRelease) {
+    // Debit card — MAINTENANCE: omitted from release navigation
     composable(WalletRoute.DEBIT_CARD) {
         CryptoDebitCardScreen(
             onNavigateBack = { navController.popBackStack() }
         )
+    }
     }
     
     // Bitcoin 錢包

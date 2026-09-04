@@ -8,7 +8,8 @@
 
 WearWallet has separate configuration paths for dependency resolution, the
 Wear OS app, and `coreKmp`. A key being configured does not prove that the
-related chain, backend, or hardware path is production-ready.
+related chain, backend, or hardware path is supported. See
+[FEATURE_STATUS.md](./FEATURE_STATUS.md).
 
 ## Security rules
 

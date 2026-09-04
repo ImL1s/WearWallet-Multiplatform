@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.foundation.lazy.ScalingLazyListAnchorType
 import androidx.wear.compose.material3.*
+import com.cbstudio.wearwallet.feature.ReleaseFeatureGate
 
 /**
  * Wallet Settings Screen - 完整設定畫面恢復
@@ -155,7 +156,8 @@ fun WalletSettingsScreen(
             }
             */
             
-            // 進階功能
+            // 進階功能 — AI assistant is MAINTENANCE and omitted from release
+            if (!ReleaseFeatureGate.isReleaseBuild()) {
             item {
                 SectionHeader("進階功能")
             }
@@ -167,6 +169,7 @@ fun WalletSettingsScreen(
                     subtitle = "智能交易建議",
                     onClick = onNavigateToAIAssistant
                 )
+            }
             }
             
             // TODO: 訂閱管理功能暫時停用

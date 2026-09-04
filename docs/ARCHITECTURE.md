@@ -90,7 +90,8 @@ Important constraints:
 - Tests must cover denied and unavailable paths, not only successful helpers.
 - A declared adapter does not prove complete chain support.
 
-See [`CapabilityRequest.kt`](../coreKmp/src/commonMain/kotlin/com/cbstudio/wearwallet/core/security/CapabilityRequest.kt)
+See [`FEATURE_STATUS.md`](./FEATURE_STATUS.md) for the public capability
+matrix. See [`CapabilityRequest.kt`](../coreKmp/src/commonMain/kotlin/com/cbstudio/wearwallet/core/security/CapabilityRequest.kt)
 and [`CapabilityGate.kt`](../coreKmp/src/commonMain/kotlin/com/cbstudio/wearwallet/core/security/CapabilityGate.kt)
 for the current capability model.
 
