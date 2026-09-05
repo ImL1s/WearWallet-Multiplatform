@@ -212,18 +212,28 @@ jobs:
             docs/CONTRIBUTING.md
             docs/CONTRIBUTING.zh-TW.md
             docs/ARCHITECTURE.md
+            docs/ARCHITECTURE.zh-TW.md
             docs/TESTING_GUIDE.md
             docs/ROADMAP.md
+            docs/ROADMAP.zh-TW.md
             docs/SECURITY.md
+            docs/SECURITY.zh-TW.md
             docs/API_CONFIGURATION.md
+            docs/API_CONFIGURATION.zh-TW.md
             docs/KEYSTONE_INTEGRATION_GUIDE.md
             docs/WATCHOS_DEVELOPMENT_GUIDE.md
+            docs/WATCHOS_DEVELOPMENT_GUIDE.zh-TW.md
             docs/COREKMP_API_OVERVIEW.md
             docs/WEBVIEW_CONTRACT.md
             docs/WEAR_QA_HARNESS.md
             docs/WEAR_OS_INSTALL.md
+            docs/WEAR_OS_INSTALL.zh-TW.md
             docs/zh-TW/README.md
+            wear/README.md
+            mobile/README.md
+            modules/README.md
             watchos/README.md
+            coreKmp/README.md
           )
           rc=0
           for f in "${files[@]}"; do

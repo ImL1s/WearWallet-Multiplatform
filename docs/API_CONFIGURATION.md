@@ -11,6 +11,12 @@ Wear OS app, and `coreKmp`. A key being configured does not prove that the
 related chain, backend, or hardware path is supported. See
 [FEATURE_STATUS.md](./FEATURE_STATUS.md).
 
+Debug assemble on a public clone does **not** require service keys:
+
+```bash
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
+```
+
 ## Security rules
 
 - Never put credentials in the tracked root `gradle.properties` file.
@@ -20,19 +26,43 @@ related chain, backend, or hardware path is supported. See
 - Use the smallest scope and rotate any value that may have been exposed.
 - Do not place real values in `.env.example` or `local.properties.template`.
 
+This public tree does **not** ship 1Password setup, `scripts/setup.sh`, or
+Play Console automation.
+
+## Local files
+
+| File | Tracked? | Role |
+| --- | --- | --- |
+| [`local.properties.template`](../local.properties.template) | Yes (placeholders) | Copy to ignored `local.properties`: `sdk.dir`, Wear lowercase keys, `coreKmp` uppercase keys |
+| [`.env.example`](../.env.example) | Yes (placeholders) | Copy to ignored `.env` for GitHub Packages + Wear env names |
+| [`gradle.properties.example`](../gradle.properties.example) | Yes (placeholders) | Copy selected keys to **user-level** `~/.gradle/gradle.properties` |
+| `wear/google-services.json.example` and `mobile/google-services.json.example` | Yes (shape only) | Do not commit a real `google-services.json` |
+| Tracked root `gradle.properties` | Yes | Shared Gradle JVM/Android flags only — no tokens |
+
+```bash
+cp local.properties.template local.properties
+# Set sdk.dir to your Android SDK. Android Studio may write this line for you.
+```
+
 ## Configuration map
 
 | Consumer | Supported input | Names |
 | --- | --- | --- |
+| Android SDK | Ignored `local.properties` | `sdk.dir` |
+| Public snapshot / skip Firebase | Gradle `-PpublicSnapshot=true` or user-level `publicSnapshot=true` | `publicSnapshot` |
 | GitHub Packages | Environment or user-level Gradle properties | `GITHUB_ACTOR`, `GITHUB_TOKEN`; `github.actor`, `github.token` |
-| Wear OS build | Environment or ignored `local.properties` | `INFURA_PROJECT_ID` / `infura.project.id`; `ETHERSCAN_API_KEY` / `etherscan.api.key`; `MORALIS_API_KEY` / `moralis.api.key` |
-| Wear OS Google AI build field | Environment or Gradle property | `GOOGLE_AI_API_KEY` |
-| `coreKmp` BuildKonfig | Ignored `local.properties` | Uppercase keys in `local.properties.template` |
+| Wear OS BuildConfig | Environment or ignored `local.properties` (lowercase) | `INFURA_PROJECT_ID` / `infura.project.id`; `ETHERSCAN_API_KEY` / `etherscan.api.key`; `MORALIS_API_KEY` / `moralis.api.key` |
+| Wear OS Google AI BuildConfig | Environment or Gradle property **only** | `GOOGLE_AI_API_KEY` (not `local.properties`) |
+| `coreKmp` BuildKonfig | Ignored `local.properties` uppercase **only** | Keys listed under `coreKmp` below |
+| Wear release signing | Gradle properties when present | `WEARWALLET_STORE_FILE`, `WEARWALLET_STORE_PASSWORD`, `WEARWALLET_KEY_ALIAS`, `WEARWALLET_KEY_PASSWORD` |
 
 The implementation sources of truth are
 [`settings.gradle.kts`](../settings.gradle.kts),
 [`wear/build.gradle.kts`](../wear/build.gradle.kts), and
 [`coreKmp/build.gradle.kts`](../coreKmp/build.gradle.kts).
+
+Wear `INFURA_PROJECT_ID` / `infura.project.id` is **not** the same field as
+`coreKmp` `INFURA_API_KEY`. Filling one does not populate the other.
 
 ## GitHub Packages
 
@@ -48,6 +78,10 @@ Token scope is `read:packages` only. Clone and credential notes live in
 [PUBLIC_BUILD.md](./PUBLIC_BUILD.md). An optional user-level
 `~/.gradle/gradle.properties` can hold `github.actor` and `github.token`; the
 repository's tracked `gradle.properties` must remain free of secrets.
+
+Public CI uses optional repo secrets `GH_TOKEN_PACKAGES` and `GH_ACTOR_NAME`.
+When those are empty, the workflow falls back to the job `GITHUB_TOKEN`.
+Fork PRs do not get `github.token` written into `gradle.properties`.
 
 ## Wear OS service values
 
@@ -68,18 +102,14 @@ etherscan.api.key=YOUR_ETHERSCAN_API_KEY
 moralis.api.key=YOUR_MORALIS_API_KEY
 ```
 
+`GOOGLE_AI_API_KEY` is not read from `local.properties`. Use the environment
+or a Gradle property.
+
 Only configure services required by the feature being exercised. Placeholder
 BuildConfig values and an assembled APK are not proof that a live service was
 called successfully.
 
 ## `coreKmp` values
-
-Start from the tracked placeholder template, then keep the populated file local:
-
-```bash
-cp local.properties.template local.properties
-# Set sdk.dir and only the service values needed for the test or feature.
-```
 
 `coreKmp` currently reads these uppercase `local.properties` names:
 
@@ -92,9 +122,35 @@ cp local.properties.template local.properties
 Do not assume an environment variable with the same name reaches BuildKonfig;
 follow the current `coreKmp/build.gradle.kts` implementation.
 
-This public tree does **not** ship 1Password setup, `scripts/setup.sh`, or
-Play Console automation. Keep local values in environment variables or ignored
-`local.properties`.
+## Firebase / `publicSnapshot`
+
+This tree ships `wear/google-services.json.example` and
+`mobile/google-services.json.example` only. The supported public-clone path
+skips Google Services / Crashlytics / Performance:
+
+```bash
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
+./gradlew :mobile:assembleDebug -PpublicSnapshot=true
+```
+
+For Android Studio **Run**, put `publicSnapshot=true` in user-level
+`~/.gradle/gradle.properties` and select the **`wear`** module. See
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md).
+
+A filled real `google-services.json` is **not** a store, Crashlytics, or
+production Firebase proof. Do not commit it.
+
+## Wear release signing (optional)
+
+`wear/build.gradle.kts` creates a release signing config only when
+`WEARWALLET_STORE_FILE` is set, together with
+`WEARWALLET_STORE_PASSWORD`, `WEARWALLET_KEY_ALIAS`, and
+`WEARWALLET_KEY_PASSWORD`. Put those in user-level Gradle properties or a
+local (ignored) file — never in the tracked `gradle.properties`.
+
+This is not a Play Console or store-upload path. `:wear:assembleRelease`
+without those properties is still not a signed Play artifact. Do not commit
+keystores.
 
 ## Verification boundaries
 

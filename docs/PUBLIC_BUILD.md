@@ -61,6 +61,22 @@ of real tokens.
 - Do **not** commit real Firebase `google-services.json`; use `*.example`.
 - There is no 1Password / Play Console automation in this tree.
 
+Service keys, `sdk.dir`, `publicSnapshot`, and optional Wear signing:
+[API configuration](./API_CONFIGURATION.md). Wear debug install:
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md).
+
+### Optional GitHub Actions secrets
+
+| Secret | Required? | Role |
+| --- | --- | --- |
+| `GH_TOKEN_PACKAGES` | No | `read:packages` PAT if you want CI to prefer a maintainer token |
+| `GH_ACTOR_NAME` | No | Actor paired with that PAT |
+
+When `GH_TOKEN_PACKAGES` is empty, CI uses the job `GITHUB_TOKEN`. Do not put
+tokens in tracked `gradle.properties`. Settings path (maintainers): repository
+**Settings → Secrets and variables → Actions**. Forks cannot read these
+secrets; fork PR jobs skip writing `github.token`.
+
 ## CI / CD
 
 Canonical PR and Actions traffic is **`ImL1s/WearWallet-Multiplatform`**. The
@@ -88,6 +104,11 @@ the full Wear/coreKmp unit suite (those jobs have hung for 30–60+ minutes on
 GitHub-hosted Ubuntu). Assemble + markdown links + the release-manifest job
 are **not** an Apple compile/link matrix. Run targeted Gradle tests locally
 with `-PpublicSnapshot=true`.
+
+Live AI review on pull requests is the GitHub Codex connector
+(`chatgpt-codex-connector`). Comment `@codex review` on the PR. That is not a
+required check and not a substitute for the Actions jobs above. See
+[CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Releases
 

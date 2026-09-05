@@ -60,3 +60,22 @@ python3 scripts/check_ci_pat_fallback.py
 ```
 
 See [PUBLIC_BUILD.md](./PUBLIC_BUILD.md) for CI/CD and release package details.
+Local keys and `publicSnapshot`: [API configuration](./API_CONFIGURATION.md).
+
+## Pull request CI and AI review
+
+Open the PR against **`ImL1s/WearWallet-Multiplatform` `main`**. Required
+GitHub Actions job names:
+
+- `Test & Debug Build (Ubuntu)`
+- `Fail-closed unit slice`
+- `CI PAT fallback guard`
+- `Markdown link check`
+- `Release manifest attack surface`
+
+After those are green, comment `@codex review` so the GitHub Codex connector
+reviews the current HEAD. Codex is **not** a required check. Merge only when
+Actions are green and the HEAD Codex review reports no major issues (older
+inline comments on previous commits can stay outdated).
+
+Do not open product PRs on the private vault.

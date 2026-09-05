@@ -47,13 +47,13 @@ Run commands from the repository root:
 
 ```bash
 # Android/JVM unit tests
-./gradlew :coreKmp:testDebugUnitTest
+./gradlew :coreKmp:testDebugUnitTest -PpublicSnapshot=true
 
 # All configured KMP tests on the current host
-./gradlew :coreKmp:allTests
+./gradlew :coreKmp:allTests -PpublicSnapshot=true
 
 # Android compilation
-./gradlew :coreKmp:compileDebugKotlinAndroid
+./gradlew :coreKmp:compileDebugKotlinAndroid -PpublicSnapshot=true
 ```
 
 Apple compilation and framework tasks require macOS and Xcode. CI currently
@@ -64,7 +64,8 @@ uses target-specific tasks such as:
   :coreKmp:compileKotlinIosSimulatorArm64 \
   :coreKmp:linkDebugFrameworkIosSimulatorArm64 \
   :coreKmp:compileKotlinWatchosSimulatorArm64 \
-  :coreKmp:linkDebugFrameworkWatchosSimulatorArm64
+  :coreKmp:linkDebugFrameworkWatchosSimulatorArm64 \
+  -PpublicSnapshot=true
 ```
 
 Passing unit or simulator checks is not physical-device, hardware-wallet, or

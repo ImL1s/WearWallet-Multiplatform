@@ -118,8 +118,9 @@ cd watchos && ./build-kmp.sh && open WearWallet.xcworkspace
 
 The root `gradle.properties` file is tracked and contains shared build settings;
 never add credentials to it. Do not commit `.env`, signing files, or API keys.
-See [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md) for the supported public
-setup, credentials, and validation commands.
+See [`docs/PUBLIC_BUILD.md`](./docs/PUBLIC_BUILD.md) for clone, CI, and tags.
+Local `sdk.dir`, service keys, `publicSnapshot`, and optional Wear signing:
+[`docs/API_CONFIGURATION.md`](./docs/API_CONFIGURATION.md).
 
 Product **pull requests and GitHub Actions** belong on this repository
 (`ImL1s/WearWallet-Multiplatform`). See [CONTRIBUTING.md](./CONTRIBUTING.md).

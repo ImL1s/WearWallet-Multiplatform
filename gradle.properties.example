@@ -7,6 +7,18 @@
 # github.actor=
 # github.token=
 
+# Public clones: skip Firebase / Google Services (no real google-services.json).
+# publicSnapshot=true
+
+# Wear BuildConfig Google AI field (not read from local.properties):
+# GOOGLE_AI_API_KEY=
+
+# Optional Wear release signing (wear/build.gradle.kts). Not a Play upload path.
+# WEARWALLET_STORE_FILE=
+# WEARWALLET_STORE_PASSWORD=
+# WEARWALLET_KEY_ALIAS=
+# WEARWALLET_KEY_PASSWORD=
+
 android.useAndroidX=true
 kotlin.code.style=official
 org.gradle.jvmargs=-Xmx6144m -XX:MaxMetaspaceSize=1536m

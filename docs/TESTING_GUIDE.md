@@ -33,8 +33,14 @@ the lane it exercised.
 ./gradlew :wear:assembleRelease -PpublicSnapshot=true
 ```
 
-Release tasks may require local signing or service configuration. Do not commit
-credentials or weaken a release check to make it pass.
+Release tasks may require local signing or service configuration. Optional Wear
+keystore properties are documented in
+[API configuration](./API_CONFIGURATION.md). Do not commit credentials or
+weaken a release check to make it pass.
+
+Wear debug emulator / sideload install:
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md). Debug overlay (not mainnet):
+[WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).
 
 ## Apple and KMP checks
 

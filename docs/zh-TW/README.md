@@ -46,8 +46,10 @@ cd WearWallet-Multiplatform
 TrustWallet Core 仍走 GitHub Packages：完全匿名 clone 可能 401；CI 用 job
 `GITHUB_TOKEN`，不需要 maintainer PAT。
 
-Wear OS **debug 模擬器**可用本機 QA overlay 點 QR / 代幣 / 歷史 / 通訊錄，
-那不是主網資料。見 [Wear QA harness](../WEAR_QA_HARNESS.md)。
+Wear OS 模擬器／sideload 安裝見
+[Wear OS 安裝](../WEAR_OS_INSTALL.zh-TW.md)。**debug 模擬器**可用本機 QA
+overlay 點 QR / 代幣 / 歷史 / 通訊錄，那不是主網資料。見
+[Wear QA harness](../WEAR_QA_HARNESS.md)。
 
 實驗性 Wear **debug APK** 在
 [GitHub Releases](https://github.com/ImL1s/WearWallet-Multiplatform/releases)
@@ -64,10 +66,12 @@ Wear OS **debug 模擬器**可用本機 QA overlay 點 QR / 代幣 / 歷史 / �
 - [功能狀態矩陣](../FEATURE_STATUS.md)
 - [文件總索引](../README.md)
 - [公開建置說明](../PUBLIC_BUILD.md)
+- [API 設定](../API_CONFIGURATION.zh-TW.md)
+- [Wear OS 安裝（debug）](../WEAR_OS_INSTALL.zh-TW.md)
 - [Wear debug QA overlay](../WEAR_QA_HARNESS.md)
-- [開發指南](../DEVELOPMENT_GUIDE.md)
+- [開發指南](../DEVELOPMENT_GUIDE.zh-TW.md)
 - [`coreKmp` 概覽](../../coreKmp/README.md)
-- [貢獻指南](../CONTRIBUTING.md)
+- [貢獻指南](../CONTRIBUTING.zh-TW.md)
 
 模擬器、自動化測試與文件敘述都不等於實體手機、手錶、Keystone、商店 release
 或 mainnet 證據。

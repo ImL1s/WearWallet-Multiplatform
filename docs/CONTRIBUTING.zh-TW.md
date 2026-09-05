@@ -69,6 +69,26 @@ PR 應包含：
 沒有對應證據時，不可宣稱變更已合併、已發佈、已完成硬體驗證或可安全用於正式
 環境。
 
+本機金鑰與 `publicSnapshot`：[API 設定](./API_CONFIGURATION.zh-TW.md)。CI／發佈
+套件：[PUBLIC_BUILD.md](./PUBLIC_BUILD.md)。
+
+## PR 的 CI 與 AI review
+
+PR 開在 **`ImL1s/WearWallet-Multiplatform` 的 `main`**。必要 GitHub Actions
+job 名稱：
+
+- `Test & Debug Build (Ubuntu)`
+- `Fail-closed unit slice`
+- `CI PAT fallback guard`
+- `Markdown link check`
+- `Release manifest attack surface`
+
+上述全綠後，在 PR 留言 `@codex review`，由 GitHub Codex connector 審 HEAD。
+Codex **不是**必要 check。只有 Actions 全綠且 HEAD Codex 回報沒有重大問題才
+merge（舊 commit 上的 inline 可以維持 outdated）。
+
+不要在私有 vault 開產品 PR。
+
 ## Review 互動
 
 保持尊重，回饋要具體且可執行，並假設對方出於善意。可能危及使用者的安全問題，

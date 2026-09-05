@@ -106,11 +106,12 @@ WearWallet/
 
 ## Notes for this tree
 
-- Public CI today is Wear `assembleDebug`, curated Markdown link checks, the
-  release-manifest attack-surface job, and the PAT-fallback guard.
-  That is **not** a full unit suite and not proof of issue #30. Run targeted
-  Gradle tests locally (`-PpublicSnapshot=true`) when you change wallet or
-  security code.
+- Public CI today is Wear `assembleDebug`, the **Fail-closed unit slice**,
+  curated Markdown link checks, the release-manifest attack-surface job, and
+  the PAT-fallback guard. That is **not** a full unit suite and not proof of
+  issue #30. Run targeted Gradle tests locally (`-PpublicSnapshot=true`) when
+  you change wallet or security code. Comment `@codex review` on public PRs
+  after those checks are green.
 - There is no CI/CD credential automation, signing pipeline, or store-upload
   tooling in this repository. Historical ops live in a frozen private vault.
   Do not attempt to reconstruct or request such tooling here.
@@ -118,6 +119,9 @@ WearWallet/
   `google-services.json` — only `*.example` files belong in this repo.
 - Treat any file that looks like it contains a real recovery phrase, private
   key, or API token as a bug to report, not a fixture to reuse.
+- Maintained doc index: [`docs/README.md`](docs/README.md). Local keys /
+  `publicSnapshot` / signing: [`docs/API_CONFIGURATION.md`](docs/API_CONFIGURATION.md).
+  Wear debug install: [`docs/WEAR_OS_INSTALL.md`](docs/WEAR_OS_INSTALL.md).
 - See [`docs/DEVELOPMENT_GUIDE.md`](docs/DEVELOPMENT_GUIDE.md) and the
   [`coreKmp` API overview](docs/COREKMP_API_OVERVIEW.md) for deeper module
   docs.
