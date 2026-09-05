@@ -17,9 +17,11 @@ sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
 # ==================== Wear OS BuildConfig (lowercase) ====================
 # Read by wear/build.gradle.kts. Env fallbacks: INFURA_PROJECT_ID,
 # ETHERSCAN_API_KEY, MORALIS_API_KEY.
-infura.project.id=
-etherscan.api.key=
-moralis.api.key=
+# Leave these commented unless you set a real value. A present-but-empty
+# key overrides the env fallback in wear/build.gradle.kts.
+# infura.project.id=
+# etherscan.api.key=
+# moralis.api.key=
 
 # GOOGLE_AI_API_KEY is not read from this file. Use the environment or a
 # Gradle property (see .env.example / gradle.properties.example).
@@ -28,21 +30,21 @@ moralis.api.key=
 # Read by coreKmp/build.gradle.kts from this file only (not env).
 
 # Infura: https://infura.io
-INFURA_API_KEY=
-INFURA_HOLESKY_KEY=
-INFURA_POLYGON_KEY=
+# INFURA_API_KEY=
+# INFURA_HOLESKY_KEY=
+# INFURA_POLYGON_KEY=
 
 # Explorers
-ETHERSCAN_API_KEY=
-POLYGONSCAN_API_KEY=
-ARBISCAN_API_KEY=
-BASESCAN_API_KEY=
-OPTIMISM_API_KEY=
-BSCSCAN_API_KEY=
+# ETHERSCAN_API_KEY=
+# POLYGONSCAN_API_KEY=
+# ARBISCAN_API_KEY=
+# BASESCAN_API_KEY=
+# OPTIMISM_API_KEY=
+# BSCSCAN_API_KEY=
 
 # DEX / Web3
-RANGO_API_KEY=
-ZEROX_API_KEY=
-MORALIS_API_KEY=
-TRON_API_KEY=
-GETBLOCK_API_KEY=
+# RANGO_API_KEY=
+# ZEROX_API_KEY=
+# MORALIS_API_KEY=
+# TRON_API_KEY=
+# GETBLOCK_API_KEY=

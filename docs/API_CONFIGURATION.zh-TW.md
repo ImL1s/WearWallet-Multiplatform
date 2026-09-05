@@ -40,6 +40,7 @@ Key 不代表對應鏈、後端或硬體流程已支援。見
 ```bash
 cp local.properties.template local.properties
 # 設定 sdk.dir。Android Studio 開啟專案時也可能幫你寫這一行。
+# 只取消註解你真正要填的服務鍵。空白的 Wear 鍵會蓋掉環境變數 fallback。
 ```
 
 ## 設定對照
@@ -91,7 +92,8 @@ export MORALIS_API_KEY=YOUR_MORALIS_API_KEY
 export GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY
 ```
 
-或把 Wear OS 使用的小寫名稱放入已忽略的 `local.properties`：
+或把 Wear OS 使用的小寫名稱放入已忽略的 `local.properties`
+（要用環境變數 fallback 就不要寫該鍵，不要留空白）：
 
 ```properties
 infura.project.id=YOUR_INFURA_PROJECT_ID
@@ -140,8 +142,12 @@ Firebase 證據。不可提交該檔。
 
 `wear/build.gradle.kts` 只有在設定了 `WEARWALLET_STORE_FILE`（以及
 `WEARWALLET_STORE_PASSWORD`、`WEARWALLET_KEY_ALIAS`、
-`WEARWALLET_KEY_PASSWORD`）時才建立 release signing config。放到使用者層級
-Gradle properties 或本機（已忽略）檔，不要寫進追蹤中的 `gradle.properties`。
+`WEARWALLET_KEY_PASSWORD`）時才建立 release signing config。這些是 Gradle
+project property（`project.hasProperty` / `findProperty`）。放到使用者層級
+`~/.gradle/gradle.properties`，或在 Gradle 指令傳
+`-PWEARWALLET_STORE_FILE=...`（以及其他三個）。不要寫進追蹤中的
+`gradle.properties`。額外的已忽略檔不會被讀到，除非 Gradle 本身把它當成
+project properties 載入。
 
 這不是 Play Console 或商店上傳路徑。沒有這些屬性的 `:wear:assembleRelease`
 仍然不是已簽章的 Play 產物。不可提交 keystore。

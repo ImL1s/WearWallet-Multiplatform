@@ -42,6 +42,7 @@ Play Console automation.
 ```bash
 cp local.properties.template local.properties
 # Set sdk.dir to your Android SDK. Android Studio may write this line for you.
+# Uncomment only service keys you fill. Blank Wear keys override env fallbacks.
 ```
 
 ## Configuration map
@@ -94,7 +95,8 @@ export MORALIS_API_KEY=YOUR_MORALIS_API_KEY
 export GOOGLE_AI_API_KEY=YOUR_GOOGLE_AI_API_KEY
 ```
 
-Or add the lowercase Wear OS properties to ignored `local.properties`:
+Or add the lowercase Wear OS properties to ignored `local.properties`
+(omit a key entirely if you want the env fallback; do not leave it blank):
 
 ```properties
 infura.project.id=YOUR_INFURA_PROJECT_ID
@@ -145,8 +147,12 @@ production Firebase proof. Do not commit it.
 `wear/build.gradle.kts` creates a release signing config only when
 `WEARWALLET_STORE_FILE` is set, together with
 `WEARWALLET_STORE_PASSWORD`, `WEARWALLET_KEY_ALIAS`, and
-`WEARWALLET_KEY_PASSWORD`. Put those in user-level Gradle properties or a
-local (ignored) file — never in the tracked `gradle.properties`.
+`WEARWALLET_KEY_PASSWORD`. Those are Gradle project properties
+(`project.hasProperty` / `findProperty`). Put them in user-level
+`~/.gradle/gradle.properties`, or pass `-PWEARWALLET_STORE_FILE=...` (and the
+other three) on the Gradle command. Do not put them in tracked
+`gradle.properties`. An ignored extra file is not read unless Gradle itself
+loads it as project properties.
 
 This is not a Play Console or store-upload path. `:wear:assembleRelease`
 without those properties is still not a signed Play artifact. Do not commit
