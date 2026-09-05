@@ -6,8 +6,12 @@ set -e
 echo "🎨 WearWallet 自動截圖工具"
 echo "========================="
 
-# 設定目標設備
-DEVICE="emulator-5556"
+# Wear serial from argv or ANDROID_SERIAL. Do not guess emulator-5554.
+DEVICE="${1:-${ANDROID_SERIAL:-}}"
+if [ -z "$DEVICE" ]; then
+    echo "Pass the Wear serial: $0 SERIAL   (from adb devices -l)"
+    exit 2
+fi
 SCREENSHOT_DIR="./store-assets/screenshots"
 APP_PACKAGE="com.cbstudio.wearwallet"
 

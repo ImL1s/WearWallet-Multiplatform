@@ -1,5 +1,11 @@
 # Development
 
+<div align="center">
+
+**English** | **[繁體中文](./DEVELOPMENT_GUIDE.zh-TW.md)**
+
+</div>
+
 > This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 > tree**. See [`PUBLIC_BUILD.md`](./PUBLIC_BUILD.md) for clone, CI, and release
 > facts and [`FEATURE_STATUS.md`](./FEATURE_STATUS.md) for capability claims.
@@ -15,10 +21,16 @@ cd WearWallet-Multiplatform
 ## Prerequisites
 
 - JDK 17
-- Android SDK 35 (for Wear / mobile modules)
+- Android SDK 35 (for Wear / mobile modules). Local Gradle needs `sdk.dir` in
+  ignored `local.properties` (copy [`local.properties.template`](../local.properties.template)
+  or let Android Studio write it).
 - Optional: a GitHub token only if TrustWallet Core GitHub Packages returns 401.
   CI uses the job `GITHUB_TOKEN`, not a maintainer PAT. Tracked
   `gradle.properties` has no `github.token`.
+
+Service keys, `publicSnapshot`, Firebase examples, and optional Wear signing:
+[API configuration](./API_CONFIGURATION.md). Clone / CI / tags:
+[PUBLIC_BUILD.md](./PUBLIC_BUILD.md).
 
 ## Build / test (local)
 
@@ -28,7 +40,8 @@ chmod +x gradlew
 ```
 
 Install the Wear debug APK on an emulator or developer watch:
-[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md). Debug emulator overlay (not
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md)
+([繁體中文](./WEAR_OS_INSTALL.zh-TW.md)). Debug emulator overlay (not
 mainnet): [WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).
 
 Apple / watchOS Xcode builds are **not** CI-proven on this public tip.

@@ -24,10 +24,16 @@ cd WearWallet-Multiplatform
 ## 環境需求
 
 - JDK 17
-- Android SDK 35（Wear / mobile）
+- Android SDK 35（Wear / mobile）。本機 Gradle 需要已忽略的 `local.properties`
+  裡的 `sdk.dir`（複製 [`local.properties.template`](../local.properties.template)
+  或讓 Android Studio 寫入）。
 - 選用：TrustWallet Core 的 GitHub Packages 若回 401，再準備具 `read:packages`
   的 token。CI 用 job `GITHUB_TOKEN`，不要求 maintainer PAT。追蹤中的
   `gradle.properties` 沒有 `github.token`。
+
+服務金鑰、`publicSnapshot`、Firebase 範例與選用 Wear 簽章：
+[API 設定](./API_CONFIGURATION.zh-TW.md)。Clone／CI／打 tag：
+[PUBLIC_BUILD.md](./PUBLIC_BUILD.md)。
 
 ## 本機建置／測試
 
@@ -36,7 +42,7 @@ chmod +x gradlew
 ./gradlew :coreKmp:testDebugUnitTest :wear:testDebugUnitTest :wear:assembleDebug -PpublicSnapshot=true
 ```
 
-把 Wear debug APK 裝到模擬器或開發用手錶：[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md)。
+把 Wear debug APK 裝到模擬器或開發用手錶：[WEAR_OS_INSTALL.zh-TW.md](./WEAR_OS_INSTALL.zh-TW.md)。
 Debug 模擬器 overlay（不是 mainnet）：[WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md)。
 
 Apple / watchOS 的 Xcode 建置**不是**這個公開 tip 的 CI 證據。公開 CI 包含
@@ -45,6 +51,7 @@ Apple / watchOS 的 Xcode 建置**不是**這個公開 tip 的 CI 證據。公�
 3-OS CI、也不是 issue #30。
 
 公開樹沒有 1Password 或 Play Console 自動化。憑證說明見
+[API 設定](./API_CONFIGURATION.zh-TW.md) 與
 [PUBLIC_BUILD.md](./PUBLIC_BUILD.md)。
 
 ## 貢獻

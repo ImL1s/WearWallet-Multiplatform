@@ -59,4 +59,14 @@ python3 scripts/tests/test_check_ci_pat_fallback.py
 python3 scripts/check_ci_pat_fallback.py
 ```
 
-See [PUBLIC_BUILD.md](./docs/PUBLIC_BUILD.md) for CI/CD and release package details.
+See [PUBLIC_BUILD.md](./docs/PUBLIC_BUILD.md) for CI/CD and release package
+details. Local keys and `publicSnapshot`:
+[API configuration](./docs/API_CONFIGURATION.md).
+
+## Pull request CI and AI review
+
+Required Actions job names: `Test & Debug Build (Ubuntu)`,
+`Fail-closed unit slice`, `CI PAT fallback guard`, `Markdown link check`,
+`Release manifest attack surface`. After they are green, comment
+`@codex review` on the PR. Codex is not a required check. Merge when Actions
+are green and the HEAD Codex review reports no major issues.

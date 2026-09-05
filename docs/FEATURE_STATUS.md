@@ -1,5 +1,11 @@
 # Feature status
 
+<div align="center">
+
+**English** | **[繁體中文](./FEATURE_STATUS.zh-TW.md)**
+
+</div>
+
 This is the **only** public list of WearWallet product claims. Code, screenshots,
 store copy, and other docs must not describe a capability as supported unless
 this matrix says so. The Kotlin registry is

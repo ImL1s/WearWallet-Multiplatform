@@ -1,5 +1,11 @@
 # WearWallet testing guide
 
+<div align="center">
+
+**English** | **[繁體中文](./TESTING_GUIDE.zh-TW.md)**
+
+</div>
+
 Choose checks by the behavior and platform changed. A green command proves only
 the lane it exercised.
 
@@ -33,8 +39,14 @@ the lane it exercised.
 ./gradlew :wear:assembleRelease -PpublicSnapshot=true
 ```
 
-Release tasks may require local signing or service configuration. Do not commit
-credentials or weaken a release check to make it pass.
+Release tasks may require local signing or service configuration. Optional Wear
+keystore properties are documented in
+[API configuration](./API_CONFIGURATION.md). Do not commit credentials or
+weaken a release check to make it pass.
+
+Wear debug emulator / sideload install:
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md). Debug overlay (not mainnet):
+[WEAR_QA_HARNESS.md](./WEAR_QA_HARNESS.md).
 
 ## Apple and KMP checks
 
@@ -50,7 +62,8 @@ Run Apple tasks on macOS with Xcode installed:
   :coreKmp:compileKotlinWatchosSimulatorArm64 \
   :coreKmp:compileKotlinWatchosArm64 \
   :coreKmp:linkDebugFrameworkWatchosSimulatorArm64 \
-  :coreKmp:linkDebugFrameworkWatchosArm64
+  :coreKmp:linkDebugFrameworkWatchosArm64 \
+  -PpublicSnapshot=true
 ```
 
 These tasks mirror the intent of the macOS CI lane. Check the current workflow

@@ -1,5 +1,11 @@
 # Public build notes
 
+<div align="center">
+
+**English** | **[繁體中文](./PUBLIC_BUILD.zh-TW.md)**
+
+</div>
+
 This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 vault **forever**. Do **not** force-export from private over this `main` as
@@ -53,13 +59,29 @@ unauthenticated HTTP GET of the same POM also returns **401**. This tree
 does **not** vendor Wallet Core.
 
 Optional local packages credentials belong in ignored `.env`, user-level
-`~/.gradle/gradle.properties`, or a **local copy** of the tracked
-[`gradle.properties.example`](../gradle.properties.example) — never in the
-tracked `gradle.properties`. The example file is tracked and must stay free
-of real tokens.
+`~/.gradle/gradle.properties`, or `-Pgithub.actor=` / `-Pgithub.token=` —
+never in the tracked `gradle.properties`. Copy selected keys from
+[`gradle.properties.example`](../gradle.properties.example) into that
+user-level file. The example is tracked and must stay free of real tokens.
 
 - Do **not** commit real Firebase `google-services.json`; use `*.example`.
 - There is no 1Password / Play Console automation in this tree.
+
+Service keys, `sdk.dir`, `publicSnapshot`, and optional Wear signing:
+[API configuration](./API_CONFIGURATION.md). Wear debug install:
+[WEAR_OS_INSTALL.md](./WEAR_OS_INSTALL.md).
+
+### Optional GitHub Actions secrets
+
+| Secret | Required? | Role |
+| --- | --- | --- |
+| `GH_TOKEN_PACKAGES` | No | `read:packages` PAT if you want CI to prefer a maintainer token |
+| `GH_ACTOR_NAME` | No | Actor paired with that PAT |
+
+When `GH_TOKEN_PACKAGES` is empty, CI uses the job `GITHUB_TOKEN`. Do not put
+tokens in tracked `gradle.properties`. Settings path (maintainers): repository
+**Settings → Secrets and variables → Actions**. Forks cannot read these
+secrets; fork PR jobs skip writing `github.token`.
 
 ## CI / CD
 
@@ -88,6 +110,11 @@ the full Wear/coreKmp unit suite (those jobs have hung for 30–60+ minutes on
 GitHub-hosted Ubuntu). Assemble + markdown links + the release-manifest job
 are **not** an Apple compile/link matrix. Run targeted Gradle tests locally
 with `-PpublicSnapshot=true`.
+
+Live AI review on pull requests is the GitHub Codex connector
+(`chatgpt-codex-connector`). Comment `@codex review` on the PR. That is not a
+required check and not a substitute for the Actions jobs above. See
+[CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Releases
 

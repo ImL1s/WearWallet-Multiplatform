@@ -202,28 +202,53 @@ jobs:
             CONTRIBUTING.md
             docs/README.md
             docs/FEATURE_STATUS.md
+            docs/FEATURE_STATUS.zh-TW.md
             docs/PUBLIC_BUILD.md
+            docs/PUBLIC_BUILD.zh-TW.md
             docs/PUBLIC_SNAPSHOT.md
+            docs/PUBLIC_SNAPSHOT.zh-TW.md
             docs/LICENSING.md
+            docs/LICENSING.zh-TW.md
             docs/THIRD_PARTY.md
+            docs/THIRD_PARTY.zh-TW.md
             docs/SCREENSHOTS.md
+            docs/SCREENSHOTS.zh-TW.md
             docs/DEVELOPMENT_GUIDE.md
             docs/DEVELOPMENT_GUIDE.zh-TW.md
             docs/CONTRIBUTING.md
             docs/CONTRIBUTING.zh-TW.md
             docs/ARCHITECTURE.md
+            docs/ARCHITECTURE.zh-TW.md
             docs/TESTING_GUIDE.md
+            docs/TESTING_GUIDE.zh-TW.md
             docs/ROADMAP.md
+            docs/ROADMAP.zh-TW.md
             docs/SECURITY.md
+            docs/SECURITY.zh-TW.md
             docs/API_CONFIGURATION.md
+            docs/API_CONFIGURATION.zh-TW.md
             docs/KEYSTONE_INTEGRATION_GUIDE.md
+            docs/KEYSTONE_INTEGRATION_GUIDE.zh-TW.md
             docs/WATCHOS_DEVELOPMENT_GUIDE.md
+            docs/WATCHOS_DEVELOPMENT_GUIDE.zh-TW.md
             docs/COREKMP_API_OVERVIEW.md
+            docs/COREKMP_API_OVERVIEW.zh-TW.md
             docs/WEBVIEW_CONTRACT.md
+            docs/WEBVIEW_CONTRACT.zh-TW.md
             docs/WEAR_QA_HARNESS.md
+            docs/WEAR_QA_HARNESS.zh-TW.md
             docs/WEAR_OS_INSTALL.md
+            docs/WEAR_OS_INSTALL.zh-TW.md
             docs/zh-TW/README.md
+            wear/README.md
+            mobile/README.md
+            modules/README.md
             watchos/README.md
+            coreKmp/README.md
+            iosApp/README.md
+            scripts/README.md
+            TrustWalletBridge/README.md
+            store-assets/README.md
           )
           rc=0
           for f in "${files[@]}"; do

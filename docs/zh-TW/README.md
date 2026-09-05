@@ -46,28 +46,41 @@ cd WearWallet-Multiplatform
 TrustWallet Core 仍走 GitHub Packages：完全匿名 clone 可能 401；CI 用 job
 `GITHUB_TOKEN`，不需要 maintainer PAT。
 
-Wear OS **debug 模擬器**可用本機 QA overlay 點 QR / 代幣 / 歷史 / 通訊錄，
-那不是主網資料。見 [Wear QA harness](../WEAR_QA_HARNESS.md)。
+Wear OS 模擬器／sideload 安裝見
+[Wear OS 安裝](../WEAR_OS_INSTALL.zh-TW.md)。**debug 模擬器**可用本機 QA
+overlay 點 QR / 代幣 / 歷史 / 通訊錄，那不是主網資料。見
+[Wear QA harness](../WEAR_QA_HARNESS.md)。
 
 實驗性 Wear **debug APK** 在
 [GitHub Releases](https://github.com/ImL1s/WearWallet-Multiplatform/releases)
 （prerelease，非商店版，不可當主網證據）。建置與打 tag 見
-[公開建置說明](../PUBLIC_BUILD.md)。
+[公開建置說明](../PUBLIC_BUILD.zh-TW.md)。
 
 ## 功能狀態
 
-產品能力**只以** [功能狀態矩陣](../FEATURE_STATUS.md) 為準（`FeatureMaturity` /
+產品能力**只以** [功能狀態矩陣](../FEATURE_STATUS.zh-TW.md) 為準（`FeatureMaturity` /
 `WearCapability`）。不要把截圖、TODO 或歷史文件當成已支援。**不要**用真實資金。
 
 ## 文件
 
-- [功能狀態矩陣](../FEATURE_STATUS.md)
+- [功能狀態矩陣](../FEATURE_STATUS.zh-TW.md)
 - [文件總索引](../README.md)
-- [公開建置說明](../PUBLIC_BUILD.md)
-- [Wear debug QA overlay](../WEAR_QA_HARNESS.md)
-- [開發指南](../DEVELOPMENT_GUIDE.md)
-- [`coreKmp` 概覽](../../coreKmp/README.md)
-- [貢獻指南](../CONTRIBUTING.md)
+- [公開建置說明](../PUBLIC_BUILD.zh-TW.md)
+- [API 設定](../API_CONFIGURATION.zh-TW.md)
+- [Wear OS 安裝（debug）](../WEAR_OS_INSTALL.zh-TW.md)
+- [Wear debug QA overlay](../WEAR_QA_HARNESS.zh-TW.md)
+- [測試指南](../TESTING_GUIDE.zh-TW.md)
+- [開發指南](../DEVELOPMENT_GUIDE.zh-TW.md)
+- [架構](../ARCHITECTURE.zh-TW.md)
+- [安全邊界](../SECURITY.zh-TW.md)
+- [`coreKmp` API 地圖](../COREKMP_API_OVERVIEW.zh-TW.md)
+- [Keystone 整合](../KEYSTONE_INTEGRATION_GUIDE.zh-TW.md)
+- [watchOS](../WATCHOS_DEVELOPMENT_GUIDE.zh-TW.md)
+- [授權](../LICENSING.zh-TW.md)
+- [第三方清冊](../THIRD_PARTY.zh-TW.md)
+- [截圖](../SCREENSHOTS.zh-TW.md)
+- [貢獻指南](../CONTRIBUTING.zh-TW.md)
+- [Roadmap](../ROADMAP.zh-TW.md)
 
 模擬器、自動化測試與文件敘述都不等於實體手機、手錶、Keystone、商店 release
 或 mainnet 證據。
