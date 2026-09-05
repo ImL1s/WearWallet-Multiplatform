@@ -1,5 +1,11 @@
 # Licensing
 
+<div align="center">
+
+**English** | **[繁體中文](./LICENSING.zh-TW.md)**
+
+</div>
+
 WearWallet is licensed under the **GNU General Public License v3.0 or
 later (GPL-3.0-or-later)**.
 

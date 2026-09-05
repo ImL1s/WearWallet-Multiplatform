@@ -1,5 +1,11 @@
 # Public build notes
 
+<div align="center">
+
+**English** | **[繁體中文](./PUBLIC_BUILD.zh-TW.md)**
+
+</div>
+
 This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 vault **forever**. Do **not** force-export from private over this `main` as
@@ -53,10 +59,10 @@ unauthenticated HTTP GET of the same POM also returns **401**. This tree
 does **not** vendor Wallet Core.
 
 Optional local packages credentials belong in ignored `.env`, user-level
-`~/.gradle/gradle.properties`, or a **local copy** of the tracked
-[`gradle.properties.example`](../gradle.properties.example) — never in the
-tracked `gradle.properties`. The example file is tracked and must stay free
-of real tokens.
+`~/.gradle/gradle.properties`, or `-Pgithub.actor=` / `-Pgithub.token=` —
+never in the tracked `gradle.properties`. Copy selected keys from
+[`gradle.properties.example`](../gradle.properties.example) into that
+user-level file. The example is tracked and must stay free of real tokens.
 
 - Do **not** commit real Firebase `google-services.json`; use `*.example`.
 - There is no 1Password / Play Console automation in this tree.

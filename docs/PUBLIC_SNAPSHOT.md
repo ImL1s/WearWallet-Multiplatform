@@ -1,5 +1,11 @@
 # Public tree provenance
 
+<div align="center">
+
+**English** | **[繁體中文](./PUBLIC_SNAPSHOT.zh-TW.md)**
+
+</div>
+
 This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 tree**. The private repo (`ImL1s/WearWallet`) is frozen as a historical / ops
 vault **forever**. Do **not** force-export from private over this `main` as

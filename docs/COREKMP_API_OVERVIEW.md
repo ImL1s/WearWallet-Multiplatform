@@ -1,5 +1,11 @@
 # `coreKmp` API map
 
+<div align="center">
+
+**English** | **[繁體中文](./COREKMP_API_OVERVIEW.zh-TW.md)**
+
+</div>
+
 This document is a navigation aid for the current `coreKmp` source tree. It is
 not a generated API reference or a promise that every declared adapter is
 complete on every platform.

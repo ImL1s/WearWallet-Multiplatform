@@ -1,5 +1,11 @@
 # Wear OS debug QA harness
 
+<div align="center">
+
+**English** | **[繁體中文](./WEAR_QA_HARNESS.zh-TW.md)**
+
+</div>
+
 This is a **debug / Wear emulator** overlay so empty demo wallets can still
 exercise QR, token Send, history detail, and address-book Send. It is **not**
 mainnet data, not a funded wallet, and not evidence that signing or broadcast

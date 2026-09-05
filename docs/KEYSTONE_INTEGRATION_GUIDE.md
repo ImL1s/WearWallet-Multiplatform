@@ -1,5 +1,11 @@
 # Keystone integration status and developer guide
 
+<div align="center">
+
+**English** | **[繁體中文](./KEYSTONE_INTEGRATION_GUIDE.zh-TW.md)**
+
+</div>
+
 WearWallet contains a Kotlin Multiplatform integration skeleton for exchanging
 Keystone-compatible BC-UR payloads. Treat it as code under development, not as
 proof of a complete or hardware-verified signing product.
@@ -74,10 +80,10 @@ account or transaction information.
 
 ```bash
 # Discover current tasks before copying a command into automation
-./gradlew :coreKmp:tasks --all
+./gradlew :coreKmp:tasks --all -PpublicSnapshot=true
 
 # Android/JVM unit-test lane used by the module
-./gradlew :coreKmp:testDebugUnitTest
+./gradlew :coreKmp:testDebugUnitTest -PpublicSnapshot=true
 ```
 
 The test suite includes UR and xpub-policy tests, but a green unit-test task is

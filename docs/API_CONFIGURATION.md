@@ -34,7 +34,7 @@ Play Console automation.
 | File | Tracked? | Role |
 | --- | --- | --- |
 | [`local.properties.template`](../local.properties.template) | Yes (placeholders) | Copy to ignored `local.properties`: `sdk.dir`, Wear lowercase keys, `coreKmp` uppercase keys |
-| [`.env.example`](../.env.example) | Yes (placeholders) | Copy to ignored `.env` for GitHub Packages + Wear env names |
+| [`.env.example`](../.env.example) | Yes (placeholders) | Copy to ignored `.env`, then **`source` it** (Gradle does not load `.env`) |
 | [`gradle.properties.example`](../gradle.properties.example) | Yes (placeholders) | Copy selected keys to **user-level** `~/.gradle/gradle.properties` |
 | `wear/google-services.json.example` and `mobile/google-services.json.example` | Yes (shape only) | Do not commit a real `google-services.json` |
 | Tracked root `gradle.properties` | Yes | Shared Gradle JVM/Android flags only — no tokens |
@@ -43,7 +43,18 @@ Play Console automation.
 cp local.properties.template local.properties
 # Set sdk.dir to your Android SDK. Android Studio may write this line for you.
 # Uncomment only service keys you fill. Blank Wear keys override env fallbacks.
+
+cp .env.example .env
+# Gradle does not read .env. Export into this shell before ./gradlew:
+set -a
+source .env
+set +a
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ```
+
+`scripts/build-with-validation.sh` also sources `.env` then runs `./gradlew`.
+That wrapper is optional. Direct `./gradlew` without `source .env` will not see
+those names.
 
 ## Configuration map
 

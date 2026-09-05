@@ -35,7 +35,7 @@ git switch -c type/short-description
 
 ## 驗證
 
-依[測試指南](./TESTING_GUIDE.md)選擇指令。常用檢查如下：
+依[測試指南](./TESTING_GUIDE.zh-TW.md)選擇指令。常用檢查如下：
 
 ```bash
 ./scripts/check_markdown_links.py

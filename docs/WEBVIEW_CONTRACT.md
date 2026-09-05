@@ -1,5 +1,11 @@
 # WebView script-bridge contract
 
+<div align="center">
+
+**English** | **[繁體中文](./WEBVIEW_CONTRACT.zh-TW.md)**
+
+</div>
+
 This document defines the capability boundary that any WearWallet Android
 WebView script bridge must satisfy. It is a normative contract, not evidence
 that a production DApp bridge is currently wired or released.

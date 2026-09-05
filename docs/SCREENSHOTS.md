@@ -1,5 +1,11 @@
 # WearWallet Wear OS Screenshots
 
+<div align="center">
+
+**English** | **[繁體中文](./SCREENSHOTS.zh-TW.md)**
+
+</div>
+
 Marketing captures from **Wear OS Large Round (AVD)**, app id `com.cbstudio.wearwallet`.  
 Captured with `adb shell screencap` after emulator-only debug flows (no real mnemonics shown).
 
@@ -21,7 +27,9 @@ Captured with `adb shell screencap` after emulator-only debug flows (no real mne
 python3 scripts/capture-wear-screenshots.py
 ```
 
-Requires `emulator-5554` awake (`adb shell svc power stayon true`). The script auto-creates a **Demo Wallet** on AVD (no biometric / no hardware keystore).
+Use the Wear serial from `adb devices -l` (not always `emulator-5554`). Keep
+that AVD awake (`adb -s SERIAL shell svc power stayon true`). The script
+auto-creates a **Demo Wallet** on AVD (no biometric / no hardware keystore).
 
 ## README embed (suggested)
 

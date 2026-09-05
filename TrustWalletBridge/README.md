@@ -70,4 +70,6 @@ word counts, ownership, encoding, and error behavior at the caller boundary.
    Kotlin, Objective-C, Swift, and TrustWallet Core.
 5. Record exact-head CI and physical-device evidence separately.
 
-This module is covered by the repository [MIT License](../LICENSE).
+WearWallet's own source in this repository is
+[GPL-3.0-or-later](../LICENSE). Do not invent a different license for this
+directory. See [`docs/LICENSING.md`](../docs/LICENSING.md).

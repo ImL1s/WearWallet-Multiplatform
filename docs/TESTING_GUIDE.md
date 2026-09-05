@@ -1,5 +1,11 @@
 # WearWallet testing guide
 
+<div align="center">
+
+**English** | **[繁體中文](./TESTING_GUIDE.zh-TW.md)**
+
+</div>
+
 Choose checks by the behavior and platform changed. A green command proves only
 the lane it exercised.
 
@@ -56,7 +62,8 @@ Run Apple tasks on macOS with Xcode installed:
   :coreKmp:compileKotlinWatchosSimulatorArm64 \
   :coreKmp:compileKotlinWatchosArm64 \
   :coreKmp:linkDebugFrameworkWatchosSimulatorArm64 \
-  :coreKmp:linkDebugFrameworkWatchosArm64
+  :coreKmp:linkDebugFrameworkWatchosArm64 \
+  -PpublicSnapshot=true
 ```
 
 These tasks mirror the intent of the macOS CI lane. Check the current workflow

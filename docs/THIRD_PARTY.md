@@ -1,5 +1,11 @@
 # Third-party and vendored-module inventory
 
+<div align="center">
+
+**English** | **[繁體中文](./THIRD_PARTY.zh-TW.md)**
+
+</div>
+
 **This is an engineering inventory, not legal advice.** It does not
 clear redistribution, prove license compatibility, or replace a lawyer
 review. The product-capability truth remains

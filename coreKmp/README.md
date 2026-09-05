@@ -71,6 +71,9 @@ uses target-specific tasks such as:
 Passing unit or simulator checks is not physical-device, hardware-wallet, or
 mainnet proof.
 
+RFC6979 vectors in [`docs/RFC6979_TEST_VECTORS.md`](./docs/RFC6979_TEST_VECTORS.md)
+are test inputs, not a product claim.
+
 ## Current capability guidance
 
 Before extending or calling a chain feature:

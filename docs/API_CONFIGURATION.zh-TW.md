@@ -32,7 +32,7 @@ Key 不代表對應鏈、後端或硬體流程已支援。見
 | 檔案 | 是否追蹤 | 用途 |
 | --- | --- | --- |
 | [`local.properties.template`](../local.properties.template) | 是（placeholder） | 複製成已忽略的 `local.properties`：`sdk.dir`、Wear 小寫鍵、`coreKmp` 全大寫鍵 |
-| [`.env.example`](../.env.example) | 是（placeholder） | 複製成已忽略的 `.env`：GitHub Packages 與 Wear 環境變數名稱 |
+| [`.env.example`](../.env.example) | 是（placeholder） | 複製成已忽略的 `.env`，然後 **`source` 它**（Gradle 不會載入 `.env`） |
 | [`gradle.properties.example`](../gradle.properties.example) | 是（placeholder） | 把需要的鍵放到**使用者層級** `~/.gradle/gradle.properties` |
 | `wear/google-services.json.example` 與 `mobile/google-services.json.example` | 是（僅形狀） | 不可提交真實 `google-services.json` |
 | 追蹤中的根目錄 `gradle.properties` | 是 | 共用 Gradle JVM／Android 旗標 — 不要放 token |
@@ -41,7 +41,17 @@ Key 不代表對應鏈、後端或硬體流程已支援。見
 cp local.properties.template local.properties
 # 設定 sdk.dir。Android Studio 開啟專案時也可能幫你寫這一行。
 # 只取消註解你真正要填的服務鍵。空白的 Wear 鍵會蓋掉環境變數 fallback。
+
+cp .env.example .env
+# Gradle 不讀 .env。跑 ./gradlew 前先匯入這個 shell：
+set -a
+source .env
+set +a
+./gradlew :wear:assembleDebug -PpublicSnapshot=true
 ```
+
+`scripts/build-with-validation.sh` 也會 `source .env` 再跑 `./gradlew`。那是
+選用 wrapper。直接 `./gradlew` 卻沒有 `source .env` 就看不到那些名稱。
 
 ## 設定對照
 

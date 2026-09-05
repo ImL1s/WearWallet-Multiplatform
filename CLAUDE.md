@@ -119,9 +119,18 @@ WearWallet/
   `google-services.json` — only `*.example` files belong in this repo.
 - Treat any file that looks like it contains a real recovery phrase, private
   key, or API token as a bug to report, not a fixture to reuse.
-- Maintained doc index: [`docs/README.md`](docs/README.md). Local keys /
-  `publicSnapshot` / signing: [`docs/API_CONFIGURATION.md`](docs/API_CONFIGURATION.md).
-  Wear debug install: [`docs/WEAR_OS_INSTALL.md`](docs/WEAR_OS_INSTALL.md).
+- Maintained doc index: [`docs/README.md`](docs/README.md). Every maintained
+  guide there must have an English page and a `.zh-TW.md` twin (or a
+  `docs/zh-TW/` overview). Do not leave a public entry English-only.
+- Local keys / `publicSnapshot` / signing:
+  [`docs/API_CONFIGURATION.md`](docs/API_CONFIGURATION.md). Wear debug
+  install: [`docs/WEAR_OS_INSTALL.md`](docs/WEAR_OS_INSTALL.md).
 - See [`docs/DEVELOPMENT_GUIDE.md`](docs/DEVELOPMENT_GUIDE.md) and the
   [`coreKmp` API overview](docs/COREKMP_API_OVERVIEW.md) for deeper module
   docs.
+- Module maps: [`wear/README.md`](wear/README.md),
+  [`mobile/README.md`](mobile/README.md),
+  [`watchos/README.md`](watchos/README.md),
+  [`modules/README.md`](modules/README.md),
+  [`iosApp/README.md`](iosApp/README.md) (unsupported leftovers),
+  [`scripts/README.md`](scripts/README.md).

@@ -1,5 +1,11 @@
 # Development
 
+<div align="center">
+
+**English** | **[繁體中文](./DEVELOPMENT_GUIDE.zh-TW.md)**
+
+</div>
+
 > This public repo (`ImL1s/WearWallet-Multiplatform`) is the **canonical development
 > tree**. See [`PUBLIC_BUILD.md`](./PUBLIC_BUILD.md) for clone, CI, and release
 > facts and [`FEATURE_STATUS.md`](./FEATURE_STATUS.md) for capability claims.

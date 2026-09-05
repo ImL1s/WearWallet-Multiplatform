@@ -19,5 +19,10 @@ Redistribution claims stay `UNSUPPORTED` in
 [`docs/FEATURE_STATUS.md`](../docs/FEATURE_STATUS.md). Inventory:
 [`docs/THIRD_PARTY.md`](../docs/THIRD_PARTY.md).
 
+Also present on disk but **not** included by `settings.gradle.kts`:
+`modules/bitcoin-kmp` and `modules/secp256k1-kmp` (and nested
+`secp256k1`). They are inventory only. See
+[`docs/THIRD_PARTY.md`](../docs/THIRD_PARTY.md).
+
 Independently versioned upstreams live in each library's own GitHub
 repository, not here.
