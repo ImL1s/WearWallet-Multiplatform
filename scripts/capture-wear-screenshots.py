@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Capture verified WearWallet screenshots on emulator-5554."""
+"""Capture WearWallet screenshots on an explicit Wear adb serial."""
 from __future__ import annotations
 
+import argparse
+import os
 import re
 import subprocess
+import sys
 import time
 from pathlib import Path
 
-DEVICE = "emulator-5554"
 PKG = "com.cbstudio.wearwallet"
-OUT = Path("/Users/iml1s/Documents/mine/WearWallet/docs/screenshots")
+OUT = Path(__file__).resolve().parents[1] / "docs" / "screenshots"
 MIN_BYTES = 18_000
+DEVICE = ""
 
 
 def adb(*args: str) -> None:
@@ -109,7 +112,29 @@ def scroll_to_top() -> None:
     time.sleep(1)
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Capture Wear debug screenshots. Serial is required."
+    )
+    parser.add_argument(
+        "--serial",
+        default=os.environ.get("ANDROID_SERIAL", ""),
+        help="Wear adb serial from `adb devices -l` (or ANDROID_SERIAL).",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    global DEVICE
+    args = parse_args()
+    DEVICE = args.serial.strip()
+    if not DEVICE:
+        print(
+            "Pass --serial SERIAL from `adb devices -l`, or set ANDROID_SERIAL.",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+
     OUT.mkdir(parents=True, exist_ok=True)
     adb("shell", "settings", "put", "system", "screen_off_timeout", "600000")
     adb("shell", "svc", "power", "stayon", "true")

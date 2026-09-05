@@ -43,6 +43,7 @@ cp local.properties.template local.properties
 # 只取消註解你真正要填的服務鍵。空白的 Wear 鍵會蓋掉環境變數 fallback。
 
 cp .env.example .env
+# 只取消註解你要填的鍵。空白賦值會蓋掉使用者層級 Gradle properties。
 # Gradle 不讀 .env。跑 ./gradlew 前先匯入這個 shell：
 set -a
 source .env

@@ -25,12 +25,14 @@
 
 ```bash
 # 先裝帶模擬器 QA 覆寫的 debug 建置，然後：
-python3 scripts/capture-wear-screenshots.py
+adb devices -l
+# 複製 Wear serial。不要假設是 emulator-5554。
+python3 scripts/capture-wear-screenshots.py --serial SERIAL
 ```
 
-從 `adb devices -l` 取 Wear serial（不一定是 `emulator-5554`）。讓該 AVD 保持
-喚醒（`adb -s SERIAL shell svc power stayon true`）。腳本會在 AVD 上自動建立
-**Demo Wallet**（無生物辨識／無硬體 keystore）。
+讓該 AVD 保持喚醒（`adb -s SERIAL shell svc power stayon true`）。腳本寫入
+`docs/screenshots/`，並在 AVD 上自動建立 **Demo Wallet**（無生物辨識／無硬體
+keystore）。
 
 安裝路徑見 [WEAR_OS_INSTALL.zh-TW.md](./WEAR_OS_INSTALL.zh-TW.md)。這些截圖
 **不是**商店、實體錶或 mainnet 證據。

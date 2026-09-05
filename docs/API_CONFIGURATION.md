@@ -45,6 +45,7 @@ cp local.properties.template local.properties
 # Uncomment only service keys you fill. Blank Wear keys override env fallbacks.
 
 cp .env.example .env
+# Uncomment only keys you fill. Blank assignments override user Gradle properties.
 # Gradle does not read .env. Export into this shell before ./gradlew:
 set -a
 source .env

@@ -24,12 +24,14 @@ Captured with `adb shell screencap` after emulator-only debug flows (no real mne
 
 ```bash
 # Install debug build with emulator QA overrides, then:
-python3 scripts/capture-wear-screenshots.py
+adb devices -l
+# Copy the Wear serial. Do not assume emulator-5554.
+python3 scripts/capture-wear-screenshots.py --serial SERIAL
 ```
 
-Use the Wear serial from `adb devices -l` (not always `emulator-5554`). Keep
-that AVD awake (`adb -s SERIAL shell svc power stayon true`). The script
-auto-creates a **Demo Wallet** on AVD (no biometric / no hardware keystore).
+Keep that AVD awake (`adb -s SERIAL shell svc power stayon true`). The script
+writes into `docs/screenshots/` and auto-creates a **Demo Wallet** on AVD (no
+biometric / no hardware keystore).
 
 ## README embed (suggested)
 

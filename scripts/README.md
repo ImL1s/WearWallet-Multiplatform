@@ -21,10 +21,10 @@ Matching unit tests live under [`tests/`](./tests/).
 | Script | Role |
 | --- | --- |
 | [`build-watchos.sh`](./build-watchos.sh) | Link the watchOS simulator `coreKmp` framework |
-| [`capture-wear-screenshots.py`](./capture-wear-screenshots.py) | AVD capture after a debug install |
-| [`auto-screenshot.sh`](./auto-screenshot.sh) | Shell helper around adb screencap |
+| [`capture-wear-screenshots.py`](./capture-wear-screenshots.py) | AVD capture after a debug install (`--serial` required) |
+| [`auto-screenshot.sh`](./auto-screenshot.sh) | Shell helper around adb screencap (serial as first arg) |
 
-Wear serial must come from `adb devices -l`. See
+Wear serial must come from `adb devices -l` and be passed through. See
 [`docs/WEAR_OS_INSTALL.md`](../docs/WEAR_OS_INSTALL.md) and
 [`docs/SCREENSHOTS.md`](../docs/SCREENSHOTS.md).
 
