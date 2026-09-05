@@ -1,7 +1,6 @@
 # Gradle configuration example for local overrides.
-# Copy selected keys into user-level ~/.gradle/gradle.properties or an ignored
-# local file. Never put github.actor / github.token into the tracked
-# gradle.properties.
+# Copy selected keys into user-level ~/.gradle/gradle.properties, or pass -P.
+# Never put github.actor / github.token into the tracked gradle.properties.
 
 # Optional GitHub Packages credentials (read:packages) if TrustWallet Core 401s:
 # github.actor=
